@@ -36,7 +36,7 @@ const resetTimeout = useCallback(() => {
 
 useEffect(() => {
   resetTimeout();
-  fun();  
+  fun();
 
   return () => {
   resetTimeout();

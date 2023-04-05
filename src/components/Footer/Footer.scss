@@ -1,0 +1,37 @@
+.footer{
+    width: 100%;
+    height: 300px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+
+    .containerFooter{
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+
+
+
+        .linkIcons{
+            width: 23px;
+            height: 23px;
+            margin-left: 20px; ;
+            font-size: 25px;
+            color: white;
+            overflow: hidden;
+            a{
+                text-decoration: none;
+                color: black;
+            }
+        }
+        .linkIcons{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            border-radius: 100%;
+        }
+    }
+
+}
