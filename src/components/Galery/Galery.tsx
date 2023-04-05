@@ -36,13 +36,13 @@ const resetTimeout = useCallback(() => {
 
 useEffect(() => {
   resetTimeout();
-  fun();
+  fun();  
 
   return () => {
   resetTimeout();
 
   };
-}, [resetTimeout, fun, images.length, setIndex,]);
+}, [resetTimeout, fun, images.length, setIndex,index]);
 
   return (
       <div>
