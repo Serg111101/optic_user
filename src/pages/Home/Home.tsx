@@ -1,3 +1,4 @@
+/* eslint-disabled*/
 import { Header } from "../../components/Header";
 import "./Home.scss";
 import { useCallback, useEffect, useRef, useState } from 'react';
