@@ -58,7 +58,7 @@ export  function Home() {
             // style={{ backgroundColor }}
           >
             {
-              <img src={ images[index]} />
+              <img src={ images[index]} alt=''/>
             }
           </div>
         ))}
