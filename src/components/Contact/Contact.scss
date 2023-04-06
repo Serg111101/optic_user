@@ -1,0 +1,75 @@
+.contact {
+    max-width: 1000px;
+    margin: 0 auto;
+    margin-top: 250px;
+    margin-bottom: 200px;
+
+
+    .title{
+        font-size:22px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+    .inputs{
+        width: 100%;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+
+        input{
+            width: 60%;
+            margin: 0 auto;
+            margin-top: 30px;
+            padding: 20px;
+        border:1px solid black
+        }
+    }
+    .text{
+                margin: 0 auto;
+                width: 60%;
+                height: 150px;
+                margin-top: 30px;
+                resize: none;
+                border: 2px solid #E1AA5A;
+
+    }
+
+    .btn{
+        display:flex ;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 100px;
+
+
+        button {
+            width: 110px;
+            height: 50px;
+            background-color: darkgrey;
+            letter-spacing: 4px;
+
+        }
+        p{
+            margin-top: 20px;
+            color: darkcyan;
+        }
+    }
+
+    .textBottom{
+        border: 1px solid;
+        width: 80%;
+        margin: 0 auto;
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-around;
+
+        
+
+
+
+    }
+
+
+}

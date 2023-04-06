@@ -2,11 +2,30 @@
     width: 100%;
     margin: 0 auto;
     overflow: hidden;
-    background-color: black;
 
 }
 
+.line_div {
+    width: 80%;
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .line {
+        width: 40%;
+        height: 2px;
+        background-color: black;
+    }
+    p{
+        font-size: 25px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        margin: 0px 20px;
+    }
+}
+
 .slideshowSlider {
+    // background-color: black;
     max-width: 1400px;
     margin: 0 auto;
     white-space: nowrap;
@@ -19,14 +38,12 @@
     width: 100%;
     border-radius: 40px;
     z-index: 30000;
-    // background-color: aqua;
 
 }
 
 .aslide {
     height: 300px;
     margin-top: 100px;
-    background-color: aqua;
     // transform: scale(1.1);
 }
 
