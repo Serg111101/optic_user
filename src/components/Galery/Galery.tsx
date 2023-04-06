@@ -41,8 +41,8 @@ export function Galery() {
     return () => {
       resetTimeout();
 
-    };
-  }, [resetTimeout, fun, images.length, setIndex, index]);
+  };
+}, [resetTimeout, fun, images.length, setIndex,index]);
 
   return (
     <div>
