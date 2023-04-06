@@ -14,17 +14,11 @@
     }
     .inputs{
         width: 100%;
-        border: 1px solid black;
+        // border: 1px solid black;
         display: flex;
         flex-direction: column;
 
-        input{
-            width: 60%;
-            margin: 0 auto;
-            margin-top: 30px;
-            padding: 20px;
-        border:1px solid black
-        }
+
     }
     .text{
                 margin: 0 auto;
@@ -32,7 +26,7 @@
                 height: 150px;
                 margin-top: 30px;
                 resize: none;
-                border: 2px solid #E1AA5A;
+                border: 1px solid #000000;
 
     }
 
@@ -116,5 +110,42 @@
     }
 
 
+
+}
+
+.ok{
+    display: flex;
+        justify-content: center;
+        flex-direction: column;
+    .icon{
+
+    font-size: 65px;
+    color: green;
+    display: flex;
+    justify-content: center;
+    }
+    .iconText{
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        font-size: 18px;
+    }
+
+
+}
+        .anasun {
+            width: 60%;
+            margin: 0 auto;
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid black
+        }
+
+.inputError{
+border: 5px solid red;
+}
+
+.text.inputError{
+    border: 5px solid red;
 
 }

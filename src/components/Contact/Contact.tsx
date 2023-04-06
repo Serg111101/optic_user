@@ -1,40 +1,99 @@
-import React from 'react'
-import "./Contact.scss"
+import React, { useState } from "react";
+import "./Contact.scss";
+import { CheckCircleOutlined } from "@ant-design/icons";
 export function Contact() {
+  const data = new Date();
+  const day: number = data.getDay();
 
+  const arrData = [
+    "  Mon 09:00 am – 05:00 pm",
+    "Tue 09:00 am – 05:00 pm ",
+    "Wed 09:00 am – 05:00 pm ",
+    "Thu 09:00 am – 05:00 pm",
+    "Fri 09:00 am – 05:00 pm ",
+    "  Sat Closed",
+    "Sun Closed",
+  ];
 
-  const data = new Date()
-  const day:number=data.getDay()
+  const [name, setName] = useState("");
+  const [mail, setMail] = useState("");
+  const [message, setMessage] = useState("");
+  const [errorName, setErrorName] = useState(false);
+  const [errorMail, setErrorMail] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
+  const [send, setSend] = useState(false);
+  function valid() {
+    if (name === "" || mail === "" || message === "") {
+      if (name === "") {
+        setErrorName(true);
+      }
 
-const arrData = [
-  "  Mon 09:00 am – 05:00 pm",
-  "Tue 09:00 am – 05:00 pm ",
-  "Wed 09:00 am – 05:00 pm ",
-  "Thu 09:00 am – 05:00 pm",
-  "Fri 09:00 am – 05:00 pm ",
-  "  Sat Closed",
-  "Sun Closed",
-];
+      if (mail === "") {
+        setErrorMail(true);
+      }
 
+      if (message === "") {
+        setErrorMessage(true);
+      }
+    } else {
+      setSend(!send);
+    }
+  }
 
   return (
     <div className="contact">
-      <div className="title">info@bestopticlab.com</div>
+      {send ? (
+        <div className="ok">
+          <div className="icon">
+            <CheckCircleOutlined />
+          </div>
+          <div className="iconText">
+            Thank you for your inquiry! We will get back to you within 48 hours.
+          </div>
+        </div>
+      ) : (
+        <div>
+          <div className="title">info@bestopticlab.com</div>
 
-      <div className="inputs">
-        <input type="text" placeholder="Name" />
-        <input type="email" placeholder="Email*" />
+          <div className="inputs">
+            <input
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+              className={errorName ? "anasun inputError" : "anasun"}
+            />
+            <input
+              type="email"
+              placeholder="Email*"
+              value={mail}
+              onChange={(e) => {
+                setMail(e.target.value);
+              }}
+              className={errorMail ? "anasun inputError" : "anasun"}
+            />
 
-        <textarea placeholder="Message" className={"text"} />
-      </div>
+            <textarea
+              placeholder="Message"
+              className={errorMessage ? "text inputError" : "text"}
+              value={message}
+              onChange={(e) => {
+                setMessage(e.target.value);
+              }}
+            />
+          </div>
 
-      <div className="btn">
-        <button>SEND</button>
-        <p>
-          This site is protected by reCAPTCHA and the Google Privacy Policy and
-          Terms of Service apply.
-        </p>
-      </div>
+          <div className="btn">
+            <button onClick={() => valid()}>SEND</button>
+            <p>
+              This site is protected by reCAPTCHA and the Google Privacy Policy
+              and Terms of Service apply.
+            </p>
+          </div>
+        </div>
+      )}
 
       <div className="textBottom">
         <div className="textLeft">

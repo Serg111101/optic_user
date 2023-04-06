@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Footer.scss";
 import { FacebookOutlined, InstagramOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
 export function Footer() {
   const navigate = useNavigate()
+
+  const [show, setShow] = useState( false );
+
+
+
   return (
     <div className="footer">
       <footer className="containerFooter">
@@ -32,7 +37,9 @@ export function Footer() {
             </a>
 
             <span onClick={() => { navigate( "/terms-and-conditions" ); }} >Terms and Conditions</span>
-            <span>Contact US</span>
+            <span onClick={() => {
+              navigate("/contact")
+            }} >Contact US</span>
           </div>
         </div>
       </footer>
