@@ -1,6 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./OrderingInformation.scss"
+import { useNavigate } from 'react-router-dom'
+
+
 const OrderingInformation = () => {
+
+  const navigate=useNavigate()
+  const [order,setOrder] = useState(
+    {
+      compnyName:"",
+      addres:"",
+      phone:"",
+      opticianName:"",
+      patientName:""
+
+    }
+  )
+  const [frame,setFrame] = useState<any>(
+    {
+    newFrame:false,
+    OLDFRAME:false,
+    SIZER:false,
+    DEMOS:false,
+    PATIENTSCLIP:false,
+    DRILLMOUNTADD:false
+    }
+  )
+
+
   return (
     <div className='OrderingInformation'>
     <div  className='Order'>
@@ -20,16 +47,16 @@ const OrderingInformation = () => {
           </div>
           <form>
             <label htmlFor="Company name">Company name</label>
-            <input type="text" />
+            <input type="text" required minLength={2} maxLength={30} onChange={(e:any)=>order.compnyName=e.target.value} />
             <label htmlFor="Address">Address</label>
-            <input type="text" />
+            <input type="text" minLength={5} maxLength={30} onChange={(e:any)=>order.addres=e.target.value} />
             <label htmlFor="Phone">Phone</label>
-            <input type="text" />
-            <label htmlFor="Phone">Optician name</label>
-            <input type="text" />
+            <input type="text" minLength={5} maxLength={30} onChange={(e:any)=>order.phone=e.target.value} />
+            <label htmlFor="Optician name">Optician name</label>
+            <input type="text" minLength={2} maxLength={30} onChange={(e:any)=>order.opticianName=e.target.value}/>
             <hr />
-            <label htmlFor="Phone">Patient name</label>
-            <input type="text" />
+            <label htmlFor="Patient name">Patient name</label>
+            <input type="text" minLength={2} maxLength={30}  onChange={(e:any)=>order.patientName=e.target.value}/>
           </form>
         </div>
         <div className='inv-box1'>
@@ -40,27 +67,82 @@ const OrderingInformation = () => {
           <div className='checked'>
             <form className='sec1'>
               <div>
-                <input type="checkbox" />
+                <input type="checkbox" checked={frame.newFrame} onChange={()=> 
+                setFrame({ 
+                  newFrame : !frame.newFrame,
+                  OLDFRAME: frame.OLDFRAME,
+                  SIZER:frame.SIZER,
+                  DEMOS:frame.DEMOS,
+                  PATIENTSCLIP:frame.PATIENTSCLIP,
+                  DRILLMOUNTADD:frame.DRILLMOUNTADD,
+                
+                })}/>
                 <label htmlFor="">NEW FRAME</label>
               </div>
               <div>
-                <input type="checkbox" />
+                <input type="checkbox" checked={frame.OLDFRAME} onChange={()=> 
+                setFrame({ 
+                  newFrame : frame.newFrame,
+                  OLDFRAME:!frame.OLDFRAME,
+                  SIZER:frame.SIZER,
+                  DEMOS:frame.DEMOS,
+                  PATIENTSCLIP:frame.PATIENTSCLIP,
+                  DRILLMOUNTADD:frame.DRILLMOUNTADD,
+                
+                })} />
                 <label htmlFor="">OLDFRAME</label>
               </div>
               <div>
-                <input type="checkbox" />
+                <input type="checkbox" 
+                checked={frame.SIZER} onChange={()=> 
+                  setFrame({ 
+                    newFrame : frame.newFrame,
+                    OLDFRAME: frame.OLDFRAME,
+                    SIZER:!frame.SIZER,
+                    DEMOS:frame.DEMOS,
+                    PATIENTSCLIP:frame.PATIENTSCLIP,
+                    DRILLMOUNTADD:frame.DRILLMOUNTADD,
+                  
+                  })} />
                 <label htmlFor="">SIZER</label>
               </div>
               <div>
-                <input type="checkbox" />
+                <input type="checkbox" checked={frame.DEMOS} onChange={()=> 
+                setFrame({ 
+                  newFrame : frame.newFrame,
+                  OLDFRAME:frame.OLDFRAME,
+                  SIZER:frame.SIZER,
+                  DEMOS: !frame.DEMOS,
+                  PATIENTSCLIP:frame.PATIENTSCLIP,
+                    DRILLMOUNTADD:frame.DRILLMOUNTADD,
+                
+                })} />
                 <label htmlFor="">DEMOS</label>
               </div>
               <div>
-                <input type="checkbox" />
+                <input type="checkbox" checked={frame.PATIENTSCLIP} onChange={()=> 
+                setFrame({ 
+                  newFrame : frame.newFrame,
+                  OLDFRAME:frame.OLDFRAME,
+                  SIZER:frame.SIZER,
+                  DEMOS: frame.DEMOS,
+                  PATIENTSCLIP:!frame.PATIENTSCLIP,
+                  DRILLMOUNTADD:frame.DRILLMOUNTADD,
+                
+                })} />
                 <label htmlFor=""> PATIENTSCLIP</label>
               </div>
               <div>
-                <input type="checkbox" />
+                <input type="checkbox" checked={frame.DRILLMOUNTADD} onChange={()=> 
+                setFrame({ 
+                  newFrame : frame.newFrame,
+                  OLDFRAME:frame.OLDFRAME,
+                  SIZER:frame.SIZER,
+                  DEMOS: frame.DEMOS,
+                  PATIENTSCLIP:frame.PATIENTSCLIP,
+                  DRILLMOUNTADD:!frame.DRILLMOUNTADD
+                
+                })}  />
                 <label htmlFor="">DRILL MOUNT ADD $</label>
               </div>
             </form>
@@ -315,15 +397,15 @@ const OrderingInformation = () => {
           <form>
             <div>
             <input type="checkbox" />
-            <img src="../../../..//image/photo1.png" alt="" />
+            <img src="../../../../image/photo1.png" alt="" />
             </div>
             <div>
             <input type="checkbox" />
-            <img src="../../../..//image/photo2.png" alt="" />
+            <img src="../../../../image/photo2.png" alt="" />
             </div>
             <div>
             <input type="checkbox" />
-            <img src="../../../..//image/photo3.png" alt="" />
+            <img src="../../../../image/photo3.png" alt="" />
             </div>
           </form>
           <h4>FOR ALL ORDERS ALL SALES ARE FINAL</h4>
@@ -443,6 +525,7 @@ const OrderingInformation = () => {
     
     </div>
     <p>SEND WHITE & YELLOW WITH ORDER/ KEEP THE PINK COPY FOR YOUR PATIENTS RECORD</p>
+    <button onClick={()=>navigate('/pay')}>TO CALCULATE</button>
     </div>
   )
 }

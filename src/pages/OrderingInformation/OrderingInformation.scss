@@ -32,6 +32,11 @@
             box-shadow: 5px 8px #888888
         }
 
+        input[type=checkbox] {
+            width: 20px;
+            border-radius: 10px;
+        }
+
         label {
             font-size: 14px;
             color: #888888;
@@ -70,6 +75,10 @@
 
                 text-align: center;
 
+                h3 {
+                    margin-top: 80px;
+                }
+
                 .invoice1 {
                     margin-top: 20px;
                     height: 50px;
@@ -88,6 +97,7 @@
                         display: flex;
                         flex-direction: column;
                         align-items: center;
+                        margin-top: 20px;
 
                         div {
                             margin-top: 10px;
@@ -393,7 +403,6 @@
                 background: #000;
                 color: white;
                 font-size: 15px;
-                line-height: 0px;
             }
 
             .total-box1 {
@@ -404,37 +413,52 @@
             }
         }
     }
-    p{
+
+    p {
         color: #888888;
         text-align: center;
 
     }
+
+    button {
+        margin-left: 90%;
+        padding: 10px;
+        background: #888888;
+        border: none;
+        color: #fff;
+        border-radius: 10px
+    }
 }
 
 @media screen and (max-width: 800px) {
-    .invoices{
+    .invoices {
         flex-direction: column;
-        align-items:center
+        align-items: center
     }
-    .frames{
+
+    .frames {
         flex-direction: column;
-        align-items:center
+        align-items: center
     }
-    .lens{
+
+    .lens {
         flex-direction: column;
-        align-items:center
+        align-items: center
     }
-    .clip{
+
+    .clip {
         flex-direction: column;
-        align-items:center
+        align-items: center
     }
-    .offic{
+
+    .offic {
 
         flex-direction: column;
         align-items: center;
     }
-    .total{
+
+    .total {
         flex-direction: column;
-        align-items:center
+        align-items: center
     }
-  }
+}
