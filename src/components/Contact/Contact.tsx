@@ -61,7 +61,8 @@ export function Contact() {
               placeholder="Name"
               value={name}
               onChange={(e) => {
-                setName(e.target.value);
+                setName( e.target.value );
+                setErrorName(false);
               }}
               className={errorName ? "anasun inputError" : "anasun"}
             />
@@ -71,6 +72,7 @@ export function Contact() {
               value={mail}
               onChange={(e) => {
                 setMail(e.target.value);
+                setErrorMail(false)
               }}
               className={errorMail ? "anasun inputError" : "anasun"}
             />
@@ -81,6 +83,7 @@ export function Contact() {
               value={message}
               onChange={(e) => {
                 setMessage(e.target.value);
+                setErrorMessage(false)
               }}
             />
           </div>
