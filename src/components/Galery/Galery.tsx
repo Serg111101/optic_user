@@ -1,6 +1,6 @@
-import React from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react';
 import "./Galery.scss"
+
 export function Galery() {
   const images: string[] = [
     "https://img1.wsimg.com/isteam/ip/6e793ce1-d799-4f0e-ac6e-0125429082dc/8a76c317-88fc-42e7-9f49-85e7fd370050.jpg/:/rs=w:1300,h:800",
@@ -65,7 +65,6 @@ export function Galery() {
               key={index}
               onClick={() => {
                 setIndex(index)
-
               }}
             >
               {
