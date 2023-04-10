@@ -23,6 +23,7 @@ function App() {
         <Route path="contact" element={<Contact />} />
         <Route path="/pay" element={<Pay />} />
         <Route path="/Completion" element={<Completion />} />
+        <Route path="/lens" element={<Lens/>}/>
       </Routes>
       <Footer />
     </div>
