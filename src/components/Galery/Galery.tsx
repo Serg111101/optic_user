@@ -61,7 +61,7 @@ export function Galery() {
 
           {images.map((_, index) => (
             <div
-              className={index < index + 1 && index > index - 1 ? "activee" : "aslide"}
+              className="activee" 
               key={index}
               onClick={() => {
                 setIndex(index)

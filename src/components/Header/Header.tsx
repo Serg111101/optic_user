@@ -8,9 +8,6 @@ export function Header() {
     const users1:any=localStorage.getItem('response')
     const user=JSON.parse(users)    
     const user1=JSON.parse(users1)    
-// console.log(user.googleId);
-
-
     const navigate:any = useNavigate()
     
 
@@ -33,9 +30,10 @@ export function Header() {
                 </div>
 
                 <div className="items" >
-                    <div className={window.location.href=='http://localhost:3000/'?"itemHome item activ":"itemHome item"} onClick={()=>{navigate("/")}} >HOME</div>
-                    <div className={window.location.href=='http://localhost:3000/about'?"itemAbout item activ":"itemAbout item"}  onClick={()=>{navigate("/about")}} >ABOUT US</div>
-                    <div className={window.location.href=='http://localhost:3000/orderinginformation'?"itemStiles item activ":"itemStiles item"}  onClick={()=>{navigate("/orderinginformation")}} > CLIP AND LEND STYLES </div>
+                    <div className={window.location.href=='http://localhost:3001/'?"itemHome item activ":"itemHome item"} onClick={()=>{navigate("/")}} >HOME</div>
+                    <div className={window.location.href=='http://localhost:3001/about'?"itemAbout item activ":"itemAbout item"}  onClick={()=>{navigate("/about")}} >ABOUT US</div>
+                    <div className={window.location.href=='http://localhost:3001/ClipandLendStyles'?"itemStiles item activ":"itemStiles item"}  onClick={()=>{navigate("/ClipandLendStyles")}} > CLIP AND LEND STYLES </div>
+                    <div className={window.location.href=='http://localhost:3001/orderinginformation'?"itemStiles item activ":"itemStiles item"}  onClick={()=>{navigate("/orderinginformation")}} > ORDER ITEM </div>
                 </div>
 
                 <div className="button" >
@@ -45,3 +43,4 @@ export function Header() {
             </div>
             </header>)
 }
+

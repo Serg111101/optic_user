@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRef, useEffect } from "react";
 import axios from 'axios';
-import { Link } from "react-router-dom";
 
 // const USER_REGEX = /^[A-z][A-z0-9-_][@.]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -15,7 +14,7 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 
 
-function Modal({active, setActive,}) {
+export default function Modal({active, setActive,}) {
  
      const navigate=useNavigate()
  const [inputActive, setIputActive] = useState(true)
@@ -182,4 +181,3 @@ function Modal({active, setActive,}) {
   )
 }
 
-export default Modal

@@ -1,0 +1,23 @@
+.color{
+
+
+
+    .line_div {
+        width: 80%;
+        margin: 40px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        .line {
+            width: 40%;
+            height: 2px;
+            background-color: black;
+        }
+        p{
+            font-size: 25px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            margin: 0px 20px;
+        }
+    }
+}

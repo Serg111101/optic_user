@@ -1,0 +1,112 @@
+.lens {
+    margin-top: 220px;
+
+    .line_div {
+        width: 80%;
+        margin: 40px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .line {
+            width: 40%;
+            height: 2px;
+            background-color: black;
+        }
+
+        p {
+            font-size: 25px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            margin: 0px 20px;
+        }
+    }
+
+
+    .contaDiv {
+        max-width: 900px;
+        margin: 0 auto;
+
+        .titleP {
+            font-size: 20px;
+            display: flex;
+            justify-content: flex-start;
+            font-weight: 700;
+            margin-top: 100px;
+            letter-spacing: 4px;
+        }
+
+        .texta {
+            margin-top: 40px;
+            font-size: 20px;
+            font-weight: 300;
+            line-height: 35px;
+
+        }
+
+
+        .butt {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 25px;
+
+            .submit {
+
+                width: 200px;
+                height: 50px;
+                background: darkgray;
+                letter-spacing: 5px;
+
+            }
+        }
+
+
+    }
+
+
+
+    .classBottom {
+        max-width: 1200px;
+        margin: 0 auto;
+        margin-top: 70px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 120px;
+
+        .divImage1 {
+
+            img {
+
+                object-fit: contain;
+                object-position: 50% 50%;
+
+            }
+
+        }
+
+
+
+    }
+
+}
+
+.Lens_textaBottom {
+    margin-right: 5%;
+
+    .textaBottomTitle {
+        margin-bottom: 50px;
+        font-size: 25px;
+        font-weight: 600;
+
+
+
+    }
+
+    .textaM {
+        margin-top: 40px;
+    }
+
+
+
+
+}
