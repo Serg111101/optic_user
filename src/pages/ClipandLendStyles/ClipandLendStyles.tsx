@@ -4,7 +4,7 @@ import {Lens} from '../../components/LensStyle'
 
 export function ClipandLendStyles() {
   return (
-    <div className="home">
+    <div className="ClipandLendStyles">
       <Clip />
       <Lens/>
     </div>

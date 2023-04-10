@@ -123,7 +123,7 @@ const handleSubmit = async (e) => {
         //       return config;
         //   });
         // setAuth({ user, pwd, roles, accessToken });
-        setUser('');
+            ('');
         setPwd('');
         // navigate(from, { replace: true });
     } catch (err) {

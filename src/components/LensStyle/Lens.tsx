@@ -1,7 +1,11 @@
+import { useState } from "react";
 import "./Lens.scss"
+import { Color } from "../ColorStyles";
 
 
 export default function Lens() {
+  const [Show,setShow]=useState(false)
+
   return (
     <div className="lens">
       <div className="line_div">
@@ -28,8 +32,9 @@ export default function Lens() {
         </p>
 
         <div className="butt" >
-        <button className="submit" > SHOW COLOR GUIDE</button>
+        <button className="submit" onClick={()=>setShow(!Show)}> {Show?'HIDDE':'SHOW'} COLOR GUIDE</button>
         </div>
+        {Show&&<Color/>}
       </div>
 
       <div className="lens">
