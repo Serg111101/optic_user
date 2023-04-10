@@ -4,14 +4,8 @@ import {  useNavigate } from "react-router-dom";
 
 export function Header() {
     
-    const navigate:any = useNavigate();
-    const [activ,setActiv]:any=useState(sessionStorage.getItem('activ')||'1');    
-
-    function savesession(num:string){
-        sessionStorage.removeItem('activ')
-        sessionStorage.setItem('activ',num);
-        setActiv(sessionStorage.getItem('activ'))
-    }
+    const navigate:any = useNavigate()
+    
   
     return (
         <header className="header" >
@@ -23,18 +17,15 @@ export function Header() {
                 </div>
 
                 <div className="items" >
-                    <div className={activ==='1'?"itemHome item activ":"itemHome item"} onClick={()=>{navigate("/");savesession('1') }} >HOME</div>
-                    <div className={activ==='2'?"itemAbout item activ":"itemAbout item"}  onClick={()=>{navigate("/about");savesession('2')}} >ABOUT US</div>
-                    <div className={activ==='3'?"itemStiles item activ":"itemStiles item"}  onClick={()=>{navigate("/orderinginformation");savesession('3')}} > CLIP AND LEND STYLES </div>
+                    <div className={window.location.href=='http://localhost:3000/'?"itemHome item activ":"itemHome item"} onClick={()=>{navigate("/")}} >HOME</div>
+                    <div className={window.location.href=='http://localhost:3000/about'?"itemAbout item activ":"itemAbout item"}  onClick={()=>{navigate("/about")}} >ABOUT US</div>
+                    <div className={window.location.href=='http://localhost:3000/ClipandLendStyles'?"itemStiles item activ":"itemStiles item"}  onClick={()=>{navigate("/ClipandLendStyles")}} > CLIP AND LEND STYLES </div>
+                    <div className={window.location.href=='http://localhost:3000/orderinginformation'?"itemStiles item activ":"itemStiles item"}  onClick={()=>{navigate("/orderinginformation")}} > ORDER ITEM </div>
                 </div>
 
                 <div className="button" >
-                    <button>SIGN IN</button>
+                    <button onClick={()=>navigate('login')}>SIGN IN</button>
                 </div>
             </div>
-
-
-
-    </header>
-  )
+            </header>)
 }

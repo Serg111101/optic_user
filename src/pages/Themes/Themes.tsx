@@ -4,6 +4,11 @@ import "./Themes.scss"
 export  function Themes() {
   return (
     <div className="themes">
+      <div className='line_div'>
+        <div className='line'></div>
+        <p>Terms and Conditions</p>
+        <div className='line'></div>
+      </div>
       <h2>Welcome to Best Optic Lab, Inc</h2>
       <div className="paragraph1">
         <p className="p1">
