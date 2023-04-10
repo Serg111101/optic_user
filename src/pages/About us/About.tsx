@@ -30,7 +30,7 @@ export function About() {
           </p>
 
           <div className="butt">
-            <button className="submit">Clip Styles</button>{" "}
+            <button className="submit">Clip Styles</button>
           </div>
         </div>
       </div>
