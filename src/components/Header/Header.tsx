@@ -2,14 +2,27 @@ import { useState } from "react";
 import "./Header.scss";
 import {  useNavigate } from "react-router-dom";
 
-
-
-
 export function Header() {
     
+    const users:any=localStorage.getItem('auth')
+    const users1:any=localStorage.getItem('response')
+    const user=JSON.parse(users)    
+    const user1=JSON.parse(users1)    
+// console.log(user.googleId);
+
+
     const navigate:any = useNavigate()
     
-  
+
+    function handleSignOut() {
+        
+    localStorage.removeItem('auth');
+    localStorage.removeItem('response');
+    localStorage.removeItem('token');
+    navigate('login') 
+    
+  }
+
     return (
         <header className="header" >
             <div className="container" >
@@ -27,7 +40,8 @@ export function Header() {
                 </div>
 
                 <div className="button" >
-                    <button onClick={()=>navigate('login')}>SIGN IN</button>
+                   { user?.googleId||user1?.id ?<button onClick={()=>handleSignOut()}>Sign out</button>:<button onClick={()=>navigate('login')}>SIGN IN</button>
+}
                 </div>
             </div>
             </header>)
