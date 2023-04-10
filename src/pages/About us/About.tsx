@@ -32,6 +32,7 @@ export function About() {
 
           <div className="butt">
             <button className="submit" onClick={()=>navigate('/ClipandLendStyles')}>Clip Styles</button>{" "}
+
           </div>
         </div>
       </div>
