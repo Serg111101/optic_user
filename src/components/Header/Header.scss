@@ -27,6 +27,11 @@
             justify-content:space-between;
             align-items: center;
             margin-right:130px;
+            .activ{
+                padding:15px ;
+                color:aqua;
+                border-bottom: 2px outset aqua ;
+            }
         }
 
         .item{
@@ -55,8 +60,13 @@
 
             button{
                 border-radius:5px ;
-                width: 80px;
+                width: 100px;
                 height: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: black;
+                background-color: aliceblue;
                 cursor: pointer;
             }
         }

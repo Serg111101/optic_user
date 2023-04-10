@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 export function Footer() {
   const navigate = useNavigate()
-
   const [show, setShow] = useState( false );
 
 
@@ -37,6 +36,7 @@ export function Footer() {
             </a>
 
             <span onClick={() => { navigate( "/terms-and-conditions" ); }} >Terms and Conditions</span>
+
             <span onClick={() => {
               navigate("/contact")
             }} >Contact US</span>

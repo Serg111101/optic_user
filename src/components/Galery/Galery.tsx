@@ -1,8 +1,8 @@
-import React from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react';
 import "./Galery.scss"
+
 export function Galery() {
-      const images:string[] = [
+  const images: string[] = [
     "https://img1.wsimg.com/isteam/ip/6e793ce1-d799-4f0e-ac6e-0125429082dc/8a76c317-88fc-42e7-9f49-85e7fd370050.jpg/:/rs=w:1300,h:800",
     "https://img1.wsimg.com/isteam/ip/6e793ce1-d799-4f0e-ac6e-0125429082dc/302d553c-1427-4ca2-9e61-21de3226e881.jpg/:/rs=w:1300,h:800",
     "https://img1.wsimg.com/isteam/ip/6e793ce1-d799-4f0e-ac6e-0125429082dc/3c3dfdf0-b6b0-4a38-b6ce-c9f5ce47c5e1.jpg/:/rs=w:1300,h:800",
@@ -15,74 +15,78 @@ export function Galery() {
 
   ];
 
-const delay = 2000;
-const [index, setIndex] = useState(0);
+  const delay = 2000;
+  const [index, setIndex] = useState(0);
 
-const timeoutRef:any = useRef(null);
+  const timeoutRef: any = useRef(null);
 
-const resetTimeout = useCallback(() => {
-  if (timeoutRef.current) {
-    clearTimeout(timeoutRef.current);
-  }
-}, []);
+  const resetTimeout = useCallback(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  }, []);
 
-  const fun = useCallback( () => {
+  const fun = useCallback(() => {
 
-    timeoutRef.current = setTimeout( () => {
+    timeoutRef.current = setTimeout(() => {
 
-    setIndex((x) => (x === images.length - 1 ? 0 : x + 1));
-  }, delay);
-}, [images.length]);
+      setIndex((x) => (x === images.length - 1 ? 0 : x + 1));
+    }, delay);
+  }, [images.length]);
 
-useEffect(() => {
-  resetTimeout();
-  fun();
+  useEffect(() => {
+    resetTimeout();
+    fun();
 
-  return () => {
-  resetTimeout();
+    return () => {
+      resetTimeout();
 
   };
 }, [resetTimeout, fun, images.length, setIndex,index]);
 
   return (
-      <div>
-              <div
+    <div>
+      <div className='line_div'>
+        <div className='line'></div>
+        <p>Photo Galery</p>
+        <div className='line'></div>
+      </div>
+      <div
         className="slideshow"
       >
-      <div
-        className="slideshowSlider"
-        style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
+        <div
+          className="slideshowSlider"
+          style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
         >
 
-        {images.map((_, index) => (
-          <div
-            className={index < index + 1 && index > index - 1 ? "activee" : "aslide"}
-            key={index}
-            onClick={() => {
-              setIndex(index)
+          {images.map((_, index) => (
+            <div
+              className={index < index + 1 && index > index - 1 ? "activee" : "aslide"}
+              key={index}
+              onClick={() => {
+                setIndex(index)
+              }}
+            >
+              {
+                <img src={images[index]} />
+              }
+            </div>
+          ))}
 
-            }}
-          >
-            {
-              <img src={ images[index]} />
-            }
-          </div>
-        ) )}
+        </div>
 
+        <div className="slideshowDots">
+          {images.map((_, idx) => (
+            <div
+              key={idx}
+              className={`slideshowDot${index === idx ? " active" : ""}`}
+              onClick={() => {
+                setIndex(idx);
+              }}
+            > <img src={images[idx]} /> </div>
+          ))}
+        </div>
       </div>
-
-      <div className="slideshowDots">
-        {images.map((_, idx) => (
-          <div
-            key={idx}
-            className={`slideshowDot${index === idx ? " active" : ""}`}
-            onClick={() => {
-              setIndex(idx);
-            }}
-          > <img src={images[idx]} /> </div>
-        ))}
-      </div>
-    </div>
 
     </div>
   )
