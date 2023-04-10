@@ -1,0 +1,37 @@
+.color{
+
+
+
+    .line_div1 {
+        width: 80%;
+        margin: 40px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        .line1 {
+            width: 40%;
+            height: 2px;
+            background-color: black;
+        }
+        p{
+            font-size: 18px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            margin: 0px 20px;
+        }
+    }
+
+
+    .gridContainer {
+        display: grid;
+        grid-template-rows: auto auto auto ;
+        grid-template-columns: auto auto auto;
+    }
+
+    .liText {
+        margin-top: 90px;
+        font-size: 18px;
+    }
+
+
+}
