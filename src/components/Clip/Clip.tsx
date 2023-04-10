@@ -55,7 +55,7 @@ export function Clip() {
 
           {images.map((_, index) => (
             <div
-              className={index < index + 1 && index > index - 1 ? "activee" : "aslide"}
+              className={index < index + 1 && index > index - 1 ? "Clip_activee" : "Clip_aslide"}
               key={index}
               onClick={() => {
                 setIndex(index)

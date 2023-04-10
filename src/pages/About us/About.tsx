@@ -1,8 +1,9 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./About.scss";
 
 
 export function About() {
+  const navigate=useNavigate()
   return (
     <div className="about">
       <div className="line_div">
@@ -30,7 +31,7 @@ export function About() {
           </p>
 
           <div className="butt">
-            <button className="submit">Clip Styles</button>{" "}
+            <button className="submit" onClick={()=>navigate('/ClipandLendStyles')}>Clip Styles</button>{" "}
           </div>
         </div>
       </div>
