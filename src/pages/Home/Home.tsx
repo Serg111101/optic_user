@@ -1,4 +1,3 @@
-/* eslint-disabled*/
 import "./Home.scss";
 import { Galery } from "../../components/Galery";
 
@@ -12,9 +11,5 @@ export function Home() {
 
     </div>
   )
-
-  
-  
-
 }
   

@@ -1,9 +1,11 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./About.scss";
 
 
 export function About() {
   const navigate=useNavigate()
+
   return (
     <div className="about">
       <div className="line_div">
