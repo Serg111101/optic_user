@@ -4,24 +4,17 @@ import { useState, useEffect } from "react";
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Input } from 'antd';
 import axios from "axios";
-// import auth from "../../auth";
-// import { FullInfoActionConfirm } from "../../components/fullInfoActionConfirm";
 import Modal from "../../components/modal/Modal";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from 'jwt-decode'
 
 
-// interface ILogin {
-//     [key: string]: string,
-// }
+
 export const Login = () => {
 
     const navigate=useNavigate()
     const [user, setUser] = useState({});
-
-    const [modalActive, setModalActive] =useState(false)
-    // const [inpuActive, serIputActive] = useState(true)
-   
+    const [modalActive, setModalActive] =useState(false)   
     const [checkLogin, setCheckLogin] = useState({});
     const [loginError, setLoginError] = useState({});
     const [password, setPassword] = useState({});
@@ -61,7 +54,6 @@ async function handleCallbackResponse(response) {
 
 
   useEffect(() => {
-    /* global google */
     google.accounts.id.initialize({
       client_id: "31098185916-s1icd47jctcqk6vojp22l6catuaiklvg.apps.googleusercontent.com",
       callback: handleCallbackResponse
@@ -72,7 +64,6 @@ async function handleCallbackResponse(response) {
       {theme: "outline", size: "large"}
     )
 
-    // google.accounts.id.prompt();
   }, []);
 
 
@@ -81,15 +72,6 @@ async function handleCallbackResponse(response) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        // console.log(checkLogin,password);
-    //     const response = await axios.post('http://localhost:3000/api/v1/auth/login',
-    //         JSON.stringify({ checkLogin, password }),
-    //         {
-    //             headers: { 'Content-Type': 'application/json' },
-    //             withCredentials: true
-    //         }
-    //     );
-    // console.log('aaaaaaaaaaaaaaaaaa');
         const response = await axios({
             method: 'post',
             url: 'http://localhost:3000/api/v1/auth/login',
@@ -102,20 +84,7 @@ async function handleCallbackResponse(response) {
           localStorage.setItem('response', res);
           localStorage.setItem('token', response.data.accessToken)
           console.log(response);
-        //   const resp= localStorage.getItem('response')
-        //   navigate(from, { replace: true });
-        //   const respons = JSON.parse(resp)
-          
-          
-        //   axioss.interceptors.request.use(function (config) {
-        //           config.headers.Authorization = Bearer ${response.data.accessToken};
-        //       return config;
-        //   });
-        // setAuth({ user, pwd, roles, accessToken });
-        // setUser('');
-        // setPwd('');
         navigate('/')
-        // navigate(from, { replace: true });
         
     } catch (err) {
         if (!err?.response) {
@@ -127,7 +96,6 @@ async function handleCallbackResponse(response) {
         } else {
             setErrMsg('Login Failed');
         }
-        // errRef.current.focus();
     }
 
 }
@@ -203,16 +171,6 @@ async function handleCallbackResponse(response) {
 
 
                             <div id="signInDiv"></div>
-      {/* {
-        Object.keys(user).length !== 0 &&
-        <button onClick={ (e) => handleSignOut(e)}>Sign Out</button>
-      }
-      { user && 
-      <div>
-        <img src={user.picture}></img> 
-         <h3>{user.name}</h3>
-      </div>
-      } */}
 
 
                     
