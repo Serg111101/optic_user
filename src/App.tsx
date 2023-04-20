@@ -8,8 +8,9 @@ import { Contact } from "./components/Contact";
 import { Login } from "./pages/login";
 import {ClipandLendStyles} from './pages/ClipandLendStyles'
 import Pay from "./pages/payment/Pay";
-import Completion from "./components/cart/Completion";
+import Completion from "./components/cart/Stripe/Completion";
 import OrderingInformation from "./pages/OrderingInformation";
+
 
 function App() {
 
@@ -18,7 +19,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/pay" element={<Pay />} />
+        <Route path="/Pay" element={<Pay />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/contact" element={<Contact />} />

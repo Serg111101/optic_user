@@ -525,7 +525,7 @@ const OrderingInformation = () => {
     
     </div>
     <p>SEND WHITE & YELLOW WITH ORDER/ KEEP THE PINK COPY FOR YOUR PATIENTS RECORD</p>
-    <button onClick={()=>navigate('/pay')}>TO CALCULATE</button>
+    <button onClick={()=>navigate('/Pay')}>TO CALCULATE</button>
     </div>
   )
 }

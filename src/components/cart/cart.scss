@@ -1,4 +1,6 @@
-
+*{
+  cursor: pointer;
+}
 form > * {
     margin: 10px 0;
   }
@@ -79,9 +81,24 @@ form > * {
     font-size:2em;
   }
 
-  .h1{
+  .errorin{
     color:red;
     text-align: center;
     padding: 15px;
     font-size: 40px;
+  }
+
+  h1{
+    text-align: center;
+  }
+  .product-price-btn{
+    margin: 20px;
+  }
+  .googlepay {
+    margin: 20px auto;
+    max-width: 500px;
+  }
+  
+  .googlepay>* {
+    width: 100%;
   }
