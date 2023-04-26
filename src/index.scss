@@ -1,0 +1,57 @@
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.commit{
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(120deg, rgb(60, 0, 255), rgb(0, 247, 255));
+    border-radius: 50%;
+    position: fixed;
+    top: 90vh;
+    right: 0    ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    p{
+        display: none;
+        font-size: 20px;
+    }
+}
+
+.commit:hover{
+    width: 220px;
+    border-radius: 0;
+    border-bottom-left-radius: 50px;
+    border-top-left-radius: 50px;
+    justify-content: space-evenly;
+    transition: 1.5s;
+    path{
+        transform: rotateY(360deg);
+        transition: .5s;
+    }
+    p{
+        display: inline;
+    }
+}
+.aaa{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(93, 92, 92, 0.533);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 70;
+    opacity: 1;
+    transition: .5s linear;
+}
+.a{
+    opacity: 0;
+    transition: .5s linear;
+    // top: -100vh;
+}
