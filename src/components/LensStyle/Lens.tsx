@@ -1,72 +1,71 @@
-import { useState } from "react";
-import "./Lens.scss"
+import { useState, useEffect } from "react";
+import "./Lens.scss";
 import { Color } from "../ColorStyles";
-
+import { useAppSelector, useAppDispatch } from "../../hooks/redux";
+import { fetchMirrorCoating } from "../../store/action/MirrorCoatingAction";
+import { fetchAntiReflectiveCoating } from "../../store/action/AntiReflectiveCoatingAction";
+// import { EditOutlined, CloseOutlined, CheckSquareOutlined, DeleteOutlined } from "@ant-design/icons";
 
 export default function Lens() {
-  const [Show,setShow]=useState(false)
+
+  const { MirrorCoating } = useAppSelector(state => state.MirrorCoating);
+  const { AntiReflectiveCoating } = useAppSelector(state => state.AntiReflectiveCoating)
+  const dispatch = useAppDispatch()
+  const [name, setName] = useState('Mirror Coating')
+  const [name1, setName1] = useState('Anti-Reflective Coating')
+  useEffect(() => {
+    dispatch(fetchMirrorCoating(name));
+    dispatch(fetchAntiReflectiveCoating(name1))
+  }, [dispatch]);
+  const [Show, setShow] = useState(false);
 
   return (
     <div className="lens">
       <div className="line_div">
         <div className="line"></div>
-        <p>Mirror Coating</p>
+            <p>{MirrorCoating[0]?.title_div} </p>
         <div className="line"></div>
       </div>
 
       <div className="contaDiv">
-        <p className="titleP">Mirror Coating</p>
+        {MirrorCoating.map((el) =>
+          <>          
+              <p className="titleP">{el.title}</p>
 
-        <p className="texta">
-          Best Optic Lab mirror colors are available in 9 eye-catching and
-          attractive color in both solid and flash densities. Solid mirror
-          coatings have a higher percentage of luminous reflectance than their
-          corresponding flash mirror colors. The flash mirror generally has a
-          hind of the color whereas a solid mirror shows a higher concentration
-          of the color.
-        </p>
-
-        <p className="titleP">Available Mirror Colors</p>
-        <p className="texta">
-          Black, Blue, Cobalt, Green, Gold, Orange, Pink, Red, Silver
-        </p>
-
-        <div className="butt" >
-        <button className="submit" onClick={()=>setShow(!Show)}> {Show?'HIDDE':'SHOW'} COLOR GUIDE</button>
+              <p className="texta">{el.text}</p>
+          </>
+        )}
+        <div className="butt">
+          <button className="submit" onClick={() => setShow(!Show)}>
+            {Show ? "HIDDE" : "SHOW"} COLOR GUIDE
+          </button>
         </div>
-        {Show&&<Color/>}
+        {Show && <Color />}
       </div>
 
       <div className="lens">
         <div className="line_div">
           <div className="line"></div>
-          <p>Anti-Reflective Coating</p>
-
+              <p>{AntiReflectiveCoating[0]?.title_div} </p>
           <div className="line"></div>
         </div>
 
-        <div className="classBottom">
-          <div className="divImage1">
-            <img
-              src="https://img1.wsimg.com/isteam/ip/6e793ce1-d799-4f0e-ac6e-0125429082dc/86726ad0-7ec4-4528-9948-d41f887d1e57.jpg/:/rs=w:400,cg:true,m"
-              alt="Image"
-            />
-          </div>
+        <div className="classBottomm">
+          {AntiReflectiveCoating?.map((el, index) => (
+            <div className="classBottom">
+              
+                  <div className="divImage1">
+                    <img src={el.image} alt="Image" />
+                  </div>
 
-          <div className="Lens_textaBottom">
-            <p className="textaBottomTitle">AR Coating common features:</p>
+                  <div className="Lens_textaBottom">
+                    <p className="textaBottomTitle">{el.title}</p>
 
-            <p className="textaM">
-              Maximum light transmission for enhanced visual acuity increased
-              durability, impact resistance and scratch protection. Glare-free
-              vision for enhanced visual comfort and reduced eye strain. Super
-              oleophobic properties help repel oils, fingerprints and smudges.
-              Advance hydrophobic properties prevent against moisture and water.
-              Anti-static properties help keep away dust and dirt so the lenses
-              stay cleaner longer. Provides better cosmetic appearance and
-              patient satisfaction.
-            </p>
-          </div>
+                    <p className="textaM">{el.text}</p>
+                  </div>
+                 
+            </div>
+          ))}
         </div>
       </div>
     </div>

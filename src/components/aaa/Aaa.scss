@@ -1,0 +1,76 @@
+.Aaa {
+    width: 70%;
+    margin: 0 auto;
+    height: 800px;
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-between;
+    color: black;
+    .testing {
+        width: 30%;
+        display: block;
+        .test1,
+        .test2 {
+            position: relative;
+            top: 30px;
+            left: 10px;
+            width: 100%;
+            height: auto;
+            padding: 10px;
+            border: 1px solid;
+            border-radius: 15px;
+
+            label {
+                position: absolute;
+                top: -10px;
+                font-size: 20px;
+                background-color: aliceblue;
+            }
+
+            select {
+                margin-top: 10px;
+                font-size: 20px;
+                background: none;
+                border: none;
+
+                option {
+                    background-color: none;
+                    border: none;
+                    height: 50px;
+                    padding: 15px;
+                }
+            }
+        }
+
+        .test2 {
+            top: 50px;
+        }
+        button{
+            margin-top: 200px;
+            margin-left: 50px;
+            padding: 15px;
+            background-color: greenyellow;
+        }
+    }
+    .img{
+        width: 65%;
+        height: auto;
+        div{
+            height: 700px;
+            margin: 0 auto;
+            display:flex;
+            flex-flow: column;
+            align-items: center;
+            justify-content: center;
+            p{
+                font-size: 18px;
+                line-height: 20px;
+                margin-top: 50px;
+            }
+            img{
+                // margin: 0 auto;
+                width: 100%;
+            }
+        }
+    }
+}
