@@ -1,37 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./OrderingInformation.scss"
 import { useNavigate } from 'react-router-dom'
-import { Aaa } from '../../components/aaa'
-
+import { Aaa } from '../../components/aaa/Aaa'
+// import axios from 'axios'
+import { fetchOrders } from "../../store/action/OrderAction";
+import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 
 const OrderingInformation = () => {
 
-  // const navigate = useNavigate()
-  // const [order, setOrder] = useState(
-  //   {
-  //     compnyName: "",
-  //     addres: "",
-  //     phone: "",
-  //     opticianName: "",
-  //     patientName: ""
 
-  //   }
-  // )
-  // const [frame, setFrame] = useState<any>(
-  //   {
-  //     newFrame: false,
-  //     OLDFRAME: false,
-  //     SIZER: false,
-  //     DEMOS: false,
-  //     PATIENTSCLIP: false,
-  //     DRILLMOUNTADD: false
-  //   }
-  // )
-  const [step2,setStep2]=useState(false)
-  const [step3,setStep3]=useState(false)
-  const [step4,setStep4]=useState(false)
-  const [step5,setStep5]=useState(false)
+  const [step2,setStep2]=useState(false);
+  const [step3,setStep3]=useState(false);
+  const [step4,setStep4]=useState(false);
+  const [step5,setStep5]=useState(false);
+  const { orders } = useAppSelector((state) => state.orders);
+  const dispatch = useAppDispatch();
 
+  console.log(orders);
+  
+  useEffect(() => {
+    dispatch(fetchOrders());
+  }, [dispatch]);
   return (
     <div className='Order'>
       <div className='step'>
@@ -51,7 +40,7 @@ const OrderingInformation = () => {
         <div className="klor">5</div>
         </div>
       </div>
-      <Aaa  step2={step2} step3={step3} step4={step4} step5={step5} setStep2={setStep2} setStep3={setStep3} setStep4={setStep4} setStep5={setStep5} />
+      <Aaa step2={step2} step3={step3} step4={step4} step5={step5} setStep2={setStep2} setStep3={setStep3} setStep4={setStep4} setStep5={setStep5} />
     </div>
     //     <div className='OrderingInformation'>
     //     <div  className='Order'>

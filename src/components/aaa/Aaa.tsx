@@ -1,20 +1,83 @@
-import './Aaa.scss'
-import { useState } from 'react'
-import { Step2 } from './Step2';
+import "./Aaa.scss";
+import { useState,useEffect } from "react";
+import { Step2 } from "./Step2";
+import { fetchOrders } from "../../store/action/OrderAction";
+import { useAppSelector, useAppDispatch } from "../../hooks/redux";
+import axios from "axios";
+export const Aaa =(
+  {
+  step2,
+  step3,
+  step4,
+  step5,
+  setStep2,
+  setStep3,
+  setStep4,
+  setStep5
+  }:any
+  ) => {
+    const [value,setValue]=useState('')
+    const [value1,setValue1]=useState('')
+    const [value2,setValue2]=useState('')
+    const [value3,setValue3]=useState('')
 
-export const Aaa = ({step2,step3,step4,step5,setStep2,setStep3,setStep4,setStep5}:any) => {
-    const arr = ['aaa', 'bbb', 'ccc'];
-    const aaa = ['aaa1', 'aaa2', 'aaa3', 'aaa4', 'aaa5'];
-    const bbb = ['bbb1', 'bbb2', 'bbb3', 'bbb4', 'bbb5'];
-    const ccc = ['ccc1', 'ccc2', 'ccc3', 'ccc4', 'ccc5'];
+  const dispatch = useAppDispatch()
+  const { orders } = useAppSelector((state) => state.orders);
 
-    const [test1, setTest1] = useState('');
-    const [test2, setTest2] = useState('');
-    // const [step2,setStep2]=useState(false)
-    return (<>
-    {step2?<Step2 step3={step3} step4={step4} step5={step5} setStep3={setStep3} setStep4={setStep4} setStep5={setStep5}/>:
-        <div className='Aaa'>
-            <div className='testing'>
+  console.log(orders);
+  
+  
+
+
+  useEffect(()=>{
+    dispatch(fetchOrders())
+  },[])
+
+
+
+  //  async function aaa (){
+  // const response = await axios({
+  //   method: "post",
+  //   url: `${URL}api/v1/superAdmin/addTable`,
+  //   data: [orders[0].title, { columnName: value }],
+  // })};
+  
+
+
+  return (
+    <>
+      {step2 ? (
+        <Step2
+          step3={step3}
+          step4={step4}
+          step5={step5}
+          setStep3={setStep3}
+          setStep4={setStep4}
+          setStep5={setStep5}
+        />
+      ) : (
+        <div className="Aaa">
+          <div>
+            <div>
+              <label htmlFor="">Optician name</label>
+              <input type="text" value={value} onChange={(e)=>setValue(e.target.value)}/>
+            </div>
+            <div>
+              <label htmlFor="">Patient Name</label>
+              <input type="text" value={value1} onChange={(e)=>setValue1(e.target.value)}/>
+            </div>
+            <div>
+              <label htmlFor="">THRAY#</label>
+              <input type="text" value={value2} onChange={(e)=>setValue2(e.target.value)}/>
+            </div>
+            <div>
+              <label htmlFor="">Date</label>
+              <input type="text" value={value3} onChange={(e)=>setValue3(e.target.value)}/>
+            </div>
+          </div>
+          {value!==''&&value1!=='' && value2!=='' && value3!=='' && <button onClick={()=>setStep2(true)}>save</button> }
+
+          {/* <div className='testing'>
                 <div className='test1'>
                     <label htmlFor="cars">Test 1</label>
                     <select name="cars" id="cars" onChange={(e) => setTest1(e.target.value)}>
@@ -78,10 +141,9 @@ export const Aaa = ({step2,step3,step4,step5,setStep2,setStep3,setStep4,setStep5
                         </p>
                     </div>
                 }
-            </div>
+            </div> */}
         </div>
-        }
-        </>
-    )
-}
-
+      )}
+    </>
+  );
+};

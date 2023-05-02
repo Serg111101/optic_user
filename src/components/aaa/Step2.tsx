@@ -1,10 +1,30 @@
 import './Aaa.scss'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
+import axios from 'axios';
 import { Step3 } from './Step3';
 
 
 export const Step2 = ({step3,step4,step5,setStep3,setStep4,setStep5}:any) => {
-    console.log(step3);
+
+    // async function res1(){
+    //     const response =await axios.get('http://localhost:3000/api/v1/superAdmin/getColumns');
+    //     console.log(response.data);
+    //     const ress = response.data; 
+    //     return  ress;
+    //   }
+
+    //   for (let i = 0; i < res1.length; i++) {
+        
+           
+
+    //   }
+      
+       
+      
+    //   useEffect(()=>{
+    //     res1();
+    //   },[]);
+      
     
     const arr = ['aaa', 'bbb', 'ccc'];
     const aaa = ['aaa1', 'aaa2', 'aaa3', 'aaa4', 'aaa5'];
