@@ -44,7 +44,7 @@ export default function CheckoutForm() {
 
 
   return (
-    <form className='cart' id="payment-form" onSubmit={handleSubmit}>
+    <form className='formpay' id="payment-form" onSubmit={handleSubmit}>
       <LinkAuthenticationElement id="link-authentication-element"/>
       <PaymentElement id="payment-element" />
       <button onClick={()=>knopka} disabled={isLoading || !stripe || !elements} id="submit">

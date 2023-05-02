@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
 
-.pay {
+.mainpay {
   margin: 100px 650px;
   --light-grey: #F6F9FC;
   --dark-terminal-color: #0A2540;
@@ -13,12 +13,12 @@
   color: var(--dark-terminal-color);
 }
 
-main {
+.mainpay {
   width: 480px;
   height: 800px;
 }
 
-form > * {
+.formpay {
   margin: 10px 0;
 }
 
@@ -79,6 +79,7 @@ fieldset, input, select {
   border-radius: 10px;
   opacity: 0.8;
   .modesta{
+    cursor: pointer;
     width: 400px;
     height: 40px;
     display: flex;

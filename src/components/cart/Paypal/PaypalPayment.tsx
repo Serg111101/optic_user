@@ -7,7 +7,7 @@ import '../cart.scss'
 
 const PaypalCheckout = () => {
     const [success, setSuccess] = useState(false);
-    const [ErrorMessage, setErrorMessage] = useState(" ");
+    // const [ErrorMessage, setErrorMessage] = useState(" ");
     const [orderID, setOrderID] = useState(false);
     const nav = useNavigate()
 
@@ -33,25 +33,26 @@ const PaypalCheckout = () => {
     const onApprove = (data:any, actions:any) => {
         return actions.order.capture().then(function (details:any) {
             const { payer } = details;
+            console.log(payer);
             setSuccess(true);
         });
     };
 
     //capture likely error
-    const onError = (data:any, actions:any) => {
-        setErrorMessage("An Error occured with your payment ");
-    };
+    // const onError = (data:any, actions:any) => {
+    //     setErrorMessage("An Error occured with your payment ");
+    // };
 
     useEffect(() => {
         if (success) {
             console.log('Order successful . Your order id is--', orderID);
             nav("/Completion")
         }
-    },[success]);
+    },[success, orderID, nav]);
 
     return (
         <PayPalScriptProvider options={{ "client-id": CLIENT_ID }}>
-            <div className='cart' id="payment-form" >
+            <div className='formpay' id="payment-form" >
                 <div className="wrapper">
                     <div className="product-img">
                       
@@ -73,7 +74,6 @@ const PaypalCheckout = () => {
                         createOrder={createOrder}
                         onApprove={onApprove}
                     />
-                
             </div>
         </PayPalScriptProvider>
     );

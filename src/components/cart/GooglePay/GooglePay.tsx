@@ -1,6 +1,6 @@
 import { paymentRequest } from '../../../Config/GooglePay';
 import { shippingOptions } from '../../../Config/ShippingOptions';
-
+import '../cart.scss'
 
 function calculateTotalPrice(displayItems: google.payments.api.DisplayItem[]): number {
   return displayItems.reduce((total, item) => total + Number(item.price), 0);
