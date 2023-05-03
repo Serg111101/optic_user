@@ -8,9 +8,7 @@ export const fetchOrders = ()=>{
     return async (dispatch:Dispatch)=>{
         try{
             dispatch(fetching());
-            const response =await axios.get(`${URL}/api/v1/superAdmin/getColumns`);
-                    
-            
+            const response =await axios.get(`${URL}api/v1/superAdmin/getColumns`); 
             const item = response.data
             
            console.log(item);

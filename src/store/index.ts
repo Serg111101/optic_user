@@ -5,7 +5,7 @@ import MirrorCoatingReducer from './slices/MirrorCoatingSlice';
 import AntiReflectiveCoatingReducer from './slices/AntiReflectiveCoatingSlice';
 import MirrorColorsReducer from './slices/MirrorColorsSlice';
 import ordersReducer from "./slices/OrderSlice";
-// import UniqueProductReducer from './slice/UniqueProduct'
+import AboutReducer from './slices/AboutSlice'
 // import GovernmetMembersFullInfoReducer from './slice/GovernmetMembersFullInfo';
 // import  uniqueProduct  from './slice/UniqueProduct';
 import  HomeReduce  from './slices/HomeSlice';
@@ -19,7 +19,7 @@ export const store = configureStore({
     AntiReflectiveCoating:AntiReflectiveCoatingReducer,
     MirrorColors:MirrorColorsReducer,
     orders: ordersReducer,
-    // GovernmetMembersFullInfo:GovernmetMembersFullInfoReducer,
+    About:AboutReducer,
     // UniqueProduct:UniqueProductReducer,
     // uniqueProduct:uniqueProduct,
     // image:governmentMembersFullInfo,

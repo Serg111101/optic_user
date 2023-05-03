@@ -16,15 +16,15 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 
 
-function Modal({active, setActive,}) {
+function Modal({active, setActive,}:any) {
  
      const navigate=useNavigate()
  const [inputActive, setIputActive] = useState(true)
 
- const userRef = useRef();
-    const errRef = useRef();
+ const userRef:any = useRef();
+    const errRef:any = useRef();
 
-    const [user, setUser] = useState('');
+    const [user, setUser] = useState<any>('');
     const [validName, setValidName] = useState(false);
     const [userFocus, setUserFocus] = useState(false);
 
@@ -56,7 +56,7 @@ function Modal({active, setActive,}) {
         setErrMsg('');
     }, [user, pwd, matchPwd])
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e:any) => {
         e.preventDefault();
         // if button enabled with JS hack
         // const v1 = USER_REGEX.test(user);
@@ -65,9 +65,10 @@ function Modal({active, setActive,}) {
             setErrMsg("Invalid Entry");
             return;
         }
+        console.log(JSON.stringify({ user, pwd }),);
         try {
             
-            const response = await  axios({
+            const response:any = await  axios({
                 method: 'post',
                 url: 'http://localhost:3000/api/v1/users/add',
                 data: {
@@ -75,6 +76,7 @@ function Modal({active, setActive,}) {
                   password: pwd
                 }
               });
+            console.log(response)
             // TODO: remove console.logs before deployment
             console.log(JSON.stringify(response?.data));
             console.log(JSON.stringify(response))
@@ -84,7 +86,7 @@ function Modal({active, setActive,}) {
             setPwd('');
             setMatchPwd('');
             navigate('/')
-        } catch (err) {
+        } catch (err:any) {
             if (!err?.response) {
                 setErrMsg('No Server Response');
             } else if (err.response?.status === 409) {

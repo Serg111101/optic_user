@@ -13,12 +13,19 @@ import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import { fetchLoginStyle } from "../../store/action/LoginStyleActions";
 
 
-// interface ILogin {
-//     [key: string]: string,
-// }
+declare global {
+  interface Window {
+    google: any;
+  }
+}
+
+
+interface ILogin {
+    [key: string]: string,
+}
 export const Login = () => {
 
-    const { LoginStyle } = useAppSelector(state => state.LoginStyle)
+    const { LoginStyle }:any = useAppSelector(state => state.LoginStyle)
     const dispatch = useAppDispatch()
     useEffect(() => {
         dispatch(fetchLoginStyle());
@@ -31,21 +38,21 @@ export const Login = () => {
     // const [inpuActive, serIputActive] = useState(true)
    
     const [checkLogin, setCheckLogin] = useState({});
-    const [loginError, setLoginError] = useState({});
+    const [loginError, setLoginError] = useState<ILogin>({});
     const [password, setPassword] = useState({});
-    const [passwordError, setPasswordError] = useState({});
+    const [passwordError, setPasswordError] = useState<ILogin>({});
     const [active, setActive] = useState(false);
     const [errMsg, setErrMsg] = useState('');    
 
 
 
 
-async function handleCallbackResponse(response) {
+async function handleCallbackResponse(response:any) {
     console.log('Encoded JWT ID token: ' + response.credential)
-    const userObject = jwt_decode(response.credential);
+    const userObject:any = jwt_decode(response.credential);
     console.log(userObject);
     setUser(userObject);
-    document.getElementById("signInDiv").hidden = true;
+    // document.getElementById("signInDiv").hidden = true;
   
     const config = {
       headers: {
@@ -57,7 +64,7 @@ async function handleCallbackResponse(response) {
     const res = await axios({
       method: 'post',
       url: 'http://localhost:3000/api/v1/auth/google/login',
-      config,
+    //   config,
       data: userObject
     });
     console.log(res);
@@ -70,12 +77,12 @@ async function handleCallbackResponse(response) {
 
   useEffect(() => {
     /* global google */
-    google.accounts.id.initialize({
+   window.google.accounts.id.initialize({
       client_id: "31098185916-s1icd47jctcqk6vojp22l6catuaiklvg.apps.googleusercontent.com",
       callback: handleCallbackResponse
     })
 
-    google.accounts.id.renderButton(
+    window.google.accounts.id.renderButton(
       document.getElementById("signInDiv"),
       {theme: "outline", size: "large"}
     )
@@ -86,7 +93,7 @@ async function handleCallbackResponse(response) {
 
 
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
     try {
         const response = await axios({
@@ -116,7 +123,7 @@ async function handleCallbackResponse(response) {
         navigate('/')
         // navigate(from, { replace: true });
         
-    } catch (err) {
+    } catch (err:any) {
         if (!err?.response) {
             setErrMsg('No Server Response');
         } else if (err.response?.status === 400) {
@@ -165,11 +172,11 @@ async function handleCallbackResponse(response) {
 
                             <div id="loginFormChildPassword" className="loginFormChild">
                                 <label style={{ color: LoginStyle?.login_color }}>{LoginStyle?.password_title}</label>
-                                <input
+                                <Input.Password
                                     placeholder="*******"
                                     iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                                     name='password'
-                                    type="password"
+                                    // type="password"
                                     onChange={(e) => {
                                         e.preventDefault();
                                         setPassword(e.target.value )
@@ -202,17 +209,6 @@ async function handleCallbackResponse(response) {
 
 
                             <div id="signInDiv"></div>
-      {/* {
-        Object.keys(user).length !== 0 &&
-        <button onClick={ (e) => handleSignOut(e)}>Sign Out</button>
-      }
-      { user && 
-      <div>
-        <img src={user.picture}></img> 
-         <h3>{user.name}</h3>
-      </div>
-      } */}
-
 
                     
                      </div>    
