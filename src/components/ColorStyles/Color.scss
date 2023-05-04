@@ -1,23 +1,60 @@
 .color{
+<<<<<<< HEAD
 
 
 
-    .line_div {
+=======
+>>>>>>> origin/Xcho
+    .line_div1 {
         width: 80%;
         margin: 40px auto;
         display: flex;
         justify-content: center;
         align-items: center;
     
-        .line {
+        .line1 {
             width: 40%;
             height: 2px;
-            background-color: black;
+            background-color: #0b1219;
+            
         }
+
         p{
-            font-size: 25px;
+            font-size: 18px;
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             margin: 0px 20px;
         }
+        input{
+            width: 50%;
+            margin-top: 0;
+            display: block;
+        }
+        
     }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> origin/Xcho
+
+
+    .gridContainer {
+        display: grid;
+        grid-template-rows: auto auto auto ;
+        grid-template-columns: auto auto auto;
+    }
+
+    .liText {
+        margin-top: 90px;
+        font-size: 18px;
+    }
+
+
+<<<<<<< HEAD
 }
+=======
+.mirorparagraph{
+    width: 15%;
+    font-size: 18px;
+}
+}
+>>>>>>> origin/Xcho

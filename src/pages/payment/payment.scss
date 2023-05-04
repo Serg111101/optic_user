@@ -16,38 +16,39 @@
 
 main {
   width: 480px;
+  button {
+    background-color: var(--accent-color);
+  }
+  
+  button {
+    background: var(--accent-color);
+    border-radius: var(--radius);
+    color: white;
+    border: 0;
+    padding: 12px 16px;
+    margin-top: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: block;
+  }
+  button:hover {
+    filter: contrast(115%);
+  }
+  button:active {
+    transform: translateY(0px) scale(0.98);
+    filter: brightness(0.9);
+  }
+  button:disabled {
+    opacity: 0.5;
+  }
+  
 }
 
 form > * {
   margin: 10px 0;
 }
 
-button {
-  background-color: var(--accent-color);
-}
-
-button {
-  background: var(--accent-color);
-  border-radius: var(--radius);
-  color: white;
-  border: 0;
-  padding: 12px 16px;
-  margin-top: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: block;
-}
-button:hover {
-  filter: contrast(115%);
-}
-button:active {
-  transform: translateY(0px) scale(0.98);
-  filter: brightness(0.9);
-}
-button:disabled {
-  opacity: 0.5;
-}
 
 input, select {
   display: block;

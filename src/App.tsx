@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route} from "react-router-dom"
 import { Home } from "./pages/Home";
 import { About } from "./pages/About us";
 import { Header } from "./components/Header";
@@ -10,11 +10,18 @@ import {ClipandLendStyles} from './pages/ClipandLendStyles'
 import Pay from "./pages/payment/Pay";
 import Completion from "./components/cart/Completion";
 import OrderingInformation from "./pages/OrderingInformation";
+import { Commit } from "./components/commit";
+import { useState } from "react";
+import { CommentOutlined } from "@ant-design/icons";
 
 function App() {
 
+  const [commit,setCommit]=useState(false)  
+  
+  
   return (
     <div className="App">
+      {<div className={commit?"aaa":"a"} onClick={()=>setCommit(false)}>{commit && <Commit setCommit={setCommit} />}</div>}
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -27,6 +34,7 @@ function App() {
         <Route path="/Orderinginformation" element={<OrderingInformation />} />
         <Route path="/ClipandLendStyles" element={<ClipandLendStyles/>}/>
       </Routes>
+      <div className="commit" onClick={()=>setCommit(true)}> <CommentOutlined /> <p>Leave a review</p></div>
       <Footer />
     </div>
   );
