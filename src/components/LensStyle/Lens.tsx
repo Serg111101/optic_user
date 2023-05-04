@@ -29,11 +29,11 @@ export default function Lens() {
 
       <div className="contaDiv">
         {MirrorCoating.map((el) =>
-          <>          
+          <div key={el.id}>          
               <p className="titleP">{el.title}</p>
 
               <p className="texta">{el.text}</p>
-          </>
+          </div>
         )}
         <div className="butt">
           <button className="submit" onClick={() => setShow(!Show)}>
@@ -52,7 +52,7 @@ export default function Lens() {
 
         <div className="classBottomm">
           {AntiReflectiveCoating?.map((el, index) => (
-            <div className="classBottom">
+            <div className="classBottom" key={el.id}>
               
                   <div className="divImage1">
                     <img src={el.image} alt="Image" />

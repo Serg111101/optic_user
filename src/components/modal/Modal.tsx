@@ -104,7 +104,7 @@ function Modal({active, setActive,}:any) {
     <div className={active ? 'modal active' : "modal"} onClick={()=>setActive(false)}>
         <div className={active ? 'modal_content active' : "modal_content"} onClick={e=>e.stopPropagation()}>
               <div className='contain'>
-                <p className='p1'><h1>Registration on the site</h1></p>
+                <h1>Registration on the site</h1>
                 <form onSubmit={handleSubmit} className='containform'>
                     <div className='inputers'>
                         <p>email</p>
