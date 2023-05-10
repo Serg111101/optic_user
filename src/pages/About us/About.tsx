@@ -25,7 +25,8 @@ export function About() {
         <div className="line"></div>
       </div>
       {
-        About?.map((el:any,index:number)=><div className="About_div">
+        About?.map((el:any,index:number)=>
+        <div className="About_div" key={el.id}>
           {index%2===0?<>
           <img src={el.image} alt="" />
           <div>

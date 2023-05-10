@@ -1,16 +1,20 @@
 .footer{
     width: 100%;
-    height: 350px;
+    height: 250px;
     background-color: black;
     .containerFooter{
         overflow: hidden;
         max-width: 1000px;
         margin: 0 auto;
+        height: 80%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        justify-content: space-around;
 
         .linkIcons{
             width: 10%;
             margin: 0 auto;
-            height: 190px;
             display: flex;
             justify-content: space-around;
             align-items: center;
@@ -18,7 +22,6 @@
             .link1{
                 overflow: hidden;
                 width: 25px;
-                // height: 25px;
                 border-radius: 50%;
 
                 a{
@@ -31,7 +34,6 @@
             .link2{
                 overflow: hidden;
                 width: 25px;
-                // height: 25px;
                 border-radius: 50%;
 
                 a{
@@ -42,14 +44,16 @@
 
         }
         .footerText{
-            width: 82%;
+            width: 90%;
             margin: 0 auto;
             color: white;
             display: flex;
             justify-content: space-between;
 
             .textAbout{
-                color: rgb(169, 169, 169)
+                color: rgb(169, 169, 169);
+                margin-left: 20px;
+
             }
         }
 
@@ -83,4 +87,57 @@
         }
 
 
+}
+
+@media(max-width:952px){
+    .footerText{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+       
+        
+        .textAbout{
+            padding: 10px;
+        }
+
+
+        
+    }
+}
+
+@media(max-width:717px){
+    .footer{
+        .containerFooter{
+            .linkIcons{
+               width: 20%;
+            }
+        }
+    }
+    
+}
+
+@media(max-width:515px){
+    .textAbout{
+        font-size: 12px;
+    }
+    .linkText{
+        font-size: 12px;
+    }
+}
+
+@media(max-width:394px){
+    .containerFooter{
+        .textAbout{
+           max-width:180px
+        }
+        .linkText{
+        max-width:180px;
+        text-align: center;
+       
+        margin-left: 20px;
+
+        }
+    }
+   
+    
 }

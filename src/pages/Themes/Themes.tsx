@@ -1,7 +1,7 @@
-import React from 'react'
 import "./Themes.scss"
 
 export  function Themes() {
+
   return (
     <div className="themes">
       <div className='line_div'>
@@ -9,7 +9,7 @@ export  function Themes() {
         <p>Terms and Conditions</p>
         <div className='line'></div>
       </div>
-      <h2>Welcome to Best Optic Lab, Inc</h2>
+      {/* <h2>Welcome to Best Optic Lab, Inc</h2>
       <div className="paragraph1">
         <p className="p1">
           These terms and conditions outline the rules and regulations for the
@@ -206,7 +206,7 @@ export  function Themes() {
           termsandconditionstemplate.com generator. If you have any queries
           regarding any of our terms, please contact us.
         </p>
-      </div>
+      </div> */}
 
     </div>
   );
