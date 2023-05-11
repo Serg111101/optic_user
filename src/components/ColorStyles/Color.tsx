@@ -27,7 +27,6 @@ export function Color() {
           <div key={el.id} className='color_div'>
             <div className='color_div_image'>
               <img src={el.image} />
-              <span></span>
               <p>{el.title}</p>
             </div>
             <p>{el.text}</p>

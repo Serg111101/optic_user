@@ -6,8 +6,8 @@ import AntiReflectiveCoatingReducer from './slices/AntiReflectiveCoatingSlice';
 import MirrorColorsReducer from './slices/MirrorColorsSlice';
 import ordersReducer from "./slices/OrderSlice";
 import AboutReducer from './slices/AboutSlice'
-// import GovernmetMembersFullInfoReducer from './slice/GovernmetMembersFullInfo';
-// import  uniqueProduct  from './slice/UniqueProduct';
+import ThemesReducer from './slices/ThemesSlice';
+import  ClipReducer  from './slices/ClipSlice';
 import  HomeReduce  from './slices/HomeSlice';
 // import ordersReducer from "./slice/OrderInformationSlice";
 
@@ -20,8 +20,8 @@ export const store = configureStore({
     MirrorColors:MirrorColorsReducer,
     orders: ordersReducer,
     About:AboutReducer,
-    // UniqueProduct:UniqueProductReducer,
-    // uniqueProduct:uniqueProduct,
+    Themes:ThemesReducer,
+    Clip:ClipReducer,
     // image:governmentMembersFullInfo,
     // orders: ordersReducer,
     // Calendar:CalendarReducer,
