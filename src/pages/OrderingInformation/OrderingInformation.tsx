@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Aaa } from '../../components/aaa/Aaa'
 // import axios from 'axios'
 import { fetchOrders } from "../../store/action/OrderAction";
-import { useAppSelector, useAppDispatch } from "../../hooks/redux";
+import { useAppDispatch, } from "../../hooks/redux";
 
 const OrderingInformation = () => {
 
@@ -13,14 +13,15 @@ const OrderingInformation = () => {
   const [step3,setStep3]=useState(false);
   const [step4,setStep4]=useState(false);
   const [step5,setStep5]=useState(false);
-  const { orders } = useAppSelector((state) => state.orders);
   const dispatch = useAppDispatch();
 
-  console.log(orders);
-  
+
+ 
+
   useEffect(() => {
     dispatch(fetchOrders());
   }, [dispatch]);
+
   return (
     <div className='Order'>
       <div className='step'>

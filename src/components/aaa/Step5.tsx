@@ -1,83 +1,202 @@
 import './Aaa.scss'
-import { useState } from 'react';
-export const Step5 = ({step5,setStep5}:any) => {
-    const arr = ['aaa', 'bbb', 'ccc'];
-    const aaa = ['aaa1', 'aaa2', 'aaa3', 'aaa4', 'aaa5'];
-    const bbb = ['bbb1', 'bbb2', 'bbb3', 'bbb4', 'bbb5'];
-    const ccc = ['ccc1', 'ccc2', 'ccc3', 'ccc4', 'ccc5'];
+import { useAppDispatch } from "../../hooks/redux";
+import { fetchOrders } from "../../store/action/OrderAction";
+import { useEffect, useState } from "react";
 
-    const [test1, setTest1] = useState('');
-    const [test2, setTest2] = useState('');
+
+
+export const Step5 = ({step5,setStep5,totals,setTotals,orders}:any) => {
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+      dispatch(fetchOrders());
+    }, [dispatch]);
+
+    const [input, setInput] = useState([0]);
+    const [val, setVal] = useState(false);
+    let arr1 = orders?.map((item: any) => item.table_name);
+    function removeDuplicates(arr1: any[]) {
+      let headArr: any = [];
+      for (let i = 0; i < arr1.length; i++) {
+        if (!headArr.includes(arr1[i])) {
+          headArr.push(arr1[i]);
+        }
+      }
+      return headArr;
+    }
+    const headArr = removeDuplicates(arr1);
+    const [fin,setFin] = useState("");
+
+    function addOrder1(id: number, table: string, col: string, e: any) {
+        const newTotals = totals.filter((item: any) => item.columnName !== col);
+        setTotals([
+          ...newTotals,
+          {
+            id: id,
+            tableName: table,
+            columnName: col,
+            value: e,
+          },
+        ]);
+      }
+      let arrr: any = [];
+    orders?.map((el: any) => {
+      if (el.table_name === headArr[10]) {
+        arrr.push(el);
+      }
+    });
+    let arrr1: any = [];
+    orders?.map((el: any) => {
+      if (el.table_name === headArr[11]) {
+        arrr1.push(el);
+      }
+    });
+    let arrr2: any = [];
+    orders?.map((el: any) => {
+      if (el.table_name === headArr[12]) {
+        arrr2.push(el);
+      }
+    });
+
+    
+    const [test, setTest] = useState(headArr[10]);  
+    const [test1,setTest1] = useState(headArr[11]);
+    // const [version,setVersion] = useState("")
+
+
+    function aaaa() {
+      orders?.map((el: any) => {
+        if (el.column_name === test) {
+          setTotals([...totals, el]);
+        }
+        if (el.column_name === test1) {
+          setTotals([...totals, el]);
+        }
+        
+        
+
+      });
+    }
+    
+    function mapp() {
+      totals.map((el: any) => {
+        if (el.columnName === fin) {
+          if (el.value == "") {
+            setVal(false);
+          } else if (el.value !== "" || el.value !== null) {
+            setVal(true);
+          }
+        }
+      });
+    }
+    useEffect(() => {
+      mapp();
+    }, [val, totals]);
    
   return (
     <div className='Step2'>
-        <div className='Aaa'>
-            <div className='testing'>
-                <div className='test1'>
-                    <label htmlFor="cars">Test 1</label>
-                    <select name="cars" id="cars" onChange={(e) => setTest1(e.target.value)}>
-                        <option value="test1" >Test1</option>
-                        {arr.map(el =>
-                            <option value={el}>{el}</option>
-                        )}
+        <div className="Aaa">
+            <div>
+              {
+                <div>
+                  <h2>{headArr[10]}</h2>
+                  <div>
+                    <select placeholder={headArr[10]} onChange={
+                      (e) => {
+                        setTest(e.target.value);
+                        // setVersion(e.target.value);
+                      }
+
+                      }>
+                      <option value={headArr[5]} >
+                        {headArr[10]}
+                      </option>
+                      {arrr.map((item: any, index: number) => (
+                        <option value={item.column_name} key={item.id}>
+                          {item.column_name}
+                        </option>
+                      )
+                      )}
                     </select>
-                </div>
-                {test1 === 'aaa' ?
-                    <div className='test2'>
-                        <label htmlFor="test2">Test 2</label>
-                        <select name="" id="" onChange={(e) => setTest2(e.target.value)}>
-                            <option value="test2">test2</option>
-                            {aaa.map(el =>
-                                <option value={el}>{el}</option>
-                            )}
-                        </select>
-                    </div>
-                    : test1 === 'bbb' ?
-                        <div className='test2'>
-                            <label htmlFor="test2">Test 2</label>
-                            <select name="" id="" onChange={(e) => setTest2(e.target.value)}>
-                                <option value="test2">test2</option>
-                                {bbb.map(el =>
-                                    <option value={el}>{el}</option>
-                                )}
-                            </select>
-                        </div> : test1 === 'ccc' && <div className='test2'>
-                            <label htmlFor="test2">Test 2</label>
-                            <select name="" id="" onChange={(e) => setTest2(e.target.value)}>
-                                <option value="test2">test2</option>
-                                {ccc.map(el =>
-                                    <option value={el}>{el}</option>
-                                    )}
-                            </select>
-                        </div>
-                }
-                {test1!==''&&test1!=='test1' && test2!=='' && test2!=='test2' && <button onClick={()=>setStep5(true)}>save</button> }
-            </div>
-            <div className="img">
+                        {
+                            arrr.map((el:any,i:number)=> 
+                                test == el.column_name &&
+                                (<img src={el.value} alt={el.column_name} key={el.id} />)
+                            )
+                        }
+
+                      </div>
+                      </div>
+                      
+                      }
+
+                    {test !== headArr[10] && <h2>{headArr[11]}</h2>}
+                    {
+                    test !== headArr[10] &&
+                    <select onChange={
+                      (e) => {
+                        setTest1(e.target.value);
+                        // setFin(e.target.value)
+                      }
+
+                      }>
+                      <option value={headArr[11]} >
+                        {headArr[11]}
+                      </option>
+                      {arrr2.map((item: any, index: number) => (
+                        <option value={item.column_name} key={item.id}>
+                          {item.column_name}
+                        </option>
+                      ))}
+                    </select>
+                      }
+
+
+
+                    {test1 !==  headArr[11]  &&     <h2>{headArr[12]}</h2>}
                 {
-                    test1 === 'aaa' ?
-                    <div>
-                        <img src="../../../../image/photo1.png" alt="" />
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quod fugiat eius hic veniam totam quibusdam laborum necessitatibus qui, quisquam quaerat quo recusandae earum repellat laudantium eum neque corrupti voluptate!
-                        Nostrum voluptates, odio minima quae voluptatibus cupiditate maxime? Sint dolorem quisquam accusamus ut quia in dolore, suscipit consequuntur soluta asperiores quidem aspernatur facere dolor error odio dicta odit molestias necessitatibus.00</p>
-                    </div>:
-                    test1==='bbb'?
-                    <div>
-                        <img src="../../../../image/photo2.png" alt="" />
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos quam aliquam, soluta magnam nostrum corporis est minus laborum provident placeat quasi obcaecati. Beatae officiis, modi, dolores exercitationem dignissimos consequatur voluptates fugit fuga nesciunt nemo, asperiores facere iure nam. A nam, voluptatum reiciendis iusto, modi eum asperiores commodi porro odio, accusantium quisquam facere? Dolor, maiores fuga deleniti nam dolorem deserunt sequi a enim repellendus officia adipisci mollitia aliquam asperiores excepturi velit ut nemo iste hic provident ipsam. Itaque quaerat, voluptatem similique, odio sint vitae fugit mollitia laborum aspernatur sapiente quia asperiores dolores perferendis tempore quas recusandae veritatis! Mollitia animi delectus ullam eveniet ratione iusto reprehenderit molestias numquam placeat explicabo, sequi nemo accusantium perferendis dicta, soluta in molestiae similique vel, voluptates obcaecati odio eum illo. Soluta eum possimus ex, corporis accusantium aliquam consequuntur fugit explicabo voluptate veritatis aut, earum ducimus corrupti? Nemo ad eveniet odio, sunt officia libero eum quis ipsa qui reprehenderit quidem dignissimos quos molestias quaerat debitis reiciendis ratione perferendis sit? Consectetur qui accusantium ullam rem, nam dignissimos iusto, suscipit reprehenderit doloremque vitae odit quaerat voluptate minus nobis earum recusandae!
-                        </p>
-                    </div>:
-                    test1==='ccc'&&
-                    <div>
-                        <img src="../../../../image/photo3.png" alt="" />
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi unde animi earum dicta, doloribus dolores repudiandae aperiam veniam est voluptatibus at assumenda magni expedita nesciunt eos hic magnam distinctio architecto quae corrupti blanditiis impedit. Sit dolor numquam qui itaque similique sequi tempore voluptatem at cupiditate. Deleniti, ut? Temporibus explicabo architecto placeat quis facere et, iure qui eligendi in veniam nulla quidem ipsa, cumque necessitatibus nobis cupiditate saepe! Rerum, inventore ratione saepe illum, ut similique, consequatur eveniet sit maxime officia tempore. Repellendus molestias a repudiandae temporibus sequi tempore harum ullam eligendi blanditiis fugit quidem quae odit, eum quasi! Commodi facilis id totam veniam, suscipit sunt temporibus exercitationem laboriosam, tempora repellat facere? Est tempora at iusto expedita alias modi, consectetur eveniet voluptatibus velit accusantium odio, esse obcaecati veniam! Voluptatem voluptas ipsum, neque magni quasi veniam, iusto perferendis fugit dicta possimus aliquid exercitationem earum quo qui? Ipsum quibusdam quod inventore voluptatum pariatur nemo.
-                        </p>
-                    </div>
-                }
+                    test1 !== headArr[11] && 
+                      
+                    arrr2.map((item: any, index: number) =>
+                        input.includes(index) && (
+                          <div key={item.id}>
+                            <p>{item.column_name}</p>
+                            <input
+                              type="text"
+                              onChange={(e: any) => {
+                                addOrder1(
+                                  item.id,
+                                  item.table_name,
+                                  item.column_name,
+                                  e.target.value
+                                );
+                                        setFin(e.target.value)
+                                setTimeout(
+                                  () => setInput([...input, index + 1]),
+                                  100
+                                );
+                              }}
+                            />
+                          </div>
+                        )
+                    )
+
+
+              }
             </div>
-        </div>
+           
+
+
+            {fin.length>0&& (
+              <button
+                onClick={() => {
+                  aaaa();
+                //   setStep5(true);
+                }}
+              >
+                save
+              </button>
+            )}
+          </div>
     </div>
   )
 }

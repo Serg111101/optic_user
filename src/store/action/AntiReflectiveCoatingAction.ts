@@ -17,7 +17,6 @@ export const fetchAntiReflectiveCoating = (props:any) => {
             
         }
         catch(error){
-            console.log(error,'error');
             
             dispatch(fetchError2(error as Error));
         }
