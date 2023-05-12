@@ -12,7 +12,11 @@ export const fetchMirrorCoating = (props:any) => {
             for(let key in response.data){
                 arr.push(response.data[key])
             }
-            dispatch(fetchSuccess1(arr));   
+            dispatch(fetchSuccess1(arr)); 
+            
+            
+            
+              
         }
         catch(error){
             

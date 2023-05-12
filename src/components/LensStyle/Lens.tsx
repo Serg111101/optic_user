@@ -10,6 +10,8 @@ export default function Lens() {
 
   const { MirrorCoating } = useAppSelector(state => state.MirrorCoating);
   const { AntiReflectiveCoating } = useAppSelector(state => state.AntiReflectiveCoating)
+
+  
   const dispatch = useAppDispatch()
   const [name, setName] = useState('Mirror Coating')
   const [name1, setName1] = useState('Anti-Reflective Coating')
