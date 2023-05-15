@@ -31,7 +31,7 @@ export const Step3 = ({
     return headArr;
   }
   const headArr = removeDuplicates(arr1);
-  const [fin,setFin] = useState("");
+  const [fin,setFin] = useState(false);
 
   function addOrder1(id: number, table: string, col: string, e: any) {
     const newTotals = totals.filter((item: any) => item.columnName !== col);
@@ -58,34 +58,21 @@ export const Step3 = ({
     }
   });
   const [test, setTest] = useState(headArr[3]); 
+  // const [test1, setTest1] = useState(headArr[4]); 
    
-  function aaaa() {
+  function aaaa1(testing:any) {
     orders?.map((el: any) => {
-      if (el.column_name === test) {
-        setTotals([...totals, el]);
+      if (el.column_name === testing) {
+        setTotals([...totals.filter((elem:any)=>{
+          if(elem.table_name !== el.table_name){
+            return el
+          }
+        }),el])
       }
     });
   }
-
-
-  
-
-  
-  function mapp() {
-    totals.map((el: any) => {
-      if (el.columnName === fin) {
-        if (el.value == "") {
-          setVal(false);
-        } else if (el.value !== "" || el.value !== null) {
-          setVal(true);
-        }
-      }
-    });
-  }
-  useEffect(() => {
-    mapp();
-  }, [val, totals]);
-
+ 
+   
   return (
     <div>
       {step4 ? (
@@ -106,8 +93,9 @@ export const Step3 = ({
                   <div>
                     <select onChange={
                       (e) => {
-                        setTest(e.target.value);
-                        setFin(e.target.value)
+                        setTest(e.target.value)
+                        aaaa1(e.target.value);
+                        
                       }
 
                       }>
@@ -128,7 +116,7 @@ export const Step3 = ({
                           // input.includes(index) && 
                           
                               <div key={item.id}>
-                              <p key={item.id} >{item.column_name}</p>
+                              <label key={item.id} >{item.column_name}</label>
   
                                 <input
                                   type="text"
@@ -149,7 +137,7 @@ export const Step3 = ({
                           
                         
                     :
-                    <select key={item.id} onChange={(e) => setTest(e.target.value)}>
+                    <select key={item.id} onChange={(e) => {aaaa1(e.target.value)}}>
                     <option value={headArr[3]} key={headArr[3]}>
                       {headArr[3]}
                     </option>
@@ -165,16 +153,16 @@ export const Step3 = ({
                 </div>
               }
             </div>
-            {fin && fin.length>0&& (
+            { test!== headArr[3]&&
               <button
                 onClick={() => {
-                  aaaa();
+                  
                   setStep4(true);
                 }}
               >
                 save
               </button>
-            )}
+            }
           </div>
         </div>
       )}

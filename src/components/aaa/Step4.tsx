@@ -17,8 +17,7 @@ export const Step4 = ({
   useEffect(() => {
     dispatch(fetchOrders());
   }, [dispatch]);
-  const [input, setInput] = useState([0]);
-  const [val, setVal] = useState(false);
+  
   let arr1 = orders?.map((item: any) => item.table_name);
   function removeDuplicates(arr1: any[]) {
     let headArr: any = [];
@@ -30,21 +29,6 @@ export const Step4 = ({
     return headArr;
   }
   const headArr = removeDuplicates(arr1);
-  const [fin, setFin] = useState("");
-
-  // function addOrder1(id: number, table: string, col: string, e: any) {
-  //   const newTotals = totals.filter((item: any) => item.columnName !== col);
-  //   setTotals([
-  //     ...newTotals,
-  //     {
-  //       id: id,
-  //       tableName: table,
-  //       columnName: col,
-  //       value: e,
-  //     },
-  //   ]);
-  // }
-
   let arrr: any = [];
   orders?.map((el: any) => {
     if (el.table_name === headArr[5]) {
@@ -76,49 +60,36 @@ export const Step4 = ({
       arrr4.push(el);
     }
   });
+  let arrr5: any = [];
+  orders?.map((el: any) => {
+    if (el.table_name === headArr[10]) {
+      arrr5.push(el);
+    }
+  });
   const [test, setTest] = useState(headArr[5]);
   const [test1, setTest1] = useState(headArr[6]);
   const [test2, setTest2] = useState(headArr[7]);
   const [test3, setTest3] = useState(headArr[8]);
   const [test4, setTest4] = useState(headArr[9]);
-  console.log(headArr);
+  const [test5, setTest5] = useState(headArr[10]);
 
-  function aaaa() {
+  function aaaa1(testing: any) {
     orders?.map((el: any) => {
-      if (el.column_name === test) {
-        setTotals([...totals, el]);
-        console.log(totals);
-      }
-      if (el.column_name === test1) {
-        setTotals([...totals, el]);
-        console.log(totals);
-      }
-      if (el.column_name === test2) {
-        setTotals([...totals, el]);
-        console.log(totals);
-      }
-      if (el.column_name === test3) {
-        setTotals([...totals, el]);
-        console.log(totals);
+      if (el.column_name === testing) {
+        setTotals([
+          ...totals.filter((elem: any) => {
+            if (elem.table_name !== el.table_name) {
+              return el;
+            }
+          }),
+          el,
+        ]);
       }
     });
   }
 
-  function mapp() {
-    totals.map((el: any) => {
-      if (el.columnName === fin) {
-        if (el.value == "") {
-          setVal(false);
-        } else if (el.value !== "" || el.value !== null) {
-          setVal(true);
-        }
-      }
-    });
-  }
-  useEffect(() => {
-    mapp();
-  }, [val, totals]);
-
+ 
+ 
   return (
     <>
       {step5 ? (
@@ -139,6 +110,7 @@ export const Step4 = ({
                   <div>
                     <select
                       onChange={(e) => {
+                        aaaa1(e.target.value);
                         setTest(e.target.value);
                         // setFin(e.target.value)
                       }}
@@ -154,6 +126,7 @@ export const Step4 = ({
                     {test !== headArr[5] && (
                       <select
                         onChange={(e) => {
+                          aaaa1(e.target.value);
                           setTest1(e.target.value);
                           // setFin(e.target.value)
                         }}
@@ -173,6 +146,7 @@ export const Step4 = ({
               {test1 !== headArr[6] && (
                 <select
                   onChange={(e) => {
+                    aaaa1(e.target.value);
                     setTest2(e.target.value);
                     // setFin(e.target.value)
                   }}
@@ -190,11 +164,12 @@ export const Step4 = ({
               {test2 !== headArr[7] && (
                 <select
                   onChange={(e) => {
+                    aaaa1(e.target.value);
                     setTest3(e.target.value);
                     // setFin(e.target.value)
                   }}
                 >
-                  <option value={headArr[7]}>{headArr[7]}</option>
+                  <option value={headArr[8]}>{headArr[8]}</option>
                   {arrr3.map((item: any, index: number) => (
                     <option value={item.column_name} key={item.id}>
                       {item.column_name}
@@ -206,11 +181,11 @@ export const Step4 = ({
               {test3 !== headArr[8] && (
                 <select
                   onChange={(e) => {
-                    setTest3(e.target.value);
-                    setFin(e.target.value);
+                    aaaa1(e.target.value);
+                    setTest4(e.target.value);
                   }}
                 >
-                  <option value={headArr[3]}>{headArr[7]}</option>
+                  <option value={headArr[9]}>{headArr[9]}</option>
                   {arrr4.map((item: any, index: number) => (
                     <option value={item.column_name} key={item.id}>
                       {item.column_name}
@@ -218,12 +193,37 @@ export const Step4 = ({
                   ))}
                 </select>
               )}
-            </div>
 
-            {fin && fin.length > 0 && (
+              {test4 !== headArr[9] && <h2>{headArr[10]}</h2>}
+              {test4 !== headArr[9] && (
+                <div>
+                  <select
+                    placeholder={headArr[10]}
+                    onChange={(e) => {
+                      aaaa1(e.target.value);
+                      setTest5(e.target.value);
+                      // setVersion(e.target.value);
+                    }}
+                  >
+                    <option value={headArr[5]}>{headArr[10]}</option>
+                    {arrr5.map((item: any, index: number) => (
+                      <option value={item.column_name} key={item.id}>
+                        {item.column_name}
+                      </option>
+                    ))}
+                  </select>
+                  {arrr5.map(
+                    (el: any, i: number) =>
+                      test5 == el.column_name && (
+                        <img src={el.value} alt={el.column_name} key={el.id} />
+                      )
+                  )}
+                </div>
+              )}
+            </div>
+            {test5!== headArr[10] && (
               <button
                 onClick={() => {
-                  aaaa();
                   setStep5(true);
                 }}
               >

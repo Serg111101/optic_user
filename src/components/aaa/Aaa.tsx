@@ -1,5 +1,5 @@
 import "./Aaa.scss";
-import { useState, useEffect,useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Step2 } from "./Step2";
 import { fetchOrders } from "../../store/action/OrderAction";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
@@ -13,24 +13,22 @@ export const Aaa = ({
   setStep4,
   setStep5,
 }: any) => {
-  const [totals,setTotals] = useState<Object[]>([])
-  
-
+  const [totals, setTotals] = useState<Object[]>([]);
 
   const dispatch = useAppDispatch();
   const { orders }: any = useAppSelector((state) => state.orders);
   // console.log(orders);
-  
-  const [input,setInput]=useState([0])  
+
+  const [input, setInput] = useState([0]);
   const inputRef = useRef(null);
   const reff = inputRef.current;
-  
+
   useEffect(() => {
     dispatch(fetchOrders());
+  }, [dispatch]);
+  useEffect(() => {
     saveItput();
-  }, [totals,dispatch,reff]);
-
- 
+  }, [totals, reff]);
 
   let arr1 = orders?.map((item: any) => item.table_name);
   function removeDuplicates(arr1: any[]) {
@@ -43,8 +41,6 @@ export const Aaa = ({
     return headArr;
   }
   const headArr = removeDuplicates(arr1);
-  
-
 
   function addOrder1(id: number, table: string, col: string, e: any) {
     const newTotals = totals.filter((item: any) => item.columnName !== col);
@@ -57,28 +53,24 @@ export const Aaa = ({
         value: e,
       },
     ]);
-    
-    
   }
 
-  let arrr:any = []
-  orders?.map((el:any) => {
-    if(el.table_name === headArr[0] ){
-      arrr.push(el)
+  let arrr: any = [];
+  orders?.map((el: any) => {
+    if (el.table_name === headArr[0]) {
+      arrr.push(el);
     }
-  })
+  });
 
-
-  function saveItput(){
-    totals.map((el:any,idx:number) => {      
-      if(el.value === ''){
-        setInput(input.slice(0,idx+1)) 
-      }    
-    })
+  function saveItput() {
+    totals.map((el: any, idx: number) => {
+      if (el.value === "") {
+        setInput(input.slice(0, idx + 1));
+      }
+    });
   }
+  console.log(totals);
 
-  
-  
   return (
     <div>
       {step2 ? (
@@ -97,13 +89,15 @@ export const Aaa = ({
         <div className="Aaa">
           <div>
             {
-                <div key={headArr[0]}>
-                  <h2>{headArr[0]}</h2>
-                  {arrr.map((item: any,index:number) => 
-
-                        input.includes(index) &&<div key={item.id}>
-                          <p>{item.column_name}</p>
-                          <input type="text"  
+              <div key={headArr[0]}>
+                <h2>{headArr[0]}</h2>
+                {arrr.map(
+                  (item: any, index: number) =>
+                    input.includes(index) && (
+                      <div key={item.id}>
+                        <label>{item.column_name}</label>
+                        <input
+                          type="text"
                           onChange={(e: any) => {
                             addOrder1(
                               item.id,
@@ -112,29 +106,22 @@ export const Aaa = ({
                               e.target.value
                             );
 
-
-                          setTimeout(()=>  {
-                            if(!input.includes(index+1)){
-                              
-                              setInput([...input,index+1])
-                            }
-                          },100)
-                          
+                            setTimeout(() => {
+                              if (!input.includes(index + 1)) {
+                                setInput([...input, index + 1]);
+                              }
+                            }, 100);
                           }}
-
-                          />
-                        </div>
-                      
-                  )}
-                </div>
-             }
+                        />
+                      </div>
+                    )
+                )}
+              </div>
+            }
           </div>
-          {totals.length ==arrr.length && (
-            
+          {totals.length == arrr.length && (
             <button onClick={() => setStep2(true)}>save</button>
           )}
-
-         
         </div>
       )}
     </div>

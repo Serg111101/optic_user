@@ -19,7 +19,7 @@ export const Step2 = ({
 }: any) => {
   const dispatch = useAppDispatch();
   const [input, setInput] = useState([0]);
-  const [val, setVal] = useState(false)
+  const [val, setVal] = useState<any>(false)
   
   
 
@@ -79,46 +79,29 @@ export const Step2 = ({
           fin = arrr1[i].column_name; 
         }
   }
-
-  function aaaa(){
-    orders?.map((el:any)=>{
-      if(el.column_name===test){
-        setTotals([
-          ...totals,
-          el
-        ]);
-      }
-
-    })
-  }
-
-  function mapp(){
-    totals.map((el:any)=> {
-      
-      
-      if(el.columnName === fin){
-        
-        if(el.value == ""){
-          setVal(false)
-        } else if(el.value !== "" || el.value !== null){
-            setVal(true)
-          }
-
-      }
-        
-    })
-
-  }
- useEffect(()=>{
-
-   mapp()          
-
- },[val,totals])
-
-//  console.log(orders);
- 
-
   
+  
+
+  function aaaa1(testing:any) {
+    orders?.map((el: any) => {
+      if (el.column_name === testing) {
+        setTotals([...totals.filter((elem:any)=>{
+          if(elem.table_name !== el.table_name){
+            return el
+          }
+        }),el])
+      }
+    });
+
+  }
+function find(){
+totals.map((el:any)=>{
+  if(el.columnName==fin){  
+    setVal(true)
+  }
+})
+}
+
   return (
     <div>
       {step3 ? (
@@ -141,9 +124,9 @@ export const Step2 = ({
                 <div>
                   <h2>{headArr[1]}</h2>
 
-                  <div>
-                    <select onChange={
-                      (e)=>setTest(e.target.value)}>
+                  <div className="selectDiv" >
+                    <select  onChange={
+                      (e)=>{aaaa1(e.target.value);setTest(e.target.value)}}>
                         <option value={headArr[1]} 
                         key={headArr[1]}
                         >{headArr[1]}</option>
@@ -165,7 +148,7 @@ export const Step2 = ({
                     arrr1.map((item: any, index: number) =>
                         input.includes(index) && (
                           <div key={item.id}>
-                            <p>{item.column_name}</p>
+                            <label>{item.column_name}</label>
                             <input
                               type="text"
                               onChange={(e: any) => {
@@ -180,6 +163,7 @@ export const Step2 = ({
                                   () => setInput([...input, index + 1]),
                                   100
                                 );
+                                find(); 
                               }}
                             />
                           </div>
@@ -194,7 +178,7 @@ export const Step2 = ({
             </div>
 
             {val &&  (
-              <button onClick={() =>{aaaa(); setStep3(true)}}>save</button>
+              <button onClick={() =>{ setStep3(true)}}>save</button>
             )}
           </div>
         </div>
