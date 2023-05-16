@@ -10,16 +10,24 @@ import {ClipandLendStyles} from './pages/ClipandLendStyles'
 import Pay from "./pages/payment/Pay";
 import Completion from "./components/cart/Stripe/Completion";
 import OrderingInformation from "./pages/OrderingInformation";
+import { useState } from "react";
+import { Commit } from "./components/commit";
+import { CommentOutlined } from "@ant-design/icons";
+import Rate from "./pages/Shipent/Rate";
 
 
 function App() {
 
+  const [commit,setCommit]=useState(false)  
+  
+  
   return (
     <div className="App">
+      {<div className={commit?"aaa":"a"} onClick={()=>setCommit(false)}>{commit && <Commit setCommit={setCommit} />}</div>}
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Pay" element={<Pay />} />
+        <Route path="/pay" element={<Pay />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/contact" element={<Contact />} />
@@ -27,7 +35,10 @@ function App() {
         <Route path="/terms-and-conditions" element={<Themes />} />
         <Route path="/Orderinginformation" element={<OrderingInformation />} />
         <Route path="/ClipandLendStyles" element={<ClipandLendStyles/>}/>
+        <Route path="/Rate" element={<Rate/>}/>
+
       </Routes>
+      <div className="commit" onClick={()=>setCommit(true)}> <CommentOutlined /> <p>Leave a review</p></div>
       <Footer />
     </div>
   );

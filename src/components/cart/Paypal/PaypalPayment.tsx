@@ -5,11 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import '../cart.scss'
 
 
-const PaypalCheckout = () => {
+const PaypalCheckout = ({price}:any) => {
     const [success, setSuccess] = useState(false);
     // const [ErrorMessage, setErrorMessage] = useState(" ");
     const [orderID, setOrderID] = useState(false);
     const nav = useNavigate()
+    console.log(price);
 
     // creates a paypal order
     const createOrder = (data:any, actions:any) => {
@@ -62,8 +63,9 @@ const PaypalCheckout = () => {
                             <h1>Payment in PayPal</h1>
                         </div>
                         <div className="product-price-btn">
-                            <p>Order price: $25</p>
+                            <p>Order price: 25 USD</p>
                             <br></br>
+                            {price[0]?.provider && <p>Ship price: {price[0].amount} {price[0].currency}</p>}
                             
                         </div>
                     </div>
@@ -73,6 +75,7 @@ const PaypalCheckout = () => {
                         style={{ layout: "vertical" }}
                         createOrder={createOrder}
                         onApprove={onApprove}
+                        
                     />
             </div>
         </PayPalScriptProvider>

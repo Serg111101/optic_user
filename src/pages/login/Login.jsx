@@ -7,11 +7,19 @@ import axios from "axios";
 import Modal from "../../components/modal/Modal";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from 'jwt-decode'
+import { useAppSelector, useAppDispatch } from "../../hooks/redux";
+import { fetchLoginStyle } from "../../store/action/LoginStyleActions";
 
 
 
 export const Login = () => {
 
+    const { LoginStyle } = useAppSelector(state => state.LoginStyle)
+    const dispatch = useAppDispatch()
+    useEffect(() => {
+        dispatch(fetchLoginStyle());
+    }, [dispatch])
+      
     const navigate=useNavigate()
     const [user, setUser] = useState({});
     const [modalActive, setModalActive] =useState(false)   
@@ -110,7 +118,7 @@ async function handleCallbackResponse(response) {
 
                 <div className="containerHeader" id="containerHeader">
             <img src="../../../../image/logo11.webp" />
-            <h3 id={"containerHeaderH1"}>WELCOME TO BEST OPTIC LAB, INC</h3>
+            <h3 id={"containerHeaderH1"}>{LoginStyle?.title}</h3>
         </div>                    <div className="containerMain">
             
                         <div className="loginImage">
@@ -118,10 +126,10 @@ async function handleCallbackResponse(response) {
                         </div>
 
                         
-                        <form  className="loginForm" onSubmit={handleSubmit}>
-                            <h3 className="loginFormTitle">Sign up</h3>
+                        <form  className="loginForm" onSubmit={handleSubmit} style={{background:LoginStyle?.loginBg_color}}>
+                            <h3 className="loginFormTitle" style={{ color: LoginStyle?.login_color }}>{LoginStyle?.signUp_title}</h3>
                             <div id="loginFormChildLogin" className="loginFormChild">
-                                <label>Login</label>
+                                <label style={{ color: LoginStyle?.login_color }}>{LoginStyle?.login_title}</label>
                                 <input placeholder="Login" name="login"
                                     onChange={(e) => {
                                         e.preventDefault();
@@ -133,7 +141,7 @@ async function handleCallbackResponse(response) {
                             </div>
 
                             <div id="loginFormChildPassword" className="loginFormChild">
-                                <label>Password</label>
+                                <label style={{ color: LoginStyle?.login_color }}>{LoginStyle?.password_title}</label>
                                 <input
                                     placeholder="*******"
                                     iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
@@ -151,7 +159,7 @@ async function handleCallbackResponse(response) {
                             </div>
                             
                             <div id="loginFormChildCheckbox" className="loginFormCheckbox">    
-                            <button className="RegistrationButton" onClick={(e)=>{setModalActive(true);e.preventDefault()}}  >Registration</button>
+                            <button className="RegistrationButton" onClick={(e)=>{setModalActive(true);e.preventDefault()}}  style={{ color: LoginStyle?.login_color }}>{LoginStyle?.registration_title}</button>
 
                                 <div id="loginFormCheckboxChild" className="loginFormCheckboxChild">
                         
@@ -160,12 +168,12 @@ async function handleCallbackResponse(response) {
                                      />
                                         
                                         
-                                        <label id={active ? "unCheked" : "saveCheck"}>Remember</label>
+                                        <label id={active ? "unCheked" : "saveCheck"}style={{ color: LoginStyle?.login_color }}>{LoginStyle?.remember_title}</label>
                                     </div>
                                 </div>
                             </div>
                             
-                            <button id="loginFormChildButton" className="loginFormButton" > Sign in</button>
+                            <button id="loginFormChildButton" className="loginFormButton" style={{ color: LoginStyle?.login_color , background:  LoginStyle?.buttonBg_color }}> {LoginStyle?.signIn_title}</button>
                             <div className="google" >
                     
 

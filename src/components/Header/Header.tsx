@@ -1,6 +1,11 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import "./Header.scss";
+// import axios from "axios";
 import {  useNavigate } from "react-router-dom";
+
+
+
+
 
 export function Header() {
     
@@ -9,19 +14,18 @@ export function Header() {
     const user=JSON.parse(users)    
     const user1=JSON.parse(users1)    
     const navigate:any = useNavigate()
-    
-
-    function handleSignOut() {
-        
+    function handleSignOut() { 
     localStorage.removeItem('auth');
     localStorage.removeItem('response');
     localStorage.removeItem('token');
     navigate('login') 
-    
   }
 
     return (
-        <header className="header" >
+        <header className="header"
+        //  style={{background:LoginStyle?.loginBg_color}}
+         
+         >
             <div className="container" >
 
                 <div className="image" onClick={() => { navigate( "/" )}} >
@@ -30,17 +34,25 @@ export function Header() {
                 </div>
 
                 <div className="items" >
-                    <div className={window.location.href=='http://localhost:3001/'?"itemHome item activ":"itemHome item"} onClick={()=>{navigate("/")}} >HOME</div>
-                    <div className={window.location.href=='http://localhost:3001/about'?"itemAbout item activ":"itemAbout item"}  onClick={()=>{navigate("/about")}} >ABOUT US</div>
-                    <div className={window.location.href=='http://localhost:3001/ClipandLendStyles'?"itemStiles item activ":"itemStiles item"}  onClick={()=>{navigate("/ClipandLendStyles")}} > CLIP AND LEND STYLES </div>
-                    <div className={window.location.href=='http://localhost:3001/orderinginformation'?"itemStiles item activ":"itemStiles item"}  onClick={()=>{navigate("/orderinginformation")}} > ORDER ITEM </div>
-                </div>
+                    <div className={window.location.href=='http://localhost:3000/'?"itemHome item activ":"itemHome item"} onClick={()=>{navigate("/")}} >HOME</div>
+                    <div className={window.location.href=='http://localhost:3000/about'?"itemAbout item activ":"itemAbout item"}  onClick={()=>{navigate("/about")}} >ABOUT US</div>
 
+                    <div className={window.location.href=='http://localhost:3000/ClipandLendStyles'?"itemStiles item activ":"itemStiles item"}  onClick={()=>{navigate("/ClipandLendStyles")}} > CLIP AND LEND STYLES </div>
+                    <div className={window.location.href=='http://localhost:3000/orderinginformation'?"itemStiles item activ":"itemStiles item"}  onClick={()=>{navigate("/orderinginformation")}} > ORDER ITEM </div>
+                </div>
                 <div className="button" >
                    { user?.googleId||user1?.id ?<button onClick={()=>handleSignOut()}>Sign out</button>:<button onClick={()=>navigate('login')}>SIGN IN</button>
 }
                 </div>
+                
             </div>
             </header>)
 }
 
+//                     <div className={window.location.href=='http://localhost:3000/orderinginformation'?"itemStiles item activ":"itemStiles item"}  onClick={()=>{navigate("/orderinginformation")}} > CLIP AND LEND STYLES </div>
+//                 </div>
+
+               
+//             </div>
+//             </header>)
+// }

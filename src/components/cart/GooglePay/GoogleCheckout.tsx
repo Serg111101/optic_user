@@ -6,10 +6,11 @@ import { useNavigate } from "react-router-dom";
 
 
 
-const GoogleCheckout = () => {
+const GoogleCheckout = ({price}:any) => {
 
   const [paymentRequest, setPaymentRequest] = useState(buildPaymentRequest([]));
   const navigate = useNavigate()
+  console.log(price);
 
 
   useEffect(() => {
@@ -38,6 +39,8 @@ const GoogleCheckout = () => {
   return (
     <div className='googlepay '>
           <h1>Payment in GPay</h1>
+          {price[0]?.provider && <p>Ship price: {price[0].amount} {price[0].currency}</p>}
+
           <GooglePayButton
             environment="TEST"
             buttonSizeMode="fill"

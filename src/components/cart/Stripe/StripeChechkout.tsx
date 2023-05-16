@@ -5,9 +5,10 @@ import Completion from "./Completion";
 import { knopka } from "./checkoutForm";
 
 
-const StripeChechkout = () => {
+const StripeChechkout = ({price}:any) => {
 
     const [stripePromise, setStripePromise] = useState<any>(null);
+console.log(price);
 
 
     useEffect(() => {
@@ -20,8 +21,9 @@ const StripeChechkout = () => {
       let mek = knopka()
   return (
     <div>
-        {mek ?
-          <Payment stripePromise={stripePromise} />
+        {mek ? <>
+            {price[0]?.provider && <p>Ship price: {price[0].amount} {price[0].currency}</p>}
+          <Payment stripePromise={stripePromise} /></>
           :
           <Completion stripePromise={stripePromise} />
         }
