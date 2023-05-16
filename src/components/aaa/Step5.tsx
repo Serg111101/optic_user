@@ -2,6 +2,7 @@ import "./Aaa.scss";
 import { useAppDispatch } from "../../hooks/redux";
 import { fetchOrders } from "../../store/action/OrderAction";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 export const Step5 = ({ step5, setStep5, totals, setTotals, orders }: any) => {
   const dispatch = useAppDispatch();
@@ -67,20 +68,6 @@ export const Step5 = ({ step5, setStep5, totals, setTotals, orders }: any) => {
     });
   }
 
-  // function mapp() {
-  //   totals.map((el: any) => {
-  //     if (el.columnName === fin) {
-  //       if (el.value == "") {
-  //         setVal(false);
-  //       } else if (el.value !== "" || el.value !== null) {
-  //         setVal(true);
-  //       }
-  //     }
-  //   });
-  // }
-  // useEffect(() => {
-  //   mapp();
-  // }, [val, totals]);
 
   let finn=''
   for (let i = 0; i < arrr2.length; i++) {
@@ -98,6 +85,16 @@ export const Step5 = ({ step5, setStep5, totals, setTotals, orders }: any) => {
     })
   }
   
+  async function total(order: any) {
+    console.log(order);
+
+    const response = await axios({
+      method: "post",
+      url: `${URL}api/v1/superAdmin/insertValues`,
+      data: totals,
+    });
+  
+  }
 
   return (
     <div className="Step2">
@@ -146,7 +143,7 @@ export const Step5 = ({ step5, setStep5, totals, setTotals, orders }: any) => {
         {val&& (
           <button
             onClick={() => {
-              //   setStep5(true);
+              total(totals);
             }}
           >
             save
