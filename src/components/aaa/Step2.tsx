@@ -101,6 +101,7 @@ totals.map((el:any)=>{
   }
 })
 }
+console.log(arrr);
 
   return (
     <div>
@@ -131,12 +132,16 @@ totals.map((el:any)=>{
                         key={headArr[1]}
                         >{headArr[1]}</option>
                       {arrr.map((item: any, index: number) => (
+                      
+                        
                         <option
                           value={item.column_name}
                           key={item.id}
                         >
                           
-                          {item.column_name}
+                          {item.column_name + ":  "}
+                          {"amunt  "+item.price_user}
+                        
                         </option>
                       ))}
                     </select>

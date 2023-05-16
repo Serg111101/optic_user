@@ -67,20 +67,37 @@ export const Step5 = ({ step5, setStep5, totals, setTotals, orders }: any) => {
     });
   }
 
-  function mapp() {
-    totals.map((el: any) => {
-      if (el.columnName === fin) {
-        if (el.value == "") {
-          setVal(false);
-        } else if (el.value !== "" || el.value !== null) {
-          setVal(true);
+  // function mapp() {
+  //   totals.map((el: any) => {
+  //     if (el.columnName === fin) {
+  //       if (el.value == "") {
+  //         setVal(false);
+  //       } else if (el.value !== "" || el.value !== null) {
+  //         setVal(true);
+  //       }
+  //     }
+  //   });
+  // }
+  // useEffect(() => {
+  //   mapp();
+  // }, [val, totals]);
+
+  let finn=''
+  for (let i = 0; i < arrr2.length; i++) {
+        if(arrr2[i]=== arrr2[arrr2.length - 1]) {
+          finn = arrr2[i].column_name; 
         }
-      }
-    });
   }
-  useEffect(() => {
-    mapp();
-  }, [val, totals]);
+
+
+  function find(){
+    totals.map((el:any)=>{
+      if(el.columnName==finn){  
+        setVal(true)
+      }
+    })
+  }
+  
 
   return (
     <div className="Step2">
@@ -118,6 +135,7 @@ export const Step5 = ({ step5, setStep5, totals, setTotals, orders }: any) => {
                         );
                         setFin(e.target.value);
                         setTimeout(() => setInput([...input, index + 1]), 100);
+                        find()
                       }}
                     />
                   </div>
@@ -125,7 +143,7 @@ export const Step5 = ({ step5, setStep5, totals, setTotals, orders }: any) => {
             )}
         </div>
 
-        {test1!==headArr[11]&& (
+        {val&& (
           <button
             onClick={() => {
               //   setStep5(true);

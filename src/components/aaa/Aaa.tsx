@@ -87,7 +87,7 @@ export const Aaa = ({
         />
       ) : (
         <div className="Aaa">
-          <div>
+          <div  >
             {
               <div key={headArr[0]}>
                 <h2>{headArr[0]}</h2>
