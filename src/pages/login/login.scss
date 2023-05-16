@@ -89,7 +89,6 @@ $normal: "normal";
 }
 
 @mixin loginFormCheckboxChild {
-  width: 70px;
   position: absolute;
   right: 0px;
   display: flex;
@@ -319,7 +318,18 @@ $normal: "normal";
   align-items: center;
   text-align: center;
   margin: 0 auto 3rem auto;
+  // height: 83px;
 
+  
+  
+
+}  
+
+
+.containerHeader{
+  img{
+    width: 30%;
+  }
 }
 
 @mixin containerHeaderH1 {
@@ -344,7 +354,7 @@ $normal: "normal";
 
 .RegistrationButton{
   color: white;
-  font-size: 15px;
+  font-size: 18px;
   background: none;
   border: none;
   margin-top: -5px;
@@ -373,7 +383,7 @@ $normal: "normal";
   }
 
   .containerHeader {
-    margin: -38px auto 0 auto;
+    width: 310px; 
   }
 
   .containerMain {

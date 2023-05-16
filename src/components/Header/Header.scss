@@ -18,10 +18,12 @@
         max-width: 1200px;
         margin: 0 auto;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
+        height: 70px;
 
-       
+
+      
 
         .items-mobile,.items{
             width: 50%;
@@ -110,7 +112,16 @@
 @media(max-width:730px){
     .header{
         .container{
-        
+        // display: flex;
+        // align-items: center;
+        // justify-content: center;
+        // margin: 0 auto;
+            .image{
+                img{
+                    display: none;
+                }
+               }
+
         .headericone{
             display: block;
             font-size: 30px;
@@ -169,5 +180,14 @@
         }
         }
        
+    }
+}
+
+
+@media(max-width:657px){
+    .containerHeader{
+        img{
+         
+        }
     }
 }
