@@ -101,7 +101,7 @@ totals.map((el:any)=>{
   }
 })
 }
-console.log(arrr);
+
 
   return (
     <div>

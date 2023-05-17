@@ -4,6 +4,7 @@ import { fetchOrders } from "../../store/action/OrderAction";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { fetchError4 } from "../../store/slices/HomeSlice";
+const URL = process.env.REACT_APP_BASE_URL
 
 export const Step5 = ({ step5, setStep5, totals, setTotals, orders }: any) => {
   const dispatch = useAppDispatch();
@@ -93,7 +94,9 @@ export const Step5 = ({ step5, setStep5, totals, setTotals, orders }: any) => {
       url: `${URL}api/v1/superAdmin/insertValues`,
       data: totals,
     });
-    console.log(response);
+    
+    
+    
     
   }
   catch(error){

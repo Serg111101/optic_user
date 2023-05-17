@@ -69,7 +69,7 @@ export const Aaa = ({
       }
     });
   }
-  console.log(totals);
+  
 
   return (
     <div>
