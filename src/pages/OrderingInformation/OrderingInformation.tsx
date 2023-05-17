@@ -6,7 +6,7 @@ import { Aaa } from '../../components/aaa/Aaa'
 import { fetchOrders } from "../../store/action/OrderAction";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 
-const OrderingInformation = () => {
+ export const OrderingInformation = () => {
 
 
   const [step2,setStep2]=useState(false);
@@ -42,6 +42,8 @@ const OrderingInformation = () => {
       </div>
       <Aaa step2={step2} step3={step3} step4={step4} step5={step5} setStep2={setStep2} setStep3={setStep3} setStep4={setStep4} setStep5={setStep5} />
     </div>
+  )
+}
     //     <div className='OrderingInformation'>
     //     <div  className='Order'>
     //       <div className="head">
@@ -524,23 +526,4 @@ const OrderingInformation = () => {
 
     //         </div>
 
-    //       </div>
-    //       <div className='total'>
-    //         <div className='total-box'>
-    //           <h2>1.	MAKE SURE EVERYTHING IS FILLED OUT</h2>
-    //           <h2>2.	SEND LENSES IN THE FRAME</h2>
-    //           <h2>3.	REDOS MUST HAVE ORIGINAL INVOICE</h2>
-    //         </div>
-    //         <div className='total-box1'>
-    //           <h2>TOTAL</h2>
-    //         </div>
-    //       </div>
-
-    //     </div>
-    //     <p>SEND WHITE & YELLOW WITH ORDER/ KEEP THE PINK COPY FOR YOUR PATIENTS RECORD</p>
-    //     <button onClick={()=>navigate('/pay')}>TO CALCULATE</button>
-    //     </div>
-  )
-}
-
-export { OrderingInformation }
+  

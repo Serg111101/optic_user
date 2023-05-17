@@ -1,2 +1,2 @@
-import {OrderingInformation} from "./OrderingInformation";
-export   default  OrderingInformation
+import { OrderingInformation } from "./OrderingInformation";
+export default OrderingInformation

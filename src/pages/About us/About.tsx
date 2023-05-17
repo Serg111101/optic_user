@@ -9,7 +9,6 @@ export function About() {
 
   const {About} = useAppSelector(state=>state.About)
   const dispatch = useAppDispatch()
-  const navigate=useNavigate()
   const [name, setName] = useState('Products and Services')
 
   useEffect(()=>{
@@ -17,6 +16,7 @@ export function About() {
   },[dispatch])
   console.log(About);
   
+  const navigate=useNavigate()
   return (
     <div className="about">
       <div className="line_div">
