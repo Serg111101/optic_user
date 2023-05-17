@@ -94,6 +94,7 @@ export const Step5 = ({ step5, setStep5, totals, setTotals, orders }: any) => {
       url: `${URL}api/v1/superAdmin/insertValues`,
       data: totals,
     });
+    console.log(response);
     
     
     
