@@ -46,10 +46,10 @@ export default function Lens() {
       </div>
 
       <div className="lens">
-        <div className="line_div">
-          <div className="line"></div>
+        <div className="line_divs">
+          <div className="lines"></div>
               <p>{AntiReflectiveCoating[0]?.title_div} </p>
-          <div className="line"></div>
+          <div className="lines"></div>
         </div>
 
         <div className="classBottomm">

@@ -33,7 +33,6 @@
 
 .Clip_activee {
     display: inline-block;
-    height: 400px;
     width: 100%;
     border-radius: 40px;
     z-index: 30000;
@@ -58,6 +57,7 @@
     display: flex;
     justify-content: center;
     margin-top: 25px;
+    align-items: center;
 
     .Clip_slideshowDot {
         margin-left: 30px;
@@ -76,4 +76,35 @@
 
 .Clip_slideshowDot.active {
     opacity: 1;
+}
+
+@media(max-width:1238px){
+
+    .Clip_line_div {
+        width: 80%;
+    
+        .Clip_line {
+            width: 30%;
+
+        }
+        p{
+            font-size: 20px;
+
+        }
+    }
+}
+
+@media(max-width:540px){
+    .Clip_line_div {
+        width: 80%;
+    
+        .Clip_line {
+            width: 20%;
+           
+        }
+        p{
+            font-size: 20px;
+          
+        }
+    }
 }

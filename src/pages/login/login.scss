@@ -19,15 +19,21 @@ $normal: "normal";
   margin-top: 100px;
   // background: url(../../../public/iamges/logins.webp);
 }
+
+
 .google{
-  width: 220px;
-  margin-left: 160px;
-  margin-top: 20px;
-  img{
-    background: #06554D;
-      width: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom:10px ;
+
+ 
   }
-  }
+
+
+
 
 @mixin main {
   width: 100%;
@@ -83,7 +89,6 @@ $normal: "normal";
 }
 
 @mixin loginFormCheckboxChild {
-  width: 70px;
   position: absolute;
   right: 0px;
   display: flex;
@@ -127,7 +132,7 @@ $normal: "normal";
   margin: 1rem auto;
   align-items: center;
   text-align: center;
-  background-color: $lightGreen;
+  // background-color: $lightGreen;
   border: none;
   padding: 13px 0;
   font-family: $SegoeUI;
@@ -313,7 +318,18 @@ $normal: "normal";
   align-items: center;
   text-align: center;
   margin: 0 auto 3rem auto;
+  // height: 83px;
 
+  
+  
+
+}  
+
+
+.containerHeader{
+  img{
+    width: 30%;
+  }
 }
 
 @mixin containerHeaderH1 {
@@ -338,7 +354,7 @@ $normal: "normal";
 
 .RegistrationButton{
   color: white;
-  font-size: 15px;
+  font-size: 18px;
   background: none;
   border: none;
   margin-top: -5px;
@@ -367,7 +383,7 @@ $normal: "normal";
   }
 
   .containerHeader {
-    margin: -38px auto 0 auto;
+    width: 310px; 
   }
 
   .containerMain {
@@ -418,6 +434,14 @@ $normal: "normal";
   .loginFormTitle {
     font-size: 22px;
   }
+  #google{
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // flex-direction: column;
+    // width: 63%;
+    // width: 100%;
+}
 }
 
 @media (max-width:393px) and (min-width:320px) {

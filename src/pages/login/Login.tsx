@@ -203,15 +203,13 @@ async function handleCallbackResponse(response:any) {
                                 </div>
                             </div>
                             
-                            <button id="loginFormChildButton" className="loginFormButton" style={{ color: LoginStyle?.login_color , background:  LoginStyle?.buttonBg_color }}> {LoginStyle?.signIn_title}</button>
-                            <div className="google" >
-                    
 
+                        <button id="loginFormChildButton" className="loginFormButton" style={{ color: LoginStyle?.login_color , background:  LoginStyle?.buttonBg_color }}> {LoginStyle?.signIn_title}</button>
+                          
+                            <div className="google" id="google" >
+                            <div className="signindiv" id="signInDiv"></div>
+                     </div> 
 
-                            <div id="signInDiv"></div>
-
-                    
-                     </div>    
                         </form>
                         
                     </div>
