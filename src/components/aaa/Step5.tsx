@@ -3,6 +3,7 @@ import { useAppDispatch } from "../../hooks/redux";
 import { fetchOrders } from "../../store/action/OrderAction";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { fetchError4 } from "../../store/slices/HomeSlice";
 
 export const Step5 = ({ step5, setStep5, totals, setTotals, orders }: any) => {
   const dispatch = useAppDispatch();
@@ -86,14 +87,19 @@ export const Step5 = ({ step5, setStep5, totals, setTotals, orders }: any) => {
   }
   
   async function total(order: any) {
-    console.log(order);
-
+    try{
     const response = await axios({
       method: "post",
       url: `${URL}api/v1/superAdmin/insertValues`,
       data: totals,
     });
-  
+    console.log(response);
+    
+  }
+  catch(error){
+    dispatch(fetchError4(error as Error));
+}
+
   }
 
   return (

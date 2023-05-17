@@ -28,7 +28,7 @@ export const Aaa = ({
   }, [dispatch]);
   useEffect(() => {
     saveItput();
-  }, [totals, reff]);
+  }, [reff]);
 
   let arr1 = orders?.map((item: any) => item.table_name);
   function removeDuplicates(arr1: any[]) {
