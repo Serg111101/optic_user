@@ -14,7 +14,6 @@ const Pay = () => {
 
   const ShipIds:any=localStorage.getItem('shipId')
   const ShipId=JSON.parse(ShipIds)
-    console.log(ShipId,1111111);
 
 const navigate = useNavigate()
 //  navigate('/pay')
@@ -22,9 +21,8 @@ const { uspsorder }:any = useAppSelector(state => state.uspsorder)
 const dispatch = useAppDispatch()
 
 useEffect(()=>{
-dispatch(fetchUspsorder(ShipId));
-},[dispatch])
-console.log(uspsorder);
+  dispatch(fetchUspsorder(ShipId));
+},[dispatch,ShipId])
 
 const [price, setPrice]=useState<any>()
 const [pricetrue, setPricetrue]=useState(false)
@@ -61,10 +59,7 @@ useEffect(()=>{
 
 
 async function Ship(){
-  console.log(price);
-  
     await dispatch(fetchUspsShip(price))
-
     await dispatch(fetchFedexShip())
     setPayseetrue(false)
    

@@ -13,9 +13,9 @@ import Select from "react-select";
 const Shipment = () => {
   const dispatch = useAppDispatch()
   const navigate=useNavigate()
-  const {loading, usps } = useAppSelector(state => state.usps)
+  const { usps } = useAppSelector(state => state.usps)
   const { fedex }:any = useAppSelector(state => state.fedex)
-  const {create} = useAppSelector(state => state.create)
+  // const {create} = useAppSelector(state => state.create)
   const { uspsGet } = useAppSelector(state => state.uspsGet)
   const { fedexGet } = useAppSelector(state => state.fedexGet)
   const [Name, setName] = useState('');
@@ -54,8 +54,8 @@ const Shipment = () => {
     { value: "LB", label: "lb" },
     { value: "OZ", label: "oz" },
   ];
-  const [rate, SetRate]=useState<boolean>(false)
-  const [crate,setCrate] = useState()
+  // const [rate, SetRate]=useState<boolean>(false)
+  // const [crate,setCrate] = useState()
 
   useEffect(()=>{
  
@@ -161,7 +161,7 @@ setPorj(true)
           {headArr.length >= 0 && headArr?.map((el:any)=> <div key={el} className="asa">
             <h2>{el}</h2>
             <div className="alo">
-            {ship.length > 0 && ship.map((item: any) => {if(item.provider === el) return <div className="shipps" key={item.object_id}>
+            {ship.length > 0 && ship.map((item: any) => item.provider === el&& <div className="shipps" key={item.object_id}>
   
         
         <span>estimated_days {item.estimated_days}</span>
@@ -174,7 +174,7 @@ setPorj(true)
         <button className="save" onClick={(e)=>{addShip(e, item)}} >Save</button>
           
       </div>
-        })} </div> </div>)
+        )} </div> </div>)
        }
         </div>
         <div className="shippo1">

@@ -1,5 +1,5 @@
 import { Dispatch } from "@reduxjs/toolkit";
-import {  fetching, fetchFedexSuccess, fetchUspsSuccess2, fetchError } from "../slices/ShipSlice";
+import {  fetching, fetchFedexSuccess, fetchError } from "../slices/ShipSlice";
 import axios from "axios";
 
 
@@ -90,12 +90,10 @@ export const fetchFedexShip = ()=>{
       
             });
             dispatch(fetchFedexSuccess([response.data]));
-            console.log(response.data);
             
 
         }
         catch(error){
-            console.log(error,'error');
             dispatch(fetchError(error as Error));
         }
 
@@ -107,7 +105,6 @@ export const fetchFedexShip = ()=>{
 export const fetchUspsShip = (arr2:any)=>{
    
     
-        console.log(arr2);
         
         return async (dispatch:Dispatch)=>{
         
@@ -127,14 +124,12 @@ export const fetchUspsShip = (arr2:any)=>{
           
           
                 });
-                console.log(response.data);
     
                 dispatch(fetchFedexSuccess([response.data]));
                 
     
             }
             catch(error){
-                console.log(error,'error');
                 dispatch(fetchError(error as Error));
             }
     

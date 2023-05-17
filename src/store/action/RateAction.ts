@@ -1,8 +1,8 @@
 import { Dispatch } from "@reduxjs/toolkit";
 import { fetching, fetchSuccess, fetchSuccess1, fetchSuccess2, fetchSuccess3, fetchSuccess8, fetchError } from "../slices/RateSlice";
 import axios from "axios";
-import { fetchUspsorder } from "./OrderShipActions";
-import { useAppDispatch } from "../../hooks/redux";
+// import { fetchUspsorder } from "./OrderShipActions";
+// import { useAppDispatch } from "../../hooks/redux";
 
 
 export const fetchUsps = (arr: any) => {
@@ -42,16 +42,13 @@ export const fetchUsps = (arr: any) => {
 
 
       });
-      console.log(response.data[0].rates);
 
       localStorage.setItem('shippoId', JSON.stringify(response.data[0].id))
 
       dispatch(fetchSuccess(response.data[0].rates));
 
-      console.log(response)
     } catch (err) {
 
-      console.log(err)
       // if (!err?.response) {
       //     setErrMsg('No Server Response');
       // } else if (err.response?.status === 409) {
@@ -111,13 +108,11 @@ export const fetchFedex = () => {
 
       });
       localStorage.setItem('fedexId', JSON.stringify(response.data[1].rateId))
-      console.log(response.data[1].rateId);
 
       dispatch(fetchSuccess2(response.data[0]));
 
     } catch (err) {
 
-      console.log(err)
       // if (!err?.response) {
       //     setErrMsg('No Server Response');
       // } else if (err.response?.status === 409) {
@@ -133,7 +128,6 @@ export const fetchFedex = () => {
 export const fetchCreate = (arr: any) => {
 
   return async (dispatch: Dispatch) => {
-    console.log(arr);
     try {
 
       dispatch(fetching());
@@ -147,19 +141,15 @@ export const fetchCreate = (arr: any) => {
       });
       if (response.data[0].id) {
         localStorage.setItem('shipId', JSON.stringify(response?.data[0]?.id))
-        console.log(response?.data[0]?.id);
       }
-      console.log(response.data)
       dispatch(fetchSuccess1(response.data))
       //  if(response?.data[0]?.id){
       //   const aa:any=response?.data[0]?.id
       //   useAppDispatch(fetchUspsorder(aa))
-      //   console.log('hbhbhbhbhbhbhbh');
 
       //  }
     } catch (err) {
 
-      console.log(err)
 
     }
 
@@ -175,14 +165,12 @@ export const fetchUspsGet = () => {
       const data = response?.data.rates
       const payload = data.map((elem: any) => JSON.parse(elem));
 
-      console.log(response?.data.rates);
 
       dispatch(fetchSuccess3(payload));
 
 
     }
     catch (error) {
-      console.log(error, 'error');
 
       dispatch(fetchError(error as Error));
     }
@@ -199,13 +187,11 @@ export const fetchFedexGet = () => {
       const data = response?.data.rateReplyDetails
       const payload = data.map((elem: any) => JSON.parse(elem));
 
-      console.log(response?.data.rateReplyDetails);
 
       dispatch(fetchSuccess8(payload));
 
     }
     catch (error) {
-      console.log(error, 'error');
 
       dispatch(fetchError(error as Error));
     }

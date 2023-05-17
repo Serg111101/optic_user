@@ -8,15 +8,7 @@ export const fetchOrders = ()=>{
         try{
             dispatch(fetching());
             const response =await axios.get('http://localhost:3005/api/v1/superAdmin/getColumns');
-                    
-            
             const item = response.data
-            
-        //    console.log(item);
-           
-           
-          
-            
             dispatch(fetchSuccess(item));
         }
         catch(error){
@@ -37,11 +29,6 @@ export const deletes = (table: any, item: string)=> {
                 data:     {tableName:table, columnName:item}
                 
               });
-            //   console.log(JSON.stringify({tableName:table, columnName:item}));
-            //   console.log(response)
-            // TODO: remove console.logs before deployment
-            // console.log(JSON.stringify(response?.data));
-            // console.log(JSON.stringify(response))
             dispatch(fetchSuccess(response.data));
 
         }catch(error){

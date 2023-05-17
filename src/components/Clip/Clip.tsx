@@ -67,7 +67,7 @@ export function Clip() {
               }}
             >
               {
-                <img src={el.image} />
+                <img src={el.image} alt="Clip_image" />
               }
             </div>
           ))}
@@ -82,7 +82,7 @@ export function Clip() {
               onClick={() => {
                 setIndex(idx);
               }}
-            > <img src={el?.image} /> </div>
+            > <img src={el?.image} alt="Clip_foto" /> </div>
           ))}
         </div>
       </div>

@@ -51,7 +51,6 @@ export default function Modal({active, setActive}) {
          
         ]
     
-  console.log(unit,mass)
     const handleSubmit = async (e) => {
         e.preventDefault();
     

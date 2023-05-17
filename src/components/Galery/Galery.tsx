@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import "./Galery.scss"
-import { useNavigate } from 'react-router-dom';
 import { fetchHome } from "../../store/action/HomeAction";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { Loading } from '../loading';
 
 export function Galery() {
-  const { loading, error, Home }: any = useAppSelector((state) => state.Home)
+  const { loading,  Home }: any = useAppSelector((state) => state.Home)
   const dispatch = useAppDispatch();
 
   const [width, setWidth] = useState(((window.innerWidth / 100) * 70) - 200)
@@ -59,9 +58,8 @@ export function Galery() {
     }
     setWidth(((window.innerWidth / 100) * 80) - 200)
     setWidthImg((window.innerWidth / 100) * 54)
-    console.log(widthimg, (window.innerWidth), width);
 
-  }, [index])
+  }, [index,transform,width,widthimg,x])
   return (
     <div>
       {loading ? <Loading /> :
@@ -82,7 +80,7 @@ export function Galery() {
                   setIndex(inde);
                 }}
               >
-                <img src={el.image} />
+                <img src={el.image} alt='galery_foto' />
               </div>
             ))}
           </div>
@@ -98,7 +96,7 @@ export function Galery() {
                 }}
 
               >
-                <img src={el.image} />
+                <img src={el.image} alt='galery_change'/>
 
               </div>
               ))}

@@ -13,11 +13,9 @@ export const fetchAntiReflectiveCoating = (props:any) => {
                 arr.push(response.data[key])
             }
             dispatch(fetchSuccess2(arr));
-            // console.log(arr);
             
         }
         catch(error){
-            console.log(error,'error');
             
             dispatch(fetchError2(error as Error));
         }

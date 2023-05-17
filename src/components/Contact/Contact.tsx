@@ -108,7 +108,7 @@ export function Contact() {
           <h2>Hours</h2>
 
           {arrData.map((item: any, index: any) =>
-            index == day - 1 ? (
+            index === day - 1 ? (
               <b key={index}>{item}</b>
             ) : (
               <p key={index}>{item}</p>

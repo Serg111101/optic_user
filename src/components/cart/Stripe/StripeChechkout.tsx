@@ -8,7 +8,6 @@ import { knopka } from "./checkoutForm";
 const StripeChechkout = ({price}:any) => {
 
     const [stripePromise, setStripePromise] = useState<any>(null);
-console.log(price);
 
 
     useEffect(() => {

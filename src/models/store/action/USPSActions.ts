@@ -6,7 +6,6 @@ import axios from "axios";
 export const fetchUsps = (arr:any)=>{
    
     return async (dispatch:Dispatch)=>{
-        console.log(arr[1].lenght);
         try {
             dispatch(fetching());
             
@@ -46,10 +45,9 @@ export const fetchUsps = (arr:any)=>{
            
             dispatch(fetchSuccess(response.data.rates));
             
-        console.log(response)
-      }catch (err) {
+      }catch (err:any) {
     
-      console.log(err)
+        fetchError(err)
             // if (!err?.response) {
             //     setErrMsg('No Server Response');
             // } else if (err.response?.status === 409) {
@@ -67,7 +65,6 @@ export const fetchUsps = (arr:any)=>{
 export const fetchCreate = (arr:any)=>{
    
   return async (dispatch:Dispatch)=>{
-      console.log(arr);
       try {
           dispatch(fetching());
           
@@ -81,12 +78,11 @@ export const fetchCreate = (arr:any)=>{
          
           dispatch(fetchSuccess1([response.data]));
           
-      console.log(response)
-    }catch (err) {
+    }catch (err:any) {
   
-    console.log(err)
+      fetchError(err)
          
-          }
+    }
 
   }
 } 

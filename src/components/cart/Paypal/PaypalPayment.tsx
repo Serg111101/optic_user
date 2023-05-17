@@ -7,12 +7,9 @@ import '../cart.scss'
 
 const PaypalCheckout = ({price}:any) => {
     const [success, setSuccess] = useState(false);
-    // const [ErrorMessage, setErrorMessage] = useState(" ");
     const [orderID, setOrderID] = useState(false);
     const nav = useNavigate()
-    console.log(price);
 
-    // creates a paypal order
     const createOrder = (data:any, actions:any) => {
         return actions.order.create({
             purchase_units: [
@@ -30,23 +27,16 @@ const PaypalCheckout = ({price}:any) => {
             });
     };
 
-    // check Approval
     const onApprove = (data:any, actions:any) => {
         return actions.order.capture().then(function (details:any) {
-            const { payer } = details;
-            console.log(payer);
+            // const { payer } = details;
             setSuccess(true);
         });
     };
 
-    //capture likely error
-    // const onError = (data:any, actions:any) => {
-    //     setErrorMessage("An Error occured with your payment ");
-    // };
 
     useEffect(() => {
         if (success) {
-            console.log('Order successful . Your order id is--', orderID);
             nav("/Completion")
         }
     },[success, orderID, nav]);

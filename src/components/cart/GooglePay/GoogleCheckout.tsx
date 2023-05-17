@@ -10,7 +10,6 @@ const GoogleCheckout = ({price}:any) => {
 
   const [paymentRequest, setPaymentRequest] = useState(buildPaymentRequest([]));
   const navigate = useNavigate()
-  console.log(price);
 
 
   useEffect(() => {
@@ -32,7 +31,6 @@ const GoogleCheckout = ({price}:any) => {
   }, [paymentRequest]);
 
   function handleLoadPaymentData(paymentData: google.payments.api.PaymentData) {
-    console.log('Payment data', paymentData);
     navigate('/Completion');
   }
 

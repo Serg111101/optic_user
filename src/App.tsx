@@ -21,11 +21,11 @@ function App() {
 
   const [commit, setCommit] = useState(false)
 
-  const arr: any = []
   return (
     <div className="App">
+      <Header/>
       {
-          <>
+        <>
             {<div className={commit ? "aaa" : "a"} onClick={() => setCommit(false)}>{commit && <Commit setCommit={setCommit} />}</div>}
             <Routes> 
               <Route path="*" element={<NotFound />} />

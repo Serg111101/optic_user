@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { fetchMirrorCoating } from '../action/MirrorCoatingAction'
+// import { fetchMirrorCoating } from '../action/MirrorCoatingAction'
 // import { ITime } from '../../models/model'
 interface IThemes {
   created_at: string,

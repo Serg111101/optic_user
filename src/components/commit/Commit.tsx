@@ -21,9 +21,8 @@ export const Commit = ({ setCommit }: any) => {
                 email: email,
                 message: text
             }
-            const res=await axios.post('http://localhost:3000/api/v1/users/sendMessage', newMessage)
+            await axios.post('http://localhost:3000/api/v1/users/sendMessage', newMessage)
             setCommit(false)
-            console.log(res);
             
         }
     }
@@ -44,5 +43,3 @@ export const Commit = ({ setCommit }: any) => {
         </div>
     )
 }
-
-//kapov glnenq axpers

@@ -16,7 +16,6 @@ export  function Themes() {
 
 
 
-console.log(Themes.text);
 
   return (
     <div className="themes">
