@@ -181,7 +181,7 @@ async function handleCallbackResponse(response:any) {
                                         e.preventDefault();
                                         setPassword(e.target.value )
                                     }}
-                                    style={{ "borderRadius": "0px", padding:'12px'}}
+                                    style={{ "borderRadius": "0px", padding:"12px" }}
                                 />
 
                                 <p className="password_p">{passwordError.password}</p>

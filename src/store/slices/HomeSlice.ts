@@ -32,7 +32,7 @@ export const HomeSlice = createSlice({
       state.error = ''
     },
     fetchError4(state, action: PayloadAction<Error>) {
-      state.loading = false;
+      state.loading = true;
       state.error = action.payload.message
     },
     

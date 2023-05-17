@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import "./About.scss";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import { fetchAbout } from "../../store/action/AboutAction";
