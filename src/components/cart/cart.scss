@@ -1,5 +1,5 @@
 
-form > * {
+.formpay{
     margin: 10px 0;
   }
   
@@ -79,11 +79,27 @@ form > * {
     text-align: center;
     border-radius: 10px;
     font-size:2em;
+    margin-bottom: 800px;
   }
 
-  .h1{
+  .errorin{
     color:red;
     text-align: center;
     padding: 15px;
     font-size: 40px;
+  }
+
+  h1{
+    text-align: center;
+  }
+  .product-price-btn{
+    margin: 20px;
+  }
+  .googlepay {
+    margin: 20px auto;
+    max-width: 500px;
+  }
+  
+  .googlepay>* {
+    width: 100%;
   }

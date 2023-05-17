@@ -14,8 +14,7 @@ $SegoeUI: "Segoe UI";
 $normal: "normal";
 
 .login {
-  // height: 100vh;
-  margin-bottom: 100px;
+  height: 100vh;
   margin-top: 100px;
   // background: url(../../../public/iamges/logins.webp);
 }
@@ -434,14 +433,6 @@ $normal: "normal";
   .loginFormTitle {
     font-size: 22px;
   }
-  #google{
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    // flex-direction: column;
-    // width: 63%;
-    // width: 100%;
-}
 }
 
 @media (max-width:393px) and (min-width:320px) {

@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react';
-import { Header } from '../Header';
-import "./cart.scss"
+import "../cart.scss"
 import {CheckCircleOutlined}  from "@ant-design/icons";
 import {CloseCircleOutlined}  from "@ant-design/icons";
 
@@ -25,9 +24,8 @@ function Completion(props:any) {
 
   return (
     <>
-     <Header/>
       
-     {messageBody ? <div className="messages" role="alert" style={{display: 'block'}}> <h1 className='h1'>ERROR</h1>  <CloseCircleOutlined />  Status onsucssed </div>
+     {messageBody ? <div className="messages" role="alert" style={{display: 'block'}}> <h1 className='errorin'>ERROR</h1>  <CloseCircleOutlined />  Status onsucssed </div>
       :<div className="messages" role="alert" style={{display: 'block'}}> <h1 className='h1'>TANK YOU</h1>  <CheckCircleOutlined />  Status sucssed </div>}
     </>
   );

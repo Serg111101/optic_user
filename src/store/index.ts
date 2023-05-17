@@ -10,6 +10,14 @@ import ThemesReducer from './slices/ThemesSlice';
 import  ClipReducer  from './slices/ClipSlice';
 import  HomeReduce  from './slices/HomeSlice';
 // import ordersReducer from "./slice/OrderInformationSlice";
+import uspsReducer from "./slices/RateSlice"
+import createReducer from "./slices/RateSlice"
+import fedexReducer from './slices/RateSlice'
+import uspsGetReducer  from './slices/RateSlice'
+import fedexGetReducer  from './slices/RateSlice'
+import fedexorder from './slices/OrderShip'
+import uspsorder from './slices/OrderShip'
+import Ship from './slices/ShipSlice'
 
 export const store = configureStore({
   reducer: {
@@ -22,6 +30,18 @@ export const store = configureStore({
     About:AboutReducer,
     Themes:ThemesReducer,
     Clip:ClipReducer,
+    usps:uspsReducer,
+    create:createReducer,
+    fedex:fedexReducer,
+    uspsGet:uspsGetReducer,
+    fedexGet:fedexGetReducer,
+    fedexorder:fedexorder,
+    uspsorder:uspsorder,
+    Ship:Ship,
+
+    // GovernmetMembersFullInfo:GovernmetMembersFullInfoReducer,
+    // UniqueProduct:UniqueProductReducer,
+    // uniqueProduct:uniqueProduct,
     // image:governmentMembersFullInfo,
     // orders: ordersReducer,
     // Calendar:CalendarReducer,

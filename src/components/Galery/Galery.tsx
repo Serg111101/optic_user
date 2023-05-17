@@ -9,78 +9,75 @@ export function Galery() {
   const { loading, error, Home }: any = useAppSelector((state) => state.Home)
   const dispatch = useAppDispatch();
 
-  const [width, setWidth] = useState(((window.innerWidth / 100) * 70)-200)
+  const [width, setWidth] = useState(((window.innerWidth / 100) * 70) - 200)
   const [widthimg, setWidthImg] = useState((window.innerWidth / 100) * 54)
   const [transform, settransform] = useState(0)
   const [index, setIndex] = useState(0);
   const [x, setX] = useState(0);
-  
+
   const timeoutRef: any = useRef(null);
   const delay = 2500;
-  
+
   const resetTimeout = useCallback(() => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
   }, []);
-  
+
   const fun = useCallback(() => {
-    
+
     timeoutRef.current = setTimeout(() => {
-      
+
       setIndex((x) => (x === Home.length - 1 ? 0 : x + 1));
     }, delay);
   }, [Home.length]);
-  
+
   useEffect(() => {
     dispatch(fetchHome())
   }, [dispatch])
-  
-  
+
+
   useEffect(() => {
     resetTimeout();
     fun();
-    
+
     return () => {
       resetTimeout();
     }
-    
+
   }, [resetTimeout, fun, Home.length, setIndex, index]);
-  
-  useEffect(() => {    
-    if ((index *85-50)- x > width) {
+
+  useEffect(() => {
+    if ((index * 85 - 50) - x > width) {
       settransform(transform + 1)
-      setX(x+280)
-    }else if(index===0){
+      setX(x + 280)
+    } else if (index === 0) {
       setX(0)
       settransform(0)
-    } else{
+    } else {
       settransform(transform)
     }
-    setWidth(((window.innerWidth / 100) * 80)-200) 
+    setWidth(((window.innerWidth / 100) * 80) - 200)
     setWidthImg((window.innerWidth / 100) * 54)
-    console.log(widthimg,(window.innerWidth ),width);
-    
+    console.log(widthimg, (window.innerWidth), width);
+
   }, [index])
   return (
     <div>
-      {loading ? <Loading /> : <>
+      {loading ? <Loading /> :
+       <>
         <div className="line_div">
           <div className="line"></div>
           <p>Photo Galery</p>
           <div className="line"></div>
         </div>
         <div className="slideshow">
-          <div
-            className="slideshowSlider"
-            style={{ transform: `translate3d(${-index * (width)}px, 0, 0)` }}
-          >
-
+          <div className="slideshowSlider" style={{ transform: `translate3d(${-index * (width)}px, 0, 0)` }}>
             {Home?.map((el: any, inde: number) => (
               <div
                 className={index !== inde ? "activee" : "activee aaa1"}
                 key={inde}
-                style={{ marginLeft: inde === 0 ? `${width-450}px` : '' ,maxWidth:`${widthimg}px`}}
+                style={{ marginLeft: inde === 0 ? `${width - 450}px` : '', maxWidth: `${widthimg}px` }}
                 onClick={() => {
                   setIndex(inde);
                 }}
@@ -90,27 +87,25 @@ export function Galery() {
             ))}
           </div>
           <div className="slideshowDots_111" style={{ width: `${width}px` }}>
-            <div className="slideshowDots"
-              style={{ transform: transform ? `translate3d(${-transform * 280}px, 0, 0)` : '' }}
-            >
+            <div className="slideshowDots" style={{ transform: transform ? `translate3d(${-transform * 280}px, 0, 0)` : '' }}>
               {Home?.map((el: any, idx: number) => (
 
-                <div
-                  key={idx}
-                  className={`slideshowDot${index === idx ? " active" : ""}`}
-                  onClick={() => {
-                    setIndex(idx);
-                  }}
+              <div
+                key={idx}
+                className={`slideshowDot${index === idx ? " active" : ""}`}
+                onClick={() => {
+                  setIndex(idx);
+                }}
 
-                >
-                  <img src={el.image} />
+              >
+                <img src={el.image} />
 
-                </div>
+              </div>
               ))}
             </div>
           </div>
         </div>
-      </>}
-    </div>
+    </>}
+    </div >
   )
 }

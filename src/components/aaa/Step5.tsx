@@ -1,5 +1,7 @@
 import './Aaa.scss'
 import { useState } from 'react';
+import Shipment from '../../pages/Shipent/Rate';
+import { useNavigate } from 'react-router-dom';
 export const Step5 = ({step5,setStep5}:any) => {
     const arr = ['aaa', 'bbb', 'ccc'];
     const aaa = ['aaa1', 'aaa2', 'aaa3', 'aaa4', 'aaa5'];
@@ -9,6 +11,8 @@ export const Step5 = ({step5,setStep5}:any) => {
     const [test1, setTest1] = useState('');
     const [test2, setTest2] = useState('');
    
+    const [ship,setShip] =useState(false)
+    const navigete = useNavigate()
   return (
     <div className='Step2'>
         <div className='Aaa'>
@@ -51,8 +55,9 @@ export const Step5 = ({step5,setStep5}:any) => {
                             </select>
                         </div>
                 }
-                {test1!==''&&test1!=='test1' && test2!=='' && test2!=='test2' && <button onClick={()=>setStep5(true)}>save</button> }
+                {test1!==''&&test1!=='test1' && test2!=='' && test2!=='test2' && <button onClick={()=>{navigete('/Shipment')}}>save</button> }
             </div>
+                
             <div className="img">
                 {
                     test1 === 'aaa' ?
