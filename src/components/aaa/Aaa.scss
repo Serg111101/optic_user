@@ -1,15 +1,16 @@
-*{
+* {
     box-sizing: border-box;
 }
-input{
-width: 300px;
-padding: 10px;
-border-radius: 30px;
-border: 2px solid;
 
+input {
+    width: 300px;
+    padding: 10px;
+    border-radius: 30px;
+    border: 2px solid;
 }
 
-.Aaa{
+.Aaa {
+    text-align: center;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -18,18 +19,19 @@ border: 2px solid;
 
 }
 
-h2{
+h2 {
     display: flex;
     justify-content: center;
 }
 
-label{
+label {
     display: flex;
     justify-content: center;
     width: 300px;
-    
+
 }
-button{
+
+button {
     width: 180px;
     padding: 20px;
     background-color: aqua;
@@ -37,21 +39,150 @@ button{
     border-radius: 30px;
 }
 
-select{
+select {
     width: 300px;
     padding: 10px;
     border-radius: 30px;
     border: 2px solid;
-  
+
 }
 
 select::-ms-expand {
     display: none;
+}
+
+
+
+@media (max-width:769px) {
+
+    input {
+        width: 280px;
+        padding: 9px;
+        border-radius: 28px;
+    }
+    label{
+        width: 280px;
+        
+    }
+    button{
+        width: 160px;
+        padding: 18px;
+        font-size: 16px;
+        border-radius: 28px;
     }
     
-#priceSpan1{
-    display: none;
+    select{
+        width: 280px;
+        padding: 9px;
+        border-radius: 28px;
+      
+    }
+
 }
-#priceSpan2{
-    display: none;
+@media (max-width:500px) {
+
+    input {
+        width: 260px;
+        padding: 8px;
+        border-radius: 26px;
+    }
+    label{
+        width: 260px;
+        
+    }
+    button{
+        width: 150px;
+        padding: 16px;
+        font-size: 15px;
+        border-radius: 26px;
+    }
+    
+    select{
+        width: 260px;
+        padding: 8px;
+        border-radius: 26px;
+      
+    }
+
+}
+
+@media (max-width:500px) {
+
+    input {
+        width: 240px;
+        padding: 7px;
+        border-radius: 24px;
+    }
+    label{
+        width: 240px;
+        
+    }
+    button{
+        width: 130px;
+        padding: 15px;
+        font-size: 15px;
+        border-radius: 24px;
+    }
+    
+    select{
+        width: 240px;
+        padding: 7px;
+        border-radius: 24px;
+      
+    }
+
+}
+
+@media (max-width:400px) {
+
+    input {
+        width: 230px;
+        padding: 6px;
+        border-radius: 22px;
+    }
+    label{
+        width: 230px;
+        
+    }
+    button{
+        width: 120px;
+        padding: 14px;
+        font-size: 14px;
+        border-radius: 22px;
+    }
+    
+    select{
+        width: 230px;
+        padding: 6px;
+        border-radius: 22px;
+      
+    }
+
+}
+
+@media (max-width:350px) {
+
+    input {
+        width: 220px;
+        padding: 5px;
+        border-radius: 20px;
+    }
+    label{
+        width: 220px;
+        
+    }
+    button{
+        width: 110px;
+        padding: 13px;
+        font-size: 13px;
+        border-radius: 21px;
+    }
+    
+    select{
+        width: 220px;
+        padding: 5px;
+        border-radius: 21px;
+      
+    }
+
 }
