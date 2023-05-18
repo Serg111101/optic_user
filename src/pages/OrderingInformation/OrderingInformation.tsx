@@ -9,12 +9,56 @@ import { useAppDispatch, } from "../../hooks/redux";
 const OrderingInformation = () => {
 
 
-  const [step2,setStep2]=useState(false);
-  const [step3,setStep3]=useState(false);
-  const [step4,setStep4]=useState(false);
-  const [step5,setStep5]=useState(false);
+  
+  const [step2 ,setStep2]= useState()
+  const [step3,setStep3]=useState();
+  const [step4,setStep4]=useState();
+  const [step5,setStep5]=useState();
   const dispatch = useAppDispatch();
+  
+  
+  useEffect(()=>{
+    if(!localStorage.getItem("step2")){
+      localStorage.setItem("step2","false")
+      const stepp2:any = localStorage.getItem("step2")
+      setStep2(JSON.parse(stepp2))
+    }else{
+      const stepp2:any = localStorage.getItem("step2")
+      setStep2(JSON.parse(stepp2))
+    }
 
+
+
+    if(!localStorage.getItem("step3")){
+      localStorage.setItem("step3","false")
+      const stepp3:any = localStorage.getItem("step3")
+      setStep3(JSON.parse(stepp3))
+    }else{
+      const stepp3:any = localStorage.getItem("step3")
+      setStep3(JSON.parse(stepp3))
+    }
+
+
+    if(!localStorage.getItem("step4")){
+      localStorage.setItem("step4","false")
+      const stepp4:any = localStorage.getItem("step4")
+      setStep4(JSON.parse(stepp4))
+    }else{
+      const stepp4:any = localStorage.getItem("step4")
+      setStep4(JSON.parse(stepp4))
+    }
+
+    if(!localStorage.getItem("step5")){
+      localStorage.setItem("step5","false")
+      const stepp5:any = localStorage.getItem("step5")
+      setStep5(JSON.parse(stepp5))
+    }else{
+      const stepp5:any = localStorage.getItem("step5")
+      setStep5(JSON.parse(stepp5))
+    }
+
+
+  },[step2,step3,step4,step5,])
 
  
 
