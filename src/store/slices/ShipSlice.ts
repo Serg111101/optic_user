@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IUsps } from '../../models/models/model';
+import { IUsps } from '../../models/model';
 
 
 interface ShipState {

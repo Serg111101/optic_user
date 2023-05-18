@@ -38,18 +38,6 @@ export const store = configureStore({
     fedexorder:fedexorder,
     uspsorder:uspsorder,
     Ship:Ship,
-
-    // GovernmetMembersFullInfo:GovernmetMembersFullInfoReducer,
-    // UniqueProduct:UniqueProductReducer,
-    // uniqueProduct:uniqueProduct,
-    // image:governmentMembersFullInfo,
-    // orders: ordersReducer,
-    // Calendar:CalendarReducer,
-    // SuperAdmin:SuperAdminReducer,
-    // Phonnumber:PhonnumberReducer,
-
-
-
   }})
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

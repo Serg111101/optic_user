@@ -70,12 +70,12 @@ export function Galery() {
           <div className="line"></div>
         </div>
         <div className="slideshow">
-          <div className="slideshowSlider" style={{ transform: `translate3d(${-index * (width)}px, 0, 0)` }}>
+          <div className="slideshowSlider" style={{ transform: `translate3d(${-index * (widthimg+170)}px, 0, 0)` }}>
             {Home?.map((el: any, inde: number) => (
               <div
                 className={index !== inde ? "activee" : "activee aaa1"}
                 key={inde}
-                style={{ marginLeft: inde === 0 ? `${width - 450}px` : '', maxWidth: `${widthimg}px` }}
+                style={{ marginLeft: inde === 0 ? `${-width + 1550}px` : '', width: `${widthimg+100}px` }}
                 onClick={() => {
                   setIndex(inde);
                 }}

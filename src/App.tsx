@@ -16,17 +16,16 @@ import { CommentOutlined } from "@ant-design/icons";
 import { NotFound } from "./components/notFound";
 import Rate from "./pages/Shipent/Rate";
 
-
 function App() {
 
   const [commit, setCommit] = useState(false)
 
   return (
     <div className="App">
-      <Header/>
       {
         <>
             {<div className={commit ? "aaa" : "a"} onClick={() => setCommit(false)}>{commit && <Commit setCommit={setCommit} />}</div>}
+            <Header/>
             <Routes> 
               <Route path="*" element={<NotFound />} />
               <Route path="/" element={<Home />} />
@@ -40,11 +39,11 @@ function App() {
               <Route path="/ClipandLendStyles" element={<ClipandLendStyles />} />
               <Route path="/Rate" element={<Rate/>}/>
             </Routes>
+            <Footer />
             <div className="commit" onClick={() => setCommit(true)}> <CommentOutlined /> <p>Leave a review</p></div>
             
           </>
        } 
-      <Footer />
     </div>
   );
 }
