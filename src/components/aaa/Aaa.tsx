@@ -74,7 +74,7 @@ export const Aaa = ({
   
 
   return (
-    <div>
+    <div className="steping">
       {step2==true ? (
         <Step2
           step3={step3}

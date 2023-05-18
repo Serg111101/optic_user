@@ -3,7 +3,7 @@ import "./OrderingInformation.scss"
 import { Aaa } from '../../components/aaa/Aaa'
 import { fetchOrders } from "../../store/action/OrderAction";
 import { useAppDispatch, } from "../../hooks/redux";
-import { CheckOutlined } from '@ant-design/icons';
+import { CheckOutlined ,LoadingOutlined } from '@ant-design/icons';
  export const OrderingInformation = () => {
 
 
@@ -68,19 +68,19 @@ import { CheckOutlined } from '@ant-design/icons';
     <div className='Order'>
       <div className='step'>
         <div className='step1 ak'><hr />
-        <div className="klor" id="klor1">{step2&&<CheckOutlined />}</div>
+        <div className="klor" id="klor1">{step2?<CheckOutlined />:<LoadingOutlined />}</div>
         </div>
         <div className={step2?'step2 ak':'step2'}><hr />
-        <div className="klor" id="klor2" >{step3&&<CheckOutlined />}</div>
+        <div className="klor" id="klor2" >{step3?<CheckOutlined />:<LoadingOutlined />}</div>
         </div>
         <div className={step3?'step3 ak':'step3'}><hr />
-        <div className="klor" id="klor3" >{step4&&<CheckOutlined />}</div>
+        <div className="klor" id="klor3" >{step4?<CheckOutlined />:<LoadingOutlined />}</div>
         </div>
         <div className={step4?'step4 ak':'step4'}><hr />
-        <div className="klor" id="klor4" >{step5&&<CheckOutlined />}</div>
+        <div className="klor" id="klor4" >{step5?<CheckOutlined />:<LoadingOutlined />}</div>
         </div>
         <div className={step5?'step5 ak':'step5'}><hr />
-        <div className="klor" id="klor5" ></div>
+        <div className="klor" id="klor5" >{step2&&step3&&step4&&step5?<CheckOutlined />:<LoadingOutlined />}</div>
         </div>
       </div>
       <Aaa step2={step2} step3={step3} step4={step4} step5={step5} setStep2={setStep2} setStep3={setStep3} setStep4={setStep4} setStep5={setStep5} />

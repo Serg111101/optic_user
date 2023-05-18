@@ -8,6 +8,8 @@ import { fetchUspsGet } from "../../store/action/RateAction";
 import { fetchFedexGet } from "../../store/action/RateAction";
 import { useNavigate } from "react-router-dom";
 import { Country, State, City } from 'country-state-city';
+import { fetchFedexShip, fetchUspsShip } from "../../store/action/ShipAction";
+
 import Select from "react-select";
 
 const Shipment = () => {
@@ -60,7 +62,7 @@ const Shipment = () => {
   useEffect(()=>{
  
   dispatch(fetchUspsGet());
-       dispatch(fetchFedexGet())
+    dispatch(fetchFedexGet())
     },[dispatch])
     
 useEffect(()=>{
@@ -130,6 +132,17 @@ setPorj(true)
     e.preventDefault()
     // localStorage.removeItem('shipId')
    await dispatch(fetchCreate(item))
+
+  // if(item?.provider){
+  //   await dispatch(fetchUspsShip(item))
+ 
+ 
+  //  }else{
+ 
+  //   await dispatch(fetchFedexShip())
+    
+ 
+  //  }
     navigate('/Pay')
   }
 

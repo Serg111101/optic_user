@@ -63,7 +63,7 @@ export const fetchUsps = (arr: any) => {
 }
 export const fetchFedex = () => {
 
-  const arr1 = {
+  const arr1 ={
     "accountNumber": {
       "value": "740561073"
     },
@@ -93,7 +93,8 @@ export const fetchFedex = () => {
           }
         }
       ]
-    }
+    
+  }
   }
 
   return async (dispatch: Dispatch) => {

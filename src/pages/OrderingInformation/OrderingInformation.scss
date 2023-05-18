@@ -4,7 +4,9 @@
     min-height: 800px;
 
     .step {
+        margin-bottom: 30px;
         display: flex;
+        
         
         .step1,.step2,.step3,.step4,.step5 {
             width: 20%;
@@ -12,8 +14,8 @@
             justify-content: space-around;
             align-items: center;
             .klor {
-                width: 100px;
-                height: 100px;
+                width: 70px;
+                height: 70px;
                 border-radius: 100%;
                 background-color: gray;
                 color: white;
@@ -26,6 +28,7 @@
             hr {
                 width: 55%;
                 height: 10px;
+                border-radius: 27px;
                 background-color: gray;
             }
         }
@@ -47,150 +50,85 @@
 }
 
 @media (max-width:769px) {
-    #klor1 {
-        width:60px;
-        height: 60px;
-        border-radius: 100%;
-        
-    }
-    #klor2 {
-        width:60px;
-        height: 60px;
-        border-radius: 100%;
-        
-    }
-    #klor3 {
-        width:60px;
-        height: 60px;
-        border-radius: 100%;
-        
-    }
-     #klor4 {
-        width:60px;
-        height: 60px;
-        border-radius: 100%;
-        
-    }
-    #klor5 {
-        width:60px;
-        height: 60px;
-        border-radius: 100%;
-        
-    }
+    .Order{
+        .step{
+            .step1,.step2,.step3,.step4,.step5{
 
-   
+                hr{
+                    width: 40%;
+                    height: 5px;
+                }
+                .klor {
+                    width:50px;
+                    height: 50px;
+                    border-radius: 100%;
+                   span{
+                    svg{
+                        width: 1.5rem;
+                    }
+                   } 
+                }
+            } 
+
+        } 
+    }
+    
+    
 }
 @media (max-width:500px) {
-    #klor1 {
-        width:50px;
-        height: 50px;
-        border-radius: 100%;
-        
-    }
+    .Order{
+        .step{
+            .step1,.step2,.step3,.step4,.step5{
 
-    #klor2 {
-        width:50px;
-        height: 50px;
-        border-radius: 100%;
-        
-    }
-    #klor3 {
-        width:50px;
-        height: 50px;
-        border-radius: 100%;
-        
-    }
-    #klor4 {
-        width:50px;
-        height: 50px;
-        border-radius: 100%;
-        
-    }
-    #klor5 {
-        width:50px;
-        height: 50px;
-        border-radius: 100%;
-        
+                hr{
+                    width: 40%;
+                    height: 5px;
+                }
+                .klor {
+                    width:40px;
+                    height: 40px;
+                    border-radius: 100%;
+                   span{
+                    svg{
+                        width: 1.2rem;
+                    }
+                   } 
+                }
+            } 
+
+        } 
     }
 
    
 }
 @media (max-width:400px) {
-    #klor1{
-        width:50px;
-        height: 50px;
-        border-radius: 100%;
-        font-size: 40px;
-        
-    }
-    #klor2{
-        width:50px;
-        height: 50px;
-        border-radius: 100%;
-        font-size: 40px;
-        
-    }
-    #klor3{
-        width:50px;
-        height: 50px;
-        border-radius: 100%;
-        font-size: 40px;
-        
-    }
-    #klor4{
-        width:50px;
-        height: 50px;
-        border-radius: 100%;
-        font-size: 40px;
-        
-    }
-    #klor5{
-        width:50px;
-        height: 50px;
-        border-radius: 100%;
-        font-size: 40px;
-        
-    }
+    
 
    
 }
 @media (max-width:350px) {
-    #klor1 {
-        width:45px;
-        height: 45px;
-        border-radius: 100%;
-        font-size: 24px;
-        
-    }
-    #klor2 {
-        width:45px;
-        height: 45px;
-        border-radius: 100%;
-        font-size: 24px;
-        
-    }
-    #klor3 {
-        width:45px;
-        height: 45px;
-        border-radius: 100%;
-        font-size: 24px;
-        
-    }
-    #klor4 {
-        width:45px;
-        height: 45px;
-        border-radius: 100%;
-        font-size: 24px;
-        
-    }
-    #klor5 {
-        width:45px;
-        height: 45px;
-        border-radius: 100%;
-        font-size: 24px;
-        
-    }
+    .Order{
+        .step{
+            .step1,.step2,.step3,.step4,.step5{
 
+                hr{
+                    width: 35%;
+                    height: 3px;
+                }
+                .klor {
+                    width:30px;
+                    height: 30px;
+                    border-radius: 100%;
+                   span{
+                    svg{
+                        width: 1rem;
+                    }
+                   } 
+                }
+            } 
+
+        } 
+    }
    
 }
 

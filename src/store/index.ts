@@ -17,7 +17,9 @@ import uspsGetReducer  from './slices/RateSlice'
 import fedexGetReducer  from './slices/RateSlice'
 import fedexorder from './slices/OrderShip'
 import uspsorder from './slices/OrderShip'
-import Ship from './slices/ShipSlice'
+import UspsShip from './slices/ShipSlice'
+import FedexShip from './slices/ShipSlice'
+
 
 export const store = configureStore({
   reducer: {
@@ -37,7 +39,20 @@ export const store = configureStore({
     fedexGet:fedexGetReducer,
     fedexorder:fedexorder,
     uspsorder:uspsorder,
-    Ship:Ship,
+    UspsShip:UspsShip,
+    FedexShip:FedexShip,
+
+    // GovernmetMembersFullInfo:GovernmetMembersFullInfoReducer,
+    // UniqueProduct:UniqueProductReducer,
+    // uniqueProduct:uniqueProduct,
+    // image:governmentMembersFullInfo,
+    // orders: ordersReducer,
+    // Calendar:CalendarReducer,
+    // SuperAdmin:SuperAdminReducer,
+    // Phonnumber:PhonnumberReducer,
+
+
+
   }})
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

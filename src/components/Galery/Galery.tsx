@@ -68,6 +68,7 @@ export function Galery() {
           <div className="line"></div>
           <p>Photo Galery</p>
           <div className="line"></div>
+
         </div>
         <div className="slideshow">
           <div className="slideshowSlider" style={{ transform: `translate3d(${-index * (widthimg+170)}px, 0, 0)` }}>

@@ -5,15 +5,15 @@ import { IUsps } from '../../models/model';
 interface ShipState {
    loading: boolean;
    error:string;
-   uspsship:IUsps[];
-   fedexship:IUsps[];
+   UspsShip:IUsps[];
+   FedexShip:IUsps[];
 }
 
 const initialState:ShipState = {
     loading: false,
     error:"",
-    uspsship:[],
-    fedexship:[],
+    UspsShip:[],
+    FedexShip:[],
 }
 
 export const Ship = createSlice({
@@ -24,14 +24,14 @@ export const Ship = createSlice({
         state.loading = true;
     },
     fetchFedexSuccess(state,action: PayloadAction<IUsps[]>){
+        state.FedexShip = action.payload;
         state.loading = false;
-        state.fedexship = action.payload;
         state.error = ''
     },
  
     fetchUspsSuccess2(state,action: PayloadAction<IUsps[]>){
         state.loading = false;
-        state.uspsship = action.payload;
+        state.UspsShip = action.payload;
         state.error = ''
     },
     fetchError(state,action: PayloadAction<Error>){
