@@ -70,6 +70,16 @@ export const Step3 = ({
       }
     });
   }
+
+  function navv(){
+    if(step4==false){
+      localStorage.removeItem("setp4");
+      localStorage.setItem("step4","true");
+      const stepp4:any = localStorage.getItem("step4");
+      step4=JSON.parse(stepp4); 
+      setStep4(step4)
+    } 
+  }
  
    
   return (
@@ -155,7 +165,7 @@ export const Step3 = ({
               <button
                 onClick={() => {
                   
-                  setStep4(true);
+                  navv()
                 }}
               >
                 save

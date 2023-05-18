@@ -80,6 +80,15 @@ function find(){
   totals.map((el:any)=> el.columnName === fin && setVal(true))
 }
 
+function navv(){
+  if(step3==false){
+    localStorage.removeItem("setp3");
+    localStorage.setItem("step3","true");
+    const stepp3:any = localStorage.getItem("step3");
+    step3=JSON.parse(stepp3); 
+    setStep3(step3)
+  } 
+}
 
   return (
     <div>
@@ -161,7 +170,7 @@ function find(){
             </div>
 
             {val &&  (
-              <button onClick={() =>{ setStep3(true)}}>save</button>
+              <button onClick={() =>{ navv()}}>save</button>
             )}
           </div>
         </div>

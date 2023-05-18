@@ -58,9 +58,24 @@ export const Aaa = ({
     totals?.map((el: any, idx: number) => el.value === "" && setInput(input.slice(0, idx + 1)));
   }, [input,totals]);
 
+  function navv(){
+    if(step2==false){
+      localStorage.removeItem("setp2");
+      localStorage.setItem("step2","true");
+      const stepp2:any = localStorage.getItem("step2");
+      step2=JSON.parse(stepp2); 
+      setStep2(step2)
+    }
+   
+
+  }
+
+
+  
+
   return (
     <div>
-      {step2 ? (
+      {step2==true ? (
         <Step2
           step3={step3}
           step4={step4}
@@ -106,8 +121,12 @@ export const Aaa = ({
               </div>
             }
           </div>
-          {totals.length === arrr.length && (
-            <button onClick={() => setStep2(true)}>save</button>
+
+          {totals.length == arrr.length &&totals.length !== 0 && (
+            <button onClick={() => {
+              navv()
+          }
+            }>save</button>
           )}
         </div>
       )}
