@@ -10,6 +10,8 @@ export default function Lens() {
 
   const { MirrorCoating } = useAppSelector(state => state.MirrorCoating);
   const { AntiReflectiveCoating } = useAppSelector(state => state.AntiReflectiveCoating)
+
+  
   const dispatch = useAppDispatch()
   const [name, setName] = useState('Mirror Coating')
   const [name1, setName1] = useState('Anti-Reflective Coating')
@@ -29,11 +31,11 @@ export default function Lens() {
 
       <div className="contaDiv">
         {MirrorCoating.map((el) =>
-          <>          
+          <div key={el.id}>          
               <p className="titleP">{el.title}</p>
 
               <p className="texta">{el.text}</p>
-          </>
+          </div>
         )}
         <div className="butt">
           <button className="submit" onClick={() => setShow(!Show)}>
@@ -44,15 +46,15 @@ export default function Lens() {
       </div>
 
       <div className="lens">
-        <div className="line_div">
-          <div className="line"></div>
+        <div className="line_divs">
+          <div className="lines"></div>
               <p>{AntiReflectiveCoating[0]?.title_div} </p>
-          <div className="line"></div>
+          <div className="lines"></div>
         </div>
 
         <div className="classBottomm">
           {AntiReflectiveCoating?.map((el, index) => (
-            <div className="classBottom">
+            <div className="classBottom" key={el.id}>
               
                   <div className="divImage1">
                     <img src={el.image} alt="Image" />

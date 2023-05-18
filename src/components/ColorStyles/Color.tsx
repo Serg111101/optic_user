@@ -1,34 +1,42 @@
-import { useState,useEffect } from "react";
-import "./Color.scss";
-import { useAppSelector, useAppDispatch } from "../../hooks/redux";
-import { fetchMirrorColors } from "../../store/action/MirrorColorsAction";
-
+import React, { useEffect, useState } from 'react'
+import { fetchMirrorColors } from '../../store/action/MirrorColorsAction';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import './Color.scss'
 
 export function Color() {
-  const {MirrorColors}=useAppSelector(state=>state.MirrorColors)
-  
-  const dispatch = useAppDispatch()
-  const name='Mirror Colors'
-  console.log(MirrorColors);
-  
+
+  const [name, setName] = useState('Mirror Colors');
+  const dispatch = useAppDispatch();
+
+  const { MirrorColors }: any = useAppSelector(state => state.MirrorColors)
+
   useEffect(() => {
-    dispatch(fetchMirrorColors(name));
-}, [dispatch]);
+    dispatch(fetchMirrorColors(name))
+  }, [dispatch])
 
   return (
-    <div className="color" >
-      <div className="line_div1">
-        <div className="line1"></div>
-            <p className="mirorparagraph" >{MirrorColors[0]?.title_div}</p>
-        <div className="line1"></div>
+    <div className='color'>
+      <div className='line_div'>
+        <div className='line'></div>
+        <p>{MirrorColors[0]?.title_div}</p>
+        <div className='line'></div>
       </div>
-      <div className="gridContainer" >
-        {MirrorColors?.map((el, index) => (
-          <div key={index} className="gridik">
-                <img src={el?.image} />
+      <div className='color_option'>
+      {
+        MirrorColors?.map((el: any) =>
+          <div key={el.id} className='color_div'>
+            <div className='color_div_image'>
+              <img src={el.image} />
+              <span></span>
+              <p>{el.title}</p>
+            </div>
+            <p>{el.text}</p>
           </div>
-        ))}
+
+        )
+      }
       </div>
     </div>
-  );
+  )
 }
+

@@ -52,6 +52,7 @@ export function Galery() {
         className="slideshowSlider"
         style={{ transform: `translate3d(${-index * 69}%, 0, 0)` }}
       >
+
         {Home?.map((el: any, inde: number) => (
           <div
             className={index !== inde ? "activee" : "activee aaa1"}

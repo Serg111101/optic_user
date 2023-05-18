@@ -89,14 +89,16 @@ export const fetchFedexShip = ()=>{
       
       
             });
-            dispatch(fetchFedexSuccess([response.data]));
-            console.log(response.data);
+            dispatch(fetchFedexSuccess(response?.data));
+            console.log(response?.data);
+      localStorage.setItem('fedexShip', JSON.stringify(response.data))
             
 
         }
         catch(error){
             console.log(error,'error');
             dispatch(fetchError(error as Error));
+
         }
 
     }
@@ -107,7 +109,6 @@ export const fetchFedexShip = ()=>{
 export const fetchUspsShip = (arr2:any)=>{
    
     
-        console.log(arr2);
         
         return async (dispatch:Dispatch)=>{
         
@@ -127,9 +128,14 @@ export const fetchUspsShip = (arr2:any)=>{
           
           
                 });
-                console.log(response.data);
-    
-                dispatch(fetchFedexSuccess([response.data]));
+                 const arr = [] 
+                dispatch(fetchUspsSuccess2(response?.data));
+                arr.push(response?.data[0].label_url);
+                arr.push(response?.data[0].object_id);
+                arr.push(response?.data[1].userOrderId);
+
+                localStorage.setItem('shippoShip', JSON.stringify(arr))
+ 
                 
     
             }

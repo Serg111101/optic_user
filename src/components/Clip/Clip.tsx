@@ -9,6 +9,8 @@ export function Clip() {
     'https://img1.wsimg.com/isteam/ip/6e793ce1-d799-4f0e-ac6e-0125429082dc/87d1d0bf-dcd6-4acd-98d8-7a350309f8fb.jpg/:/rs=w:1300,h:800'
   ];
 
+
+  
   const delay = 2000;
   const [index, setIndex] = useState(0);
 

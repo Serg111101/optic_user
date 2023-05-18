@@ -1,20 +1,104 @@
-import './Aaa.scss'
-import { useState } from 'react'
-import { Step2 } from './Step2';
+import "./Aaa.scss";
+import { useState, useEffect } from "react";
+import { Step2 } from "./Step2";
+import { fetchOrders } from "../../store/action/OrderAction";
+import { useAppSelector, useAppDispatch } from "../../hooks/redux";
+import axios from "axios";
+export const Aaa = (
+  {
+    step2,
+    step3,
+    step4,
+    step5,
+    setStep2,
+    setStep3,
+    setStep4,
+    setStep5
+  }: any
+) => {
+  const [value, setValue] = useState('')
+  const [value1, setValue1] = useState('')
+  const [value2, setValue2] = useState('')
+  const [value3, setValue3] = useState('')
+  const [stepValue, setStepValue] = useState<Object[]>([]);
 
-export const Aaa = ({step2,step3,step4,step5,setStep2,setStep3,setStep4,setStep5}:any) => {
-    const arr = ['aaa', 'bbb', 'ccc'];
-    const aaa = ['aaa1', 'aaa2', 'aaa3', 'aaa4', 'aaa5'];
-    const bbb = ['bbb1', 'bbb2', 'bbb3', 'bbb4', 'bbb5'];
-    const ccc = ['ccc1', 'ccc2', 'ccc3', 'ccc4', 'ccc5'];
+  const dispatch = useAppDispatch()
+  const { orders }: any = useAppSelector((state) => state.orders);
 
-    const [test1, setTest1] = useState('');
-    const [test2, setTest2] = useState('');
-    // const [step2,setStep2]=useState(false)
-    return (<>
-    {step2?<Step2 step3={step3} step4={step4} step5={step5} setStep3={setStep3} setStep4={setStep4} setStep5={setStep5}/>:
-        <div className='Aaa'>
-            <div className='testing'>
+  console.log(orders);
+
+
+
+
+  useEffect(() => {
+    dispatch(fetchOrders())
+  }, [])
+
+
+
+  //  async function aaa (){
+  // const response = await axios({
+  //   method: "post",
+  //   url: `${URL}api/v1/superAdmin/addTable`,
+  //   data: [orders[0], { columnName: value }],
+  // })};
+
+  function addOrder1(id: number, table: string, col: string, e: any) {
+    const newTotals = stepValue.filter((item: any) => item.columnName !== col)
+    setStepValue([...newTotals, {
+      id: id,
+      tableName: table,
+      columnName: col,
+      value: e
+    }])
+
+  }
+
+
+
+  return (
+    <div>
+      {step2 ? (
+        <Step2
+          step3={step3}
+          step4={step4}
+          step5={step5}
+          setStep3={setStep3}
+          setStep4={setStep4}
+          setStep5={setStep5}
+        />
+      ) : (
+        <div className="Aaa">
+          <div>
+            {
+              orders.map((item: any) => {
+                if (item.table_name === "invoice") {
+
+                  <div>
+                    <label htmlFor="">{item.name}</label>
+                    <input type="text" value={value} onChange={(e: any) => { addOrder1(item.id, item.table_name, item.column_name, e.target.value) }} />
+                  </div>
+
+                }
+              })
+
+            }
+            {value !== '' && value1 !== '' && value2 !== '' && value3 !== '' && <button onClick={() => setStep2(true)}>save</button>}
+            {/* <div>
+              <label htmlFor="">Patient Name</label>
+              <input type="text" value={value1} onChange={(e)=>setValue1(e.target.value)}/>
+            </div>
+            <div>
+              <label htmlFor="">THRAY#</label>
+              <input type="text" value={value2} onChange={(e)=>setValue2(e.target.value)}/>
+            </div>
+            <div>
+              <label htmlFor="">Date</label>
+              <input type="text" value={value3} onChange={(e)=>setValue3(e.target.value)}/>
+            </div>*/}
+          </div> 
+
+            {/* <div className='testing'>
                 <div className='test1'>
                     <label htmlFor="cars">Test 1</label>
                     <select name="cars" id="cars" onChange={(e) => setTest1(e.target.value)}>
@@ -77,11 +161,11 @@ export const Aaa = ({step2,step3,step4,step5,setStep2,setStep3,setStep4,setStep5
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi unde animi earum dicta, doloribus dolores repudiandae aperiam veniam est voluptatibus at assumenda magni expedita nesciunt eos hic magnam distinctio architecto quae corrupti blanditiis impedit. Sit dolor numquam qui itaque similique sequi tempore voluptatem at cupiditate. Deleniti, ut? Temporibus explicabo architecto placeat quis facere et, iure qui eligendi in veniam nulla quidem ipsa, cumque necessitatibus nobis cupiditate saepe! Rerum, inventore ratione saepe illum, ut similique, consequatur eveniet sit maxime officia tempore. Repellendus molestias a repudiandae temporibus sequi tempore harum ullam eligendi blanditiis fugit quidem quae odit, eum quasi! Commodi facilis id totam veniam, suscipit sunt temporibus exercitationem laboriosam, tempora repellat facere? Est tempora at iusto expedita alias modi, consectetur eveniet voluptatibus velit accusantium odio, esse obcaecati veniam! Voluptatem voluptas ipsum, neque magni quasi veniam, iusto perferendis fugit dicta possimus aliquid exercitationem earum quo qui? Ipsum quibusdam quod inventore voluptatum pariatur nemo.
                         </p>
                     </div>
-                }
-            </div>
-        </div>
-        }
-        </>
-    )
+              }
+            </div> */}
+        </div>)
+}
+     </div>
+  );
 }
 

@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { Input } from 'antd';
 import axios from "axios";
+// import auth from "../../auth";
+// import { FullInfoActionConfirm } from "../../components/fullInfoActionConfirm";
 import Modal from "../../components/modal/Modal";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from 'jwt-decode'
@@ -11,10 +13,19 @@ import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import { fetchLoginStyle } from "../../store/action/LoginStyleActions";
 
 
+declare global {
+  interface Window {
+    google: any;
+  }
+}
 
+
+interface ILogin {
+    [key: string]: string,
+}
 export const Login = () => {
 
-    const { LoginStyle } = useAppSelector(state => state.LoginStyle)
+    const { LoginStyle }:any = useAppSelector(state => state.LoginStyle)
     const dispatch = useAppDispatch()
     useEffect(() => {
         dispatch(fetchLoginStyle());
@@ -22,23 +33,26 @@ export const Login = () => {
       
     const navigate=useNavigate()
     const [user, setUser] = useState({});
-    const [modalActive, setModalActive] =useState(false)   
+
+    const [modalActive, setModalActive] =useState(false)
+    // const [inpuActive, serIputActive] = useState(true)
+   
     const [checkLogin, setCheckLogin] = useState({});
-    const [loginError, setLoginError] = useState({});
+    const [loginError, setLoginError] = useState<ILogin>({});
     const [password, setPassword] = useState({});
-    const [passwordError, setPasswordError] = useState({});
+    const [passwordError, setPasswordError] = useState<ILogin>({});
     const [active, setActive] = useState(false);
     const [errMsg, setErrMsg] = useState('');    
 
 
 
 
-async function handleCallbackResponse(response) {
+async function handleCallbackResponse(response:any) {
     console.log('Encoded JWT ID token: ' + response.credential)
-    const userObject = jwt_decode(response.credential);
+    const userObject:any = jwt_decode(response.credential);
     console.log(userObject);
     setUser(userObject);
-    document.getElementById("signInDiv").hidden = true;
+    // document.getElementById("signInDiv").hidden = true;
   
     const config = {
       headers: {
@@ -50,7 +64,7 @@ async function handleCallbackResponse(response) {
     const res = await axios({
       method: 'post',
       url: 'http://localhost:3000/api/v1/auth/google/login',
-      config,
+    //   config,
       data: userObject
     });
     console.log(res);
@@ -62,22 +76,24 @@ async function handleCallbackResponse(response) {
 
 
   useEffect(() => {
-    google.accounts.id.initialize({
+    /* global google */
+   window.google.accounts.id.initialize({
       client_id: "31098185916-s1icd47jctcqk6vojp22l6catuaiklvg.apps.googleusercontent.com",
       callback: handleCallbackResponse
     })
 
-    google.accounts.id.renderButton(
+    window.google.accounts.id.renderButton(
       document.getElementById("signInDiv"),
       {theme: "outline", size: "large"}
     )
 
+    // google.accounts.id.prompt();
   }, []);
 
 
 
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
     try {
         const response = await axios({
@@ -92,9 +108,22 @@ async function handleCallbackResponse(response) {
           localStorage.setItem('response', res);
           localStorage.setItem('token', response.data.accessToken)
           console.log(response);
+        //   const resp= localStorage.getItem('response')
+        //   navigate(from, { replace: true });
+        //   const respons = JSON.parse(resp)
+          
+          
+        //   axioss.interceptors.request.use(function (config) {
+        //           config.headers.Authorization = Bearer ${response.data.accessToken};
+        //       return config;
+        //   });
+        // setAuth({ user, pwd, roles, accessToken });
+        // setUser('');
+        // setPwd('');
         navigate('/')
+        // navigate(from, { replace: true });
         
-    } catch (err) {
+    } catch (err:any) {
         if (!err?.response) {
             setErrMsg('No Server Response');
         } else if (err.response?.status === 400) {
@@ -104,6 +133,7 @@ async function handleCallbackResponse(response) {
         } else {
             setErrMsg('Login Failed');
         }
+        // errRef.current.focus();
     }
 
 }
@@ -142,16 +172,16 @@ async function handleCallbackResponse(response) {
 
                             <div id="loginFormChildPassword" className="loginFormChild">
                                 <label style={{ color: LoginStyle?.login_color }}>{LoginStyle?.password_title}</label>
-                                <input
+                                <Input.Password
                                     placeholder="*******"
                                     iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                                     name='password'
-                                    type="password"
+                                    // type="password"
                                     onChange={(e) => {
                                         e.preventDefault();
                                         setPassword(e.target.value )
                                     }}
-                                    style={{ "borderRadius": "0px" }}
+                                    style={{ "borderRadius": "0px", padding:"12px" }}
                                 />
 
                                 <p className="password_p">{passwordError.password}</p>
@@ -173,16 +203,13 @@ async function handleCallbackResponse(response) {
                                 </div>
                             </div>
                             
-                            <button id="loginFormChildButton" className="loginFormButton" style={{ color: LoginStyle?.login_color , background:  LoginStyle?.buttonBg_color }}> {LoginStyle?.signIn_title}</button>
-                            <div className="google" >
-                    
 
+                        <button id="loginFormChildButton" className="loginFormButton" style={{ color: LoginStyle?.login_color , background:  LoginStyle?.buttonBg_color }}> {LoginStyle?.signIn_title}</button>
+                          
+                            <div className="google" id="google" >
+                            <div className="signindiv" id="signInDiv"></div>
+                     </div> 
 
-                            <div id="signInDiv"></div>
-
-
-                    
-                     </div>    
                         </form>
                         
                     </div>
