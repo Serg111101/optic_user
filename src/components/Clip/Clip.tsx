@@ -82,7 +82,9 @@ export function Clip() {
               onClick={() => {
                 setIndex(idx);
               }}
-            > <img src={el?.image} alt="Clip_foto" /> </div>
+            > 
+            <img src={el?.image} alt="Clip_foto" /> 
+            </div>
           ))}
         </div>
       </div>

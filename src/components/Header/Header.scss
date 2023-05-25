@@ -70,9 +70,9 @@
         .button{
             color: white;
 
-            margin-right:-170px;
+            // margin-right:-170px;
 
-            // c{
+            button{
                 border-radius:5px ;
                 width: 100px;
                 height: 30px;
@@ -84,7 +84,7 @@
         }
     }
 
-
+}
 
 @media(max-width:872px){
     .header{

@@ -1,12 +1,9 @@
-import { useState, useEffect } from "react";
 import "./Header.scss";
-// import axios from "axios";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { CloseOutlined, MenuOutlined } from "@ant-design/icons";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import { fetchLoginStyle } from "../../store/action/LoginStyleActions";
-import { CloseOutlined, MenuOutlined } from "@ant-design/icons";
-
-
 
 export function Header() {
     const { LoginStyle }: any = useAppSelector((state: any) => state.LoginStyle)
@@ -17,10 +14,6 @@ export function Header() {
         dispatch(fetchLoginStyle());
     }, [dispatch])
         
-
-
-console.log(process.env.REACT_APP_BASE_URL);
-
     const users: any = localStorage.getItem('auth')
     const users1: any = localStorage.getItem('response')
     const user = JSON.parse(users)
@@ -47,10 +40,10 @@ console.log(process.env.REACT_APP_BASE_URL);
 
                 </div>                      
                 <div className= {mobile?" items":"items-mobile"}>
-                    <div style={{ color: LoginStyle.login_color }} className={window.location.href == process.env.REACT_APP_BASE_URL ? "itemHome item activ" : "itemHome item"} onClick={() => { navigate("/");setMobile(!mobile) }} >HOME</div>
-                    <div style={{ color: LoginStyle.login_color }} className={window.location.href == process.env.REACT_APP_BASE_URL + 'about' ? "itemAbout item activ" : "itemAbout item"} onClick={() => { navigate("/about");setMobile(!mobile) }} >ABOUT US</div>
-                    <div style={{ color: LoginStyle.login_color }} className={window.location.href == process.env.REACT_APP_BASE_URL + 'ClipandLendStyles' ? "itemStiles item activ" : "itemStiles item"} onClick={() => { navigate("/ClipandLendStyles");setMobile(!mobile) }} > CLIP AND LEND STYLES </div>
-                    <div style={{ color: LoginStyle.login_color }} className={window.location.href == process.env.REACT_APP_BASE_URL + 'orderinginformation' ? "itemStiles item activ" : "itemStiles item"} onClick={() => { navigate("/orderinginformation");setMobile(!mobile) }} > ORDER ITEM </div>
+                    <div style={{ color: LoginStyle.login_color }} className={window.location.href === process.env.REACT_APP_BASE_URL ? "itemHome item activ" : "itemHome item"} onClick={() => { navigate("/");setMobile(!mobile) }} >HOME</div>
+                    <div style={{ color: LoginStyle.login_color }} className={window.location.href === process.env.REACT_APP_BASE_URL + 'about' ? "itemAbout item activ" : "itemAbout item"} onClick={() => { navigate("/about");setMobile(!mobile) }} >ABOUT US</div>
+                    <div style={{ color: LoginStyle.login_color }} className={window.location.href === process.env.REACT_APP_BASE_URL + 'ClipandLendStyles' ? "itemStiles item activ" : "itemStiles item"} onClick={() => { navigate("/ClipandLendStyles");setMobile(!mobile) }} > CLIP AND LEND STYLES </div>
+                    <div style={{ color: LoginStyle.login_color }} className={window.location.href === process.env.REACT_APP_BASE_URL + 'orderinginformation' ? "itemStiles item activ" : "itemStiles item"} onClick={() => { navigate("/orderinginformation");setMobile(!mobile) }} > ORDER ITEM </div>
                     {!mobile&&<div className="sasas" id="sasas" onClick={()=>setMobile(!mobile)}><CloseOutlined/></div>}
                 </div>
                 

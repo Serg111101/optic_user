@@ -80,19 +80,14 @@ async function Ship(){
   }else{
 
    await dispatch(fetchFedexShip())
-
-   
-
   }
-    
-
     setPayseetrue(false)
  
     setPaying(!Paying)
 
    
 }
-console.log(fedexShip);
+
 
  async function doneTodo(id: number) {
     setLoading(true)
@@ -107,18 +102,13 @@ console.log(fedexShip);
       })
       for(let item of Paymethod){
         if(item.done===true){
-          setPaysee(!Paysee)
+          setPaysee(false)
         }}
       setPaymethod(newMethod)
     }else{
       setError('xndirner kan')
     }
 }
-   
-      
-
-
-
 
   return (<>
 
@@ -135,7 +125,7 @@ console.log(fedexShip);
           ))
         }
     </div>} 
-   {error || error1 ? <div>{error}</div>:
+   {/* {error || error1 ? <div>{error}</div>:
     <main className='mainpay' >
       
       {Paysee && Paymethod[0].done &&
@@ -154,7 +144,7 @@ console.log(fedexShip);
     {
       Paysee &&   <button onClick={()=>navigate(0)}>Back to Choose payment method</button>
     }
-    </main>}
+    </main>} */}
   </>
   )
 }
