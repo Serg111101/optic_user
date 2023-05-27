@@ -23,6 +23,7 @@ export const Step1 = ({
   useEffect(() => {
     dispatch(fetchOrders());
   }, [dispatch])
+console.log(orders);
 
   let arr1 = orders?.map((item: any) => item.table_name);
   function removeDuplicates(arr1: any[]) {

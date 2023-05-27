@@ -61,7 +61,7 @@ useEffect(()=>{
 
 const [price, setPrice]=useState<any>()
 const [pricetrue, setPricetrue]=useState(false)
-dispatch(fetchUspsorder(ShipId));
+// dispatch(fetchUspsorder(ShipId));
 
 useEffect(()=>{
   setPrice(uspsorder)

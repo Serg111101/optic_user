@@ -68,7 +68,8 @@ export const OrderingInformation = () => {
   useEffect(() => {
     dispatch(fetchOrders());
   }, [dispatch]);
-
+  console.log(total);
+  
   useEffect(() => {
     if (final) {
       const x: any = sessionStorage

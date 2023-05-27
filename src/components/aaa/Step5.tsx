@@ -247,7 +247,7 @@ export const Step5 = ({ step5,final, setStep5,setFinal, totals, setTotals, order
               </div>)
           }
         </div>
-        <button  disabled={!butt} onClick={()=>{navv()}} > save </button> 
+        <button   onClick={()=>{navv()}} > save </button> 
         <button onClick={()=>navving()}>go back</button>
       </div>
     </div>

@@ -84,7 +84,7 @@ export const fetchFedexShip = ()=>{
             dispatch(fetching());
             const response: any = await axios({
               method: 'post',
-              url: 'http://localhost:3000/api/v1/users/fedex/ship',
+              url: 'http://localhost:3003/api/v1/users/fedex/ship',
               data: arr1
       
       
@@ -115,7 +115,7 @@ export const fetchUspsShip = (arr2:any)=>{
                 dispatch(fetching());
                 const response: any = await axios({
                   method: 'post',
-                  url: 'http://localhost:3000/api/v1/users/createShip',
+                  url: 'http://localhost:3003/api/v1/users/createShip',
                   data: {
                     "rate": arr2[0].object_id,
                     "provider":arr2[0].provider,

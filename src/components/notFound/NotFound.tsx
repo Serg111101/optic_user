@@ -6,20 +6,24 @@ export const NotFound = () => {
     return (
         <div className='NotFound'>
             
-            <nav className="shelf">
-                <a className="book home-page" href='/'>Home page</a>
-                <a className="book about-us" href='/about'>About us</a>
-                <a className="book contact" href='/ClipandLendStyles'>Clip Styles</a>
+            {/* <nav classNameName="shelf">
+                <a classNameName="book home-page" href='/'>Home page</a>
+                <a classNameName="book about-us" href='/about'>About us</a>
+                <a classNameName="book contact" href='/ClipandLendStyles'>Clip Styles</a>
 
-                <span className="book not-found"></span>
+                <span classNameName="book not-found"></span>
 
-                <span className="door left"></span>
-                <span className="door right"></span>
+                <span classNameName="door left"></span>
+                <span classNameName="door right"></span>
 
             </nav>
             <h1>Error 404</h1>
-            <p>The page you're loking for can't be found</p>
-            
+            <p>The page you're loking for can't be found</p> */}
+            <div className="stars">
+  <div className="cluster__1"></div>
+  <div className="cluster__2"></div>
+  <div className="cluster__3"></div>
+</div>
         </div>
     )
 }

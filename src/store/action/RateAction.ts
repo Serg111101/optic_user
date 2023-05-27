@@ -14,7 +14,7 @@ export const fetchUsps = (arr: any) => {
 
       const response = await axios({
         method: 'post',
-        url: 'http://localhost:3000/api/v1/users/shippo',
+        url: 'http://localhost:3003/api/v1/users/shippo',
         data: [{
           name: arr[0].name,
           company: arr[0].company,
@@ -103,7 +103,7 @@ export const fetchFedex = () => {
 
       const response: any = await axios({
         method: 'post',
-        url: 'http://localhost:3000/api/v1/users/fedex/ratesAndTransitTimes',
+        url: 'http://localhost:3003/api/v1/users/fedex/ratesAndTransitTimes',
         data: arr1
 
 
@@ -135,7 +135,7 @@ export const fetchCreate = (arr: any) => {
 
       const response = await axios({
         method: 'post',
-        url: 'http://localhost:3000/api/v1/users/rateDetails',
+        url: 'http://localhost:3003/api/v1/users/rateDetails',
         data: [arr]
 
 
@@ -162,7 +162,7 @@ export const fetchUspsGet = () => {
       const Id: any = localStorage.getItem('shippoId')
       const shippoId = JSON.parse(Id)
       dispatch(fetching());
-      const response: any = await axios.get('http://localhost:3000/api/v1/users/returningShip/' + shippoId);
+      const response: any = await axios.get('http://localhost:3003/api/v1/users/returningShip/' + shippoId);
       const data = response?.data.rates
       const payload = data.map((elem: any) => JSON.parse(elem));
 
@@ -184,7 +184,7 @@ export const fetchFedexGet = () => {
       const Id: any = localStorage.getItem('fedexId')
       const fedexId = JSON.parse(Id)
       dispatch(fetching());
-      const response: any = await axios.get('http://localhost:3000/api/v1/users/returningShip/' + fedexId);
+      const response: any = await axios.get('http://localhost:3003/api/v1/users/returningShip/' + fedexId);
       const data = response?.data.rateReplyDetails
       const payload = data.map((elem: any) => JSON.parse(elem));
 

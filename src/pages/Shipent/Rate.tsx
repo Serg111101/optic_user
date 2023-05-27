@@ -63,27 +63,27 @@ const Shipment = () => {
  
   dispatch(fetchUspsGet());
     dispatch(fetchFedexGet())
-    },[dispatch])
+    },[])
     
 useEffect(()=>{
 setShip(usps)
 setPorj(true)
-},[usps])
+},[])
 
 useEffect(()=>{
   setFedexing(fedex)
   setPorj(true)
-    },[fedex])
+    },[])
 
 useEffect(()=>{
 setShip(uspsGet)
 setPorj(true)
-  },[uspsGet])
+  },[])
 
   useEffect(()=>{
     setFedexing(fedexGet)
     setPorj(true)
-  },[fedexGet])
+  },[])
    let headArr: any = [];
   
       if(ship?.length > 0){
@@ -128,23 +128,23 @@ setPorj(true)
         ]
       ))
   }
-  async function addShip(e:any,item:any){
-    e.preventDefault()
-    // localStorage.removeItem('shipId')
-   await dispatch(fetchCreate(item))
+  // async function addShip(e:any,item:any){
+  //   e.preventDefault()
+  //   // localStorage.removeItem('shipId')
+  //  await dispatch(fetchCreate(item))
 
-  // if(item?.provider){
-  //   await dispatch(fetchUspsShip(item))
+  // // if(item?.provider){
+  // //   await dispatch(fetchUspsShip(item))
  
  
-  //  }else{
+  // //  }else{
  
-  //   await dispatch(fetchFedexShip())
+  // //   await dispatch(fetchFedexShip())
     
  
-  //  }
-    navigate('/Pay')
-  }
+  // //  }
+  //   navigate('/Pay')
+  // }
 
  
 
@@ -166,7 +166,7 @@ setPorj(true)
            <input type="radio" name="drone" id={item.object_id}  />
             </div>
       
-        <button className="save" onClick={(e)=>{addShip(e, item)}} >Save</button>
+        {/* <button className="save" onClick={(e)=>{addShip(e, item)}} >Save</button> */}
 
           </div>)
 
@@ -184,7 +184,7 @@ setPorj(true)
         <input type="radio" name="drone" id={item.object_id}  />
         
         </div>
-        <button className="save" onClick={(e)=>{addShip(e, item)}} >Save</button>
+        {/* <button className="save" onClick={(e)=>{addShip(e, item)}} >Save</button> */}
           
       </div>
         )} </div> </div>)

@@ -7,7 +7,7 @@ export const fetchThemes = () => {
         try{
             
             dispatch(fetchingThemes());
-            const response =await axios.get('http://localhost:3000/api/v1/superAdmin/terms');            
+            const response =await axios.get('http://localhost:3003/api/v1/superAdmin/terms');            
             dispatch(fetchSuccessThemes(response.data[0]));
                
         }

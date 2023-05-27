@@ -7,7 +7,7 @@ export const fetchClip = (props:any) => {
         try{
             
             dispatch(fetchingClip());
-            const response =await axios.get('http://localhost:3000/api/v1/superAdmin/styles?title_div='+props);            
+            const response =await axios.get('http://localhost:3003/api/v1/superAdmin/styles?title_div='+props);            
             const arr=[]
             for(let key in response.data){
                 arr.push(response.data[key])
