@@ -15,6 +15,7 @@ export const fetchUspsorder = (ShipId:any)=>{
             dispatch(fetching());
             const response:any =await axios.get('http://localhost:3000/api/v1/users/rateDetails/'+ ShipId);            
            
+            console.log(response.data);
             dispatch(fetchSuccess([response.data]));
             
             

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+.container{
 
 .mainpay {
   margin: 100px 650px;
@@ -98,8 +99,8 @@ align-items: center;
 align-content: center;
 flex-direction: column;
 margin: 170px auto;
-  width: 26%;
-  background-color:gray;
+  width: 40%;
+  background-color:rgb(221, 214, 214);
   padding: 30px;
   border-radius: 10px;
   opacity: 0.8;
@@ -117,13 +118,20 @@ margin: 170px auto;
   .modesta{
     cursor: pointer;
     width: 90%;
-    height: 40px;
+    height: 60px;
     display: flex;
     padding-left: 20px;
-    border: 2px solid;
+    box-shadow: 10px 5px 5px gray;
     border-radius: 6px;
     margin-top: 20px;
     opacity: 1 !important;
+    img{
+      width: 120px;
+                height: 50px;
+              
+               object-fit: fill;
+                
+    }
   }
 
 }
@@ -155,4 +163,5 @@ margin: 170px auto;
   margin-top: 6px;
   margin-left: 80px;
   color:  #0A2540;
+}
 }

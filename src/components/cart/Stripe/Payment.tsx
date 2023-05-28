@@ -5,6 +5,7 @@ import '../cart.scss'
 
 function Payment(props:any) {
   const { stripePromise }:any = props;
+ console.log(stripePromise);
  
 
   const [ clientSecret, setClientSecret ] = useState('');
@@ -12,8 +13,11 @@ function Payment(props:any) {
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
     fetch("/create-payment-intent")
-      .then((res) => res.json())      
+      .then(async(res) => await res.json())  
+      // .then((res)=>console.log(res))
       .then(({clientSecret}) => setClientSecret(clientSecret));
+      console.log(clientSecret);
+      
   }, []);
 
 
@@ -22,7 +26,6 @@ function Payment(props:any) {
     
       {clientSecret && stripePromise && (
         <Elements stripe={stripePromise} options={{ clientSecret, }}>
-              <h1>Payment in Stripe</h1>
           <CheckoutForm />
         </Elements>
       )}

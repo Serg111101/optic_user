@@ -11,6 +11,7 @@ export const fetchUsps = (arr: any) => {
 
     try {
       dispatch(fetching());
+ console.log(arr);
 
       const response = await axios({
         method: 'post',
@@ -27,14 +28,6 @@ export const fetchUsps = (arr: any) => {
           email: arr[0].email,
 
 
-        },
-        {
-          height: arr[1].height,
-          distance_unit: arr[1].distance_unit,
-          length: arr[1].length,
-          width: arr[1].width,
-          weight: arr[1].weight,
-          mass_unit: arr[1].mass_unit
         }
 
 
@@ -45,8 +38,11 @@ export const fetchUsps = (arr: any) => {
       console.log(response.data[0].rates);
 
       localStorage.setItem('shippoId', JSON.stringify(response.data[0].id))
-
-      dispatch(fetchSuccess(response.data[0].rates));
+      { if(response.data[0].rates){
+       let usps = response.data[0].rates.sort((a:any,b:any)=> b.amount - a.amount)
+       dispatch(fetchSuccess(usps));
+      }}
+   
 
       console.log(response)
     } catch (err) {
@@ -112,7 +108,7 @@ export const fetchFedex = () => {
 
       });
       localStorage.setItem('fedexId', JSON.stringify(response.data[1].rateId))
-      console.log(response.data[1].rateId);
+      console.log(response);
 
       dispatch(fetchSuccess2(response.data[0]));
 
@@ -152,12 +148,7 @@ export const fetchCreate = (arr: any) => {
       }
       console.log(response.data)
       dispatch(fetchSuccess1(response.data))
-      //  if(response?.data[0]?.id){
-      //   const aa:any=response?.data[0]?.id
-      //   useAppDispatch(fetchUspsorder(aa))
-      //   console.log('hbhbhbhbhbhbhbh');
-
-      //  }
+   
     } catch (err) {
 
       console.log(err)
@@ -177,8 +168,13 @@ export const fetchUspsGet = () => {
       const payload = data.map((elem: any) => JSON.parse(elem));
 
       console.log(response?.data.rates);
-
-      dispatch(fetchSuccess3(payload));
+      { if(response.data.rates){
+        let usps = payload.sort((a:any,b:any)=> b.amount - a.amount)
+        console.log(usps);
+        
+        dispatch(fetchSuccess3(usps));
+       }}
+     
 
 
     }

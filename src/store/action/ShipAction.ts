@@ -89,8 +89,8 @@ export const fetchFedexShip = ()=>{
       
       
             });
-            dispatch(fetchFedexSuccess(response?.data));
-            console.log(response?.data);
+            dispatch(fetchFedexSuccess(response));
+            console.log(response);
       localStorage.setItem('fedexShip', JSON.stringify(response.data))
             
 
@@ -111,6 +111,7 @@ export const fetchUspsShip = (arr2:any)=>{
     
         
         return async (dispatch:Dispatch)=>{
+        console.log(arr2.object_id);
         
             try{ 
                 dispatch(fetching());
@@ -118,12 +119,12 @@ export const fetchUspsShip = (arr2:any)=>{
                   method: 'post',
                   url: 'http://localhost:3000/api/v1/users/createShip',
                   data: {
-                    "rate": arr2[0].object_id,
-                    "provider":arr2[0].provider,
-                    "estimated_days":arr2[0].estimated_days,
-                    "duration_terms":arr2[0].duration_terms,
-                    "amount":arr2[0].amount,
-                    "currency":arr2[0].currency
+                    "rate": arr2.object_id,
+                    "provider":arr2.provider,
+                    "estimated_days":arr2.estimated_days,
+                    "duration_terms":arr2.duration_terms,
+                    "amount":arr2.amount,
+                    "currency":arr2.currency
                   }
           
           

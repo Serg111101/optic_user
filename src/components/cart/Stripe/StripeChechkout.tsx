@@ -5,27 +5,36 @@ import Completion from "./Completion";
 import { knopka } from "./checkoutForm";
 
 
-const StripeChechkout = ({price}:any) => {
+const StripeChechkout = () => {
 
     const [stripePromise, setStripePromise] = useState<any>(null);
-console.log(price);
-
+    const [mek, setMek]=useState<any>(false)
 
     useEffect(() => {
-        fetch("/config").then(async (r) => {
-          const { publishableKey }: any = await r.json();
-          setStripePromise(loadStripe(publishableKey));
-        });
-      }, []);
+    console.log("inside handleGetJson");
+    fetch('/config')
+    .then(async (response) => {
+      console.log(response);
+      
+      const { publishableKey }:any = await response.json();
+      console.log(publishableKey);
+      
+      setStripePromise(loadStripe(publishableKey));
+    })
+    .then((messages) => {console.log("messages");});
+    setMek(knopka())
+   
+    }, []);
 
-      let mek = knopka()
+      console.log(stripePromise);
+      
   return (
     <div>
         {mek ? <>
-            {price[0]?.provider && <p>Ship price: {price[0].amount} {price[0].currency}</p>}
+            {/* {price[0]?.provider && <p>Ship price: {price[0].amount} {price[0].currency}</p>} */}
           <Payment stripePromise={stripePromise} /></>
           :
-          <Completion stripePromise={stripePromise} />
+          <Completion stripePromise={stripePromise}/>
         }
     </div>
   )
