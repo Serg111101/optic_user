@@ -17,7 +17,9 @@ import uspsGetReducer  from './slices/RateSlice'
 import fedexGetReducer  from './slices/RateSlice'
 import fedexorder from './slices/OrderShip'
 import uspsorder from './slices/OrderShip'
-import Ship from './slices/ShipSlice'
+// import Ship from './slices/ShipSlice'
+import UspsShip from './slices/ShipSlice'
+import FedexShip from './slices/ShipSlice'
 
 export const store = configureStore({
   reducer: {
@@ -35,7 +37,9 @@ export const store = configureStore({
     fedexGet:fedexGetReducer,
     fedexorder:fedexorder,
     uspsorder:uspsorder,
-    Ship:Ship,
+    // Ship:Ship,
+    UspsShip:UspsShip,
+    FedexShip:FedexShip,
 
     // GovernmetMembersFullInfo:GovernmetMembersFullInfoReducer,
     // UniqueProduct:UniqueProductReducer,

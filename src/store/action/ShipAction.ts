@@ -1,5 +1,5 @@
 import { Dispatch } from "@reduxjs/toolkit";
-import {  fetching, fetchFedexSuccess, fetchUspsSuccess2, fetchError } from "../slices/ShipSlice";
+import {  fetching, fetchFedexSuccess, fetchError } from "../slices/ShipSlice";
 import axios from "axios";
 
 
@@ -89,14 +89,14 @@ export const fetchFedexShip = ()=>{
       
       
             });
-            dispatch(fetchFedexSuccess([response.data]));
-            console.log(response.data);
-            
+            dispatch(fetchFedexSuccess(response?.data));
+            console.log(response?.data);
+            localStorage.setItem('fedexShip', JSON.stringify(response.data))
 
         }
         catch(error){
-            console.log(error,'error');
             dispatch(fetchError(error as Error));
+
         }
 
     }
@@ -107,9 +107,9 @@ export const fetchFedexShip = ()=>{
 export const fetchUspsShip = (arr2:any)=>{
    
     
-        console.log(arr2);
         
         return async (dispatch:Dispatch)=>{
+        console.log(arr2.object_id);
         
             try{ 
                 dispatch(fetching());
@@ -117,24 +117,31 @@ export const fetchUspsShip = (arr2:any)=>{
                   method: 'post',
                   url: 'http://localhost:3000/api/v1/users/createShip',
                   data: {
-                    "rate": arr2[0].object_id,
-                    "provider":arr2[0].provider,
-                    "estimated_days":arr2[0].estimated_days,
-                    "duration_terms":arr2[0].duration_terms,
-                    "amount":arr2[0].amount,
-                    "currency":arr2[0].currency
+                    "rate": arr2.object_id,
+                    "provider":arr2.provider,
+                    "estimated_days":arr2.estimated_days,
+                    "duration_terms":arr2.duration_terms,
+                    "amount":arr2.amount,
+                    "currency":arr2.currency
                   }
           
           
                 });
-                console.log(response.data);
-    
+             console.log(response.data);
+             
                 dispatch(fetchFedexSuccess([response.data]));
+                 const arr = [] 
+                // dispatch(fetchUspsSuccess2(response?.data));
+                arr.push(response?.data[0].label_url);
+                arr.push(response?.data[0].object_id);
+                arr.push(response?.data[0].userOrderId);
+
+                localStorage.setItem('shippoShip', JSON.stringify(arr))
+ 
                 
     
             }
             catch(error){
-                console.log(error,'error');
                 dispatch(fetchError(error as Error));
             }
     

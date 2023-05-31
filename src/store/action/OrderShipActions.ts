@@ -7,7 +7,6 @@ import axios from "axios";
 export const fetchUspsorder = (ShipId:any)=>{
    
     return async (dispatch:Dispatch)=>{
-        console.log(ShipId);
         
         try{ 
           
@@ -15,12 +14,12 @@ export const fetchUspsorder = (ShipId:any)=>{
             dispatch(fetching());
             const response:any =await axios.get('http://localhost:3000/api/v1/users/rateDetails/'+ ShipId);            
            
+            console.log(response.data);
             dispatch(fetchSuccess([response.data]));
             
             
         }
         catch(error){
-            console.log(error,'error');
             
             dispatch(fetchError(error as Error));
         }
