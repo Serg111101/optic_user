@@ -1,6 +1,7 @@
 import { CLIENT_ID } from '../../../Config/Config'
 import React, { useState, useEffect } from "react" ;
 import {PaypalPay} from './PaypalPay'
+import './PaymentForm.module.scss'   
 
 
 const PaypalCheckout = () => {
@@ -18,15 +19,15 @@ useEffect(() => {
      })();
    }, []);
   return (
-    <>
-     <div>
+
+     <div className='Payment'>
      <header >
      {clientToken ? (
         <PaypalPay clientToken={clientToken} clientID={clientId} />
-      ) : (<h4>error</h4>) }
+      ) : (<h4>Loading....</h4>) }
      </header>
      </div>
-    </>
+
   );
 }
 export default PaypalCheckout

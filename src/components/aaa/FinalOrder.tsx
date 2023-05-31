@@ -8,7 +8,8 @@ export default function FinalOrder({ total }: any) {
 
   const [active,setActive]=useState(false)
   const [active1,setActive1]=useState(false)
-  let price:any = 0
+  // const [price,setPrice] = useState<number>(0)
+let price=0
 
   const navigate=useNavigate()
   let arr1 = total?.map((item: any) => {
@@ -76,13 +77,32 @@ export default function FinalOrder({ total }: any) {
     // sessionStorage.setItem('step5','false')
     // sessionStorage.setItem('final','false')
   }
-  function PriceFunc() {   
-      total?.map((element:any,index:number)=>{
-        if(element?.price_user!==null &&index!==total.length){
-          price += element?.price_user
-        }
-        return price
-      })
+// <<<<<<< HEAD
+//   function PriceFunc() {   
+// 
+// =======
+  async function PriceFunc() { 
+    // const response: any = await axios({
+    //   method: 'post',
+    //   url: 'http://localhost:3000/api/v1/superAdmin/createpdf',
+    //   data: total
+
+
+    // });
+    // console.log(response,1111111);
+    // const res:any=await axios.post('http://localhost:3000/api/v1/superAdmin/insertValues',total)
+    // console.log(res);
+    total?.map((element:any,index:number)=>{
+              if(element?.price_user!==null &&index!==total.length){
+                price += element?.price_user
+              }
+              return price
+            })
+    
+    localStorage.setItem('price',JSON.stringify(price))
+    // setPrice(res.data[0].price_user)
+    
+    
   }
 
   PriceFunc()
@@ -91,6 +111,8 @@ export default function FinalOrder({ total }: any) {
   async function SaveFile(){
     const res:any=await axios.post('http://localhost:3000/api/v1/superAdmin/insertValues',total)
     console.log(res);
+    navigate('/Rate')
+  
       
   }
 
@@ -155,7 +177,7 @@ export default function FinalOrder({ total }: any) {
         </div>
       </div>
       <div className='total_price'>
-        <h5>Total price: <span>{price}</span>$</h5>
+       {price>0 && <h5>Total price: <span>{price}</span>$</h5>}
       </div>
       <div className='buttons'>
           {/* <button>Save</button> */}

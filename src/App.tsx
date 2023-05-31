@@ -9,6 +9,8 @@ import { Login } from "./pages/login";
 import { ClipandLendStyles } from './pages/ClipandLendStyles'
 import Pay from "./pages/payment/Pay";
 import Completion from "./components/cart/Stripe/Completion";
+import StripeChechkout from "./components/cart/Stripe/StripeChechkout";
+
 import OrderingInformation from "./pages/OrderingInformation";
 import { useState } from "react";
 import { Commit } from "./components/commit";
@@ -25,7 +27,7 @@ function App() {
     <div className="App">
       {
         <>
-            {<div className={commit ? "aaa" : "a"} onClick={() => setCommit(false)}>{commit && <Commit setCommit={setCommit} />}</div>}
+            {<div className={commit ? "aaa" : "a"} onClick={() => {setCommit(false)}}>{commit && <Commit setCommit={setCommit} />}</div>}
             <Header/>
             <Routes> 
               <Route path="*" element={<NotFound />} />
@@ -35,13 +37,15 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/Completion" element={<Completion />} />
+              <Route path="/Stripe" element={<StripeChechkout />} />
+
               <Route path="/terms-and-conditions" element={<Themes />} />
               <Route path="/Orderinginformation" element={<OrderingInformation />} />
               <Route path="/ClipandLendStyles" element={<ClipandLendStyles />} />
               <Route path="/Rate" element={<Rate/>}/>
             </Routes>
             <Footer />
-            <div className="commit" onClick={() => setCommit(true)}> <CommentOutlined /> <p>Leave a review</p></div>
+            <div className="commit" onClick={() => {setCommit(true)}}> <CommentOutlined /> <p>Leave a review</p></div>
             
           </>
        } 

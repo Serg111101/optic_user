@@ -1,8 +1,8 @@
 import { Dispatch } from "@reduxjs/toolkit";
 import { fetching, fetchSuccess, fetchSuccess1, fetchSuccess2, fetchSuccess3, fetchSuccess8, fetchError } from "../slices/RateSlice";
 import axios from "axios";
-// import { fetchUspsorder } from "./OrderShipActions";
-// import { useAppDispatch } from "../../hooks/redux";
+import { fetchUspsorder } from "./OrderShipActions";
+import { useAppDispatch } from "../../hooks/redux";
 
 
 export const fetchUsps = (arr: any) => {
@@ -16,7 +16,7 @@ export const fetchUsps = (arr: any) => {
       const response = await axios({
         method: 'post',
         url: 'http://localhost:3000/api/v1/users/shippo',
-        data: [{
+        data: {
           name: arr[0].name,
           company: arr[0].company,
           street1: arr[0].street1,
@@ -31,19 +31,20 @@ export const fetchUsps = (arr: any) => {
         }
 
 
-        ]
 
 
-      });
+     });
 
       localStorage.setItem('shippoId', JSON.stringify(response.data[0].id))
       { if(response.data[0].rates){
-       let usps = response.data[0].rates.sort((a:any,b:any)=> b.amount - a.amount)
+       let usps = response.data[0].rates.sort(async (a:any,b:any)=> a.amount - b.amount)
+       
        dispatch(fetchSuccess(usps));
       }}
    
 
     } catch (err) {
+console.log(err);
 
       // if (!err?.response) {
       //     setErrMsg('No Server Response');
@@ -105,7 +106,6 @@ export const fetchFedex = () => {
 
       });
       localStorage.setItem('fedexId', JSON.stringify(response.data[1].rateId))
-      console.log(response.data[1].rateId);
 
       dispatch(fetchSuccess2(response.data[0]));
 
@@ -167,6 +167,15 @@ export const fetchUspsGet = () => {
       console.log(response?.data.rates);
 
       dispatch(fetchSuccess3(payload));
+
+      { if(payload){
+       let usps = payload.sort((a:any,b:any)=> b.amount - a.amount)
+       console.log(usps);
+       
+       dispatch(fetchSuccess3(usps));
+      
+      }}
+     
 
 
     }

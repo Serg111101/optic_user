@@ -31,14 +31,15 @@ const Shipment = () => {
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
   const [postser, setPostse] = useState('service is not available');
-  const [mass, setMass] = useState<any>('')
+
+  const [mass, setMass] = useState<any>(true)
+  const [massin, setMassin] = useState<any>(true)
   const [shippMethod, setShippMethod] = useState<any>()
-  const [fedexs, setFedexs] = useState<any>({
-    fedex: true,
-    UPS: true
-  })
   const [ship, setShip] = useState<any>()
-  const [porj, setPorj] = useState<boolean>()
+  const [ship1, setShip1] = useState<any>()
+  const [pickUP, setPickUP] = useState<boolean>(false)
+  const [porj, setPorj] = useState<boolean>(true)
+  const [shipload, setShipload] = useState(true)
 
   useEffect(() => {
 
@@ -49,21 +50,28 @@ const Shipment = () => {
 
   useEffect(() => {
     setShip(usps)
+    setShip1(usps)
+
+    setShipload(false)
   }, [usps])
 
   useEffect(() => {
     setFedexing(fedex)
+    setShipload(false)
+
   }, [fedex])
 
   useEffect(() => {
     setShip(uspsGet)
+    setShip1(uspsGet)
+    // setShipload(true)
   }, [uspsGet])
 
   useEffect(() => {
     setFedexing(fedexGet)
+    // setShipload(true)
   }, [fedexGet])
 
-  console.log(fedexing);
 
 
   const headArr: any = [];
@@ -96,7 +104,8 @@ const Shipment = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if (pay?.length === 0) {
+    setPorj(false)
+    if (pay?.length === 0 && !pickUP) {
       await dispatch(fetchFedex())
       await dispatch(fetchUsps(
 
@@ -117,11 +126,12 @@ const Shipment = () => {
 
     }
     for (let i = 0; i < pay.length; i++) {
-      if (pay[i] === "Ship in Fedex") {
+
+      if (pay[i] === "Ship in Fedex" && !pickUP) {
         await dispatch(fetchFedex())
 
       }
-      if (pay[i] === "Ship in UPS"||pay[i] === "Ship in USPS") {
+      if (pay[i] === "Ship in UPS" || pay[i] === "Ship in USPS" && !pickUP) {
         await dispatch(fetchUsps(
 
           [{
@@ -142,6 +152,10 @@ const Shipment = () => {
     }
 
     setPorj(false)
+    if (pickUP) {
+      navigate('/Pay')
+    }
+
   }
   async function addShip(e: any, item: any) {
     e.preventDefault()
@@ -165,7 +179,6 @@ const Shipment = () => {
   const [pay, setPay] = useState<any>([])
 
   async function addShiping(n: any) {
-    console.log(n);
 
     if (pay.length === 0) {
 
@@ -183,21 +196,125 @@ const Shipment = () => {
 
 
   }
-  console.log(pay);
-
 
 
   return (
     <div className={'shippo_box'}>
+      
       {
         !porj ? <>
-          {loading ? <div>Loading....</div> :
+          {shipload ? <div>Loading....</div> :
             <div>
 
               <div className="shippo">
+                <div className="table">
+                  <div className="provider">
+                    <div>Provider</div>
+                    {
+                      headArr.map((el: any, index: any) =>
+                        <div key={index} >{el}</div>
+                      )
+                    }
+                  </div>
+                  <div className="ShipMethods">
+                    <div>
+                    <div>Next day</div>
+                      {fedexing?.length > 0 && fedexing.map((item: any, index: any) => {
+                        if (item.serviceType == "STANDARD_OVERNIGHT") {
+                          return <>{item.serviceType == "STANDARD_OVERNIGHT" ?
+                            <p onClick={(e) => { addShip(e, item) }} key={index}>
+                              {item.ratedShipmentDetails[0].totalNetFedExCharge} {item.ratedShipmentDetails[0].currency}
+                            </p> : <p>{postser}</p>
+                          } </>
+                        }
+                      })}</div>
+
+                    <div>
+                      {ship1?.length > 0 && ship1.map((item: any, index: any) => {
+
+                        if (item.provider == "UPS") {
+                          console.log(item.servicelevel.name);
+
+                          if (item.servicelevel.name == "Next Day Air®") {
+
+                            return <>{item.servicelevel.name == "Next Day Air®" ? <p
+                              onClick={(e) => { addShip(e, item) }} key={index}>
+                              {item.amount} {item.currency}
+                            </p> : <p>{postser}
+                            </p>}
+
+                            </>
+                          }
+                        }
+                      })}
 
 
-                <table className="table">
+                    </div>
+                    <div>
+                      {ship?.length > 0 && ship.map((item: any, index: any) => {
+                        if (item.provider === "USPS") {
+                          if (item.duration_terms == "Overnight delivery to most U.S. locations.") {
+                            return <>{item.duration_terms == "Overnight delivery to most U.S. locations." ? <p
+                              onClick={(e) => { addShip(e, item) }} key={index}>
+                              {item.amount} {item.currency}
+                            </p> : <p>{postser}</p>}</>
+
+                          }
+                        }
+
+                      })}
+
+                    </div>
+                  </div>
+                  <div className="ShipMethods">
+                    <div>
+                    <div>Standard</div>
+                      {fedexing?.length > 0 && fedexing.map((item: any, index: any) => {
+                        if (item.serviceType == "FEDEX_GROUND") {
+                          return <>{item.serviceType == "FEDEX_GROUND" ?
+                            <p onClick={(e) => { addShip(e, item) }} key={index}>
+                              {item.ratedShipmentDetails[0].totalNetFedExCharge} {item.ratedShipmentDetails[0].currency}
+                            </p> : <p>{postser}</p>
+                          } </>
+                        }
+                      })}</div>
+
+                    <div>
+                      {ship?.length > 0 && ship.map((item: any, index: any) => {
+
+                        if (item.provider === "UPS") {
+                          if (item.servicelevel.name == "3 Day Select®") {
+
+                            return <>{item.servicelevel.name == "3 Day Select®" ? <p
+                              onClick={(e) => { addShip(e, item) }} key={index}>
+                              {item.amount} {item.currency}
+                            </p> : <p>{postser}</p>}</>
+                          }
+                        }
+                      })}
+
+
+                    </div>
+                    <div>
+                      {ship?.length > 0 && ship.map((item: any, index: any) => {
+                        if (item.provider === "USPS") {
+
+                          if (item.duration_terms == "Delivery in 2 to 5 days.") {
+                            return <>{item.duration_terms == "Delivery in 2 to 5 days." ? <p
+                              onClick={(e) => { addShip(e, item) }} key={index}>
+                              {item.amount} {item.currency}
+                            </p> : <p>{postser}</p>}</>
+
+                          }
+                        }
+
+                      })}
+
+                    </div>
+                  </div>
+                </div>
+
+                {/* <table className="table">
                   <thead>
                     <tr>
                       <th>Provider</th>
@@ -209,12 +326,16 @@ const Shipment = () => {
                     headArr.map((el: any, index: any) => {
                       return <tr key={index}><th>{el}</th>
                         {fedexing?.length > 0 && fedexing.map((item: any, index: any) => {
+                        {fedexing?.length > 0 && el == "Fedex" && fedexing.map((item: any, index: any) => {
                           if (el == "Fedex" && item.serviceType == "STANDARD_OVERNIGHT" ||  item.serviceType === "FEDEX_GROUND") {
                            if (item.serviceType == "STANDARD_OVERNIGHT" || item.serviceType == "FEDEX_GROUND") {
                              return <>{item.serviceType == "STANDAD_OVERNIGHT" ||  item.serviceType == "FEDEX_GROUND" ?
                           <th onClick={(e) => { addShip(e, item) }} key={index}>
                             {item.ratedShipmentDetails[0].totalNetFedExCharge} {item.ratedShipmentDetails[0].currency}
                           </th>: <th>dhs</th>
+=======
+                          </th>: <th>{postser}</th>
+>>>>>>> origin/Hovo
                              } </>
                            }
                          }
@@ -228,6 +349,9 @@ const Shipment = () => {
                         </th>:<th>{postser}</th>}</>
                            }
                          } else if (item.provider == el) {
+=======
+                         } else if (item.provider == el && el === "UPS") {
+>>>>>>> origin/Hovo
                            if (item.servicelevel.name == "Next Day Air®" || item.servicelevel.name == '3 Day Select®') {
                              return <>{item.servicelevel.name == "Next Day Air®" || item.servicelevel.name == '3 Day Select®'?<th
                           onClick={(e) => { addShip(e, item) }} key={index}>
@@ -240,7 +364,7 @@ const Shipment = () => {
                       </tr>
                     })
                   }</tbody>
-                </table>
+                </table> */}
               </div>
               <div className="shippo1">
                 <button onClick={() => { setPorj(true) }}> Go Back</button>
@@ -249,24 +373,31 @@ const Shipment = () => {
 
 
             </div>}</> : <>
-          <div className={'shippo_contents'} onClick={e => e.stopPropagation()}>
+
+            
+          <div className='shippo_contents' onClick={e => e.stopPropagation()}>
             <div className='contain'>
               <span className='p1'><h1>ADD ORDERS INFORMATION</h1></span>
               <div className="orrder">
                 {shippMethod?.map((el: any, index: any) => {
 
-                  if (el.status === true) {
-                    return <div key={index} className="method">
+
+                  if (el.status === true && !pickUP) {
+                    return <div className="method" key={index}>
                       <img src={el.icon} />
                       <label htmlFor="">{el.title}</label>
                       <input type="checkbox" onChange={(e) => { addShiping(el.title) }} />
                     </div>
                   }
                 })}
-
+                        
               </div>
-
-              <form onSubmit={handleSubmit} className='shipform'>
+              <div className={pickUP ? " pickup1" : "pickup"}>
+                <label htmlFor="">Pick UP</label>
+                <input type="checkbox" onChange={(e) => setPickUP(e.target.checked)} />
+                {pickUP && <button onClick={()=>{navigate('/pay')}}>Go Pay</button>  }
+                </div>
+           {!pickUP &&   <form onSubmit={handleSubmit} className='shipform'>
                 <div className='inputer'>
                   <p>Name</p>
                   <input
@@ -367,7 +498,7 @@ const Shipment = () => {
                 <div className='registraciabutton'>
                   <button onClick={(e) => handleSubmit(e)}>Save</button>
                 </div>
-              </form>
+              </form>}
             </div>
           </div>
         </>

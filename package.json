@@ -1,6 +1,4 @@
 {
-  
-
   "name": "optics",
   "version": "0.1.0",
   "private": true,
@@ -29,7 +27,9 @@
     "react-loader-spinner": "^5.3.4",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.11.1",
-    "react-scripts": "5.0.1",
+
+    "react-scripts": "^5.0.1",
+
     "react-select": "^5.7.3",
     "react-slideshow-image": "^4.2.1",
     "sass": "^1.60.0",
@@ -38,11 +38,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start-server": "DISABLE_ESLINT_PLUGIN=true node server.js",
+
     "start": "DISABLE_ESLINT_PLUGIN=true PORT=3001 react-scripts --openssl-legacy-provider start",
     "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
     "test": "DISABLE_ESLINT_PLUGIN=true react-scripts test",
     "eject": "DISABLE_ESLINT_PLUGIN=true react-scripts eject"
+
   },
   "eslintConfig": {
     "extends": [
@@ -68,4 +69,6 @@
   },
   "proxy": "http://localhost:3000"
   }
+
+
 

@@ -29,11 +29,11 @@ const [loadings, setLoading]=useState<any>()
 // const [payMethod,setPayMethod]= useState<any>()
 
 const [Paymethod, setPaymethod] = useState<any>()
-const [post, setPost]=useState(false)
+const [post, setPost]=useState(true)
 const [Paying, setPaying] = useState(true)
 const [Paysee, setPaysee] = useState(false)
 const [payseetrue, setPayseetrue]=useState(true)
-
+const [seePrice, setSeePrice]=useState(false)
 useEffect(()=>{
   setUspsShip(UspsShip)
   setFedexShip(FedexShip)
@@ -50,7 +50,9 @@ name()
 useEffect(()=>{
   setPrice(uspsorder)
   setPricetrue(true)
+  noShip()
 },[uspsorder])
+console.log(price);
 
 
 async function name() {
@@ -100,22 +102,28 @@ async function doneTodo(id: number) {
   }else{
     setError('xndirner kan')
   }
+
+  setPost(false)
 }
- 
-   
-    
+let priceOrder;
+   if(localStorage.getItem('price')){
+let sum:any = localStorage.getItem('price');
+priceOrder = JSON.parse(sum)
+   }
+function noShip(){
+  if(price?.length>0 ){
+    setSeePrice(true)
+  }
+}
 
 
-
-return (<div className="container">
-
-{Paying && payseetrue &&  price !== undefined &&
+return (<div className="container_pay">
+{loading && <div>Loading....</div>}
+{Paying && payseetrue &&  price?.length >0 && <div className="box-pay"> 
   <div className="modaling" >
     <h1>Choose a payment method</h1>
     {loadings && <div>loading....</div>}
-     <div  className="total">{pricetrue && price !== undefined && price[0]?.provider ? <p>Ship price: {price[0]?.amount} {price[0]?.currency}</p>:""
-    // pricetrue  && <p>Ship price: {price[0]?.ratedShipmentDetails[0]?.totalNetFedExCharge} {price[0]?.ratedShipmentDetails[0]?.currency}</p> 
- } </div>
+     
       {
         Paymethod?.map((item:any)=>{
           if(item.status === true){
@@ -127,6 +135,18 @@ return (<div className="container">
         
 })
       }
+  </div>
+  <div className="total-box">
+  <div  className="total">{pricetrue &&  seePrice  && price[0]?.provider ? <div className="text"><span>Ship Price:</span>  <p>  {price[0]?.amount} {price[0]?.currency}</p></div>:
+   pricetrue && seePrice && <div className="text"><span>Ship Price:</span>  <p> {price[0]?.ratedShipmentDetails[0]?.totalNetFedExCharge} {price[0]?.ratedShipmentDetails[0]?.currency}</p> </div>
+    
+ } {priceOrder && <div className="text"><span>Order Price:</span>  <p>  {priceOrder} USD</p></div>}
+  <div className="line"> </div>
+ {   pricetrue && seePrice  ? <div className="text"><span>Total Price:</span>  <p> {price[0]?.amount ? priceOrder + price[0]?.amount :  priceOrder + price[0]?.ratedShipmentDetails[0]?.totalNetFedExCharge}USD</p></div>:
+ <div><span>Total Price:</span>  <p> { priceOrder}USD</p></div>}
+  
+ </div>
+  </div>
   </div>} 
  {error || error1 ? <div>{error}</div>:
   <main className='mainpay' >
@@ -148,7 +168,7 @@ return (<div className="container">
     </div>
     }
   {
-    Paysee &&   <button onClick={()=>navigate(0)}>Back to Choose payment method</button>
+    Paysee && post && <button onClick={()=>navigate(0)}>Back to Choose payment method</button>
   }
   </main>}
 </div>

@@ -112,9 +112,6 @@ function saveButton(){
     }
   }
 
-  console.log(orders);
-  
-
   return (
     <div className="steping">
       {step2 === true ? (

@@ -12,7 +12,7 @@ const StripeChechkout = () => {
 
     useEffect(() => {
     console.log("inside handleGetJson");
-    fetch('/config')
+    fetch('http://localhost:3000/api/v1/stripe/config')
     .then(async (response) => {
       console.log(response);
       

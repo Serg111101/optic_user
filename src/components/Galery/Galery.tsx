@@ -6,6 +6,8 @@ import { Loading } from '../loading';
 
 export function Galery() {
   const { loading,  Home }: any = useAppSelector((state) => state.Home)
+  
+  
   const dispatch = useAppDispatch();
 
   const [width, setWidth] = useState(((window.innerWidth / 100) * 70) - 200)

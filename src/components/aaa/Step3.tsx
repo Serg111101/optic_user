@@ -151,7 +151,6 @@ function saveButton(){
 
   let arr2: any = sessionStorage?.getItem('step3_2')
   const [arrr2, setArrr2] = useState(JSON?.parse(arr2))
-  console.log(arrr2);
 
   useEffect(() => {
     if (arr2 == null || arr2 == '[]') {
@@ -232,7 +231,7 @@ function saveButton(){
                      <h2>{headArr[4]}</h2>
                     {
                       arrr2?.map((item: any) => 
-                        item?.is_active === null&&
+                        item?.is_active == null&&
                           
                               <div key={item?.id}>
                               <label key={item?.id} >{item?.column_name}</label>

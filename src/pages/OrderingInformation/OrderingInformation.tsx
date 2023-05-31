@@ -95,7 +95,6 @@ export const OrderingInformation = () => {
     }
   }, [final, total])
   
-  
   return (
     <div className='Order'>
       {final&&total ? <FinalOrder total={total}/> :
