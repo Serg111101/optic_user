@@ -27,9 +27,12 @@
 
     }
     .color_option {
+        width: 80%;
+        margin: 0 auto;
         display: grid;
         grid-template-columns: auto auto auto;
         align-items: center;
+        justify-content: space-between;
         .color_div {
             margin-top: 40px;
             .color_div_image {
@@ -55,7 +58,9 @@
                     color:white;
                     position: absolute;
                     top: 100px;
-
+                    border-radius: 8px;
+                    font-weight: 500;
+                    letter-spacing: 1px;
                 }
             }
         }

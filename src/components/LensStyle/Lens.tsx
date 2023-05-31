@@ -4,7 +4,6 @@ import { Color } from "../ColorStyles";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import { fetchMirrorCoating } from "../../store/action/MirrorCoatingAction";
 import { fetchAntiReflectiveCoating } from "../../store/action/AntiReflectiveCoatingAction";
-// import { EditOutlined, CloseOutlined, CheckSquareOutlined, DeleteOutlined } from "@ant-design/icons";
 
 export default function Lens() {
 
@@ -13,12 +12,12 @@ export default function Lens() {
 
   
   const dispatch = useAppDispatch()
-  const [name, setName] = useState('Mirror Coating')
-  const [name1, setName1] = useState('Anti-Reflective Coating')
+  const [name] = useState('Mirror Coating')
+  const [name1] = useState('Anti-Reflective Coating')
   useEffect(() => {
     dispatch(fetchMirrorCoating(name));
     dispatch(fetchAntiReflectiveCoating(name1))
-  }, [dispatch]);
+  }, [dispatch,name,name1]);
   const [Show, setShow] = useState(false);
 
   return (
@@ -53,11 +52,11 @@ export default function Lens() {
         </div>
 
         <div className="classBottomm">
-          {AntiReflectiveCoating?.map((el, index) => (
+          {AntiReflectiveCoating?.map((el) => (
             <div className="classBottom" key={el.id}>
               
                   <div className="divImage1">
-                    <img src={el.image} alt="Image" />
+                    <img src={el.image} alt="images" />
                   </div>
 
                   <div className="Lens_textaBottom">

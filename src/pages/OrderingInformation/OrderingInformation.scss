@@ -1,9 +1,12 @@
 .Order {
     width: 90%;
-    margin: 100px 0 0px 0;
+    margin: 100px auto 0 auto;
+    min-height: 800px;
 
     .step {
+        margin-bottom: 30px;
         display: flex;
+        
         
         .step1,.step2,.step3,.step4,.step5 {
             width: 20%;
@@ -11,8 +14,8 @@
             justify-content: space-around;
             align-items: center;
             .klor {
-                width: 100px;
-                height: 100px;
+                width: 70px;
+                height: 70px;
                 border-radius: 100%;
                 background-color: gray;
                 color: white;
@@ -25,6 +28,7 @@
             hr {
                 width: 55%;
                 height: 10px;
+                border-radius: 27px;
                 background-color: gray;
             }
         }
@@ -35,479 +39,99 @@
         }
         .ak{
             .klor{
-                background-color: greenyellow;
+                background-color: green;
             }
             hr{
-                background-color: greenyellow;
+                background-color: blue;
             }
         }
     }
+   
+}
+
+@media (max-width:769px) {
+    .Order{
+        .step{
+            .step1,.step2,.step3,.step4,.step5{
+
+                hr{
+                    width: 40%;
+                    height: 5px;
+                }
+                .klor {
+                    width:50px;
+                    height: 50px;
+                    border-radius: 100%;
+                   span{
+                    svg{
+                        width: 1.5rem;
+                    }
+                   } 
+                }
+            } 
+
+        } 
+    }
+    
+    
+}
+@media (max-width:500px) {
+    .Order{
+        .step{
+            .step1,.step2,.step3,.step4,.step5{
+
+                hr{
+                    width: 40%;
+                    height: 5px;
+                }
+                .klor {
+                    width:40px;
+                    height: 40px;
+                    border-radius: 100%;
+                   span{
+                    svg{
+                        width: 1.2rem;
+                    }
+                   } 
+                }
+            } 
+
+        } 
+    }
+
+   
+}
+@media (max-width:400px) {
+    
+
+   
+}
+@media (max-width:350px) {
+    .Order{
+        .step{
+            .step1,.step2,.step3,.step4,.step5{
+
+                hr{
+                    width: 35%;
+                    height: 3px;
+                }
+                .klor {
+                    width:30px;
+                    height: 30px;
+                    border-radius: 100%;
+                   span{
+                    svg{
+                        width: 1rem;
+                    }
+                   } 
+                }
+            } 
+
+        } 
+    }
+   
 }
 
 
 
 
-// .OrderingInformation {
-//     max-width: 1200px;
-//     margin: 90px auto;
-//     text-transform: uppercase;
-
-//     .Order {
-//         border: 1px solid #000;
-
-
-//         .head {
-//             display: flex;
-//             justify-content: center;
-//             flex-direction: column;
-//             align-items: center;
-//             text-align: center;
-
-//             img {
-//                 width: 300px;
-//                 height: 200px;
-//             }
-
-//             p {
-//                 width: 300px;
-
-//             }
-//         }
-
-//         input[type=text] {
-//             border-radius: 10px;
-//             margin-bottom: 10px;
-//             border-color: crimson;
-//             box-shadow: 5px 8px #888888
-//         }
-
-//         input[type=checkbox] {
-//             width: 20px;
-//             border-radius: 10px;
-//         }
-
-//         label {
-//             font-size: 14px;
-//             color: #888888;
-//         }
-
-//         .invoices {
-//             display: flex;
-//             width: 100%;
-
-//             .inv-box {
-//                 width: 60%;
-
-//                 .invoice {
-//                     margin-top: 20px;
-//                     height: 50px;
-//                     display: flex;
-//                     justify-content: center;
-//                     align-items: center;
-//                     background: black;
-//                     color: azure
-//                 }
-
-//                 form {
-//                     margin: 60px auto;
-//                     display: flex;
-//                     flex-direction: column;
-//                     justify-content: space-around;
-//                     width: 60%;
-//                 }
-//             }
-
-//             .inv-box1 {
-//                 width: 40%;
-
-
-
-//                 text-align: center;
-
-//                 h3 {
-//                     margin-top: 80px;
-//                 }
-
-//                 .invoice1 {
-//                     margin-top: 20px;
-//                     height: 50px;
-//                     display: flex;
-//                     justify-content: center;
-//                     align-items: center;
-//                     background: black;
-//                     color: azure
-//                 }
-
-//                 .checked {
-//                     display: flex;
-
-//                     form {
-//                         width: 50%;
-//                         display: flex;
-//                         flex-direction: column;
-//                         align-items: center;
-//                         margin-top: 20px;
-
-//                         div {
-//                             margin-top: 10px;
-//                             width: 56%;
-//                             display: flex;
-
-//                         }
-//                     }
-//                 }
-
-//                 .framecolor {
-//                     display: flex;
-//                     flex-direction: column;
-//                 }
-//             }
-//         }
-
-//         .frames {
-//             display: flex;
-//             width: 100%;
-
-//             .fram-box {
-//                 width: 50%;
-
-//                 .frame {
-//                     margin-top: 20px;
-//                     height: 50px;
-//                     display: flex;
-//                     justify-content: center;
-//                     align-items: center;
-//                     background: black;
-//                     color: azure
-//                 }
-
-//                 form {
-//                     margin: 20px auto;
-//                     display: flex;
-//                     flex-direction: column;
-//                     width: 60%;
-//                 }
-//             }
-
-//             .fram-box1 {
-//                 width: 50%;
-
-
-
-//                 text-align: center;
-
-//                 .frame1 {
-//                     margin-top: 20px;
-//                     height: 50px;
-//                     display: flex;
-//                     justify-content: center;
-//                     align-items: center;
-//                     background: black;
-//                     color: azure
-//                 }
-
-//                 .checked {
-//                     display: flex;
-
-//                     form {
-//                         width: 50%;
-//                         display: flex;
-//                         flex-direction: column;
-//                         align-items: center;
-
-//                         div {
-//                             margin-top: 10px;
-//                             width: 50%;
-//                             display: flex;
-
-//                         }
-//                     }
-//                 }
-
-//                 .framecolor {
-//                     display: flex;
-//                     flex-direction: column;
-
-//                     div {
-//                         display: flex;
-//                         width: 100%;
-//                         justify-content: center;
-//                         align-items: center;
-//                         margin-top: 8px;
-
-//                         label {
-//                             margin-right: 10px;
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-
-//         .lens {
-//             display: flex;
-//             width: 100%;
-
-//             .lens-box {
-//                 width: 100%;
-
-//                 .lensis {
-//                     display: flex;
-//                     justify-content: space-around;
-
-//                     .line {
-//                         border: 1px solid #888888;
-//                         margin-left: 0px;
-//                         margin-bottom: 30px;
-//                     }
-//                 }
-
-//                 .len {
-//                     margin-top: 20px;
-//                     height: 50px;
-//                     display: flex;
-//                     justify-content: center;
-//                     align-items: center;
-//                     background: black;
-//                     color: azure
-//                 }
-
-//                 form {
-//                     margin: 20px;
-//                     display: flex;
-//                     flex-direction: column;
-//                     width: 20%;
-
-//                     div {
-//                         margin-left: 60px;
-//                         margin-top: 8px;
-//                         width: 100%;
-//                         display: flex;
-
-//                     }
-//                 }
-//             }
-
-
-
-
-//             text-align: center;
-
-//             .lens1 {
-//                 margin-top: 20px;
-//                 height: 50px;
-//                 display: flex;
-//                 justify-content: center;
-//                 align-items: center;
-//                 background: black;
-//                 color: azure
-//             }
-
-//             .checked {
-//                 display: flex;
-
-//                 form {
-//                     width: 50%;
-//                     display: flex;
-//                     flex-direction: column;
-//                     align-items: center;
-
-//                     div {
-//                         margin-top: 10px;
-//                         width: 50%;
-//                         display: flex;
-
-//                     }
-//                 }
-//             }
-
-//             .framecolor {
-//                 display: flex;
-//                 flex-direction: column;
-//             }
-
-//         }
-
-//         .clip {
-//             display: flex;
-//             width: 100%;
-
-//             .clip-box {
-//                 width: 60%;
-//                 text-align: center;
-
-
-//                 .clipe {
-//                     margin-top: 20px;
-//                     height: 50px;
-//                     display: flex;
-//                     justify-content: center;
-//                     align-items: center;
-//                     background: black;
-//                     color: azure;
-//                 }
-
-//                 form {
-//                     margin: 20px auto;
-//                     display: flex;
-//                     flex-direction: column;
-//                     width: 40%;
-
-//                     div {
-//                         margin-top: 20px;
-//                         display: flex;
-//                         justify-content: space-around;
-//                         align-items: center;
-//                     }
-//                 }
-//             }
-
-//             .clip-box1 {
-//                 width: 40%;
-
-//                 .clipe1 {
-//                     margin-top: 20px;
-//                     height: 50px;
-//                     display: flex;
-//                     justify-content: center;
-//                     align-items: center;
-//                     background: black;
-//                     color: azure
-//                 }
-
-//                 .checked {
-//                     display: flex;
-//                     justify-content: center;
-
-//                     form {
-//                         width: 50%;
-//                         display: flex;
-//                         flex-direction: column;
-//                         margin-top: 40px;
-
-//                         div {
-//                             margin-top: 10px;
-//                             width: 100%;
-//                             display: flex;
-//                             align-items: center;
-
-//                             label {
-//                                 margin-left: 10px;
-//                             }
-//                         }
-//                     }
-//                 }
-
-//             }
-//         }
-
-//         .office {
-//             display: flex;
-//             width: 100%;
-
-//             .office-box {
-//                 width: 100%;
-
-//                 .offic {
-//                     display: flex;
-//                     justify-content: space-around;
-//                 }
-
-//                 .off {
-//                     margin-top: 20px;
-//                     height: 50px;
-//                     display: flex;
-//                     justify-content: center;
-//                     align-items: center;
-//                     background: black;
-//                     color: azure
-//                 }
-
-//                 form {
-//                     margin: 20px;
-//                     display: flex;
-//                     flex-direction: column;
-//                     width: 25%;
-
-//                     div {
-//                         display: flex;
-//                         justify-content: space-between;
-//                         align-items: center;
-//                     }
-//                 }
-//             }
-
-
-
-//         }
-
-//         .total {
-//             width: 100%;
-//             display: flex;
-
-//             .total-box {
-//                 display: flex;
-//                 flex-direction: column;
-//                 align-items: center;
-//                 width: 70%;
-//                 background: #000;
-//                 color: white;
-//                 font-size: 15px;
-//             }
-
-//             .total-box1 {
-//                 width: 30%;
-//                 color: #000;
-//                 align-items: center;
-//                 border: 1px solid #000;
-//             }
-//         }
-//     }
-
-//     p {
-//         color: #888888;
-//         text-align: center;
-
-//     }
-
-//     button {
-//         margin-left: 90%;
-//         padding: 10px;
-//         background: #888888;
-//         border: none;
-//         color: #fff;
-//         border-radius: 10px
-//     }
-// }
-
-// @media screen and (max-width: 800px) {
-//     .invoices {
-//         flex-direction: column;
-//         align-items: center
-//     }
-
-//     .frames {
-//         flex-direction: column;
-//         align-items: center
-//     }
-
-//     .lens {
-//         flex-direction: column;
-//         align-items: center
-//     }
-
-//     .clip {
-//         flex-direction: column;
-//         align-items: center
-//     }
-
-//     .offic {
-
-//         flex-direction: column;
-//         align-items: center;
-//     }
-
-//     .total {
-//         flex-direction: column;
-//         align-items: center
-//     }
-// }

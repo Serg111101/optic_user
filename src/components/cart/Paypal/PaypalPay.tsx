@@ -9,7 +9,6 @@ import {
   usePayPalScriptReducer,
 } from "@paypal/react-paypal-js";
 import { TailSpin } from "react-loader-spinner";
-    
 export const PaypalPay = (props:any) => {
   console.log(props);
   
@@ -19,8 +18,11 @@ export const PaypalPay = (props:any) => {
   const [transactionData, setTransactionData] = useState();
   const [errorMsg, setErrorMsg] = useState();
   const [orderID, setOrderID] = useState(false);
-
+  const order:any = localStorage.getItem("fedexShip")
+  const orders = JSON.parse(order)
+  const [okey,setOkay] =useState(false)
   useEffect(() => {
+   
     if (success) {
         console.log('Order successful . Your order id is--', orderID);
     }
@@ -36,7 +38,8 @@ export const PaypalPay = (props:any) => {
             ],
         }).then((orderID:any) => {
                 setOrderID(orderID);
-                alert("Transaction Complete. Transaction ID - "+orderID)
+               
+                // alert("Transaction Complete. Transaction ID - "+orderID)
 
                 return orderID;
             });
@@ -45,7 +48,7 @@ export const PaypalPay = (props:any) => {
 
     const onApprove = (data:any, actions:any) => {
       console.log(actions);
-        return actions.order.capture().then((details:any)=>console.log(details))
+        return actions.order.capture().then((details:any)=> setOkay(details))
     };
   
 
@@ -95,18 +98,25 @@ export const PaypalPay = (props:any) => {
  
 
 
-    return (
-      <button
-        onClick={submitHandler}
-        className="btn btn-primary"
-        style={{width:"320px", height:"50px", background:"#009c74", color:"white"}}
-      >
-        Pay
-      </button>
-    );
+    // return (
+    //   <button
+    //     onClick={submitHandler}
+    //     className="btn btn-primary"
+    //     style={{width:"320px", height:"50px", background:"#009c74", color:"white"}}
+    //   >
+    //     Payhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+    //   </button>
+    // );
   };
-  return (
-    <PayPalScriptProvider
+  return (<div className="paypay">
+  
+   {okey ? 
+         <div className="success">
+          <h4>Your tracking Number: {orders[1]?.trackingNumber}</h4>
+           <a href={orders[1]?.labelDocument} target="_blank"> Your labelDocument  </a> 
+        </div>
+
+    : <PayPalScriptProvider
     options={{
       "client-id": props.clientID,
       "data-client-token": props.clientToken,
@@ -207,6 +217,10 @@ export const PaypalPay = (props:any) => {
           </div>
         </section>
       </PayPalHostedFieldsProvider> */}
-    </PayPalScriptProvider>
+    </PayPalScriptProvider>}
+  
+  </div>
+ 
+    
   );
 };

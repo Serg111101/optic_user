@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     text-transform: uppercase;
-
+    height: 60vh;
 
 }
 
@@ -14,29 +14,48 @@
     margin:80px auto;
     width: 80%;
 
-    table {
-    
+    .table{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        margin: 100px auto;
         border:1px solid black;
-        
-        thead th {
-            background-color: #202932;
-            color: #fff;
-            border: 1px solid #202932;
-            padding: 5px;
+      
+        width: 50%;
+        align-items: center;
+        .provider{
+            div{
+                background-color: #202932;
+                color: #fff;
+                border: 1px solid #c8d5e2;
+                padding: 5px;
+                text-align: center;
+                padding: 10px;
+            }
+            
         }
-        tbody th{
-            background-color: #202932;
-            color: #fff;
-            border: 1px solid #202932;
-            padding: 5px;
+        .ShipMethods{
+            div{
+                div,p{
+                    background-color: #202932;
+                    color: #fff;
+                    border: 1px solid #c8d5e2;
+                    padding: 5px;
+                    text-align: center; 
+                    padding: 10px;
+                }
+            }
+            div{
+                p:hover{
+                    background-color: #517396;
+                    color: #fff;
+                    border: 1px solid #202932;
+                    padding: 10px;
+                }
+            }
         }
-        tbody th:nth-child(n + 2):hover{
-            background-color: #517396;
-            color: #fff;
-            border: 1px solid #202932;
-            padding: 5px;
-        }
-      }
+    }
+
+ 
    
     
 
@@ -44,7 +63,7 @@
 .shippo1{
     display: flex;
     right: 300px;
-    top: 130px;
+    top: 500px;
     position: fixed; 
     margin:0px auto;
     
@@ -65,112 +84,7 @@
     }
 
 }
-.asa{
-    .alo{
-        .shipps:hover{
-            background: rgb(206, 204, 209);
-           box-shadow: 10px 10px 10px  rgb(65, 41, 41);
-           .save{
-            background: rgb(102, 96, 110);
-            box-shadow: 10px 10px 10px  rgb(65, 41, 41);
-            transform: scale(1.2);
-           }
-           p{
-            white-space: normal;
-            overflow: visible;
-            // width: 100%;
-           }
-        }
-    }
-}
 
-.alos{
-    
-        .fed:hover{
-            background: rgb(206, 204, 209);
-           box-shadow: 10px 10px 10px  rgb(65, 41, 41);
-           .save{
-            background: rgb(102, 96, 110);
-            box-shadow: 10px 10px 10px  rgb(65, 41, 41);
-            transform: scale(1.2);
-           }
-           p{
-            white-space: normal;
-            overflow: visible;
-            // width: 100%;
-           }
-        }
-    
-}
-
-
-.asa{
-
-       h2{
-        text-align: center;
-        color: rgb(18, 19, 17);
-    }
-
-    .alo{
-    display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
-    margin:20px auto;
-    grid-gap: 30px;
-    .shipps{
-        display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 5px;
-    border-radius: 10px;
-    justify-content: space-between;
-    background: #F6F1F1; 
-    box-shadow: 5px 5px 5px  rgb(224, 94, 94);
-    height: 250px;
-
-    span{
-        font-size: 13px;
-        color: rgb(20, 14, 15);
-        padding: 10px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    p{
-        font-size: 12px;
-        color: rgb(20, 14, 15);
-        padding: 10px;
-        white-space: nowrap;
-        width: 300px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    div{
-        display: flex;
-        align-items: center;
-
-        label{
-            font-size: 17px;
-            color: rgb(15, 11, 12);
-            width: 200px;
-            line-height: 14px;
-        }
-        input{
-            width: 20px;
-        }
-    }
-    .save{
-        background: rgb(192, 117, 117);
-        width: 100px;
-        height: 40px;
-        border-radius: 5px;
-        color:rgb(5, 4, 4);
-        transition: 400ms ease-in-out;
-    }
-
-    }
-  
-    }
-}
 .shipp{
   
 
@@ -217,7 +131,7 @@
 }
 
 .shippo_contents{
-    padding: 20px;
+    
     border-radius: 12px;
     background:white;
     margin: 0 auto;
@@ -238,7 +152,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+   h1{
+    margin-top: 20px;
+   }
     .orrder{
         display: grid;
         grid-template-columns: auto auto auto;
@@ -248,7 +164,8 @@
         color: rgb(20, 14, 15);
         padding: 10px;
         text-transform: uppercase;
-
+        
+        
         .method{
             display: flex;
             align-items: center;
@@ -260,7 +177,64 @@
                 object-fit: cover;
             }
         }
+       
 
+    }
+    .pickup1{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 30px;
+        margin-bottom: 300px;
+        label{
+            font-size:15px;
+            color:red;
+            margin-right: 30px;
+        }
+        button{
+            margin-left: 20px;
+            background-color: rgb(219, 72, 72);
+            border-radius: 10px;
+            width: 100px;
+            height: 40px;
+       
+         }
+         button:hover{
+            background: rgb(102, 96, 110);
+            box-shadow: 10px 10px 10px  rgb(65, 41, 41);
+            transform: scale(1.2);
+    
+    
+         }
+    }
+    .pickup{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 30px;
+       
+        label{
+            font-size:15px;
+            color:red;
+            margin-right: 30px;
+        }
+        button{
+            margin-left: 20px;
+            background-color: rgb(219, 72, 72);
+            border-radius: 10px;
+            width: 100px;
+            height: 40px;
+       
+         }
+         button:hover{
+            background: rgb(102, 96, 110);
+            box-shadow: 10px 10px 10px  rgb(65, 41, 41);
+            transform: scale(1.2);
+    
+    
+         }
     }
 
 .inputer{
@@ -298,63 +272,17 @@
      button{
         background-color: rgb(219, 72, 72);
         border-radius: 10px;
+        width: 100px;
+        height: 40px;
      }
      button:hover{
-        background-color: rgb(207, 197, 102);
-        color:brown;
-        border-radius: 10px;
-        padding: 15px 20px;
-        box-shadow: 10px 10px 10px rgba(162, 9, 9, 0);
+        background: rgb(102, 96, 110);
+        box-shadow: 10px 10px 10px  rgb(65, 41, 41);
+        transform: scale(1.2);
+
+
      }
    
     }
 }
 
-.users{
-    display: flex;
-    width: 50%;
-    justify-content: space-evenly;
-    margin-left: 25%;
-
-    .user1{
-        display: flex;
-        input{
-            margin-left: 4px;
-        }
-    }
-
-    .user2{
-        display: flex;
-       input{
-        margin-left: 4px;
-       }
-    }
-}
-
-.disable[type=text]:disabled{
-background: #dddddd;
-}
-
-.btn5{
-    margin-left: 90%;
-    margin-top:-50px;
-    padding: 10px;
-    padding-bottom: 20px;
-    background: black;
-    color:aliceblue;
-    width: 60px;
-    height: 40px;
-
-}
-
-.adds{
-    margin-left: 37%;
-   font-size: 16px;
-    padding: 10px;
-    padding-bottom: 20px;
-    background: black;
-    color:aliceblue;
-    width: 60px;
-    height: 40px;
-
-}

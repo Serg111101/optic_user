@@ -1,19 +1,11 @@
 
-// import React from 'react'
 import "./modal.scss"
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRef, useEffect } from "react";
 import axios from 'axios';
-import { Link } from "react-router-dom";
 
-// const USER_REGEX = /^[A-z][A-z0-9-_][@.]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-// const REGISTER_URL = '/register';
-
-
-
-
 
 
 function Modal({active, setActive,}:any) {
@@ -26,18 +18,18 @@ function Modal({active, setActive,}:any) {
 
     const [user, setUser] = useState<any>('');
     const [validName, setValidName] = useState(false);
-    const [userFocus, setUserFocus] = useState(false);
+    // const [userFocus, setUserFocus] = useState(false);
 
     const [pwd, setPwd] = useState('');
     const [validPwd, setValidPwd] = useState(false);
-    const [pwdFocus, setPwdFocus] = useState(false);
+    // const [pwdFocus, setPwdFocus] = useState(false);
 
     const [matchPwd, setMatchPwd] = useState('');
     const [validMatch, setValidMatch] = useState(false);
-    const [matchFocus, setMatchFocus] = useState(false);
+    // const [matchFocus, setMatchFocus] = useState(false);
 
-    const [errMsg, setErrMsg] = useState('');
-    const [success, setSuccess] = useState(false);
+    // const [errMsg, setErrMsg] = useState('');
+    // const [success, setSuccess] = useState(false);
 
     useEffect(() => {
         userRef.current.focus();
@@ -53,7 +45,7 @@ function Modal({active, setActive,}:any) {
     }, [pwd, matchPwd])
 
     useEffect(() => {
-        setErrMsg('');
+        // setErrMsg('');
     }, [user, pwd, matchPwd])
 
     const handleSubmit = async (e:any) => {
@@ -62,25 +54,20 @@ function Modal({active, setActive,}:any) {
         // const v1 = USER_REGEX.test(user);
         const v2 = PWD_REGEX.test(pwd);
         if (!v2) {
-            setErrMsg("Invalid Entry");
+            // setErrMsg("Invalid Entry");
             return;
         }
-        console.log(JSON.stringify({ user, pwd }),);
         try {
             
-            const response:any = await  axios({
+            await  axios({
                 method: 'post',
-                url: 'http://localhost:3000/api/v1/users/add',
+                url: 'http://localhost:3003/api/v1/users/add',
                 data: {
                   email: user,
                   password: pwd
                 }
               });
-            console.log(response)
-            // TODO: remove console.logs before deployment
-            console.log(JSON.stringify(response?.data));
-            console.log(JSON.stringify(response))
-            setSuccess(true);
+            // setSuccess(true);
             //clear state and controlled inputs
             setUser('');
             setPwd('');
@@ -88,11 +75,11 @@ function Modal({active, setActive,}:any) {
             navigate('/')
         } catch (err:any) {
             if (!err?.response) {
-                setErrMsg('No Server Response');
+                // setErrMsg('No Server Response');
             } else if (err.response?.status === 409) {
-                setErrMsg('Username Taken');
+                // setErrMsg('Username Taken');
             } else {
-                setErrMsg('Registration Failed')
+                // setErrMsg('Registration Failed')
             }
             errRef.current.focus();
         }
@@ -118,8 +105,8 @@ function Modal({active, setActive,}:any) {
                      required
                      aria-invalid={validName ? "false" : "true"}
                      aria-describedby="uidnote"
-                     onFocus={() => setUserFocus(true)}
-                     onBlur={() => setUserFocus(false)}
+                    //  onFocus={() => setUserFocus(true)}
+                    //  onBlur={() => setUserFocus(false)}
                  />
 
 
@@ -132,8 +119,8 @@ function Modal({active, setActive,}:any) {
                      required
                      aria-invalid={validPwd ? "false" : "true"}
                      aria-describedby="pwdnote"
-                     onFocus={() => setPwdFocus(true)}
-                     onBlur={() => setPwdFocus(false)}
+                    //  onFocus={() => setPwdFocus(true)}
+                    //  onBlur={() => setPwdFocus(false)}
                  />
 
 
@@ -147,8 +134,8 @@ function Modal({active, setActive,}:any) {
                      required
                      aria-invalid={validMatch ? "false" : "true"}
                      aria-describedby="confirmnote"
-                     onFocus={() => setMatchFocus(true)}
-                     onBlur={() => setMatchFocus(false)}
+                    //  onFocus={() => setMatchFocus(true)}
+                    //  onBlur={() => setMatchFocus(false)}
                  />
 
 

@@ -48,9 +48,7 @@ export const Login = () => {
 
 
 async function handleCallbackResponse(response:any) {
-    console.log('Encoded JWT ID token: ' + response.credential)
     const userObject:any = jwt_decode(response.credential);
-    console.log(userObject);
     setUser(userObject);
     // document.getElementById("signInDiv").hidden = true;
   
@@ -63,11 +61,10 @@ async function handleCallbackResponse(response:any) {
     
     const res = await axios({
       method: 'post',
-      url: 'http://localhost:3000/api/v1/auth/google/login',
+      url: 'http://localhost:3003/api/v1/auth/google/login',
     //   config,
       data: userObject
     });
-    console.log(res);
     const data=JSON.stringify(res.data)
     localStorage.setItem('auth',data)
     navigate('/')
@@ -98,7 +95,7 @@ async function handleCallbackResponse(response:any) {
     try {
         const response = await axios({
             method: 'post',
-            url: 'http://localhost:3000/api/v1/auth/login',
+            url: 'http://localhost:3003/api/v1/auth/login',
             data: {
                email:checkLogin,
                password:password
@@ -107,7 +104,6 @@ async function handleCallbackResponse(response:any) {
           const res = JSON.stringify(response.data)
           localStorage.setItem('response', res);
           localStorage.setItem('token', response.data.accessToken)
-          console.log(response);
         //   const resp= localStorage.getItem('response')
         //   navigate(from, { replace: true });
         //   const respons = JSON.parse(resp)

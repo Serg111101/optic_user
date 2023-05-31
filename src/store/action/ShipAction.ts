@@ -1,5 +1,5 @@
 import { Dispatch } from "@reduxjs/toolkit";
-import {  fetching, fetchFedexSuccess, fetchUspsSuccess2, fetchError } from "../slices/ShipSlice";
+import {  fetching, fetchFedexSuccess, fetchError } from "../slices/ShipSlice";
 import axios from "axios";
 
 
@@ -89,14 +89,12 @@ export const fetchFedexShip = ()=>{
       
       
             });
-            dispatch(fetchFedexSuccess(response));
-            console.log(response);
-      localStorage.setItem('fedexShip', JSON.stringify(response.data))
-            
+            dispatch(fetchFedexSuccess(response?.data));
+            console.log(response?.data);
+            localStorage.setItem('fedexShip', JSON.stringify(response.data))
 
         }
         catch(error){
-            console.log(error,'error');
             dispatch(fetchError(error as Error));
 
         }
@@ -129,11 +127,14 @@ export const fetchUspsShip = (arr2:any)=>{
           
           
                 });
+             console.log(response.data);
+             
+                dispatch(fetchFedexSuccess([response.data]));
                  const arr = [] 
-                dispatch(fetchUspsSuccess2(response?.data));
+                // dispatch(fetchUspsSuccess2(response?.data));
                 arr.push(response?.data[0].label_url);
                 arr.push(response?.data[0].object_id);
-                arr.push(response?.data[1].userOrderId);
+                arr.push(response?.data[0].userOrderId);
 
                 localStorage.setItem('shippoShip', JSON.stringify(arr))
  
@@ -141,7 +142,6 @@ export const fetchUspsShip = (arr2:any)=>{
     
             }
             catch(error){
-                console.log(error,'error');
                 dispatch(fetchError(error as Error));
             }
     

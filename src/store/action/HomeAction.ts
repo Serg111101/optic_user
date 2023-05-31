@@ -13,12 +13,10 @@ export const fetchHome = () => {
                 arr.push(response.data[key])
             }
             dispatch(fetchSuccess4(arr));
-            console.log(arr);
             
             
         }
         catch(error){
-            // console.log(error,'error');
             
             dispatch(fetchError4(error as Error));
         }

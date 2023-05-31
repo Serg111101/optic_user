@@ -17,7 +17,7 @@ export function Footer() {
 
 
   return (
-    <div className="footer" style={{background:LoginStyle?.loginBg_color}}>
+    <div className="footer" style={{background:LoginStyle?.loginBg_color,borderTop:`2px solid ${LoginStyle?.buttonBg_color} `}}>
       <footer className="containerFooter">
         <div className="linkIcons">
           <div className="link1">

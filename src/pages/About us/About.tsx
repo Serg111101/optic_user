@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import "./About.scss";
 import { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
@@ -9,13 +8,11 @@ export function About() {
 
   const {About} = useAppSelector(state=>state.About)
   const dispatch = useAppDispatch()
-  const navigate=useNavigate()
-  const [name, setName] = useState('Products and Services')
+  const [name] = useState('Products and Services')
 
   useEffect(()=>{
     dispatch(fetchAbout(name))
-  },[dispatch])
-  console.log(About);
+  },[dispatch,name])
   
   return (
     <div className="about">

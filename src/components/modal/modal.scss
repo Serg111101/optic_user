@@ -11,7 +11,6 @@
     justify-content: center;
     transform:scale(0);
     opacity: 0.9;
-    // pointer-events: none;
     transition: 0.5s;
 
 
@@ -51,11 +50,9 @@
     flex-direction: column;
     width: 360px;
     padding: 30px;
-    // margin-top: 20px;
     margin: 0 auto;
     
     input{
-        // margin-bottom: 5px;
         height: 30px;
         border: 1px solid black;
     }
@@ -67,8 +64,6 @@
     cursor: pointer;
     justify-content: space-evenly;
     align-items: center;
-    // margin-left: 25%;
-    // margin-top: 5%;
     margin: 0 auto;
     transform: translateY(50px);
      button{
@@ -84,17 +79,11 @@
     display: flex;
     width: 300px;
     justify-content: space-evenly;
-    // align-items: center;
-    // margin-left: 25%;
     margin: 0 auto;
 
     .user1{
         display: flex;
-        //  justify-content: center;
-
-
         input{
-            // margin-left: 4px;
             margin: 0 auto;
             width: 16px;
             transform: translateX(5px); 
@@ -104,7 +93,6 @@
     .user2{
         display: flex;
        input{
-        // margin-left: 4px;
         margin: 0 auto;
         width: 16px;
         transform: translateX(5px); 

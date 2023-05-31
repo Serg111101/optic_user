@@ -12,16 +12,18 @@ export const Commit = ({ setCommit }: any) => {
 
     async function SendMessage() {
         if (name === '' || email === '' || text === '') {
-            if(name === '' ){setErorrName(true)}
-            if(email === '' ){setErorrEmail(true)}
-            if(text === '' ){setErorrText(true)}
+            name === '' &&setErorrName(true);
+            email === '' && setErorrEmail(true);
+            text === '' && setErorrText(true)
         } else {
             const newMessage = {
                 name: name,
                 email: email,
                 message: text
             }
-            await axios.post('http://localhost:3000/api/v1/users/sendMessage', newMessage)
+            await axios.post('http://localhost:3003/api/v1/users/sendMessage', newMessage)
+            setCommit(false)
+            
         }
     }
 
@@ -41,5 +43,3 @@ export const Commit = ({ setCommit }: any) => {
         </div>
     )
 }
-
-//kapov glnenq axpers

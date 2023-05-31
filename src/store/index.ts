@@ -6,8 +6,8 @@ import AntiReflectiveCoatingReducer from './slices/AntiReflectiveCoatingSlice';
 import MirrorColorsReducer from './slices/MirrorColorsSlice';
 import ordersReducer from "./slices/OrderSlice";
 import AboutReducer from './slices/AboutSlice'
-// import GovernmetMembersFullInfoReducer from './slice/GovernmetMembersFullInfo';
-// import  uniqueProduct  from './slice/UniqueProduct';
+import ThemesReducer from './slices/ThemesSlice';
+import  ClipReducer  from './slices/ClipSlice';
 import  HomeReduce  from './slices/HomeSlice';
 // import ordersReducer from "./slice/OrderInformationSlice";
 import uspsReducer from "./slices/RateSlice"
@@ -28,6 +28,10 @@ export const store = configureStore({
     MirrorCoating:MirrorCoatingReducer,
     AntiReflectiveCoating:AntiReflectiveCoatingReducer,
     MirrorColors:MirrorColorsReducer,
+    orders: ordersReducer,
+    About:AboutReducer,
+    Themes:ThemesReducer,
+    Clip:ClipReducer,
     usps:uspsReducer,
     create:createReducer,
     fedex:fedexReducer,
@@ -37,8 +41,6 @@ export const store = configureStore({
     uspsorder:uspsorder,
     UspsShip:UspsShip,
     FedexShip:FedexShip,
-    orders: ordersReducer,
-    About:AboutReducer,
 
     // GovernmetMembersFullInfo:GovernmetMembersFullInfoReducer,
     // UniqueProduct:UniqueProductReducer,

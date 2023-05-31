@@ -12,7 +12,7 @@ const StripeChechkout = () => {
 
     useEffect(() => {
     console.log("inside handleGetJson");
-    fetch('/config')
+    fetch('http://localhost:3000/api/v1/stripe/config')
     .then(async (response) => {
       console.log(response);
       
@@ -22,11 +22,12 @@ const StripeChechkout = () => {
       setStripePromise(loadStripe(publishableKey));
     })
     .then((messages) => {console.log("messages");});
+    
     setMek(knopka())
    
     }, []);
 
-      console.log(stripePromise);
+      
       
   return (
     <div>

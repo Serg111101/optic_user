@@ -7,7 +7,6 @@ import axios from "axios";
 export const fetchUspsorder = (ShipId:any)=>{
    
     return async (dispatch:Dispatch)=>{
-        console.log(ShipId);
         
         try{ 
           
@@ -21,7 +20,6 @@ export const fetchUspsorder = (ShipId:any)=>{
             
         }
         catch(error){
-            console.log(error,'error');
             
             dispatch(fetchError(error as Error));
         }
