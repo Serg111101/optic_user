@@ -61,7 +61,7 @@ async function handleCallbackResponse(response:any) {
     
     const res = await axios({
       method: 'post',
-      url: 'http://localhost:3003/api/v1/auth/google/login',
+      url: 'http://localhost:3000/api/v1/auth/google/login',
     //   config,
       data: userObject
     });
@@ -95,7 +95,7 @@ async function handleCallbackResponse(response:any) {
     try {
         const response = await axios({
             method: 'post',
-            url: 'http://localhost:3003/api/v1/auth/login',
+            url: 'http://localhost:3000/api/v1/auth/login',
             data: {
                email:checkLogin,
                password:password

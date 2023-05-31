@@ -89,7 +89,7 @@ export default function FinalOrder({ total }: any) {
   console.log(active);
   
   async function SaveFile(){
-    const res:any=await axios.post('http://localhost:3003/api/v1/superAdmin/insertValues',total)
+    const res:any=await axios.post('http://localhost:3000/api/v1/superAdmin/insertValues',total)
     console.log(res);
       
   }

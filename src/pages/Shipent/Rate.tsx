@@ -9,90 +9,76 @@ import { fetchFedexGet } from "../../store/action/RateAction";
 import { useNavigate } from "react-router-dom";
 import { Country, State, City } from 'country-state-city';
 import { fetchFedexShip, fetchUspsShip } from "../../store/action/ShipAction";
-
+import axios from "axios"
 import Select from "react-select";
 
 const Shipment = () => {
   const dispatch = useAppDispatch()
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   const { usps } = useAppSelector(state => state.usps)
-  const { fedex }:any = useAppSelector(state => state.fedex)
-  // const {create} = useAppSelector(state => state.create)
+  const { loading, fedex }: any = useAppSelector(state => state.fedex)
+  const { create } = useAppSelector(state => state.create)
   const { uspsGet } = useAppSelector(state => state.uspsGet)
   const { fedexGet } = useAppSelector(state => state.fedexGet)
   const [Name, setName] = useState('');
   const [company, setCompany] = useState('');
   const [street1, setStreet1] = useState('');
-  const [fedexing, setFedexing] = useState<any>('');
+  const [fedexing, setFedexing] = useState<any>();
   const [city, setCity] = useState<any>('');
   const [state, setState] = useState<any>('')
   const [zip, setZip] = useState('')
   const [country, setCountry] = useState<any>('')
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
-  const [lenght, setLenght] = useState('');
-  const [widht, setWidht] = useState('')
-  const [height, setHeight] = useState('')
-  const [unit, setUnit] = useState<any>('')
-  const [weight, setWeight] = useState('')
+  const [postser, setPostse] = useState('service is not available');
   const [mass, setMass] = useState<any>('')
+  const [shippMethod, setShippMethod] = useState<any>()
   const [fedexs, setFedexs] = useState<any>({
     fedex: true,
     UPS: true
   })
-  const [ship, setShip]=useState<any>()
-  const [porj, setPorj]=useState<boolean>()  
-  const units = [
-    { value: "cm", label: "cm" },
-    { value: "in", label: "in" },
-    { value: "ft", label: "ft" },
-    { value: "m", label: "m" },
-    { value: "mm", label: "mm" },
-    { value: "yd", label: "yd" },
-  ]
-  const masss = [
-    { value: "G", label: "g" },
-    { value: "KG", label: "kg" },
-    { value: "LB", label: "lb" },
-    { value: "OZ", label: "oz" },
-  ];
-  // const [rate, SetRate]=useState<boolean>(false)
-  // const [crate,setCrate] = useState()
+  const [ship, setShip] = useState<any>()
+  const [porj, setPorj] = useState<boolean>()
 
-  useEffect(()=>{
- 
-  dispatch(fetchUspsGet());
+  useEffect(() => {
+
+    dispatch(fetchUspsGet());
     dispatch(fetchFedexGet())
-    },[])
-    
-useEffect(()=>{
-setShip(usps)
-setPorj(true)
-},[])
+    name()
+  }, [dispatch])
 
-useEffect(()=>{
-  setFedexing(fedex)
-  setPorj(true)
-    },[])
+  useEffect(() => {
+    setShip(usps)
+  }, [usps])
 
-useEffect(()=>{
-setShip(uspsGet)
-setPorj(true)
-  },[])
+  useEffect(() => {
+    setFedexing(fedex)
+  }, [fedex])
 
-  useEffect(()=>{
+  useEffect(() => {
+    setShip(uspsGet)
+  }, [uspsGet])
+
+  useEffect(() => {
     setFedexing(fedexGet)
-    setPorj(true)
-  },[])
-   let headArr: any = [];
-  
-      if(ship?.length > 0){
-      const provider = ship.map((item:any)=> {
-       return item.provider
-      })
-      removeDuplicates(provider)
-    }
-   function removeDuplicates(arr1: any[]) {
+  }, [fedexGet])
+
+  console.log(fedexing);
+
+
+  const headArr: any = [];
+
+  if (fedexing?.length > 0) {
+    headArr.push("Fedex")
+  }
+  if (ship?.length > 0) {
+    const provider = ship.map((item: any) => {
+      return item.provider
+    })
+    removeDuplicates(provider)
+  }
+  function removeDuplicates(arr1: any[]) {
+
     for (let i = 0; i < arr1.length; i++) {
       if (!headArr.includes(arr1[i])) {
         headArr.push(arr1[i]);
@@ -101,10 +87,18 @@ setPorj(true)
     return headArr;
   }
 
+  async function name() {
+    const response = await axios.get('http://localhost:3000/api/v1/users/shipMethods');
+    console.log(response.data);
+    setShippMethod(response.data)
+
+  }
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    dispatch(fetchFedex( ))
-      dispatch(fetchUsps(
+    if (pay?.length === 0) {
+      await dispatch(fetchFedex())
+      await dispatch(fetchUsps(
 
         [{
           name: Name,
@@ -116,97 +110,162 @@ setPorj(true)
           country: country.name,
           phone: phone,
           email: email
-        },
-        {
-          height: height,
-          distance_unit: unit.value,
-          length: lenght,
-          width: widht,
-          weight: weight,
-          mass_unit: mass.value.toLowerCase()
         }
         ]
       ))
+
+
+    }
+    for (let i = 0; i < pay.length; i++) {
+      if (pay[i] === "Ship in Fedex") {
+        await dispatch(fetchFedex())
+
+      }
+      if (pay[i] === "Ship in UPS"||pay[i] === "Ship in USPS") {
+        await dispatch(fetchUsps(
+
+          [{
+            name: Name,
+            company: company,
+            street1: street1,
+            city: city.name,
+            state: state.name,
+            zip: zip,
+            country: country.name,
+            phone: phone,
+            email: email
+          }
+          ]
+        ))
+      }
+
+    }
+
+    setPorj(false)
   }
-  // async function addShip(e:any,item:any){
-  //   e.preventDefault()
-  //   // localStorage.removeItem('shipId')
-  //  await dispatch(fetchCreate(item))
+  async function addShip(e: any, item: any) {
+    e.preventDefault()
+    console.log(item);
 
-  // // if(item?.provider){
-  // //   await dispatch(fetchUspsShip(item))
- 
- 
-  // //  }else{
- 
-  // //   await dispatch(fetchFedexShip())
-    
- 
-  // //  }
-  //   navigate('/Pay')
-  // }
+    // localStorage.removeItem('shipId')
+    await dispatch(fetchCreate(item))
 
- 
+    if (item?.provider) {
+      await dispatch(fetchUspsShip(item))
+
+
+    } else {
+
+      await dispatch(fetchFedexShip())
+
+
+    }
+    navigate('/Pay')
+  }
+  const [pay, setPay] = useState<any>([])
+
+  async function addShiping(n: any) {
+    console.log(n);
+
+    if (pay.length === 0) {
+
+      setPay([n])
+    }
+    pay.map((el: any, index: any) => {
+      if (el === n) {
+        pay.splice(index, 1)
+
+        setPay(pay)
+      } else {
+        setPay([...pay, n])
+      }
+    })
+
+
+  }
+  console.log(pay);
+
 
 
   return (
     <div className={'shippo_box'}>
-      {/* {loading?<div>loading...........</div>:<> */}
       {
-        porj ? <div>
-
-        <div  className="shippo">
-           <h2>provider Fedex</h2>
-           <div className="alos">
-          {fedexing.length>0 && fedexing?.map((item:any,index:any)=><div className="fed" key={index}>
-            <span>estimated_days{item?.serviceDescription?.description}</span>
-            <p>duration_terms {item?.serviceType}</p>
+        !porj ? <>
+          {loading ? <div>Loading....</div> :
             <div>
-           <label htmlFor={item?.ratedShipmentDetails}> amount {item?.ratedShipmentDetails[0]?.totalNetFedExCharge} {item?.ratedShipmentDetails[0]?.currency}</label>
-           <input type="radio" name="drone" id={item.object_id}  />
-            </div>
-      
-        {/* <button className="save" onClick={(e)=>{addShip(e, item)}} >Save</button> */}
 
-          </div>)
+              <div className="shippo">
 
-          }    </div>      
-          {headArr.length >= 0 && headArr?.map((el:any)=> <div key={el} className="asa">
-            <h2>{el}</h2>
-            <div className="alo">
-            {ship.length > 0 && ship.map((item: any) => item.provider === el&& <div className="shipps" key={item.object_id}>
-  
-        
-        <span>estimated_days {item.estimated_days}</span>
-        <p>duration_terms {item.duration_terms}</p>
-        <div>   
-        <label htmlFor={item.object_id}> amount {item.amount} {item.currency}</label>
-        <input type="radio" name="drone" id={item.object_id}  />
-        
-        </div>
-        {/* <button className="save" onClick={(e)=>{addShip(e, item)}} >Save</button> */}
-          
-      </div>
-        )} </div> </div>)
-       }
-        </div>
-        <div className="shippo1">
-      <button onClick={()=>{setPorj(false)}}> Go Back</button>
 
-        </div>
-    
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>Provider</th>
+                      <th>Next Day</th>
+                      <th>Standart</th>
+                    </tr>
+                  </thead>
+                  <tbody>{
+                    headArr.map((el: any, index: any) => {
+                      return <tr key={index}><th>{el}</th>
+                        {fedexing?.length > 0 && fedexing.map((item: any, index: any) => {
+                          if (el == "Fedex" && item.serviceType == "STANDARD_OVERNIGHT" ||  item.serviceType === "FEDEX_GROUND") {
+                           if (item.serviceType == "STANDARD_OVERNIGHT" || item.serviceType == "FEDEX_GROUND") {
+                             return <>{item.serviceType == "STANDAD_OVERNIGHT" ||  item.serviceType == "FEDEX_GROUND" ?
+                          <th onClick={(e) => { addShip(e, item) }} key={index}>
+                            {item.ratedShipmentDetails[0].totalNetFedExCharge} {item.ratedShipmentDetails[0].currency}
+                          </th>: <th>dhs</th>
+                             } </>
+                           }
+                         }
+                       })}
+                        {ship?.length > 0 && ship.map((item: any, index: any) => {
+                          if (item.provider == el && el == "USPS") {
+                            if (item.duration_terms == "Delivery in 2 to 5 days." ||   item.duration_terms == "Overnight delivery to most U.S. locations.") {
+                            return <>{item.duration_terms == "Delivery in 2 to 5 days." || item.duration_terms == "Overnight delivery to most U.S. locations."?<th
+                          onClick={(e) => { addShip(e, item) }} key={index}>
+                          {item.amount} {item.currency}
+                        </th>:<th>{postser}</th>}</>
+                           }
+                         } else if (item.provider == el) {
+                           if (item.servicelevel.name == "Next Day Air®" || item.servicelevel.name == '3 Day Select®') {
+                             return <>{item.servicelevel.name == "Next Day Air®" || item.servicelevel.name == '3 Day Select®'?<th
+                          onClick={(e) => { addShip(e, item) }} key={index}>
+                          {item.amount} {item.currency}
+                        </th>:<th>{postser}</th>}</>
+                           }
+                         }
+                       })}
 
-          </div>:<>
+                      </tr>
+                    })
+                  }</tbody>
+                </table>
+              </div>
+              <div className="shippo1">
+                <button onClick={() => { setPorj(true) }}> Go Back</button>
+
+              </div>
+
+
+            </div>}</> : <>
           <div className={'shippo_contents'} onClick={e => e.stopPropagation()}>
             <div className='contain'>
               <span className='p1'><h1>ADD ORDERS INFORMATION</h1></span>
               <div className="orrder">
-              <label htmlFor="">FEDEX</label>
-              <input type="checkbox" onChange={(e) => { setFedexs({ UPS: e.target.checked, fedex: fedexs.fedex }) }} />
-              <label htmlFor="">ups/usps</label>
-              <input type="checkbox" onChange={(e) => { setFedexs({ fedex: e.target.checked, UPS: fedexs.UPS }) }} />
+                {shippMethod?.map((el: any, index: any) => {
+
+                  if (el.status === true) {
+                    return <div key={index} className="method">
+                      <img src={el.icon} />
+                      <label htmlFor="">{el.title}</label>
+                      <input type="checkbox" onChange={(e) => { addShiping(el.title) }} />
+                    </div>
+                  }
+                })}
+
               </div>
-          
+
               <form onSubmit={handleSubmit} className='shipform'>
                 <div className='inputer'>
                   <p>Name</p>
@@ -235,15 +294,15 @@ setPorj(true)
                   <p>country</p>
                   <Select
                     options={Country.getAllCountries()}
-                    getOptionLabel={(options:any) => {
+                    getOptionLabel={(options) => {
                       return options["name"];
                     }}
-                    getOptionValue={(options:any) => {
+                    getOptionValue={(options) => {
                       return options["name"];
                     }}
 
                     value={country}
-                    onChange={(item:any) => {
+                    onChange={(item) => {
                       setCountry(item);
                     }}
                   />
@@ -251,15 +310,15 @@ setPorj(true)
 
                   <Select
                     options={State?.getStatesOfCountry(country?.isoCode)}
-                    getOptionLabel={(options:any) => {
+                    getOptionLabel={(options) => {
                       return options["name"];
                     }}
-                    getOptionValue={(options:any) => {
+                    getOptionValue={(options) => {
                       return options["name"];
                     }}
 
                     value={state}
-                    onChange={(item:any) => {
+                    onChange={(item) => {
                       setState(item);
                     }}
                   />
@@ -269,15 +328,15 @@ setPorj(true)
                       state?.countryCode,
                       state?.isoCode
                     )}
-                    getOptionLabel={(options:any) => {
+                    getOptionLabel={(options) => {
                       return options["name"];
                     }}
-                    getOptionValue={(options:any) => {
+                    getOptionValue={(options) => {
                       return options["name"];
                     }}
 
                     value={city}
-                    onChange={(item:any) => {
+                    onChange={(item) => {
                       setCity(item);
                     }}
                   />
@@ -301,55 +360,19 @@ setPorj(true)
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
                   />
-                  <p>lenght</p>
-                  <input type="number"
-                    onChange={(e) => setLenght(e.target.value)}
-                    value={lenght}
-                  />
-                  <p>widht</p>
-                  <input type="number"
-                    onChange={(e) => setWidht(e.target.value)}
-                    value={widht}
-                  />
-                  <p>weight</p>
-                  <input type="number"
-                    onChange={(e) => setWeight(e.target.value)}
-                    value={weight}
-                  />
-                  <p>height</p>
-                  <input type="number"
-                    onChange={(e) => setHeight(e.target.value)}
-                    value={height}
-                  />
-                  <p>unit</p>
-                  <Select
-                    options={units}
-                    value={unit}
-                    onChange={(item:any) => {
-                      setUnit(item)
-                    }}
-                  />
-                  <p>mass</p>
-                  <Select
-                    options={masss}
-                    value={mass}
-                    onChange={(item:any) => {
-                      setMass(item)
-                    }}
-                  />
+
                   <div >
                   </div>
                 </div>
                 <div className='registraciabutton'>
-                  <button>Save</button>
+                  <button onClick={(e) => handleSubmit(e)}>Save</button>
                 </div>
               </form>
             </div>
           </div>
         </>
-                  }
-                 {/* <div>{rate && <Ship/>}</div>  */}
-          {/* </>  }   */}
+      }
+
     </div>
 
   )

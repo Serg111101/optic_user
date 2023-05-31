@@ -7,41 +7,28 @@ import { fetchUspsorder } from '../../store/action/OrderShipActions';
 import { useAppSelector, useAppDispatch } from '../../hooks/redux'
 import { useEffect } from "react";
 import { fetchFedexShip, fetchUspsShip } from "../../store/action/ShipAction";
+import axios from "axios"
 import './payment.scss'
 
 
 const Pay = () => {
 
-  const ShipIds:any=localStorage.getItem('shipId')
-  const ShipId=JSON.parse(ShipIds)
-
+const ShipIds:any=localStorage.getItem('shipId')
+const ShipId=JSON.parse(ShipIds)
 const navigate = useNavigate()
 const { uspsorder }:any = useAppSelector(state => state.uspsorder)
 const { UspsShip, error1 }:any = useAppSelector(state => state.UspsShip)
 const {loading, FedexShip, error}:any=useAppSelector((state:any)=>state.FedexShip)
 const dispatch = useAppDispatch()
-// const [price, setPrice]=useState<any>()
-// const [pricetrue, setPricetrue]=useState(false)
+const [price, setPrice]=useState<any>()
+const [pricetrue, setPricetrue]=useState(false)
 const [uspsShip,setUspsShip]=useState<any>()
 const [fedexShip,setFedexShip]=useState<any>()
 const [errors,setError] = useState<any>()
 const [loadings, setLoading]=useState<any>()
-const [Paymethod, setPaymethod] = useState<any>([
-  {
-    id: 1,
-    title:'Payment in Stripe',
-    done: false
-  },
-  {
-    id: 2,
-    title:'Payment in Paypal',
-    done: false
-  }, {
-    id: 3,
-    title:'Payment in GooglePay',
-    done: false
-  }
-])
+// const [payMethod,setPayMethod]= useState<any>()
+
+const [Paymethod, setPaymethod] = useState<any>()
 const [post, setPost]=useState(false)
 const [Paying, setPaying] = useState(true)
 const [Paysee, setPaysee] = useState(false)
@@ -56,12 +43,9 @@ useEffect(()=>{
 
 
 useEffect(()=>{
-  dispatch(fetchUspsorder(ShipId));
-},[dispatch,ShipId])
-
-const [price, setPrice]=useState<any>()
-const [pricetrue, setPricetrue]=useState(false)
-// dispatch(fetchUspsorder(ShipId));
+dispatch(fetchUspsorder(ShipId));
+name()
+},[dispatch])
 
 useEffect(()=>{
   setPrice(uspsorder)
@@ -69,84 +53,106 @@ useEffect(()=>{
 },[uspsorder])
 
 
+async function name() {
+  const response = await axios.get('http://localhost:3000/api/v1/users/paymentMethods');
+ console.log(response.data);
+ setPaymethod(response.data)
+ 
+}
+
 async function Ship(){
-    await dispatch(fetchUspsShip(price))
-    await dispatch(fetchFedexShip())
 
-  if(price[0]?.provider){
-   await dispatch(fetchUspsShip(price))
+  // if(price[0]?.provider){
+  //  await dispatch(fetchUspsShip(price))
 
 
-  }else{
+  // }else{
 
-   await dispatch(fetchFedexShip())
-  }
+  //  await dispatch(fetchFedexShip())
+
+   
+
+  // }
+    
+
     setPayseetrue(false)
  
     setPaying(!Paying)
 
    
 }
-
-
- async function doneTodo(id: number) {
-    setLoading(true)
-   await Ship()
-    if(!error || !error1){
-      setLoading(false)
-      console.log(fedexShip);
-      
-      const newMethod = Paymethod.map((method: any) => {
-        if (method.id === id) method.done = !method.done
-        return method
-      })
-      for(let item of Paymethod){
-        if(item.done===true){
-          setPaysee(false)
-        }}
-      setPaymethod(newMethod)
-    }else{
-      setError('xndirner kan')
-    }
+async function doneTodo(id: number) {
+  setLoading(true)
+ await Ship()
+  if(!error || !error1){
+    setLoading(false)
+    console.log(fedexShip);
+    
+    const newMethod = Paymethod.map((method: any) => {
+      if (method.id === id) method.done = !method.done
+      return method
+    })
+    for(let item of Paymethod){
+      if(item.done===true){
+        setPaysee(!Paysee)
+      }}
+    setPaymethod(newMethod)
+  }else{
+    setError('xndirner kan')
+  }
 }
+ 
+   
+    
 
-  return (<>
 
-  {Paying && payseetrue &&
-    <div className="modaling" >
-      <h1>Choose a payment method</h1>
-      {loadings && <div>loading....</div>}
-       <div  className="total">{pricetrue && price[0]?.provider && <p>Ship price: {price[0].amount} {price[0].currency}</p>}</div>
-        {
-          Paymethod.map((item:any)=>(
-            <div className="modesta" onClick={() => {doneTodo(item.id)}} key={item.id}>
-            <span className="spantitle">{item.title}</span>
-            </div>
-          ))
-        }
-    </div>} 
-   {/* {error || error1 ? <div>{error}</div>:
-    <main className='mainpay' >
-      
-      {Paysee && Paymethod[0].done &&
-        <div>
-          <StripeChechkout price={price}/>
-        </div>
+
+return (<div className="container">
+
+{Paying && payseetrue &&  price !== undefined &&
+  <div className="modaling" >
+    <h1>Choose a payment method</h1>
+    {loadings && <div>loading....</div>}
+     <div  className="total">{pricetrue && price !== undefined && price[0]?.provider ? <p>Ship price: {price[0]?.amount} {price[0]?.currency}</p>:""
+    // pricetrue  && <p>Ship price: {price[0]?.ratedShipmentDetails[0]?.totalNetFedExCharge} {price[0]?.ratedShipmentDetails[0]?.currency}</p> 
+ } </div>
+      {
+        Paymethod?.map((item:any)=>{
+          if(item.status === true){
+          return  <div className="modesta" onClick={() => {doneTodo(item.id)}} key={item.id}>
+            <img src={item.icon} alt="PayIcon"/>
+          <span className="spantitle">{item.title}</span>
+          </div>
+          }
+        
+})
       }
-      {Paysee && Paymethod[1].done && 
-        <div className='cart' id="payment-form">
-        <PaypalCheckout price={price} />
-        </div>}
-      {Paysee && Paymethod[2].done && <div className='cart' id="payment-form">
-      <GoogleCheckout price={price} />
+  </div>} 
+ {error || error1 ? <div>{error}</div>:
+  <main className='mainpay' >
+    
+    {Paysee && Paymethod[0]?.done &&
+      <div>
+           <PaypalCheckout   />
+       
       </div>
-      }
-    {
-      Paysee &&   <button onClick={()=>navigate(0)}>Back to Choose payment method</button>
     }
-    </main>} */}
-  </>
-  )
+    {Paysee && Paymethod[1]?.done && 
+      <div className='cart' id="payment-form">
+          <StripeChechkout/>
+  
+    
+      </div>}
+    {Paysee && Paymethod[2]?.done && <div className='cart' id="payment-form">
+    <GoogleCheckout price={price} />
+    </div>
+    }
+  {
+    Paysee &&   <button onClick={()=>navigate(0)}>Back to Choose payment method</button>
+  }
+  </main>}
+</div>
+)
 }
 
 export default Pay

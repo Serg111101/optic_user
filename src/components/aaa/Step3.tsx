@@ -115,18 +115,31 @@ function saveButton(){
   function addOrder2(id: number, e: any) {
     if (arrr2) {
       let ar2 = arrr2?.map((el: any) => {
-        if(el?.id == id){
-          if (el.is_active !== null) {
-            el.is_active = true
-            
-          }else{
-            el.value=e            
-          }
+        if(el.is_active!==null){
+        if(el.id===id){
+          el.is_active =true
+          return el
+        }else {
+          el.is_active = false
+          return el
+        }}else{
+          return el
+        }
+      })
+      sessionStorage.setItem('step3_2', JSON.stringify(ar2))
+      let x: any = sessionStorage.getItem('step3_2')
+      setArrr2(JSON.parse(x))
+    }
+  
+  }
+
+  function addOrder3(id:number,event:any){
+    if (arrr2) {
+      let ar2 = arrr2?.map((el: any) => {
+        if(el.is_active ===null&&el.id===id){
+          el.value=event
           return el
         }else{
-          if(el.is_active !== null){
-            el.is_active = el.is_active
-          }
           return el
         }
       })
@@ -138,6 +151,7 @@ function saveButton(){
 
   let arr2: any = sessionStorage?.getItem('step3_2')
   const [arrr2, setArrr2] = useState(JSON?.parse(arr2))
+  console.log(arrr2);
 
   useEffect(() => {
     if (arr2 == null || arr2 == '[]') {
@@ -218,7 +232,7 @@ function saveButton(){
                      <h2>{headArr[4]}</h2>
                     {
                       arrr2?.map((item: any) => 
-                        item?.is_active == null&&
+                        item?.is_active === null&&
                           
                               <div key={item?.id}>
                               <label key={item?.id} >{item?.column_name}</label>
@@ -227,7 +241,7 @@ function saveButton(){
                                   type="text"
                                   value={item?.value}
                                   onChange={(e: any) => {
-                                    addOrder2(
+                                    addOrder3(
                                       item.id,
                                       e.target.value
                                     );

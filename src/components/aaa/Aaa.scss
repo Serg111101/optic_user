@@ -1,3 +1,4 @@
+/* eslint-disable */
 .FinalOrder {
     
     max-width: 1200px;
@@ -120,7 +121,7 @@
 
                     @keyframes move-bg {
                         to {
-                            background-position: var(--bg-size) 0;
+                            background-position: var(--bg-size) flex-end;
                         }
                     }
 
@@ -131,7 +132,7 @@
 
                         @keyframes move-bg {
                             to {
-                                background-position: var(--bg-size) 0;
+                                background-position: var(--bg-size) flex-end;
                             }
                         }
                     }

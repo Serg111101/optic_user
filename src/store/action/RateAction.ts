@@ -11,10 +11,11 @@ export const fetchUsps = (arr: any) => {
 
     try {
       dispatch(fetching());
+ console.log(arr);
 
       const response = await axios({
         method: 'post',
-        url: 'http://localhost:3003/api/v1/users/shippo',
+        url: 'http://localhost:3000/api/v1/users/shippo',
         data: [{
           name: arr[0].name,
           company: arr[0].company,
@@ -27,14 +28,6 @@ export const fetchUsps = (arr: any) => {
           email: arr[0].email,
 
 
-        },
-        {
-          height: arr[1].height,
-          distance_unit: arr[1].distance_unit,
-          length: arr[1].length,
-          width: arr[1].width,
-          weight: arr[1].weight,
-          mass_unit: arr[1].mass_unit
         }
 
 
@@ -44,8 +37,11 @@ export const fetchUsps = (arr: any) => {
       });
 
       localStorage.setItem('shippoId', JSON.stringify(response.data[0].id))
-
-      dispatch(fetchSuccess(response.data[0].rates));
+      { if(response.data[0].rates){
+       let usps = response.data[0].rates.sort((a:any,b:any)=> b.amount - a.amount)
+       dispatch(fetchSuccess(usps));
+      }}
+   
 
     } catch (err) {
 
@@ -103,12 +99,13 @@ export const fetchFedex = () => {
 
       const response: any = await axios({
         method: 'post',
-        url: 'http://localhost:3003/api/v1/users/fedex/ratesAndTransitTimes',
+        url: 'http://localhost:3000/api/v1/users/fedex/ratesAndTransitTimes',
         data: arr1
 
 
       });
       localStorage.setItem('fedexId', JSON.stringify(response.data[1].rateId))
+      console.log(response.data[1].rateId);
 
       dispatch(fetchSuccess2(response.data[0]));
 
@@ -135,7 +132,7 @@ export const fetchCreate = (arr: any) => {
 
       const response = await axios({
         method: 'post',
-        url: 'http://localhost:3003/api/v1/users/rateDetails',
+        url: 'http://localhost:3000/api/v1/users/rateDetails',
         data: [arr]
 
 
@@ -147,6 +144,7 @@ export const fetchCreate = (arr: any) => {
       //  if(response?.data[0]?.id){
       //   const aa:any=response?.data[0]?.id
       //   useAppDispatch(fetchUspsorder(aa))
+      //   console.log('hbhbhbhbhbhbhbh');
 
       //  }
     } catch (err) {
@@ -162,10 +160,11 @@ export const fetchUspsGet = () => {
       const Id: any = localStorage.getItem('shippoId')
       const shippoId = JSON.parse(Id)
       dispatch(fetching());
-      const response: any = await axios.get('http://localhost:3003/api/v1/users/returningShip/' + shippoId);
+      const response: any = await axios.get('http://localhost:3000/api/v1/users/returningShip/' + shippoId);
       const data = response?.data.rates
       const payload = data.map((elem: any) => JSON.parse(elem));
 
+      console.log(response?.data.rates);
 
       dispatch(fetchSuccess3(payload));
 
@@ -184,7 +183,7 @@ export const fetchFedexGet = () => {
       const Id: any = localStorage.getItem('fedexId')
       const fedexId = JSON.parse(Id)
       dispatch(fetching());
-      const response: any = await axios.get('http://localhost:3003/api/v1/users/returningShip/' + fedexId);
+      const response: any = await axios.get('http://localhost:3000/api/v1/users/returningShip/' + fedexId);
       const data = response?.data.rateReplyDetails
       const payload = data.map((elem: any) => JSON.parse(elem));
 

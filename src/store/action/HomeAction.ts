@@ -7,7 +7,7 @@ export const fetchHome = () => {
         try{
             
             dispatch(fetching4());
-            const response =await axios.get('http://localhost:3003/api/v1/superAdmin/home');            
+            const response =await axios.get('http://localhost:3000/api/v1/superAdmin/home');            
             const arr=[]
             for(let key in response.data){
                 arr.push(response.data[key])

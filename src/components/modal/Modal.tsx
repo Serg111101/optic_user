@@ -61,7 +61,7 @@ function Modal({active, setActive,}:any) {
             
             await  axios({
                 method: 'post',
-                url: 'http://localhost:3003/api/v1/users/add',
+                url: 'http://localhost:3000/api/v1/users/add',
                 data: {
                   email: user,
                   password: pwd
