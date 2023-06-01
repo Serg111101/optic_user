@@ -253,18 +253,18 @@ function saveButton(){
                         item?.is_active !== null&&
                         <label onChange={() => {addOrder2(item.id,item.column_name)}}>
                         <input type="radio" name="check" id="" checked={item.is_active} value={item.is_active} />{item.column_name}</label>
-                      )
-                      }
+                      )}
                   </div>
                 </div>
               }
             </div>
-            <>
+            <div className="Step3_buttons">
+            <button onClick={()=>{navving()}}>Go back</button>
+
               <button disabled={!butt} onClick={() => { navv()}}>
-                save
+                Next
               </button>
-              <button onClick={()=>{navving()}}>go back</button></>
-            
+              </div>
           </div>
         </div>
       )}

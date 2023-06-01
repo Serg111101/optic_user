@@ -63,7 +63,7 @@
 .shippo1{
     display: flex;
     right: 300px;
-    top: 500px;
+    top: 540px;
     position: fixed; 
     margin:0px auto;
     
@@ -166,6 +166,19 @@
         text-transform: uppercase;
         
         
+        .method{
+            display: flex;
+            align-items: center;
+            width: 200px;
+            justify-content: space-around; 
+            img{
+                width: 100px;
+                height: 60px;
+                object-fit: cover;
+            }
+        }
+       
+
         .method{
             display: flex;
             align-items: center;

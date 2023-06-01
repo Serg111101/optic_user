@@ -9,6 +9,7 @@ import {
   usePayPalScriptReducer,
 } from "@paypal/react-paypal-js";
 import { TailSpin } from "react-loader-spinner";
+
 export const PaypalPay = (props:any) => {
   console.log(props);
   

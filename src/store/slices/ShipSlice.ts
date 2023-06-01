@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IUsps } from '../../models/model';
 
-
 interface ShipState {
    loading: boolean;
    error:string;

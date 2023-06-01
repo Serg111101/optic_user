@@ -2,11 +2,19 @@ import React, { useEffect, useState } from 'react'
 import "./OrderingInformation.scss"
 import { Step1 } from '../../components/aaa/Step1'
 import { fetchOrders } from "../../store/action/OrderAction";
-import { useAppDispatch, } from "../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { CheckOutlined, LoadingOutlined } from '@ant-design/icons';
 import FinalOrder from '../../components/aaa/FinalOrder';
-export const OrderingInformation = () => {
 
+
+export const OrderingInformation = () => {
+  const { orders }: any = useAppSelector((state) => state.orders);
+
+  useEffect(() => {
+    if (orders.length && !sessionStorage.getItem('orders')) {
+      sessionStorage.setItem('orders', JSON.stringify(orders))
+    }
+  }, [orders])
   const [step2, setStep2] = useState();
   const [step3, setStep3] = useState();
   const [step4, setStep4] = useState();
@@ -68,36 +76,47 @@ export const OrderingInformation = () => {
   useEffect(() => {
     dispatch(fetchOrders());
   }, [dispatch]);
-  console.log(total);
-  
-  useEffect(() => {
-    if (final) {
-      const x: any = sessionStorage
-      const y:any = []
-      const z: any = []
-      for (let key in x) {
-        if (key?.slice()?.includes('_')) {
-          y.push(key)
-        }
-      }
-      y.sort()
-      y.map((el: any) => {
-        z.push(...JSON.parse(x[el]));
-      })
-      const zz = z.filter((el: any) => {
-        if (el.is_active === null||el.is_active===true) {
-          return el
-        }
-      })
-      if(!total){
-        setTotal(zz)
+  let arr1 = orders?.map((item: any) => item.table_name);
+  function removeDuplicates(arr1: any[]) {
+    let headArr: any = [];
+    for (let i = 0; i < arr1.length; i++) {
+      if (!headArr.includes(arr1[i])) {
+        headArr.push(arr1[i]);
       }
     }
-  }, [final, total])
-  
+    return headArr;
+  }
+  const headArr = removeDuplicates(arr1);
+  console.log(headArr);
+
+  // useEffect(() => {
+  //   if (final) {
+  //     const x: any = sessionStorage
+  //     const y:any = []
+  //     const z: any = []
+  //     for (let key in x) {
+  //       if (key?.slice()?.includes('_')) {
+  //         y.push(key)
+  //       }
+  //     }
+  //     y.sort()
+  //     y.map((el: any) => {
+  //       z.push(...JSON.parse(x[el]));
+  //     })
+  //     const zz = z.filter((el: any) => {
+  //       if (el.is_active === null||el.is_active===true) {
+  //         return el
+  //       }
+  //     })
+  //     if(!total){
+  //       setTotal(zz)
+  //     }
+  //   }
+  // }, [final, total])
+
   return (
     <div className='Order'>
-      {final&&total ? <FinalOrder total={total}/> :
+      {final && total ? <FinalOrder total={total} /> :
         <>
           <div className='step'>
             <div className='step1 ak'><hr />
@@ -116,7 +135,7 @@ export const OrderingInformation = () => {
               <div className="klor" id="klor5" >{final ? <CheckOutlined /> : <LoadingOutlined />}</div>
             </div>
           </div>
-           <Step1 step2={step2} step3={step3} step4={step4} step5={step5} final={final} setStep2={setStep2} setStep3={setStep3} setStep4={setStep4} setStep5={setStep5} setFinal={setFinal} />
+          <Step1 headArr={headArr} step2={step2} step3={step3} step4={step4} step5={step5} final={final} setStep2={setStep2} setStep3={setStep3} setStep4={setStep4} setStep5={setStep5} setFinal={setFinal} />
         </>
       }
     </div>

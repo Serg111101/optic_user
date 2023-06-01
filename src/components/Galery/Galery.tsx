@@ -6,8 +6,6 @@ import { Loading } from '../loading';
 
 export function Galery() {
   const { loading,  Home }: any = useAppSelector((state) => state.Home)
-  
-  
   const dispatch = useAppDispatch();
 
   const [width, setWidth] = useState(((window.innerWidth / 100) * 70) - 200)
@@ -73,12 +71,12 @@ export function Galery() {
 
         </div>
         <div className="slideshow">
-          <div className="slideshowSlider" style={{ transform: `translate3d(${-index * (widthimg+170)}px, 0, 0)` }}>
+          <div className="slideshowSlider" style={{ transform: `translate3d(${-index * (widthimg+140)}px, 0, 0)` }}>
             {Home?.map((el: any, inde: number) => (
               <div
                 className={index !== inde ? "activee" : "activee aaa1"}
                 key={inde}
-                style={{ marginLeft: inde === 0 ? `${-width + 1550}px` : '', width: `${widthimg+100}px` }}
+                style={{ width: `${widthimg+60}px` }}
                 onClick={() => {
                   setIndex(inde);
                 }}

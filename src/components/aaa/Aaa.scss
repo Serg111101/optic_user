@@ -213,27 +213,38 @@
 }
 
 .Aaa {
+    
 
 
     .step3_map {
 
-        label {
+            label{
+                // width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
+    }
     }
 
-    text-align: center;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 40px;
+    // text-align: center;
+    // margin: 0 auto;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // flex-direction: column;
+    // margin-bottom: 40px;
 
     .steping {
         margin-top: 50px;
+        .step1{
+            background-color: red;
+            .step1_option{
+                background-color: red;
+                .step1_optionDiv1{
+                    background-color: blue;
+                }
+            }
+        }
     }
 
     input {

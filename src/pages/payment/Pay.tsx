@@ -138,12 +138,17 @@ return (<div className="container_pay">
   </div>
   <div className="total-box">
   <div  className="total">{pricetrue &&  seePrice  && price[0]?.provider ? <div className="text"><span>Ship Price:</span>  <p>  {price[0]?.amount} {price[0]?.currency}</p></div>:
-   pricetrue && seePrice && <div className="text"><span>Ship Price:</span>  <p> {price[0]?.ratedShipmentDetails[0]?.totalNetFedExCharge} {price[0]?.ratedShipmentDetails[0]?.currency}</p> </div>
+  //  pricetrue && seePrice && 
+   <div className="text">
+    <span>Ship Price:</span> 
+    <p>8 USD</p>
+     {/* <p> {price[0]?.ratedShipmentDetails[0]?.totalNetFedExCharge} {price[0]?.ratedShipmentDetails[0]?.currency}</p>  */}
+    </div>
     
  } {priceOrder && <div className="text"><span>Order Price:</span>  <p>  {priceOrder} USD</p></div>}
   <div className="line"> </div>
  {   pricetrue && seePrice  ? <div className="text"><span>Total Price:</span>  <p> {price[0]?.amount ? priceOrder + price[0]?.amount :  priceOrder + price[0]?.ratedShipmentDetails[0]?.totalNetFedExCharge}USD</p></div>:
- <div><span>Total Price:</span>  <p> { priceOrder}USD</p></div>}
+ <div><span>Total Price:</span>  <p> { priceOrder + 8}USD</p></div>}
   
  </div>
   </div>

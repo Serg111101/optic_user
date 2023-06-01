@@ -39,6 +39,7 @@ export const store = configureStore({
     fedexGet:fedexGetReducer,
     fedexorder:fedexorder,
     uspsorder:uspsorder,
+    // Ship:Ship,
     UspsShip:UspsShip,
     FedexShip:FedexShip,
 

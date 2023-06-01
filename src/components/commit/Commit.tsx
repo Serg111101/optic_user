@@ -29,9 +29,9 @@ export const Commit = ({ setCommit }: any) => {
 
     return (
         <div className='Commit-input' onClick={(e) => e.stopPropagation()}>
-            <span>Name</span><div style={{background:erorrName ?'red':''}} className='bbb1'><input type="text" placeholder='Name...' value={name} onChange={(e) =>{ setName(e.target.value);setErorrName(false)}} /></div>
-            <span>Email</span><div style={{background:erorrEmail ?'red':''}} className='bbb1'><input type="email" placeholder='Email...' value={email} onChange={(e) => {setEmail(e.target.value);setErorrEmail(false)}} /></div>
-            <span>Text</span><div style={{background:erorrText ?'red':''}} className='bbb1'><textarea placeholder='Text...' value={text} onChange={(e) => {setText(e.target.value);setErorrText(false)}}/></div>
+            <span>Name</span><div style={{background:erorrName ?'red':''}} className='inpcom1'><input type="text" placeholder='Name...' value={name} onChange={(e) =>{ setName(e.target.value);setErorrName(false)}} /></div>
+            <span>Email</span><div style={{background:erorrEmail ?'red':''}} className='inpcom1'><input type="email" placeholder='Email...' value={email} onChange={(e) => {setEmail(e.target.value);setErorrEmail(false)}} /></div>
+            <span>Text</span><div style={{background:erorrText ?'red':''}} className='inpcom1'><textarea placeholder='Text...' value={text} onChange={(e) => {setText(e.target.value);setErorrText(false)}}/></div>
             <div className="buttons">
                 <div className="bbb">
                     <button className='save' onClick={() => SendMessage()}>Send to Commit</button>

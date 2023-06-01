@@ -16,6 +16,7 @@ const Shipment = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const { usps } = useAppSelector(state => state.usps)
+  
   const { loading, fedex }: any = useAppSelector(state => state.fedex)
   const { create } = useAppSelector(state => state.create)
   const { uspsGet } = useAppSelector(state => state.uspsGet)
@@ -72,6 +73,9 @@ const Shipment = () => {
     // setShipload(true)
   }, [fedexGet])
 
+
+ let sum:any = localStorage.getItem('price')
+ const price = JSON.parse(sum)
 
 
   const headArr: any = [];
@@ -155,7 +159,6 @@ const Shipment = () => {
     if (pickUP) {
       navigate('/Pay')
     }
-
   }
   async function addShip(e: any, item: any) {
     e.preventDefault()
@@ -365,6 +368,7 @@ const Shipment = () => {
                     })
                   }</tbody>
                 </table> */}
+
               </div>
               <div className="shippo1">
                 <button onClick={() => { setPorj(true) }}> Go Back</button>
@@ -373,8 +377,6 @@ const Shipment = () => {
 
 
             </div>}</> : <>
-
-            
           <div className='shippo_contents' onClick={e => e.stopPropagation()}>
             <div className='contain'>
               <span className='p1'><h1>ADD ORDERS INFORMATION</h1></span>

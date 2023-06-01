@@ -103,3 +103,7 @@
 //   .googlepay>* {
 //     width: 100%;
 //   }
+.googlepay{
+    display: flex;
+    flex-direction: column;
+}

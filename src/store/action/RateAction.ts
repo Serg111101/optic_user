@@ -1,8 +1,9 @@
 import { Dispatch } from "@reduxjs/toolkit";
 import { fetching, fetchSuccess, fetchSuccess1, fetchSuccess2, fetchSuccess3, fetchSuccess8, fetchError } from "../slices/RateSlice";
 import axios from "axios";
-import { fetchUspsorder } from "./OrderShipActions";
-import { useAppDispatch } from "../../hooks/redux";
+import { log } from "util";
+// import { fetchUspsorder } from "./OrderShipActions";
+// import { useAppDispatch } from "../../hooks/redux";
 
 
 export const fetchUsps = (arr: any) => {
@@ -164,9 +165,17 @@ export const fetchUspsGet = () => {
       const data = response?.data.rates
       const payload = data.map((elem: any) => JSON.parse(elem));
 
-      console.log(response?.data.rates);
+   
+    
 
-      dispatch(fetchSuccess3(payload));
+      { if(payload){
+       let usps = payload.sort((a:any,b:any)=> b.amount - a.amount)
+       console.log(usps);
+       
+       dispatch(fetchSuccess3(usps));
+      
+      }}
+     
 
       { if(payload){
        let usps = payload.sort((a:any,b:any)=> b.amount - a.amount)

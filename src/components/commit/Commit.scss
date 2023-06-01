@@ -1,5 +1,5 @@
 .Commit-input {
-    width: 50%;
+    width: 1200px;
     height: auto;
     margin: 0 auto;
     display: flex;
@@ -9,15 +9,15 @@
     background-color: rgba(0, 0, 0, 0.813);
     border-radius: 30px;
     box-shadow: 50px 50px 30px 10px gray;
-    color: rgb(0, 247, 255);
+    color: rgb(255, 255, 255);
     font-size: 18px;
     padding: 50px 0;
     
-    .bbb1 {
-        width: 80%;
+    .inpcom1 {
+        width: 500px;
         padding: 3px;
         border-radius: 30px;
-        background: linear-gradient(120deg, rgb(60, 0, 255), rgb(0, 247, 255));
+        background: linear-gradient(120deg, rgb(0, 0, 0), rgb(255, 255, 255));
         margin-bottom: 20px;
         textarea,
         input {
@@ -40,13 +40,13 @@
         background-color: red;
     }
     .buttons {
-        width: 70%;
+        width: 700px;
         display: flex;
         justify-content: space-evenly;
 
         .bbb {
             padding: 3px;
-            background: linear-gradient(120deg, rgb(60, 0, 255), rgb(0, 247, 255));
+            background: linear-gradient(120deg, rgb(0, 0, 0), rgb(255, 255, 255));
             margin-top: 20px;
             display: flex;
             justify-content: center;
@@ -61,23 +61,43 @@
                 border-radius: 30px;
                 margin-top: 0px;
                 font-size: 20px;
-                color: rgb(0, 247, 255);
+                color: rgb(255, 255, 255);
 
             }
 
             &:hover {
-                background: linear-gradient(60deg,  rgb(0, 247, 255),rgb(60, 0, 255));
+                background: linear-gradient(60deg,  rgb(0, 0, 0),rgb(255, 255, 255));
 
                 .save {
                     color: black;
-                    background-color: rgb(0, 247, 255);
+                    background-color: rgb(255, 255, 255);
                 }
 
                 .back {
                     color: white;
-                    background-color: rgb(60, 0, 255);
+                    background-color: rgb(255, 255, 255);
                 }
             }
+        }
+    }
+}
+
+@media(max-width:580px){
+    .Commit-input{
+        .inpcom1{
+           width: 420px;
+        }
+    }
+}
+
+@media(max-width:450px){
+    .Commit-input{
+        .inpcom1{
+           width: 280px;
+        }
+
+        .buttons{
+         width: 300px;
         }
     }
 }

@@ -584,16 +584,16 @@ export const Step4 = ({
                 </div>
               
             </div>
-            {test5 !== headArr[10] && (<>
+            {test5 !== headArr[10] && (<div className="Step4_buttons">
+              <button onClick={() => navving()}>Go back</button>
               <button
                 onClick={() => {
                   navv()
                 }}
               >
-                save
+                Next
               </button>
-              <button onClick={() => navving()}>go back</button>
-            </>
+            </div>
             )}
           </div>
         </div>

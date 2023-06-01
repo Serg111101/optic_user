@@ -297,9 +297,10 @@ function saveButton(){
                 </div>
               }
             </div>
-          <button onClick={() => {navv()}} disabled={!butt} > save </button> 
-          <button onClick={() => { navving() }}>go back</button>
-
+              <div className="Step2_buttons">
+              <button onClick={() => { navving() }}>Go back</button>
+              <button onClick={() => {navv()}} disabled={!butt} > Next </button> 
+              </div>
             {/* {val && (<>
               <button onClick={() => { navv() }}>save</button>
             </>
