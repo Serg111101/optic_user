@@ -9,10 +9,18 @@ import FinalOrder from '../../components/aaa/FinalOrder';
 
 export const OrderingInformation = () => {
   const { orders }: any = useAppSelector((state) => state.orders);
+  let arr:any=sessionStorage?.getItem('orders')
+  const [stepArr,setStepArr]=useState<Object[]>(JSON.parse(arr)||[])
+  useEffect(() => {
+    if (arr == null || arr == '[]') {
 
+      sessionStorage.setItem('orders', JSON.stringify(orders))
+    }
+  }, [orders,  arr])
   useEffect(() => {
     if (orders.length && !sessionStorage.getItem('orders')) {
       sessionStorage.setItem('orders', JSON.stringify(orders))
+      setStepArr(orders)
     }
   }, [orders])
   const [step2, setStep2] = useState();
@@ -87,7 +95,7 @@ export const OrderingInformation = () => {
     return headArr;
   }
   const headArr = removeDuplicates(arr1);
-  console.log(headArr);
+  // console.log(headArr);
 
   // useEffect(() => {
   //   if (final) {
@@ -113,6 +121,7 @@ export const OrderingInformation = () => {
   //     }
   //   }
   // }, [final, total])
+// console.log(stepArr);
 
   return (
     <div className='Order'>
@@ -128,14 +137,14 @@ export const OrderingInformation = () => {
             <div className={step3 ? 'step3 ak' : 'step3'}><hr />
               <div className="klor" id="klor3" >{step4 ? <CheckOutlined /> : <LoadingOutlined />}</div>
             </div>
-            <div className={step4 ? 'step4 ak' : 'step4'}><hr />
+            {/* <div className={step4 ? 'step4 ak' : 'step4'}><hr />
               <div className="klor" id="klor4" >{step5 ? <CheckOutlined /> : <LoadingOutlined />}</div>
-            </div>
-            <div className={step5 ? 'step5 ak' : 'step5'}><hr />
+            </div> */}
+            <div className={step4 ? 'step4 ak' : 'step4'}><hr />
               <div className="klor" id="klor5" >{final ? <CheckOutlined /> : <LoadingOutlined />}</div>
             </div>
           </div>
-          <Step1 headArr={headArr} step2={step2} step3={step3} step4={step4} step5={step5} final={final} setStep2={setStep2} setStep3={setStep3} setStep4={setStep4} setStep5={setStep5} setFinal={setFinal} />
+          <Step1 headArr={headArr} stepArr={stepArr} setStepArr={setStepArr} step2={step2} step3={step3} step4={step4} step5={step5} final={final} setStep2={setStep2} setStep3={setStep3} setStep4={setStep4} setStep5={setStep5} setFinal={setFinal} />
         </>
       }
     </div>

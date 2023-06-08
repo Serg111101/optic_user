@@ -1,6 +1,960 @@
 /* eslint-disable */
+.Order {
+    margin: 100px auto;
+
+    .step {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .steping {
+        margin-top: 50px;
+
+        .step1 {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+
+            .step1_option {
+
+                width: 45%;
+                display: flex;
+                justify-content: space-around;
+                background-color: rgb(210, 208, 208);
+                border-radius: 20px;
+                padding: 10px;
+
+                .step1_optionDiv1 {
+                    width: 40%;
+
+                    h2 {
+                        margin-bottom: 20px;
+                        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                        font-weight: 500;
+                    }
+
+                    input[type="checkbox"] {
+                        position: absolute;
+                        left: -9999px;
+
+                    }
+
+                    span {
+                        font-weight: 540;
+                        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                    }
+
+                    .optionDiv1_item:not(:last-child) {
+                        border-bottom: 1px solid gray;
+                    }
+
+                    .optionDiv1_item::before {
+                        content: counter(switchCounter);
+                        position: absolute;
+                        top: 50%;
+                        left: -30px;
+                        transform: translateY(-50%);
+                        font-size: 2rem;
+                        font-weight: bold;
+                        color: pink;
+                    }
+
+                    label {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 15px;
+                    }
+
+                    span:last-child {
+                        position: relative;
+                        width: 50px;
+                        height: 26px;
+                        border-radius: 15px;
+                        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
+                        background: gray;
+                        transition: all 0.3s;
+                    }
+
+                    span:last-child::before,
+                    span:last-child::after {
+                        content: "";
+                        position: absolute;
+                    }
+
+                    span:last-child::before {
+                        left: 1px;
+                        top: 1px;
+                        width: 24px;
+                        height: 24px;
+                        background: white;
+                        border-radius: 50%;
+                        z-index: 1;
+                        transition: transform 0.3s;
+                    }
+
+                    span:last-child::after {
+                        top: 50%;
+                        right: 8px;
+                        width: 12px;
+                        height: 12px;
+                        transform: translateY(-50%);
+                        background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/uncheck-switcher.svg);
+                        background-size: 12px 12px;
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child {
+                        background: green;
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child::before {
+                        transform: translateX(24px);
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child::after {
+                        width: 14px;
+                        height: 14px;
+                        /*right: auto;*/
+                        left: 8px;
+                        background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/checkmark-switcher.svg);
+                        background-size: 14px 14px;
+                    }
+
+                    @media screen and (max-width: 600px) {
+                        .switches li::before {
+                            display: none;
+                        }
+                    }
+
+
+                    // display: flex;
+                    // background-color: blue;
+                }
+
+                .step1_optionDiv2 {
+                    width: 40%;
+
+                    h2 {
+                        margin-bottom: 30px;
+                        // background-color: red;
+                        font-weight: 540;
+                        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                    }
+
+                    .optionDiv2_item {
+                        margin-top: 20px;
+                        padding: 5px;
+                        border: 2px solid gray;
+                        border-radius: 20px;
+
+                        span {
+                            position: relative;
+                            background-color: rgb(210, 208, 208);
+                            font-size: 20px;
+                            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                            font-weight: 300;
+                            padding: 5px;
+                            top: -18px;
+                            left: 20px;
+                        }
+
+                        input {
+                            background: none;
+                            padding: 10px;
+                            border-radius: 12px;
+                            border-bottom: 2px solid white;
+                            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                            font-weight: 400;
+                        }
+                    }
+
+                    .step1_buttons {
+                        width: 100%;
+                        margin-top: 50px;
+                        display: flex;
+                        justify-content: center;
+
+                        button {
+                            min-width: 120px;
+                            padding: 15px;
+                            font-size: 20px;
+                            border-radius: 12px;
+                            background-color: green;
+                            color: white;
+                        }
+
+                        button[disabled] {
+                            background-color: rgba(0, 128, 0, 0.484);
+                        }
+                    }
+                }
+            }
+
+            .step1_image {
+                width: 45%;
+
+                img {
+                    width: 100%;
+                    border-radius: 30px;
+                }
+            }
+        }
+
+        .step2 {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+
+            .step2_option {
+
+                width: 45%;
+                background-color: rgb(210, 208, 208);
+                border-radius: 20px;
+                padding: 10px;
+
+                .step2_optionDiv1 {
+                    width: 80%;
+                    margin: 40px auto;
+                    h2 {
+                        margin-bottom: 30px;
+                        font-size: 40px;
+                        padding: 10px;
+                        font-weight: 540;
+                        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                        border-bottom: 1px solid gray;
+                    }
+
+               
+
+                    input[type="checkbox"] {
+                        position: absolute;
+                        left: -9999px;
+
+                    }
+
+                    span {
+                        font-weight: 540;
+                        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                    }
+
+                 
+
+                    .optionDiv1_item::before {
+                        content: counter(switchCounter);
+                        position: absolute;
+                        top: 50%;
+                        left: -30px;
+                        transform: translateY(-50%);
+                        font-size: 2rem;
+                        font-weight: bold;
+                        color: pink;
+                    }
+
+                    label {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 15px;
+                    }
+
+                    span:last-child {
+                        position: relative;
+                        width: 50px;
+                        height: 26px;
+                        border-radius: 15px;
+                        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
+                        background: gray;
+                        transition: all 0.3s;
+                    }
+
+                    span:last-child::before,
+                    span:last-child::after {
+                        content: "";
+                        position: absolute;
+                    }
+
+                    span:last-child::before {
+                        left: 1px;
+                        top: 1px;
+                        width: 24px;
+                        height: 24px;
+                        background: white;
+                        border-radius: 50%;
+                        z-index: 1;
+                        transition: transform 0.3s;
+                    }
+
+                    span:last-child::after {
+                        top: 50%;
+                        right: 8px;
+                        width: 12px;
+                        height: 12px;
+                        transform: translateY(-50%);
+                        background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/uncheck-switcher.svg);
+                        background-size: 12px 12px;
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child {
+                        background: green;
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child::before {
+                        transform: translateX(24px);
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child::after {
+                        width: 14px;
+                        height: 14px;
+                        /*right: auto;*/
+                        left: 8px;
+                        background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/checkmark-switcher.svg);
+                        background-size: 14px 14px;
+                    }
+
+                    @media screen and (max-width: 600px) {
+                        .switches li::before {
+                            display: none;
+                        }
+                    }
+                    .optionDiv1_item{
+                        h3{
+                            font-size: 30px;
+                            padding: 10px;
+                            font-weight: 540;
+                            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                        }
+                    }
+
+                    .optionDiv1_item_1 {
+                        display: grid;
+                        grid-template-columns: auto auto auto;
+
+                        .item_input {
+                            margin-top: 20px;
+                            padding: 5px;
+                            border: 2px solid gray;
+                            border-radius: 20px;
+
+                            span {
+                                position: relative;
+                                background-color: rgb(210, 208, 208);
+                                font-size: 20px;
+                                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                                font-weight: 300;
+                                padding: 5px;
+                                top: -18px;
+                                left: 20px;
+                            }
+
+                            input {
+                                background: none;
+                                padding: 10px;
+                                border-radius: 12px;
+                                border-bottom: 2px solid white;
+                                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                                font-weight: 400;
+                            }
+                        }
+                    }
+                }
+
+                .step2_optionDiv2 {
+                    width: 80%;
+                    margin-top: 40px;
+                    margin: 40px auto;
+
+                    // height: 700px;
+                    h2 {
+                        margin-bottom: 30px;
+                        // background-color: red;
+                        font-size: 40px;
+                        padding: 10px;
+                        font-weight: 540;
+                        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                        border-bottom: 1px solid gray;
+                    }
+
+                    .step2_optionDiv2_2 {
+                        display: flex;
+
+                        .optionDiv2_item_active {
+                            margin-top: 20px;
+                            padding: 5px;
+                            text-align: center;
+                            background-color: green;
+
+                            span {
+                                font-size: 20px;
+                                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                                font-weight: 300;
+                                padding: 5px;
+                                background-color: green;
+                                color: white;
+
+                            }
+
+                            img {
+                                width: 180px;
+                            }
+                        }
+
+                        .optionDiv2_item {
+                            // display: flex;
+                            margin-top: 20px;
+                            padding: 5px;
+                            text-align: center;
+                            // border: 2px solid gray;
+                            // border-radius: 20px;
+
+                            span {
+                                // position: relative;
+                                background-color: rgb(210, 208, 208);
+                                font-size: 20px;
+                                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                                font-weight: 300;
+                                padding: 5px;
+                                // top: -18px;
+                                // left: 20px;
+                            }
+
+                            img {
+                                max-width: 150px;
+                            }
+
+                        }
+                    }
+
+                    .step2_buttons {
+                        width: 100%;
+                        margin-top: 50px;
+                        display: flex;
+                        justify-content: space-evenly;
+
+                        button {
+                            min-width: 120px;
+                            padding: 15px;
+                            font-size: 20px;
+                            border-radius: 12px;
+                            background-color: green;
+                            color: white;
+                        }
+
+                        button[disabled] {
+                            background-color: rgba(0, 128, 0, 0.484);
+                        }
+                    }
+                }
+            }
+
+            .step2_image {
+                width: 45%;
+
+                img {
+                    width: 100%;
+                    border-radius: 30px;
+                }
+            }
+        }
+        .step3 {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+
+            .step3_option {
+
+                width: 45%;
+                background-color: rgb(210, 208, 208);
+                border-radius: 20px;
+                padding: 10px;
+                display: grid;
+                grid-template-columns: auto auto;
+                .step3_optionDiv1,.step3_optionDiv2,.step3_optionDiv3,.step3_optionDiv4,.step3_optionDiv5 {
+                    width: 80%;
+                    margin: 40px auto;
+                    .step3_option_item_1{
+                    h2 {
+                        margin-bottom: 30px;
+                        font-size: 40px;
+                        padding: 10px;
+                        font-weight: 540;
+                        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                        border-bottom: 1px solid gray;
+                    }
+
+               
+
+                    input[type="checkbox"] {
+                        position: absolute;
+                        left: -9999px;
+
+                    }
+
+                    span {
+                        font-weight: 540;
+                        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                    }
+
+                 
+
+                    .optionDiv1_item::before {
+                        content: counter(switchCounter);
+                        position: absolute;
+                        top: 50%;
+                        left: -30px;
+                        transform: translateY(-50%);
+                        font-size: 2rem;
+                        font-weight: bold;
+                        color: pink;
+                    }
+
+                    label {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 15px;
+                    }
+
+                    span:last-child {
+                        position: relative;
+                        width: 50px;
+                        height: 26px;
+                        border-radius: 15px;
+                        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
+                        background: gray;
+                        transition: all 0.3s;
+                    }
+
+                    span:last-child::before,
+                    span:last-child::after {
+                        content: "";
+                        position: absolute;
+                    }
+
+                    span:last-child::before {
+                        left: 1px;
+                        top: 1px;
+                        width: 24px;
+                        height: 24px;
+                        background: white;
+                        border-radius: 50%;
+                        z-index: 1;
+                        transition: transform 0.3s;
+                    }
+
+                    span:last-child::after {
+                        top: 50%;
+                        right: 8px;
+                        width: 12px;
+                        height: 12px;
+                        transform: translateY(-50%);
+                        background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/uncheck-switcher.svg);
+                        background-size: 12px 12px;
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child {
+                        background: green;
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child::before {
+                        transform: translateX(24px);
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child::after {
+                        width: 14px;
+                        height: 14px;
+                        /*right: auto;*/
+                        left: 8px;
+                        background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/checkmark-switcher.svg);
+                        background-size: 14px 14px;
+                    }
+
+                    @media screen and (max-width: 600px) {
+                        .switches li::before {
+                            display: none;
+                        }
+                    }
+                    .optionDiv1_item{
+                        h3{
+                            font-size: 30px;
+                            padding: 10px;
+                            font-weight: 540;
+                            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                        }
+                    }
+                }
+
+                    // .optionDiv1_item_1 {
+                    //     display: grid;
+                    //     grid-template-columns: auto auto auto;
+
+                    //     .item_input {
+                    //         margin-top: 20px;
+                    //         padding: 5px;
+                    //         border: 2px solid gray;
+                    //         border-radius: 20px;
+
+                    //         span {
+                    //             position: relative;
+                    //             background-color: rgb(210, 208, 208);
+                    //             font-size: 20px;
+                    //             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                    //             font-weight: 300;
+                    //             padding: 5px;
+                    //             top: -18px;
+                    //             left: 20px;
+                    //         }
+
+                    //         input {
+                    //             background: none;
+                    //             padding: 10px;
+                    //             border-radius: 12px;
+                    //             border-bottom: 2px solid white;
+                    //             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                    //             font-weight: 400;
+                    //         }
+                    //     }
+                    // }
+                }
+                .step3_buttons {
+                    width: 100%;
+                    margin-top: 100px;
+                    display: flex;
+                    justify-content: space-evenly;
+
+                    button {
+                        min-width: 120px;
+                        padding: 15px;
+                        font-size: 20px;
+                        border-radius: 12px;
+                        background-color: green;
+                        color: white;
+                    }
+
+                    button[disabled] {
+                        background-color: rgba(0, 128, 0, 0.484);
+                    }
+                }
+               
+
+                // .step2_optionDiv2 {
+                //     width: 80%;
+                //     margin-top: 40px;
+                //     margin: 40px auto;
+
+                //     // height: 700px;
+                //     h2 {
+                //         margin-bottom: 30px;
+                //         // background-color: red;
+                //         font-size: 40px;
+                //         padding: 10px;
+                //         font-weight: 540;
+                //         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                //         border-bottom: 1px solid gray;
+                //     }
+
+                //     .step2_optionDiv2_2 {
+                //         display: flex;
+
+                //         .optionDiv2_item_active {
+                //             margin-top: 20px;
+                //             padding: 5px;
+                //             text-align: center;
+                //             background-color: green;
+
+                //             span {
+                //                 font-size: 20px;
+                //                 font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                //                 font-weight: 300;
+                //                 padding: 5px;
+                //                 background-color: green;
+                //                 color: white;
+
+                //             }
+
+                //             img {
+                //                 width: 180px;
+                //             }
+                //         }
+
+                //         .optionDiv2_item {
+                //             // display: flex;
+                //             margin-top: 20px;
+                //             padding: 5px;
+                //             text-align: center;
+                //             // border: 2px solid gray;
+                //             // border-radius: 20px;
+
+                //             span {
+                //                 // position: relative;
+                //                 background-color: rgb(210, 208, 208);
+                //                 font-size: 20px;
+                //                 font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                //                 font-weight: 300;
+                //                 padding: 5px;
+                //                 // top: -18px;
+                //                 // left: 20px;
+                //             }
+
+                //             img {
+                //                 max-width: 150px;
+                //             }
+
+                //         }
+                //     }
+
+                //     .step2_buttons {
+                //         width: 100%;
+                //         margin-top: 50px;
+                //         display: flex;
+                //         justify-content: space-evenly;
+
+                //         button {
+                //             min-width: 120px;
+                //             padding: 15px;
+                //             font-size: 20px;
+                //             border-radius: 12px;
+                //             background-color: green;
+                //             color: white;
+                //         }
+
+                //         button[disabled] {
+                //             background-color: rgba(0, 128, 0, 0.484);
+                //         }
+                //     }
+                // }
+            }
+            .step3_image {
+                width: 45%;
+
+                img {
+                    width: 100%;
+                    border-radius: 30px;
+                }
+            }
+
+            // .step2_image {
+            //     width: 45%;
+
+            //     img {
+            //         width: 100%;
+            //         border-radius: 30px;
+            //     }
+            // }
+        }
+        .step4{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+
+            .step4_option {
+
+                width: 45%;
+                display: flex;
+                justify-content: space-around;
+                background-color: rgb(210, 208, 208);
+                border-radius: 20px;
+                padding: 10px;
+
+                .step4_optionDiv1 {
+                    width: 40%;
+
+                    h2 {
+                        margin-bottom: 20px;
+                        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                        font-weight: 500;
+                    }
+
+                    input[type="checkbox"] {
+                        position: absolute;
+                        left: -9999px;
+
+                    }
+
+                    span {
+                        font-weight: 540;
+                        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                    }
+
+                    .optionDiv1_item:not(:last-child) {
+                        border-bottom: 1px solid gray;
+                    }
+
+                    .optionDiv1_item::before {
+                        content: counter(switchCounter);
+                        position: absolute;
+                        top: 50%;
+                        left: -30px;
+                        transform: translateY(-50%);
+                        font-size: 2rem;
+                        font-weight: bold;
+                        color: pink;
+                    }
+
+                    label {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 15px;
+                    }
+
+                    span:last-child {
+                        position: relative;
+                        width: 50px;
+                        height: 26px;
+                        border-radius: 15px;
+                        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
+                        background: gray;
+                        transition: all 0.3s;
+                    }
+
+                    span:last-child::before,
+                    span:last-child::after {
+                        content: "";
+                        position: absolute;
+                    }
+
+                    span:last-child::before {
+                        left: 1px;
+                        top: 1px;
+                        width: 24px;
+                        height: 24px;
+                        background: white;
+                        border-radius: 50%;
+                        z-index: 1;
+                        transition: transform 0.3s;
+                    }
+
+                    span:last-child::after {
+                        top: 50%;
+                        right: 8px;
+                        width: 12px;
+                        height: 12px;
+                        transform: translateY(-50%);
+                        background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/uncheck-switcher.svg);
+                        background-size: 12px 12px;
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child {
+                        background: green;
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child::before {
+                        transform: translateX(24px);
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child::after {
+                        width: 14px;
+                        height: 14px;
+                        /*right: auto;*/
+                        left: 8px;
+                        background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/checkmark-switcher.svg);
+                        background-size: 14px 14px;
+                    }
+
+                    @media screen and (max-width: 600px) {
+                        .switches li::before {
+                            display: none;
+                        }
+                    }
+                    .step4_buttons{
+                        width: 100%;
+                                margin-top: 50px;
+                                display: flex;
+                                justify-content: space-between;
+        
+                                button {
+                                    min-width: 120px;
+                                    padding: 15px;
+                                    font-size: 20px;
+                                    border-radius: 12px;
+                                    background-color: green;
+                                    color: white;
+                                }
+        
+                                button[disabled] {
+                                    background-color: rgba(0, 128, 0, 0.484);
+                                }}
+
+
+                    // display: flex;
+                    // background-color: blue;
+                }
+
+                
+                // .step1_optionDiv2 {
+                //     width: 40%;
+
+                //     h2 {
+                //         margin-bottom: 30px;
+                //         // background-color: red;
+                //         font-weight: 540;
+                //         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                //     }
+
+                //     .optionDiv2_item {
+                //         margin-top: 20px;
+                //         padding: 5px;
+                //         border: 2px solid gray;
+                //         border-radius: 20px;
+
+                //         span {
+                //             position: relative;
+                //             background-color: rgb(210, 208, 208);
+                //             font-size: 20px;
+                //             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                //             font-weight: 300;
+                //             padding: 5px;
+                //             top: -18px;
+                //             left: 20px;
+                //         }
+
+                //         input {
+                //             background: none;
+                //             padding: 10px;
+                //             border-radius: 12px;
+                //             border-bottom: 2px solid white;
+                //             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                //             font-weight: 400;
+                //         }
+                //     }
+
+                //     .step1_buttons {
+                //         width: 100%;
+                //         margin-top: 50px;
+                //         display: flex;
+                //         justify-content: center;
+
+                //         button {
+                //             min-width: 120px;
+                //             padding: 15px;
+                //             font-size: 20px;
+                //             border-radius: 12px;
+                //             background-color: green;
+                //             color: white;
+                //         }
+
+                //         button[disabled] {
+                //             background-color: rgba(0, 128, 0, 0.484);
+                //         }
+                //     }
+                // }
+            }
+
+            .step4_image {
+                width: 45%;
+
+                img {
+                    width: 100%;
+                    border-radius: 30px;
+                }
+            }
+        }
+    }
+
+}
+
 .FinalOrder {
-    
+
     max-width: 1200px;
     box-shadow: 0px 0px 20px black;
     margin: 100px auto;
@@ -24,7 +978,7 @@
 
     .FinalOrder_info {
         display: grid;
-        grid-template-columns: 25% 38% 30%;
+        grid-template-columns: auto auto;
         justify-content: center;
         padding-top: 50px;
         gap: 20px;
@@ -55,7 +1009,8 @@
                 animation: move-bg 5s infinite linear;
 
                 .anticon {
-                    display: none;
+                    display: flex;
+                    color :brown;
                 }
 
             }
@@ -86,17 +1041,19 @@
 
                     &:hover .totalItem>.totalItem_edit {
                         display: inline-block;
-                        left: 40%;                        
+                        left: 40%;
                     }
 
                     &:hover>.totalItem>img {
                         opacity: 0.1;
                     }
+
                     .totalItem {
                         // transition: all .8s linear;
                         display: flex;
                         align-items: center;
                         justify-content: space-between;
+
                         .totalItem_edit {
                             // transition: all .8s linear;
                             display: none;
@@ -105,7 +1062,7 @@
                             color: rgb(255, 255, 255);
                             font-size: 25px;
                             position: absolute;
-                            
+
                         }
 
                         span {
@@ -138,11 +1095,11 @@
                     }
                 }
             }
+        
         }
 
-        .headDiv:nth-child(4),
-        .headDiv:nth-child(5) {
-
+        .headDiv:nth-child(3) {
+       
             transition: all .8s linear;
             cursor: pointer;
             box-shadow: 0px 0px 0px;
@@ -173,26 +1130,28 @@
 
         }
     }
-    .total_price{
+
+    .total_price {
         display: flex;
         width: 95%;
         justify-content: end;
-        h5{
-            
-                --bg-size: 400%;
-                --color-one: hsl(102, 88%, 50%);
-                --color-two: hsl(102, 78%, 16%);
-                background: linear-gradient(90deg,
-                        var(--color-one),
-                        var(--color-two),
-                        var(--color-one)) 0 0 / var(--bg-size) 100%;
-                color: transparent;
-                -webkit-background-clip: text;
-                background-clip: text;
-                animation: move-bg 5s infinite linear;
-            
+
+        h5 {
+
+            --bg-size: 400%;
+            --color-one: hsl(102, 88%, 50%);
+            --color-two: hsl(102, 78%, 16%);
+            background: linear-gradient(90deg,
+                    var(--color-one),
+                    var(--color-two),
+                    var(--color-one)) 0 0 / var(--bg-size) 100%;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: move-bg 5s infinite linear;
+
             font-size: 26px;
-            
+
         }
     }
 
@@ -201,6 +1160,7 @@
         margin: 0 auto;
         display: flex;
         justify-content: space-around;
+
         button {
             padding: 12px;
             border-radius: 8px;
@@ -213,17 +1173,17 @@
 }
 
 .Aaa {
-    
+
 
 
     .step3_map {
 
-            label{
-                // width: 100%;
+        label {
+            // width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-    }
+        }
     }
 
     // text-align: center;
@@ -234,18 +1194,6 @@
     // flex-direction: column;
     // margin-bottom: 40px;
 
-    .steping {
-        margin-top: 50px;
-        .step1{
-            background-color: red;
-            .step1_option{
-                background-color: red;
-                .step1_optionDiv1{
-                    background-color: blue;
-                }
-            }
-        }
-    }
 
     input {
         width: 300px;

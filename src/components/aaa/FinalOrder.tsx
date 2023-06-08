@@ -10,59 +10,68 @@ export default function FinalOrder({ total }: any) {
   const [active1,setActive1]=useState(false)
   // const [price,setPrice] = useState<number>(0)
 let price=0
+const order:any = sessionStorage.getItem('orders')
+const totals = JSON.parse(order) 
+console.log(totals);
 
   const navigate=useNavigate()
-  let arr1 = total?.map((item: any) => {
+  let arr1 = totals?.filter((item: any) => {
     if (item.is_active === null) {
 
-      return item.table_name
+      return item
     }
   }
   )
-  let arr2 = total?.map((item: any) => {
-    if (item.is_active !== null) {
+  let arr2 = totals?.filter((item: any) => {
+    if (item.is_active == true) {
 
-      return item.table_name
+      return item
     }
   }
   )
   function removeDuplicates(arr1: any[]) {
     let headArr: any = [];
     for (let i = 0; i < arr1.length; i++) {
-      if (!headArr.includes(arr1[i])) {
-        headArr.push(arr1[i]);
+      if (!headArr.includes(arr1[i].table_name)) {
+        headArr.push(arr1[i].table_name);
       }
     }
     return headArr;
   }
-  const arr:any=sessionStorage.getItem('arr')
-  const array=JSON.parse(arr)
+  // const arr:any=sessionStorage.getItem('arr')
+  // const array=JSON.parse(arr)
   const headArr = removeDuplicates(arr1);
   const headArr2 = removeDuplicates(arr2);
-  console.log(array);
+  // // console.log(array);
+  console.log(headArr);
+  console.log(headArr2);
+  
+  const tot = [...arr1,...arr2]
   function EditTotal(table_name:string){
-    array?.map((elem:any,index:number)=>{
-      if(elem===table_name){
+    tot?.map((elem:any,index:number)=>{
+      if(elem.table_name===table_name){
         if(index===0){
           sessionStorage.setItem('step2','false')
           sessionStorage.setItem('step3','false')
           sessionStorage.setItem('step4','false')
-          sessionStorage.setItem('step5','false')
+          // sessionStorage.setItem('step5','false')
           sessionStorage.setItem('final','false')
           navigate(0)
         }else if(index===1 ||index===2){
+          sessionStorage.setItem('step2','false')
+
           sessionStorage.setItem('step3','false')
           sessionStorage.setItem('step4','false')
-          sessionStorage.setItem('step5','false')
+          // sessionStorage.setItem('step5','false')
           sessionStorage.setItem('final','false')
           navigate(0)
         }else if(index===3 ||index===4){
           sessionStorage.setItem('step4','false')
-          sessionStorage.setItem('step5','false')
+          // sessionStorage.setItem('step5','false')
           sessionStorage.setItem('final','false')
           navigate(0)
         }else if(index===5 ||index===6 ||index ===7||index === 8 ||index === 9||index===10){
-          sessionStorage.setItem('step5','false')
+          // sessionStorage.setItem('step5','false')
           sessionStorage.setItem('final','false')
           navigate(0)
         }else if(index===11 ||index===12){
@@ -92,8 +101,8 @@ let price=0
     // console.log(response,1111111);
     // const res:any=await axios.post('http://localhost:3000/api/v1/superAdmin/insertValues',total)
     // console.log(res);
-    total?.map((element:any,index:number)=>{
-              if(element?.price_user!==null &&index!==total.length){
+    arr2?.map((element:any,index:number)=>{
+              if(element?.price_user!==null &&index!==totals.length){
                 price += element?.price_user
               }
               return price
@@ -126,7 +135,7 @@ let price=0
               <h2>{el} {!active?<DownCircleOutlined onClick={()=>{setActive(true)}}/>:<UpCircleOutlined onClick={()=>{setActive(false)}} />}</h2>
               
               <div className={active?'totalDiv active':'totalDiv'}>
-                {total.map((elem: any) =>
+                {arr1.map((elem: any) =>
                   elem.table_name === el && 
                   <div className='totalhead' >
                     {elem.is_active === null ?
@@ -136,13 +145,13 @@ let price=0
             </div>
           )
           }
-          <div className='headDiv' style={{boxShadow:active1?'0px 0px 20px':'0 0 0'}}>
+          <div className='headDiv' style={{boxShadow:active1?'0px 0px 20px':''}}>
               <h2>All{!active1?<DownCircleOutlined onClick={()=>{setActive1(true)}}/>:<UpCircleOutlined onClick={()=>{setActive1(false)}} />}</h2>
           {
           headArr2?.map((el:any)=>
             el !==undefined && 
                 <div className={active1?'totalDiv active':'totalDiv'}>
-                  {total?.map((elem:any)=>
+                  {arr2?.map((elem:any)=>
                   elem.table_name === el&&elem.value===null&&
                   <div className='totalhead'>
                     {elem.is_active !== null && 
@@ -160,7 +169,7 @@ let price=0
           headArr2?.map((el:any)=>
             el !==undefined && 
                 <div className={active1?'totalDiv active':'totalDiv'}>
-                  {total?.map((elem:any)=>
+                  {arr2?.map((elem:any)=>
                   elem.table_name === el&&elem.value !== null&&elem.is_active !==null&&
                   <div className='totalhead'>
                     
