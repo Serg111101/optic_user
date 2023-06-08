@@ -1,120 +1,108 @@
 
-import { useState, useRef, useEffect } from "react";
-import {
-  PayPalScriptProvider,
-  PayPalHostedFieldsProvider,
-  PayPalHostedField,
-  PayPalButtons,
-  usePayPalHostedFields,
-  usePayPalScriptReducer,
-} from "@paypal/react-paypal-js";
-import { TailSpin } from "react-loader-spinner";
+import { useState } from "react";
+import axios from "axios";
+import {  PayPalScriptProvider,  PayPalButtons,} from "@paypal/react-paypal-js";
+import { SuccesOrder } from "../../success/SuccesOrder";
+
+
+
+
 export const PaypalPay = (props:any) => {
-  console.log(props);
-  
-  const [loader, showLoader] = useState(false);
-  const [success, showSuccess] = useState(false);
-  const [error, showErrorMsg] = useState(false);
-  const [transactionData, setTransactionData] = useState();
-  const [errorMsg, setErrorMsg] = useState();
-  const [orderID, setOrderID] = useState(false);
   const order:any = localStorage.getItem("fedexShip")
+  const amount:any=localStorage.getItem("price1")
   const orders = JSON.parse(order)
   const [okey,setOkay] =useState(false)
-  useEffect(() => {
-   
-    if (success) {
-        console.log('Order successful . Your order id is--', orderID);
-    }
-},[success, orderID]);
-
-
-
-
+//   useEffect(() => {
+//     if (success) {
+//         console.log('Order successful . Your order id is--', orderID);
+//     }
+// },[success, orderID]);
     const createOrder = (data:any, actions:any) => {
         return actions.order.create({
             purchase_units: [
-               { "reference_id": "d9f80740-38f0-11e8-b467-0ed5f89f718b", "amount": { "currency_code": "USD", "value": "10.00" } , "payment_source": { "paypal": { "experience_context": { "payment_method_preference": "IMMEDIATE_PAYMENT_REQUIRED", "payment_method_selected": "PAYPAL", "brand_name": "EXAMPLE INC", "locale": "en-US", "landing_page": "LOGIN", "shipping_preference": "SET_PROVIDED_ADDRESS", "user_action": "PAY_NOW", "return_url": "https://example.com/returnUrl", "cancel_url": "https://example.com/cancelUrl" } } } }
+               { "reference_id": "d9f80740-38f0-11e8-b467-0ed5f89f718b", "amount": { "currency_code": "USD", "value": amount } , "payment_source": { "paypal": { "experience_context": { "payment_method_preference": "IMMEDIATE_PAYMENT_REQUIRED", "payment_method_selected": "PAYPAL", "brand_name": "EXAMPLE INC", "locale": "en-US", "landing_page": "LOGIN", "shipping_preference": "SET_PROVIDED_ADDRESS", "user_action": "PAY_NOW", "return_url": "https://example.com/returnUrl", "cancel_url": "https://example.com/cancelUrl" } } } }
             ],
-        }).then((orderID:any) => {
-                setOrderID(orderID);
-               
-                // alert("Transaction Complete. Transaction ID - "+orderID)
-
-                return orderID;
+        }).then((order:any) => {
+                return order;
             });
     };
 
 
     const onApprove = (data:any, actions:any) => {
       console.log(actions);
-        return actions.order.capture().then((details:any)=> setOkay(details))
+        return actions.order.capture().then((details:any)=> {setOkay(details); if(details) paypaldata(details)}
+        )
     };
+     const paypaldata = (details:any) => {
+           axios({
+            method: 'post',
+            url: 'http://localhost:3000/api/v1/paypal/orders',
+            data: details
+      })
+    }
   
 
-  const SubmitPayment = () => {
-    // Here declare the variable containing the hostedField instance
-    const { cardFields }:any = usePayPalHostedFields();
-    const cardHolderName = useRef<any>(null);
+    
+  // const SubmitPayment = () => {
+  //   // Here declare the variable containing the hostedField instance
+  //   const { cardFields }:any = usePayPalHostedFields();
+  //   const cardHolderName = useRef<any>(null);
 
-    const submitHandler = () => {
-      if (typeof cardFields.submit !== "function") return; // validate that `submit()` exists before using it
-      if (errorMsg) showErrorMsg(false);
-      showLoader(true);
-      showSuccess(false);
-      cardFields.submit({
-        // The full name as shown in the card and billing addresss
-        // These fields are optional for Sandbox but mandatory for production integration
-        cardholderName: cardHolderName?.current?.value
-      })
-      .then((order:any) => {
-        const { orderId } = order;
+  //   const submitHandler = () => {
+  //     if (typeof cardFields.submit !== "function") return; // validate that `submit()` exists before using it
+  //     if (errorMsg) showErrorMsg(false);
+  //     showLoader(true);
+  //     showSuccess(false);
+  //     cardFields.submit({
+  //       // The full name as shown in the card and billing addresss
+  //       // These fields are optional for Sandbox but mandatory for production integration
+  //       cardholderName: cardHolderName?.current?.value
+  //     })
+  //     .then((order:any) => {
+  //       const { orderId } = order;
 
-        fetch(`/api/orders/${orderId}/capture`, {method: "post"})
-        .then((response) => response.json())
-        .then((data) => {
-          showLoader(false);
-          showSuccess(true);
-          setTransactionData(data);
-          alert("Transaction Complete. Transaction ID - "+data.id)
-          // Inside the data you can find all the information related to the payment
-        })
-        .catch((err) => {
-          // Handle capture order error
-          showLoader(false);
-          showErrorMsg(true);
-          setErrorMsg(err);
-        });
-      })
-      .catch((err:any) => {
-        // Handle validate card fields error
-        showLoader(false);
-        showErrorMsg(true);
-        setErrorMsg(err);
-      });
-    };
+  //       fetch(`/api/orders/${orderId}/capture`, {method: "post"})
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         showLoader(false);
+  //         showSuccess(true);
+  //         setTransactionData(data);
+  //         alert("Transaction Complete. Transaction ID - "+data.id)
+  //         // Inside the data you can find all the information related to the payment
+  //       })
+  //       .catch((err) => {
+  //         // Handle capture order error
+  //         showLoader(false);
+  //         showErrorMsg(true);
+  //         setErrorMsg(err);
+  //       });
+  //     })
+  //     .catch((err:any) => {
+  //       // Handle validate card fields error
+  //       showLoader(false);
+  //       showErrorMsg(true);
+  //       setErrorMsg(err);
+  //     });
+  //   };
 
 
  
 
 
-    // return (
-    //   <button
-    //     onClick={submitHandler}
-    //     className="btn btn-primary"
-    //     style={{width:"320px", height:"50px", background:"#009c74", color:"white"}}
-    //   >
-    //     Payhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
-    //   </button>
-    // );
-  };
+  //   // return (
+  //   //   <button
+  //   //     onClick={submitHandler}
+  //   //     className="btn btn-primary"
+  //   //     style={{width:"320px", height:"50px", background:"#009c74", color:"white"}}
+  //   //   >
+  //   //     Payhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+  //   //   </button>
+  //   // );
+  // };
   return (<div className="paypay">
   
    {okey ? 
-         <div className="success">
-          <h4>Your tracking Number: {orders[1]?.trackingNumber}</h4>
-           <a href={orders[1]?.labelDocument} target="_blank"> Your labelDocument  </a> 
-        </div>
+      <SuccesOrder/>
 
     : <PayPalScriptProvider
     options={{
@@ -135,15 +123,11 @@ export const PaypalPay = (props:any) => {
         style={{
           layout: "vertical", 
           shape: "rect",
-      
-          // color: (fundingSource==paypal.FUNDING.PAYLATER) ? 'gold' : '',
+
         }} />
       </div>
       
-      {/* <div>
-        <p > OR </p>
-      </div>
-      
+      {/*
       <PayPalHostedFieldsProvider
         createOrder={() => {
           // Here define the call to create and order

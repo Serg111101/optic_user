@@ -1,15 +1,36 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
 .container_pay{
  width: 1200px;
-  margin: 120px auto;
+  margin: 100px auto;
   background-color:rgb(221, 214, 214);
-
+  height: 50vh;
  .box-pay{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   margin: 0px auto;
   background-color:rgb(221, 214, 214);
+  .error{
+    margin: 50px auto;
+    h3{
+      color: red;
+    }
+    button{
+  
+      background-color: rgb(219, 72, 72);
+      border-radius: 10px;
+      width: 120px;
+      height: 40px;
+ 
+   }
+   button:hover{
+      background: rgb(102, 96, 110);
+      box-shadow: 10px 10px 10px  rgb(65, 41, 41);
+      transform: scale(1.2);
+
+
+   }
+  }
   .total-box{
     display:flex;
   justify-content: center;
@@ -55,6 +76,23 @@
   font-size: 1.2em;
   color: var(--dark-terminal-color);
   .Payment{
+    margin: 150px auto;
+
+    button{
+  
+      background-color: rgb(219, 72, 72);
+      border-radius: 10px;
+      width: 120px;
+      height: 40px;
+ 
+   }
+   button:hover{
+      background: rgb(102, 96, 110);
+      box-shadow: 10px 10px 10px  rgb(65, 41, 41);
+      transform: scale(1.2);
+
+
+   }
     header{
   
       .paypay{
@@ -182,7 +220,7 @@ flex-direction: column;
     margin-top: 20px;
     opacity: 1 !important;
     img{
-      width: 120px;
+      width: 90px;
                 height: 50px;
               
                object-fit: fill;

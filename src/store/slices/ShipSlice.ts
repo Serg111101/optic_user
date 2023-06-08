@@ -3,14 +3,16 @@ import { IUsps } from '../../models/model';
 
 
 interface ShipState {
-   loading: boolean;
+   loadingShip: boolean;
+   loadingShip1: boolean;
    error:string;
    UspsShip:IUsps[];
    FedexShip:IUsps[];
 }
 
 const initialState:ShipState = {
-    loading: false,
+    loadingShip: false,
+    loadingShip1: false,
     error:"",
     UspsShip:[],
     FedexShip:[],
@@ -21,27 +23,30 @@ export const Ship = createSlice({
   initialState,
   reducers: {
     fetching(state){
-        state.loading = true;
+        state.loadingShip = true;
+    },
+    fetching1(state){
+        state.loadingShip1 = true;
     },
     fetchFedexSuccess(state,action: PayloadAction<IUsps[]>){
+        state.loadingShip = false;
         state.FedexShip = action.payload;
-        state.loading = false;
         state.error = ''
     },
  
     fetchUspsSuccess2(state,action: PayloadAction<IUsps[]>){
-        state.loading = false;
+        state.loadingShip1 = false;
         state.UspsShip = action.payload;
         state.error = ''
     },
     fetchError(state,action: PayloadAction<Error>){
-        state.loading = false;
+        state.loadingShip = false;
         state.error = action.payload.message
     }
   }
 })
 
-export const {  fetching, fetchFedexSuccess, fetchUspsSuccess2,  fetchError } = Ship.actions
+export const {  fetching, fetching1, fetchFedexSuccess, fetchUspsSuccess2,  fetchError } = Ship.actions
 
 
 export default Ship.reducer
