@@ -1,10 +1,12 @@
 import "./Aaa.scss";
 import { useState, useEffect } from "react";
 import { Step3 } from "./Step3";
-import { fetchOrders } from "../../store/action/OrderAction";
-import { useAppDispatch } from "../../hooks/redux";
+
 
 export const Step2 = ({
+  headArr,
+  stepArr,
+  setStepArr,
   step2,
   step3,
   step4,
@@ -20,195 +22,73 @@ export const Step2 = ({
   orders,
 }: any) => {
 
-  const dispatch = useAppDispatch();
-  // const [input, setInput] = useState([0]);
-  // const [val, setVal] = useState<any>(false)
 
-
-
+  let arr: any = sessionStorage.getItem('orders')
   useEffect(() => {
-    dispatch(fetchOrders());
-  }, [dispatch]);
-
-
-
-  let arr1 = orders?.map((item: any) => item.table_name);
-  function removeDuplicates(arr1: any[]) {
-    let headArr: any = [];
-    for (let i = 0; i < arr1?.length; i++) {
-      if (!headArr.includes(arr1[i])) {
-        headArr.push(arr1[i]);
-      }
+    if (arr !== null && arr !== '[]' && stepArr === null) {
+      setStepArr(JSON.parse(arr))
     }
-    return headArr;
-  }
-  const headArr = removeDuplicates(arr1);
+  }, [stepArr])
 
 
+  const [btnCheck, setBtnCheck] = useState(false)
+  const [clip, setClip] = useState(false)
 
-  let arr: any = sessionStorage?.getItem('step2_1')
-  const [arrr, setArrr] = useState(JSON?.parse(arr))
-  const [butt,setButt]=useState(false)
-  useEffect(() => {
-    if (arr == null || arr == '[]') {
-      const arr2: any = []
-      sessionStorage.removeItem('step2_1')
+  function ChangeItem(tableName: string, id: number) {
+    const newArr: any = stepArr?.map((el: any) => {
+      if (el.table_name === tableName && el.id === id) {
 
-      orders?.map((el: any) => {
+        el.is_active = !el.is_active
+        setClip(el.is_active)
 
-        if (el.table_name == headArr[1]) {
-          arr2.push(el)
-        }
-
-      })
-      sessionStorage.setItem('step2_1', JSON.stringify(arr2))
-    }
-  }, [orders, headArr, arr])
-
-  useEffect(() => {
-
-    if (arr !== null && arr !== '[]' && arrr === null) {
-      setArrr(JSON.parse(arr))
-    }
-
-  }, [arr, arrr])
-  console.log(arrr);
-  
-useEffect(()=>{
-  saveButton()
-},[arrr])
-
-function saveButton(){
-  
-  if(arrr2?.length>0){
-      for(let i=0;i<arrr2?.length;i++){
-
-        if(arrr2[i]?.value?.length >0 ){
-          setButt(true)
-
+        if (el.is_active === true) {
+          stepArr.map((elem: any) => {
+            if (elem.table_name === headArr[2]) {
+              elem.is_active = false
+            }
+            return elem
+          })
         }else{
-          setButt(false)
-          break
+          stepArr.map((elem: any) => {
+            if (elem.table_name === headArr[3]&&elem?.value!=='') {
+              elem.value=null
+            }
+            return elem
+          })
         }
       }
-    
+      return el
+    })
+    sessionStorage.setItem('orders', JSON.stringify(newArr))
+    setStepArr(null)
+
   }
-}
+  function ChangeItem2(tableName: string, id: number) {
 
-  function addOrder1(value:string) {
-    if (arrr) {
-      const ar1 = arrr?.filter((el: any) => {
-        if(el.column_name == value){
-          el.is_active=true
-          return el
+    const newArr: any = stepArr?.map((el: any) => {
+      if (el.table_name === tableName) {
+        if (el.id === id) {
+          el.is_active = true
+        } else {
+          el.is_active = false
         }
-      })
-      const ar2 = [...ar1,...arrr?.filter((el: any) => {
-        if(el.column_name !== value){
-          el.is_active=false
-          return el
-        }
-      })]
-      sessionStorage.setItem('step2_1', JSON.stringify(ar2))
-      let x: any = sessionStorage.getItem('step2_1')
-      setArrr(JSON.parse(x))
-    }
+      }
+      return el
+    })
+    sessionStorage.setItem('orders', JSON.stringify(newArr))
+    setStepArr(null)
+
   }
-  
-  function addOrder2(id: number, e: any) {
-    if (arrr2) {
-      let ar2 = arrr2?.map((el: any) => {
-        if (el.id == id) {
-          el.value = e
-        }
-        return el
-      })
-      sessionStorage.setItem('step2_2', JSON.stringify(ar2))
-      let x: any = sessionStorage.getItem('step2_2')
-      setArrr2(JSON.parse(x))
-    }
+  function ChangeInput(elem: string, tableName: string, id: number) {
+    const newArr: any = stepArr?.map((el: any) => {
+      if (el.table_name === tableName && el.id === id) {
+        el.value = elem
+      }
+      return el
+    })
+    sessionStorage.setItem('orders', JSON.stringify(newArr))
+    setStepArr(newArr)
   }
-
-  let arr2: any = sessionStorage?.getItem('step2_2')
-  const [arrr2, setArrr2] = useState(JSON?.parse(arr2))
-
-  useEffect(() => {
-    if (arr2 == null || arr2 == '[]') {
-      const arr2: any = []
-      sessionStorage.removeItem('step2_2')
-
-      orders?.map((el: any) => {
-
-        if (el.table_name == headArr[2]) {
-          arr2.push(el)
-        }
-
-      })
-      sessionStorage.setItem('step2_2', JSON.stringify(arr2))
-    }
-  }, [orders, headArr, arr2])
-
-  useEffect(() => {
-
-    if (arr2 !== null && arr2 !== '[]' && arrr === null) {
-      setArrr2(JSON.parse(arr2))
-    }
-
-  }, [arr2, arrr2])
-
-  const [test, setTest] = useState(headArr[1]);
-
-  // function addOrder1(id: number, table: string, col: string, e: any) {
-  //   const newTotals = totals.filter((item: any) => item.columnName !== col);
-  //   setTotals([
-  //     ...newTotals,
-  //     {
-  //       id: id,
-  //       tableName: table,
-  //       columnName: col,
-  //       value: e,
-  //     },
-  //   ]);
-  // }
-
-  // let arrr: any = [];
-  // let arrr1: any = [];
-
-  // orders?.map((el: any) => el.table_name === headArr[1] && arrr.push(el));
-  // orders?.map((el: any) => el.table_name === headArr[2] && arrr1.push(el));
-
-
-
-
-  // let fin = ''
-  // for (let i = 0; i < arrr1.length; i++) {
-  //   if (arrr1[i] === arrr1[arrr1.length - 1]) {
-  //     fin = arrr1[i].column_name;
-  //   }
-  // }
-
-
-
-  // function addOrder2(testing: any) {
-  //   arrr?.map((el: any) => {
-  //     if (el.column_name === testing) {
-  //       // const newTotals = totals.filter((item: any) => item.columnName !== col);
-  //       const strTotals: any = JSON.stringify([...totals.filter((elem: any) =>
-  //         elem.table_name !== el.table_name && el), el])
-  //       sessionStorage.removeItem('totals')
-  //       sessionStorage.setItem('totals', strTotals)
-  //       const sessionTotals: any = sessionStorage.getItem('totals')
-  //       setTotals(JSON.parse(sessionTotals))
-  //     }
-  //   }
-  //   )
-  //   // setTotals([...totals.filter((elem:any)=>
-  //         // elem.table_name !== el.table_name && el),el]))
-  // }
-  // function find() {
-  //   totals.map((el: any) => el.columnName === fin && setVal(true))
-  // }
-
   function navv() {
     if (step3 == false) {
       sessionStorage.removeItem("setp3");
@@ -227,11 +107,58 @@ function saveButton(){
       setStep2(step2)
     }
   }
+  useEffect(() => {
+    saveButton()
+  }, [stepArr, btnCheck])
+
+  let btn1 = false
+  let btn2 = false
+  function saveButton() {
+    if (clip) {
+      for (let i = 0; i < stepArr?.length; i++) {
+        if (stepArr[i].table_name === headArr[3] && stepArr[i]?.is_active === null) {
+          if (stepArr[i]?.value !== null && stepArr[i]?.value !== '') {
+            btn1 = true
+          }
+          else {
+            btn1 = false
+            break
+          }
+        }
+      }
+    } else {
+      for (let i = 0; i < stepArr?.length; i++) {
+        if (stepArr[i]?.table_name === headArr[2]) {
+          if (stepArr[i].is_active) {
+            btn1 = true
+            break
+          }
+          else {
+            btn1 = false
+          }
+        }
+      }
+    }
+    for (let i = 0; i < stepArr?.length; i++) {
+      if (stepArr[i].table_name === headArr[4]) {
+        if (stepArr[i]?.is_active === true) {
+          btn2 = true
+          break
+        } else {
+          btn2 = false
+        }
+      }
+    }
+    setBtnCheck(btn1 && btn2)
+  }
 
   return (
     <div>
       {step3 ? (
         <Step3
+          headArr={headArr}
+          stepArr={stepArr}
+          setStepArr={setStepArr}
           step3={step3}
           step4={step4}
           step5={step5}
@@ -245,65 +172,70 @@ function saveButton(){
           orders={orders}
         />
       ) : (
-        <div className="Step2">
-          <div className="Aaa">
-
-
-            <div>
+        <div className="step2">
+          <div className="step2_option">
+            <div className="step2_optionDiv1">
+              <h2>{headArr[2]}</h2>
               {
-                <div>
-                  <h2>{headArr[1]}</h2>
-
-                  <div className="selectDiv" >
-                    <select 
-                    onChange={
-                      (e) => { addOrder1(e.target.value);
-                         setTest(e.target.value)
-                         }}
-                      >
-                        {/* <option value={headArr[1]}>{headArr[1]}</option> */}
-                      {arrr?.map((item: any, index: number) => (
-                        <option
-                          value={item.column_name}
-                          key={item.id}
-                        >
-
-                          {item.column_name + ":  "}
-                          {"amunt  " + item.price_user}
-
-                        </option>
-                      ))}
-                    </select>
-
-                     <h2>{headArr[2]}</h2>
-                    {
-                      arrr2?.map((item: any, index: number) =>
-                          <div key={item.id}>
-                            <label>{item.column_name}</label>
-                            <input
-                              value={item.value}
-                              type="text"
-                              onChange={(e: any) => {
-                                addOrder2(
-                                  item.id,
-                                  e.target.value
-                                );
-                                saveButton()
-                                }}/>
-                          </div>
-                      )
-                    }
-                  </div>
-                </div>
+                stepArr?.map((el: any) => {
+                  if (el?.table_name === headArr[3] && el?.is_active !== null) {
+                    if (el.is_active !== clip) { setClip(el.is_active) }
+                    return <div key={el.id} className="optionDiv1_item">
+                      <input type="checkbox" id={el.column_name} checked={el.is_active} value={el.column_name} onChange={() => { ChangeItem(el.table_name, el.id) }} />
+                      <label htmlFor={el.column_name}>
+                        <h3>{el.table_name}</h3>
+                        <span></span>
+                      </label>
+                    </div>
+                  }
+                })
               }
+              <div className="optionDiv1_item_1">
+                {clip ? stepArr?.map((element: any) =>
+                  element?.table_name === headArr[3] && element?.is_active === null &&
+                  <div key={element.id} className="item_input">
+                    <span>{element.column_name}</span>
+                    <input type="text" value={element.value} onChange={(e: any) => ChangeInput(e.target.value, element.table_name, element.id)} />
+                  </div>)
+                  :
+                  stepArr?.map((elem: any) =>
+                    elem?.table_name === headArr[2] &&
+                    <div key={elem.id} >
+                      <input type="checkbox" id={elem.column_name} checked={elem.is_active} value={elem.column_name} onChange={() => { ChangeItem2(elem.table_name, elem.id) }} />
+                      <label htmlFor={elem.column_name}>
+                        <span>{elem.column_name}</span>
+                        <span></span>
+                      </label>
+                    </div>)
+                }
+              </div>
             </div>
-          <button onClick={() => {navv()}} disabled={!butt} > save </button> 
-          <button onClick={() => { navving() }}>go back</button>
+            <div className="step2_optionDiv2">
+              <h2>{headArr[4]}</h2>
+              <div className="step2_optionDiv2_2">{
+                stepArr?.map((el: any) =>
+                  el?.table_name === headArr[4] && (
 
-            {/* {val && (<>
-              <button onClick={() => { navv() }}>save</button>
-            </>
-            )} */}
+                    <div className={el.is_active ? "optionDiv2_item_active" : "optionDiv2_item"} key={el.id} onClick={() => { ChangeItem2(el.table_name, el.id) }} >
+                      <span>{el.column_name}</span>
+                      <img src={el.value} alt="" />
+                    </div>)
+                )
+              }
+              </div>
+              <div className="step2_buttons">
+                <button onClick={() => { navving() }}>Go back</button>
+                <button disabled={!btnCheck} onClick={() => { navv() }}>Next</button>
+
+              </div>
+            </div>
+          </div>
+          <div className="step2_image">
+            {stepArr?.map((el: any) =>
+              el?.table_name === headArr[4] && el?.is_active &&
+              <img src={el.value} alt="" />
+            )
+            }
           </div>
         </div>
       )}

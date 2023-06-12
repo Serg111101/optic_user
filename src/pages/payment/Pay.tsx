@@ -42,7 +42,6 @@ useEffect(()=>{
 useEffect(()=>{
 dispatch(fetchUspsorder(ShipId));
 name()
-// noShip()
 },[dispatch])
 
 useEffect(()=>{
@@ -51,7 +50,6 @@ useEffect(()=>{
   setPricetrue(true)
   priceer()
 },[uspsorder, price])
-console.log(price);
 
 
 async function name() {
@@ -90,7 +88,6 @@ async function doneTodo(id: number) {
   await Ship()
   if(!error || !error1){
     setLoading(false)
-    console.log(fedexShip);
     
     const newMethod = Paymethod.map((method: any) => {
       if (method.id === id) method.done = !method.done
@@ -102,20 +99,12 @@ async function doneTodo(id: number) {
       }}
     setPaymethod(newMethod)
   }else{
-    setError('xndirner kan')
+    setError('Payment error')
   }
   setPost(false)
 }
 
    
-
-// async function noShip(){
-//   console.log(price);
-  
-//   if(price?.length>0 ){
-//     setSeePrice(true)
-//   }
-// }
 
 
 return (<div className="container_pay">
@@ -126,15 +115,15 @@ return (<div className="container_pay">
     {loadings && <div>loading....</div>}
      
       {
-        Paymethod?.map((item:any)=>{
-          if(item.status === true){
-          return  <div className="modesta" onClick={() => {doneTodo(item.id)}} key={item.id}>
+        Paymethod?.map((item:any)=>
+          item.status === true ?
+           <div className="modesta" onClick={() => {doneTodo(item.id)}} key={item.id}>
             <img src={item.icon} alt="PayIcon"/>
           <span className="spantitle">{item.title}</span>
-          </div>
-          }
+          </div>:<div className="modesta">{errors}</div>
+          
         
-})
+)
       }
   </div>}
  { error || error1 ? " ":  <div className="total-box">

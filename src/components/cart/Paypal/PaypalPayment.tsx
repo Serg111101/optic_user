@@ -19,7 +19,6 @@ useEffect(() => {
                   });
             const client_token = await response.json();
             setClientToken(client_token);
-            console.log(client_token);
           }
             catch(error){
               setError(error)

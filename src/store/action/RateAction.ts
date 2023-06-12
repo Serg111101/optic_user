@@ -30,11 +30,11 @@ export const fetchUsps = (arr: any) => {
         }
      });
       localStorage.setItem('shippoId', JSON.stringify(response.data[0].id))
-      { if(response.data[0].rates){
+      if(response.data[0].rates){
        let usps = response.data[0].rates.sort(async (a:any,b:any)=> a.amount - b.amount)
        
        dispatch(fetchSuccess(usps));
-      }}
+      }
    
 
     } catch (err) {
@@ -92,13 +92,12 @@ export const fetchUspsGet = () => {
    
     
 
-      { if(payload){
+      if(payload){
        let usps = payload.sort((a:any,b:any)=> b.amount - a.amount)
-       console.log(usps);
        
        dispatch(fetchSuccess3(usps));
       
-      }}
+      }
      
 
 

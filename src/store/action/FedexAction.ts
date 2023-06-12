@@ -29,7 +29,6 @@ export const fetchFedex = (zip:string) => {
 
 
       });
-      console.log(response);
       
       localStorage.setItem('fedexId', JSON.stringify(response.data[1].rateId))
 
@@ -37,16 +36,8 @@ export const fetchFedex = (zip:string) => {
 
     } catch (err) {
       dispatch(fetchError(err as Error));
-      console.log(err);
       
-      // if (!err?.response) {
-      //     setErrMsg('No Server Response');
-      // } else if (err.response?.status === 409) {
-      //     setErrMsg('Username Taken');
-      //   } else {
-      //     setErrMsg('Registration Failed')
-      //   }
-      // errRef.current.focus();
+     
     }
 
   }

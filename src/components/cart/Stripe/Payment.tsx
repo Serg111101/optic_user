@@ -5,17 +5,16 @@ import '../cart.scss'
 
 function Payment(props:any) {
   const { stripePromise }:any = props;
- console.log(stripePromise);
- 
+ const amounts:any=localStorage.getItem("price1")
+ const amount = JSON.parse(amounts)
+
 
   const [ clientSecret, setClientSecret ] = useState('');
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/v1/stripe/create-payment-intent")
+    fetch(`http://localhost:3000/api/v1/stripe/create-payment-intent/${amount}`)
       .then(async(res) => await res.json())  
-      // .then((res)=>console.log(res))
       .then(({clientSecret}) => setClientSecret(clientSecret));
-      console.log(clientSecret);
       
   }, []);
 

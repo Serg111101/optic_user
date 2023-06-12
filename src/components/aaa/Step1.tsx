@@ -1,9 +1,10 @@
 import "./Aaa.scss";
 import { useState, useEffect } from "react";
 import { Step2 } from "./Step2";
-import { fetchOrders } from "../../store/action/OrderAction";
-import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 export const Step1 = ({
+  headArr,
+  stepArr,
+  setStepArr,
   step2,
   step3,
   step4,
@@ -16,106 +17,94 @@ export const Step1 = ({
   setFinal
 }: any) => {
 
-  const { orders }: any = useAppSelector((state) => state.orders);
-  const dispatch = useAppDispatch();
-  const [butt,setButt]=useState(false)
-
-  useEffect(() => {
-    dispatch(fetchOrders());
-  }, [dispatch])
-console.log(orders);
-
-  let arr1 = orders?.map((item: any) => item.table_name);
-  function removeDuplicates(arr1: any[]) {
-    let headArr: any = [];
-    for (let i = 0; i < arr1.length; i++) {
-      if (!headArr.includes(arr1[i])) {
-        headArr.push(arr1[i]);
-      }
-    }
-    return headArr;
-  }
-  const headArr = removeDuplicates(arr1);
-  let arr: any = sessionStorage?.getItem('step1_1')
-  const [arrr, setArrr] = useState(JSON?.parse(arr))
-
-  useEffect(() => {
-    if (arr == null || arr == '[]') {
-      const arr2: any = []
-      sessionStorage.removeItem('step1_1')
-
-      orders?.map((el: any) => {
-
-        if (el.table_name == headArr[0]) {
-          arr2.push(el)
-        }
-
-      })
-      sessionStorage.setItem('step1_1', JSON.stringify(arr2))
-    }
-  }, [orders, headArr, arr])
-
-  useEffect(() => {
-
-    if (arr !== null && arr !== '[]' && arrr === null) {
-      setArrr(JSON.parse(arr))
-    }
-
-  }, [arr, arrr])
+  let arr:any=sessionStorage.getItem('orders')
+  const [btnCheck,setBtnCheck]=useState(false);
 useEffect(()=>{
-  saveButton()
-},[arrr])
+  if(arr !==null && arr !== '[]'&& stepArr===null){
+    setStepArr(JSON.parse(arr))
+  }
+},[stepArr,arr])
 
-function saveButton(){
-  
-  if(arrr?.length>0){
-    // arrr?.map((item:any)=>{
-      for(let i=0;i<arrr.length;i++){
+  function ChangeItem(tableName: string, id: number,index:number,e:any) {
+    e.preventDefault()
 
-        if(arrr[i]?.value?.length >0 ){
-          setButt(true)
-          console.log(butt)
-  
-        }else{
-          setButt(false)
-          break
-          // console.log(butt)
-           
+    const newArr: any =[]
+    for(let i=0;i<stepArr?.length;i++){
+      if(stepArr[i].table_name===tableName&&stepArr[i]?.id===id ){
+        stepArr[i].is_active=!stepArr[i].is_active
+        if(index === 0 && stepArr[i].is_active){
+          stepArr[i+1].is_active=false
+        }
+        if(index === 1 && stepArr[i].is_active){
+          stepArr[i-1].is_active=false
+        }
+        if(index === 6 && stepArr[i].is_active){
+          stepArr[i+1].is_active=false
+        }
+        if(index === 7 && stepArr[i].is_active){
+          stepArr[i-1].is_active=false
+        }
+        if(index === 10 && stepArr[i].is_active){
+          stepArr[i+1].is_active=false
+        }
+        if(index === 11 && stepArr[i].is_active){
+          stepArr[i-1].is_active=false
         }
       }
-    
-  }
-}
+      newArr.push(stepArr[i]) 
+    }
 
-  function addOrder1(id: number, e: any) {
-    if (arrr) {
-      let ar2 = arrr?.map((el: any) => {
-        if (el.id == id) {
-          el.value = e
+    sessionStorage.setItem('orders', JSON.stringify(newArr))
+    setStepArr(null)
+
+  }
+  function ChengeInput(elem: string, tableName: string, id: number) {
+    const newArr: any = stepArr?.map((el: any) => {
+      if (el.table_name === tableName && el.id === id) {
+        el.value = elem
+      }
+      return el
+    })
+    sessionStorage.setItem('orders', JSON.stringify(newArr))
+    setStepArr(newArr)
+  }
+
+
+  useEffect(()=>{
+    saveButton()
+  },[stepArr,btnCheck])
+
+  function saveButton(){
+        for(let i=0;i<stepArr?.length;i++){
+          if(stepArr[i]?.table_name===headArr[1]){
+          if(stepArr[i]?.value?.length >0 ){
+            setBtnCheck(true)
+          }else{
+            setBtnCheck(false)
+            break
+          }
         }
-        return el
-      })
-      sessionStorage.setItem('step1_1', JSON.stringify(ar2))
-      let x: any = sessionStorage.getItem('step1_1')
-      setArrr(JSON.parse(x))
-    }
+      }
   }
 
-
-  function navv() {
-    if (step2 === false) {
-      sessionStorage.removeItem("setp2");
-      sessionStorage.setItem("step2", "true");
-      const stepp2: any = sessionStorage.getItem("step2");
-      step2 = JSON.parse(stepp2);
-      setStep2(step2)
+    function navv() {
+      if (step2 === false) {
+        sessionStorage.removeItem("setp2");
+        sessionStorage.setItem("step2", "true");
+        const stepp2: any = sessionStorage.getItem("step2");
+        step2 = JSON.parse(stepp2);
+        setStep2(step2)
+      }
     }
-  }
+    
 
   return (
     <div className="steping">
       {step2 === true ? (
         <Step2
+          headArr={headArr}
+          stepArr={stepArr}
+          setStepArr={setStepArr}
           step2={step2}
           step3={step3}
           step4={step4}
@@ -126,34 +115,50 @@ function saveButton(){
           setStep4={setStep4}
           setStep5={setStep5}
           setFinal={setFinal}
-          // totals={totals}
-          // setTotals={setTotals}
-          orders={orders}
         />
       ) : (
-        <div className="Aaa">
-          <div  >
-            {
-              <div key={headArr[0]}>
-                <h2>{headArr[0]}</h2>
-                {arrr?.map((item: any, index: number) => 
-                  // input.includes(index) &&
-                    <div key={item.id}>
-                      <label>{item.column_name}</label>
-                      <input
-                        value={item?.value}
-                        type="text"
-                        onChange={(e: any) => {
-                          addOrder1(
-                            item.id,
-                            e.target.value
-                          );
-                        }}
-                      />
-                    </div>)}
-              </div>}
+        <div className="step1">
+          <div className="step1_option">
+            <div className="step1_optionDiv1">
+              <h2>{headArr[0]}</h2>
+              {stepArr?.length>0 &&
+                stepArr?.map((el: any,index:number) =>{
+                  if(el?.table_name === headArr[0] ){
+                    return <div key={el.id} className="optionDiv1_item">
+                    <input type="checkbox" id={el.id} checked={el.is_active} value={el.column_name} onChange={(e:any)=>{ChangeItem(el?.table_name,el?.id,index,e) }} />
+                      <label htmlFor={el.id}>
+                        <span>{el.column_name}</span>
+                        <span></span>
+                      </label>
+
+                  </div>
+                  }
+
+                }
+
+                  )
+              }
+
+            </div>
+            <div className="step1_optionDiv2">
+              <h2>{headArr[1]}</h2>
+              {
+                stepArr?.map((el: any) =>
+                  el?.table_name === headArr[1] &&
+                  <div className="optionDiv2_item">
+                    <span>{el.column_name}</span>
+                    <input type="text" placeholder={el.column_name} value={el.value} onChange={(e) => ChengeInput(e.target.value, el.table_name, el.id)} />
+                  </div>
+                )
+              }
+              <div className="step1_buttons">
+                <button disabled={!btnCheck} onClick={()=>{navv()}}>Next</button>
+              </div>
+            </div>
           </div>
-          <button onClick={() => {navv()}} disabled={!butt} > save </button> 
+          <div className="step1_image">
+            <img src="./images/1.webp" alt="" />
+          </div>
         </div>
       )}
     </div>

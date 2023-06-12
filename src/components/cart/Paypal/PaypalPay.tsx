@@ -14,7 +14,6 @@ export const PaypalPay = (props:any) => {
   const [okey,setOkay] =useState(false)
 //   useEffect(() => {
 //     if (success) {
-//         console.log('Order successful . Your order id is--', orderID);
 //     }
 // },[success, orderID]);
     const createOrder = (data:any, actions:any) => {
@@ -29,7 +28,6 @@ export const PaypalPay = (props:any) => {
 
 
     const onApprove = (data:any, actions:any) => {
-      console.log(actions);
         return actions.order.capture().then((details:any)=> {setOkay(details); if(details) paypaldata(details)}
         )
     };

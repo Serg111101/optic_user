@@ -5,8 +5,6 @@ import { useAppSelector, useAppDispatch } from '../../hooks/redux'
 import { fetchUsps } from '../../store/action/RateAction';
 import { fetchCreate } from "../../store/action/RateAction";
 import { fetchFedex } from "../../store/action/FedexAction";
-import { fetchUspsGet } from "../../store/action/RateAction";
-import { fetchFedexGet } from "../../store/action/FedexAction";
 import { useNavigate } from "react-router-dom";
 import { Country, State, City } from 'country-state-city';
 import { fetchFedexShip, fetchUspsShip } from "../../store/action/ShipAction";
@@ -16,11 +14,9 @@ import Select from "react-select";
 const Shipment = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const { usps, loading2, error } = useAppSelector(state => state.usps)
+  const { usps, loading2 } = useAppSelector(state => state.usps)
   const { loading, fedex }: any = useAppSelector(state => state.fedex)
-  const { create } = useAppSelector(state => state.create)
-  const { uspsGet } = useAppSelector(state => state.uspsGet)
-  const { fedexGet } = useAppSelector(state => state.fedexGet)
+  // const { fedexGet } = useAppSelector(state => state.fedexGet)
   const { loadingShip} =useAppSelector(state=>state.FedexShip)
   const { loadingShip1}=useAppSelector(state=>state.UspsShip)
   const [Name, setName] = useState('');
@@ -33,7 +29,7 @@ const Shipment = () => {
   const [country, setCountry] = useState<any>('')
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
-  const [postser, setPostse] = useState('service is not available');
+  const postser= 'service is not available';
   const [shippMethod, setShippMethod] = useState<any>()
   const [ship, setShip] = useState<any>()
   const [ship1, setShip1] = useState<any>()
@@ -42,34 +38,30 @@ const Shipment = () => {
 
   useEffect(() => {
     name()
-
-    // dispatch(fetchUspsGet());
-    // dispatch(fetchFedexGet())
-    getShip()
   }, [dispatch])
 
   useEffect(() => {
     setShip(usps)
     setShip1(usps)
-    getShip()
     UspsItem()
   }, [usps])
 
   useEffect(() => {
-    getShip()
     FedexItem()
   }, [fedex])
 
 
 
-  useEffect(() => {
-    setFedexing(fedexGet)
-    getShip()
-  }, [fedexGet])
+  // useEffect(() => {
+  //   setFedexing(fedexGet)
+  // }, [fedexGet])
 
   async function name() {
     const response = await axios.get('http://localhost:3000/api/v1/users/shipMethods');
-    setShippMethod(response.data)
+    console.log(response.data);
+    
+    const data1=response.data.filter((item:any)=>item.status===true)
+    setShippMethod(data1)
   }
 
   const handleSubmit = async (e: any) => {
@@ -119,15 +111,7 @@ const Shipment = () => {
     }
     navigate('/Pay')
   }
-  async function getShip() {
-    if (localStorage.getItem("shippoId")) {
-      const shipp: any = localStorage.getItem("shippoId")
-      const shipping = JSON.parse(shipp)
-    } else if (localStorage.getItem("FedexId")) {
-      const shipp: any = localStorage.getItem("FedexId")
-      const shipping = JSON.parse(shipp)
-    }
-  }
+
   function goBack() {
     setPorj(true)
     localStorage.removeItem("FedexId") 
@@ -140,19 +124,19 @@ const Shipment = () => {
     let newfedex1=[]
      newfedex=fedex?.filter(function(item:any){
       if(item.serviceType === "STANDARD_OVERNIGHT")  {
-        return true
+        return item
       }   
       return false 
     } )
      newfedex1=fedex?.filter(function(item:any){
       if(item.serviceType === "FEDEX_GROUND")  {
-        return true
+        return item
       }   
       return false 
     } )
     setFedexing([newfedex,newfedex1]);
   }
-  function UspsItem(){
+  async function UspsItem(){
       let newUsps= []
       let newUsps1= []
       let newUps= []
@@ -272,6 +256,8 @@ const Shipment = () => {
 <div className="shippo1">
   <button onClick={() => { goBack()}}> Go Back</button>
 
+  
+
 </div>
 
 
@@ -292,20 +278,27 @@ const Shipment = () => {
               </select>
               <div className="orrder">
 
-                {pickUP === "Shipp" && shippMethod?.map((el: any, index: any) => {
+                {pickUP === "Shipp" && shippMethod?.map((el: any, index: any) => 
 
-                  if (el.status === true) {
-                    return <div className="method" key={index}>
+               
+                    <div className="method" key={index}>
                       <img src={el.icon} alt="imagein" />
                     </div>
-                  }
-                })}
+                  
+                )}
 
               </div>
               {pickUP === "Pick Up" && <div className={" pickup"}>
                 <h4>Pick UP</h4>
-
                 {pickUP && <button onClick={() => { navigate('/pay') }}>Go Pay</button>}
+                <div className="Rateadress">
+                   <h1>Best Optic Lab. Inc</h1>
+                      <p>820 Thompson Ave. Ste 30 Glendale. CA</p>
+
+                      <p> Phone Number:+1 818-649-1799</p>
+                 </div>
+
+
               </div>}
               {pickUP === "Shipp" && <form onSubmit={handleSubmit} className='shipform'>
                 <div className='inputer'>

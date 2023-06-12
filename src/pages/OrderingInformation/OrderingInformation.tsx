@@ -2,10 +2,39 @@ import React, { useEffect, useState } from 'react'
 import "./OrderingInformation.scss"
 import { Step1 } from '../../components/aaa/Step1'
 import { fetchOrders } from "../../store/action/OrderAction";
-import { useAppDispatch, } from "../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { CheckOutlined, LoadingOutlined } from '@ant-design/icons';
 import FinalOrder from '../../components/aaa/FinalOrder';
+import { Loading } from '../../components/loading';
+
+
 export const OrderingInformation = () => {
+  const { loading,orders }: any = useAppSelector((state) => state.orders);
+  
+  let arr:any=sessionStorage?.getItem('orders')
+  const [stepArr,setStepArr]=useState<Object[]>(JSON.parse(arr)||[])
+  const [step1, setStep1] = useState(false);
+  const dispatch = useAppDispatch();
+ 
+  useEffect(() => {
+    dispatch(fetchOrders());
+  }, [dispatch]);
+  
+  useEffect(() => {
+    if (orders.length && !sessionStorage.getItem('orders')) {
+      sessionStorage.setItem('orders', JSON.stringify(orders))
+      setStepArr(orders)
+    }
+  }, [orders])
+
+  useEffect(()=>{
+    if(stepArr?.length){
+      setStep1(true)
+      
+    }
+  },[stepArr])
+
+
 
   const [step2, setStep2] = useState();
   const [step3, setStep3] = useState();
@@ -13,7 +42,6 @@ export const OrderingInformation = () => {
   const [step5, setStep5] = useState();
   const [final, setFinal] = useState();
   const [total, setTotal] = useState();
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!sessionStorage.getItem("step2")) {
@@ -65,39 +93,24 @@ export const OrderingInformation = () => {
 
   }, [step2, step3, step4, step5, final])
 
-  useEffect(() => {
-    dispatch(fetchOrders());
-  }, [dispatch]);
-  console.log(total);
-  
-  useEffect(() => {
-    if (final) {
-      const x: any = sessionStorage
-      const y:any = []
-      const z: any = []
-      for (let key in x) {
-        if (key?.slice()?.includes('_')) {
-          y.push(key)
-        }
-      }
-      y.sort()
-      y.map((el: any) => {
-        z.push(...JSON.parse(x[el]));
-      })
-      const zz = z.filter((el: any) => {
-        if (el.is_active === null||el.is_active===true) {
-          return el
-        }
-      })
-      if(!total){
-        setTotal(zz)
+
+  let arr1 = orders?.map((item: any) => item.table_name);
+  function removeDuplicates(arr1: any[]) {
+    let headArr: any = [];
+    for (let i = 0; i < arr1.length; i++) {
+      if (!headArr.includes(arr1[i])) {
+        headArr.push(arr1[i]);
       }
     }
-  }, [final, total])
-  
+    return headArr;
+  }
+  const headArr = removeDuplicates(arr1);
+
   return (
+    <>
+    {loading?<Loading/>:
     <div className='Order'>
-      {final&&total ? <FinalOrder total={total}/> :
+      {final && total ? <FinalOrder total={total} /> :
         <>
           <div className='step'>
             <div className='step1 ak'><hr />
@@ -109,17 +122,18 @@ export const OrderingInformation = () => {
             <div className={step3 ? 'step3 ak' : 'step3'}><hr />
               <div className="klor" id="klor3" >{step4 ? <CheckOutlined /> : <LoadingOutlined />}</div>
             </div>
-            <div className={step4 ? 'step4 ak' : 'step4'}><hr />
+            {/* <div className={step4 ? 'step4 ak' : 'step4'}><hr />
               <div className="klor" id="klor4" >{step5 ? <CheckOutlined /> : <LoadingOutlined />}</div>
-            </div>
-            <div className={step5 ? 'step5 ak' : 'step5'}><hr />
+            </div> */}
+            <div className={step4 ? 'step4 ak' : 'step4'}><hr />
               <div className="klor" id="klor5" >{final ? <CheckOutlined /> : <LoadingOutlined />}</div>
             </div>
           </div>
-           <Step1 step2={step2} step3={step3} step4={step4} step5={step5} final={final} setStep2={setStep2} setStep3={setStep3} setStep4={setStep4} setStep5={setStep5} setFinal={setFinal} />
+       <Step1 headArr={headArr} stepArr={stepArr} setStepArr={setStepArr} step2={step2} step3={step3} step4={step4} step5={step5} final={final} setStep2={setStep2} setStep3={setStep3} setStep4={setStep4} setStep5={setStep5} setFinal={setFinal} />
         </>
       }
-    </div>
+    </div>}   
+    </>
   )
 }
 

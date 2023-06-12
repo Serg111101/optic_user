@@ -29,7 +29,6 @@ export const fetchFedexShip = (arr:any)=>{
       
             }});
             dispatch(fetchFedexSuccess(response?.data));
-            console.log(response?.data);
             localStorage.setItem('Shipping', JSON.stringify(response.data))
         }
         catch(error){
@@ -47,7 +46,6 @@ export const fetchUspsShip = (arr2:any)=>{
     
         
         return async (dispatch:Dispatch)=>{
-        console.log(arr2.object_id);
         
             try{ 
                 dispatch(fetching1());
@@ -65,7 +63,6 @@ export const fetchUspsShip = (arr2:any)=>{
           
           
                 });
-             console.log(response.data);
              
                 dispatch(fetchFedexSuccess([response.data]));
                  const arr = ["shippo"] 
@@ -84,7 +81,6 @@ export const fetchUspsShip = (arr2:any)=>{
     
             }
             catch(error){
-              console.log(error);
               
                 dispatch(fetchError(error as Error));
             }

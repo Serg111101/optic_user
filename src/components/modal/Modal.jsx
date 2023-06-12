@@ -64,7 +64,6 @@ function Modal({active, setActive,}) {
             setErrMsg("Invalid Entry");
             return;
         }
-        console.log(JSON.stringify({ user, pwd }),);
         try {
             
             const response = await  axios({
@@ -75,10 +74,7 @@ function Modal({active, setActive,}) {
                   password: pwd
                 }
               });
-            console.log(response)
-            // TODO: remove console.logs before deployment
-            console.log(JSON.stringify(response?.data));
-            console.log(JSON.stringify(response))
+            
             setSuccess(true);
             //clear state and controlled inputs
             setUser('');
