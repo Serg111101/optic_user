@@ -58,7 +58,6 @@ const Shipment = () => {
 
   async function name() {
     const response = await axios.get('http://localhost:3000/api/v1/users/shipMethods');
-    console.log(response.data);
     
     const data1=response.data.filter((item:any)=>item.status===true)
     setShippMethod(data1)

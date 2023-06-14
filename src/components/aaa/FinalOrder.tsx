@@ -61,8 +61,7 @@ const totals = JSON.parse(order)
           sessionStorage.setItem('final','false')
           navigate(0)
         }
-        console.log(index);
-        console.log(headArr2);
+
       }
     })
     headArr?.map((el:any,index:number)=>{
@@ -74,7 +73,6 @@ const totals = JSON.parse(order)
           sessionStorage.setItem('final','false')
           navigate(0)
         }
-        console.log(index);
       }
     })
   }
@@ -99,7 +97,6 @@ const totals = JSON.parse(order)
   
   async function SaveFile(){
     const res:any=await axios.post('http://localhost:3000/api/v1/superAdmin/insertValues',total)
-    console.log(res);
     
     navigate('/Rate')
   
