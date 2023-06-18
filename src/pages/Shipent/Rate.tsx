@@ -11,6 +11,9 @@ import { fetchFedexShip, fetchUspsShip } from "../../store/action/ShipAction";
 import axios from "axios"
 import Select from "react-select";
 
+const URL = process.env.REACT_APP_BASE_URL
+
+
 const Shipment = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -57,7 +60,8 @@ const Shipment = () => {
   // }, [fedexGet])
 
   async function name() {
-    const response = await axios.get('http://localhost:3000/api/v1/users/shipMethods');
+    const response = await axios.get(URL+'api/v1/users/shipMethods');
+    console.log(response.data);
     
     const data1=response.data.filter((item:any)=>item.status===true)
     setShippMethod(data1)

@@ -2,6 +2,7 @@ import { Dispatch } from "@reduxjs/toolkit";
 import {  fetching, fetchSuccess, fetchError } from "../slices/OrderShip";
 import axios from "axios";
 
+const URL = process.env.REACT_APP_BASE_URL
 
 
 export const fetchUspsorder = (ShipId:any)=>{
@@ -12,7 +13,7 @@ export const fetchUspsorder = (ShipId:any)=>{
           
           
             dispatch(fetching());
-            const response:any =await axios.get('http://localhost:3000/api/v1/users/rateDetails/'+ ShipId);            
+            const response:any =await axios.get(URL + 'api/v1/users/rateDetails/'+ ShipId);            
            
             dispatch(fetchSuccess([response.data]));
             

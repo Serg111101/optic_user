@@ -48,7 +48,7 @@ export function Header() {
                 </div>
                 
                 <div className="button"  >
-                    {user?.googleId || user1?.id ? <button onClick={() => handleSignOut()} style={{ background: LoginStyle?.buttonBg_color, color: LoginStyle?.login_color }}>Sign out</button> : <button onClick={() => navigate('login')} style={{ background: LoginStyle?.buttonBg_color, color: LoginStyle?.login_color }}>SIGN IN</button>}
+                    {/* {user?.googleId || user1?.id ? <button onClick={() => handleSignOut()} style={{ background: LoginStyle?.buttonBg_color, color: LoginStyle?.login_color }}>Sign out</button> : <button onClick={() => navigate('login')} style={{ background: LoginStyle?.buttonBg_color, color: LoginStyle?.login_color }}>SIGN IN</button>} */}
 
                 </div>
                 

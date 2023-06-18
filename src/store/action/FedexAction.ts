@@ -4,6 +4,7 @@ import axios from "axios";
 // import { fetchUspsorder } from "./OrderShipActions";
 // import { useAppDispatch } from "../../hooks/redux";
 
+const URL = process.env.REACT_APP_BASE_URL
 
 
 export const fetchFedex = (zip:string) => {
@@ -24,7 +25,7 @@ export const fetchFedex = (zip:string) => {
 
       const response: any = await axios({
         method: 'post',
-        url: 'http://localhost:3000/api/v1/users/fedex/ratesAndTransitTimes',
+        url: URL + 'api/v1/users/fedex/ratesAndTransitTimes',
         data: arr1
 
 
@@ -49,7 +50,7 @@ export const fetchFedexGet = () => {
       const Id: any = localStorage.getItem('fedexId')
       const fedexId = JSON.parse(Id)
       dispatch(fetching());
-      const response: any = await axios.get('http://localhost:3000/api/v1/users/returningShip/' + fedexId);
+      const response: any = await axios.get(URL + 'api/v1/users/returningShip/' + fedexId);
       const data = response?.data.rateReplyDetails
       const payload = data.map((elem: any) => JSON.parse(elem));
 

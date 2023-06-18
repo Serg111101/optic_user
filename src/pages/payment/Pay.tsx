@@ -8,6 +8,7 @@ import { useAppSelector, useAppDispatch } from '../../hooks/redux'
 import { useEffect } from "react";
 import axios from "axios"
 import './payment.scss'
+const URL = process.env.REACT_APP_BASE_URL
 
 
 const Pay = () => {
@@ -53,7 +54,7 @@ useEffect(()=>{
 
 
 async function name() {
-  const response = await axios.get('http://localhost:3000/api/v1/users/paymentMethods');
+  const response = await axios.get(URL + 'api/v1/users/paymentMethods');
  setPaymethod(response.data)
 }
 let sum:any = localStorage?.getItem('price')

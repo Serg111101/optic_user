@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import "./OrderingInformation.scss"
-import { Step1 } from '../../components/aaa/Step1'
+import { Step1 } from '../../components/Steps/Step1'
 import { fetchOrders } from "../../store/action/OrderAction";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { CheckOutlined, LoadingOutlined } from '@ant-design/icons';
-import FinalOrder from '../../components/aaa/FinalOrder';
+import FinalOrder from '../../components/Steps/FinalOrder';
 import { Loading } from '../../components/loading';
 
 
