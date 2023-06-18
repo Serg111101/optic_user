@@ -4,6 +4,7 @@ import axios from "axios";
 import {  PayPalScriptProvider,  PayPalButtons,} from "@paypal/react-paypal-js";
 import { SuccesOrder } from "../../success/SuccesOrder";
 
+const URL = process.env.REACT_APP_BASE_URL
 
 
 
@@ -34,7 +35,7 @@ export const PaypalPay = (props:any) => {
      const paypaldata = (details:any) => {
            axios({
             method: 'post',
-            url: 'http://localhost:3000/api/v1/paypal/orders',
+            url: URL + 'api/v1/paypal/orders',
             data: details
       })
     }

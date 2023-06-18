@@ -146,7 +146,7 @@ export const Step3 = ({
               </div>
               <div className="step3_option_item_2">
                 <select disabled={!check} onChange={(e) => { setValue(e.target.value); ChangeItem2(headArr[5], e.target.value) }} value={value} >
-                  {!value && <option >!!!!!!!!!!!!!!!!!!!</option>}
+                  {!value && <option >{headArr[5]}</option>}
 
                   {stepArr?.map((item: any, index: number) => {
                     if (item?.table_name === headArr[5]) {
@@ -173,7 +173,7 @@ export const Step3 = ({
               </div>
               <div className="step3_option_item_2">
                 <select disabled={!check2} onChange={(e) => { setValue1(e.target.value); ChangeItem2(headArr[6], e.target.value) }} value={value1} >
-                  {!value1 && <option >!!!!!!!!!!!!!!!!!!!</option>}
+                  {!value1 && <option >{headArr[6]}</option>}
 
                   {stepArr?.map((item: any) => {
                     if (item?.table_name === headArr[6]) {
@@ -200,7 +200,7 @@ export const Step3 = ({
               </div>
               <div className="step3_option_item_2">
                 <select disabled={!check3} onChange={(e) => { setValue2(e.target.value); ChangeItem2(headArr[7], e.target.value) }} value={value2} >
-                  {!value2 && <option >!!!!!!!!!!!!!!!!!!!</option>}
+                  {!value2 && <option >{headArr[7]}</option>}
 
                   {stepArr?.map((item: any) => {
                     if (item?.table_name === headArr[7]) {
@@ -227,7 +227,7 @@ export const Step3 = ({
               </div>
               <div className="step3_option_item_2">
                 <select disabled={!check4} onChange={(e) => { setValue3(e.target.value); ChangeItem2(headArr[8], e.target.value) }} value={value3} >
-                  {!value3 && <option >!!!!!!!!!!!!!!!!!!!</option>}
+                  {!value3 && <option >{headArr[8]}</option>}
 
                   {stepArr?.map((item: any) => {
                     if (item?.table_name === headArr[8]) {

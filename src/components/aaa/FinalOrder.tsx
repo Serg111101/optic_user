@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { DownCircleOutlined,UpCircleOutlined } from '@ant-design/icons';
 import axios from 'axios';
 
+const URL = process.env.REACT_APP_BASE_URL
+
+
 export default function FinalOrder({ total }: any) {
 
   const [active,setActive]=useState(false)
@@ -81,7 +84,7 @@ const totals = JSON.parse(order)
 
   async function PriceFunc() { 
   
-    // const res:any=await axios.post('http://localhost:3000/api/v1/superAdmin/insertValues',total)
+    // const res:any=await axios.post(URL + 'api/v1/superAdmin/insertValues',total)
     arr2?.map((element:any,index:number)=>{
               if(element?.price_user!==null &&index!==totals.length){
                 price += element?.price_user
@@ -98,7 +101,7 @@ const totals = JSON.parse(order)
   PriceFunc()
   
   async function SaveFile(){
-    const res:any=await axios.post('http://localhost:3000/api/v1/superAdmin/insertValues',total)
+    const res:any=await axios.post(URL + 'api/v1/superAdmin/insertValues',total)
     console.log(res);
     
     navigate('/Rate')

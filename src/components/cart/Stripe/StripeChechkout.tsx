@@ -4,6 +4,7 @@ import Payment from "./Payment";
 import Completion from "./Completion";
 import { knopka } from "./checkoutForm";
 
+const URL = process.env.REACT_APP_BASE_URL
 
 const StripeChechkout = () => {
 
@@ -11,7 +12,7 @@ const StripeChechkout = () => {
     const [mek, setMek]=useState<any>(false)
 
     useEffect(() => {
-    fetch('http://localhost:3000/api/v1/stripe/config')
+    fetch(URL + 'api/v1/stripe/config')
     .then(async (response) => {
       
       const { publishableKey }:any = await response.json();
