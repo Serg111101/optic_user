@@ -117,7 +117,7 @@ useEffect(()=>{
           setFinal={setFinal}
         />
       ) : (
-        <div className="step1">import "./Steps.scss";
+        <div className="step1">
           <div className="step1_option">
             <div className="step1_optionDiv1">
               <h2>{headArr[0]}</h2>
