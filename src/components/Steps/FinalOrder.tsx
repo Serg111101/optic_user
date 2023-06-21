@@ -14,7 +14,7 @@ export default function FinalOrder({ total }: any) {
 let price=0
 const order:any = sessionStorage.getItem('orders')
 const totals = JSON.parse(order) 
-
+  
   const navigate=useNavigate()
   let arr1 = totals?.filter((item: any) => 
     item.is_active === null
@@ -100,7 +100,6 @@ const totals = JSON.parse(order)
   
   async function SaveFile(){
     const res:any=await axios.post(URL+'api/v1/superAdmin/insertValues',total)
-    console.log(res);
     
     navigate('/Rate')
   

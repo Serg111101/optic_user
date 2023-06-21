@@ -49,6 +49,7 @@
     margin-top: 50px;
     transform: scale(0.9);
 
+
     img {
         max-width: 100%;
         height: auto;
@@ -76,8 +77,10 @@
         display: flex;
         text-align: center;
         justify-content: flex-start;
-        margin-top: 25px;
+        margin-top: 25px;   
         transition: all .7s;
+        margin-left: auto;
+        margin-right: auto  ;
 
         &::-webkit-scrollbar {
             width: 2px;

@@ -9,6 +9,8 @@ export const fetchOrders = ()=>{
             dispatch(fetching());
             const response =await axios.get(`${URL}api/v1/superAdmin/getColumns`);                            
             const item = response.data
+            console.log(response);
+            
             dispatch(fetchSuccess(item));
         }
         catch(error){

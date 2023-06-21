@@ -11,6 +11,8 @@ import { Loading } from '../../components/loading';
 export const OrderingInformation = () => {
   const { loading,orders }: any = useAppSelector((state) => state.orders);
   
+  
+  
   let arr:any=sessionStorage?.getItem('orders')
   const [stepArr,setStepArr]=useState<Object[]>(JSON.parse(arr)||[])
   const [step1, setStep1] = useState(false);
@@ -20,6 +22,8 @@ export const OrderingInformation = () => {
     dispatch(fetchOrders());
   }, [dispatch]);
   
+
+
   useEffect(() => {
     if (orders.length && !sessionStorage.getItem('orders')) {
       sessionStorage.setItem('orders', JSON.stringify(orders))
@@ -42,6 +46,9 @@ export const OrderingInformation = () => {
   const [step5, setStep5] = useState();
   const [final, setFinal] = useState();
   const [total, setTotal] = useState();
+
+
+  
 
   useEffect(() => {
     if (!sessionStorage.getItem("step2")) {
