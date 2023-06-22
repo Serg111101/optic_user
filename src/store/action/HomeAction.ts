@@ -12,9 +12,12 @@ export const fetchHome = () => {
             dispatch(fetching4());
             const response =await axios.get(URL + 'api/v1/superAdmin/home');            
             const arr=[]
+            
             for(let key in response.data){
-                arr.push(response.data[key])
+                arr?.push(response.data[key]);
+                break
             }
+            console.log(arr);
             dispatch(fetchSuccess4(arr));
             
             

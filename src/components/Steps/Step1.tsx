@@ -20,7 +20,7 @@ export const Step1 = ({
   let arr:any=sessionStorage.getItem('orders')
   const [btnCheck,setBtnCheck]=useState(false);
 useEffect(()=>{
-  if(arr !==null && arr !== '[]'&& stepArr===null){
+  if(arr !==null && arr !== '[]'&& stepArr===null && stepArr.length>0 ){
     setStepArr(JSON.parse(arr))
   }
 },[stepArr,arr])
@@ -29,44 +29,57 @@ useEffect(()=>{
     e.preventDefault()
 
     const newArr: any =[]
-    for(let i=0;i<stepArr?.length;i++){
-      if(stepArr[i].table_name===tableName&&stepArr[i]?.id===id ){
-        stepArr[i].is_active=!stepArr[i].is_active
-        if(index === 0 && stepArr[i].is_active){
-          stepArr[i+1].is_active=false
+
+    if(stepArr.length>0){
+      for(let i=0;i<stepArr?.length;i++){
+        if(stepArr[i].table_name===tableName&&stepArr[i]?.id===id ){
+          stepArr[i].is_active=!stepArr[i].is_active
+          if(index === 0 && stepArr[i].is_active){
+            stepArr[i+1].is_active=false
+          }
+          if(index === 1 && stepArr[i].is_active){
+            stepArr[i-1].is_active=false
+          }
+          if(index === 6 && stepArr[i].is_active){
+            stepArr[i+1].is_active=false
+          }
+          if(index === 7 && stepArr[i].is_active){
+            stepArr[i-1].is_active=false
+          }
+          if(index === 10 && stepArr[i].is_active){
+            stepArr[i+1].is_active=false
+          }
+          if(index === 11 && stepArr[i].is_active){
+            stepArr[i-1].is_active=false
+          }
         }
-        if(index === 1 && stepArr[i].is_active){
-          stepArr[i-1].is_active=false
-        }
-        if(index === 6 && stepArr[i].is_active){
-          stepArr[i+1].is_active=false
-        }
-        if(index === 7 && stepArr[i].is_active){
-          stepArr[i-1].is_active=false
-        }
-        if(index === 10 && stepArr[i].is_active){
-          stepArr[i+1].is_active=false
-        }
-        if(index === 11 && stepArr[i].is_active){
-          stepArr[i-1].is_active=false
-        }
+        newArr.push(stepArr[i]) 
       }
-      newArr.push(stepArr[i]) 
+  
+      sessionStorage.setItem('orders', JSON.stringify(newArr))
+      setStepArr(null)
+  
+
     }
-
-    sessionStorage.setItem('orders', JSON.stringify(newArr))
-    setStepArr(null)
-
+   
   }
   function ChengeInput(elem: string, tableName: string, id: number) {
-    const newArr: any = stepArr?.map((el: any) => {
-      if (el.table_name === tableName && el.id === id) {
-        el.value = elem
+    if(stepArr.length>0){
+
+      const newArr: any = stepArr?.map((el: any) => {
+        if (el.table_name === tableName && el.id === id) {
+          el.value = elem
+        }
+        return el
+      
       }
-      return el
-    })
-    sessionStorage.setItem('orders', JSON.stringify(newArr))
-    setStepArr(newArr)
+      
+      )
+      sessionStorage.setItem('orders', JSON.stringify(newArr))
+      setStepArr(newArr)
+
+    }
+
   }
 
 
@@ -96,6 +109,7 @@ useEffect(()=>{
         setStep2(step2)
       }
     }
+    console.log(headArr);
     
 
   return (
@@ -121,14 +135,14 @@ useEffect(()=>{
           <div className="step1_option">
             <div className="step1_optionDiv1">
               <h2>{headArr[0]}</h2>
-              {stepArr?.length>0 &&
+      
+              {stepArr?.length>0 && 
                 stepArr?.map((el: any,index:number) =>{
                   if(el?.table_name === headArr[0] ){
                     return <div key={el.id} className="optionDiv1_item">
-                    <input type="checkbox" id={el.id} checked={el.is_active} value={el.column_name} onChange={(e:any)=>{ChangeItem(el?.table_name,el?.id,index,e) }} />
-                      <label htmlFor={el.id}>
-                        <span>{el.column_name}</span>
-                        <span></span>
+                    <input type="checkbox" id={el?.id} checked={el?.is_active} value={el?.column_name} onChange={(e:any)=>{ChangeItem(el?.table_name,el?.id,index,e) }} />
+                      <label htmlFor={el?.id}>
+                        <span>{el?.column_name}</span>
                       </label>
 
                   </div>
@@ -143,6 +157,7 @@ useEffect(()=>{
             <div className="step1_optionDiv2">
               <h2>{headArr[1]}</h2>
               {
+                stepArr?.length >0 &&
                 stepArr?.map((el: any) =>
                   el?.table_name === headArr[1] &&
                   <div className="optionDiv2_item">

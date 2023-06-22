@@ -6,6 +6,7 @@ import { Loading } from '../loading';
 
 export function Galery() {
   const { loading,  Home }: any = useAppSelector((state) => state.Home)
+
   const dispatch = useAppDispatch();
 
   const [width, setWidth] = useState(((window.innerWidth / 100) * 70) - 200)
@@ -27,9 +28,9 @@ export function Galery() {
 
     timeoutRef.current = setTimeout(() => {
 
-      setIndex((x) => (x === Home.length - 1 ? 0 : x + 1));
+      setIndex((x) => (x === Home?.length - 1 ? 0 : x + 1));
     }, delay);
-  }, [Home.length]);
+  }, [Home?.length]);
 
   useEffect(() => {
     dispatch(fetchHome())
@@ -60,6 +61,7 @@ export function Galery() {
     setWidthImg((window.innerWidth / 100) * 54)
 
   }, [index,transform,width,widthimg,x])
+  
   return (
     <div>
       {loading ? <Loading /> :
@@ -81,7 +83,7 @@ export function Galery() {
                   setIndex(inde);
                 }}
               >
-                <img src={el.image} alt='galery_foto' />
+                <img src={el?.image} alt='galery_foto' />
               </div>
             ))}
           </div>
@@ -97,7 +99,7 @@ export function Galery() {
                 }}
 
               >
-                <img src={el.image} alt='galery_change'/>
+                <img src={el?.image} alt='galery_change'/>
 
               </div>
               ))}

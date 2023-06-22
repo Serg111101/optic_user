@@ -101,7 +101,16 @@ export const OrderingInformation = () => {
   }, [step2, step3, step4, step5, final])
 
 
-  let arr1 = orders?.map((item: any) => item.table_name);
+  let arr1:any =[]
+  if(orders != "Table is empty"){
+   arr1 = orders?.map((item: any) => item.table_name);
+  
+  }
+  console.log(orders);
+  
+  // let arr1 = orders?.map((item: any) => item.table_name);
+
+
   function removeDuplicates(arr1: any[]) {
     let headArr: any = [];
     for (let i = 0; i < arr1.length; i++) {
@@ -112,6 +121,9 @@ export const OrderingInformation = () => {
     return headArr;
   }
   const headArr = removeDuplicates(arr1);
+
+  console.log(headArr);
+  
 
   return (
     <>
