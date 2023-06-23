@@ -15,7 +15,7 @@ export const fetchHome = () => {
             
             for(let key in response.data){
                 arr?.push(response.data[key]);
-                break
+                
             }
             console.log(arr);
             dispatch(fetchSuccess4(arr));

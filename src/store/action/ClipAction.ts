@@ -15,6 +15,7 @@ export const fetchClip = (props:any) => {
             for(let key in response.data){
                 arr.push(response.data[key])
             }
+            console.log(arr);
             
             dispatch(fetchSuccessClip(arr));   
         }
