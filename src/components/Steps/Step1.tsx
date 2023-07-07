@@ -2,6 +2,7 @@ import "./Steps.scss";
 import { useState, useEffect } from "react";
 import { Step2 } from "./Step2";
 export const Step1 = ({
+  
   headArr,
   stepArr,
   setStepArr,
@@ -20,55 +21,65 @@ export const Step1 = ({
   let arr:any=sessionStorage.getItem('orders')
   const [btnCheck,setBtnCheck]=useState(false);
 useEffect(()=>{
-  if(arr !==null && arr !== '[]'&& stepArr===null && stepArr.length>0 ){
+  if(arr !==null && arr !== '[]'&& stepArr===null ){
     setStepArr(JSON.parse(arr))
   }
 },[stepArr,arr])
 
   function ChangeItem(tableName: string, id: number,index:number,e:any) {
-    e.preventDefault()
+ 
+      e.preventDefault();
+    
+      // Create a mutable copy of the stepArr object
+      const newArr = [...stepArr];
+    
+      if (newArr.length > 0) {
+        for (let i = 0; i < newArr.length; i++) {
+          if (newArr[i].table_name === tableName && newArr[i].id === id) {
+            // Update the is_active property on the mutable copy
+            newArr[i] = { ...newArr[i], is_active: !newArr[i].is_active };
+    
+            if (index === 0 && newArr[i].is_active) {
+              newArr[i+1] = { ...newArr[i+1], is_active: false };
+            }
+            if (index === 1 && newArr[i].is_active) {
+              newArr[i - 1] = { ...newArr[i - 1], is_active: false };
 
-    const newArr: any =[]
+            }
+            if (index === 6 && newArr[i].is_active) {
+              newArr[i + 1] = { ...newArr[i + 1], is_active: false };
 
-    if(stepArr.length>0){
-      for(let i=0;i<stepArr?.length;i++){
-        if(stepArr[i].table_name===tableName&&stepArr[i]?.id===id ){
-          stepArr[i].is_active=!stepArr[i].is_active
-          if(index === 0 && stepArr[i].is_active){
-            stepArr[i+1].is_active=false
-          }
-          if(index === 1 && stepArr[i].is_active){
-            stepArr[i-1].is_active=false
-          }
-          if(index === 6 && stepArr[i].is_active){
-            stepArr[i+1].is_active=false
-          }
-          if(index === 7 && stepArr[i].is_active){
-            stepArr[i-1].is_active=false
-          }
-          if(index === 10 && stepArr[i].is_active){
-            stepArr[i+1].is_active=false
-          }
-          if(index === 11 && stepArr[i].is_active){
-            stepArr[i-1].is_active=false
+            }
+            if (index === 7 && newArr[i].is_active) {
+              newArr[i - 1] = { ...newArr[i - 1], is_active: false };
+
+            }
+            if (index === 10 && newArr[i].is_active) {
+              newArr[i + 1] = { ...newArr[i + 1], is_active: false };
+
+            }
+            if (index === 11 && newArr[i].is_active) {
+              newArr[i - 1] = { ...newArr[i - 1], is_active: false };
+
+            }
           }
         }
-        newArr.push(stepArr[i]) 
+    
+        sessionStorage.removeItem("orders");
+        sessionStorage.setItem("orders", JSON.stringify(newArr));
+        setStepArr(null);
       }
-  
-      sessionStorage.setItem('orders', JSON.stringify(newArr))
-      setStepArr(null)
-  
-
     }
-   
-  }
+    
   function ChengeInput(elem: string, tableName: string, id: number) {
+    console.log(stepArr);
+    
     if(stepArr.length>0){
 
-      const newArr: any = stepArr?.map((el: any) => {
+      const newArr: any = stepArr.map((el: any) => {
         if (el.table_name === tableName && el.id === id) {
-          el.value = elem
+         
+          el = {...el, value : elem}
         }
         return el
       
@@ -82,6 +93,7 @@ useEffect(()=>{
 
   }
 
+console.log(stepArr);
 
   useEffect(()=>{
     saveButton()
@@ -109,7 +121,7 @@ useEffect(()=>{
         setStep2(step2)
       }
     }
-    console.log(headArr);
+  
     
 
   return (
@@ -140,10 +152,12 @@ useEffect(()=>{
                 stepArr?.map((el: any,index:number) =>{
                   if(el?.table_name === headArr[0] ){
                     return <div key={el.id} className="optionDiv1_item">
+                      <p>{el?.column_name}</p>
                     <input type="checkbox" id={el?.id} checked={el?.is_active} value={el?.column_name} onChange={(e:any)=>{ChangeItem(el?.table_name,el?.id,index,e) }} />
                       <label htmlFor={el?.id}>
-                        <span>{el?.column_name}</span>
+                        <span></span>
                       </label>
+
 
                   </div>
                   }
@@ -162,7 +176,7 @@ useEffect(()=>{
                   el?.table_name === headArr[1] &&
                   <div className="optionDiv2_item">
                     <span>{el.column_name}</span>
-                    <input type="text" placeholder={el.column_name} value={el.value} onChange={(e) => ChengeInput(e.target.value, el.table_name, el.id)} />
+                    <input type="text" placeholder={el.column_name} value={el.value} onChange={(e) =>{ ChengeInput(e.target.value, el.table_name, el.id)}} />
                   </div>
                 )
               }

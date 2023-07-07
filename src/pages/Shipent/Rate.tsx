@@ -61,8 +61,10 @@ const Shipment = () => {
 
   async function name() {
     const response = await axios.get(URL+'api/v1/users/shipMethods');
+    console.log(response);
     
     const data1=response.data.filter((item:any)=>item.status===true)
+    
     setShippMethod(data1)
   }
 
@@ -183,6 +185,7 @@ const Shipment = () => {
       setShip1([newUps,newUps1])
     }
     
+    console.log(shippMethod);
     
     
   return (

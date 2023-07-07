@@ -9,7 +9,7 @@ const URL = process.env.REACT_APP_BASE_URL
 
 export default function FinalOrder({ total }: any) {
 
-  const [active,setActive]=useState(false)
+  const [active,setActive]=useState(true)
   const [active1,setActive1]=useState(false)
 let price=0
 const order:any = sessionStorage.getItem('orders')
@@ -43,7 +43,11 @@ const totals = JSON.parse(order)
  
   
   function EditTotal(table_name:string){
+    
+    
     headArr2?.map((el:any,index:number)=>{
+      
+      
       if(el===table_name){
         if(index===0){
           sessionStorage.setItem('step2','false')
@@ -68,8 +72,12 @@ const totals = JSON.parse(order)
       }
     })
     headArr?.map((el:any,index:number)=>{
+      console.log(el);
+      console.log(table_name);
+      
+      
       if(el===table_name){
-        if(index===0){
+        if(index===1){
           sessionStorage.setItem('step2','false')
           sessionStorage.setItem('step3','false')
           sessionStorage.setItem('step4','false')
@@ -120,12 +128,12 @@ const totals = JSON.parse(order)
                   elem.table_name === el && 
                   <div className='totalhead' >
                     {elem.is_active === null ?
-                      <div className='totalItem' onClick={()=>EditTotal(elem.table_name)}><p className='totalItem_edit'>E d i t</p><h3>{elem.column_name }</h3> <span>{ elem.value}</span></div>:
-                      <div className='totalItem' onClick={()=>EditTotal(elem.table_name)}><p className='totalItem_edit'>E d i t</p><h3>{elem.table_name}</h3><span>{elem.column_name}</span></div>}
+                      <div className='totalItem' ><h3>{elem.column_name }</h3> <span>{ elem.value}</span></div>:
+                      <div className='totalItem' ><h3>{elem.table_name}</h3><span>{elem.column_name}</span></div>}
                   </div>
                   
                   )}
-                  <button onClick={()=>EditTotal(el)}>Edit</button>
+                  <button className='btn_edit' onClick={()=>EditTotal(el)}>Edit</button>
               </div>
             </div>
           )

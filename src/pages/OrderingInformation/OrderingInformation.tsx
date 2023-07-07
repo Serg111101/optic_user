@@ -11,10 +11,11 @@ import { Loading } from '../../components/loading';
 export const OrderingInformation = () => {
   const { loading,orders }: any = useAppSelector((state) => state.orders);
   
+  console.log(typeof orders[0]?.is_active);
   
   
   let arr:any=sessionStorage?.getItem('orders')
-  const [stepArr,setStepArr]=useState<Object[]>(JSON.parse(arr)||[])
+  let [stepArr,setStepArr]=useState<any>(JSON.parse(arr)||[])
   const [step1, setStep1] = useState(false);
   const dispatch = useAppDispatch();
  
@@ -25,11 +26,11 @@ export const OrderingInformation = () => {
 
 
   useEffect(() => {
-    if (orders.length && !sessionStorage.getItem('orders')) {
+    if (orders.length>0 && !sessionStorage.getItem('orders')) {
       sessionStorage.setItem('orders', JSON.stringify(orders))
       setStepArr(orders)
     }
-  }, [orders])
+  }, [orders,dispatch])
 
   useEffect(()=>{
     if(stepArr?.length){
@@ -37,6 +38,7 @@ export const OrderingInformation = () => {
       
     }
   },[stepArr])
+
 
 
 
@@ -106,7 +108,6 @@ export const OrderingInformation = () => {
    arr1 = orders?.map((item: any) => item.table_name);
   
   }
-  console.log(orders);
   
   // let arr1 = orders?.map((item: any) => item.table_name);
 
@@ -122,8 +123,8 @@ export const OrderingInformation = () => {
   }
   const headArr = removeDuplicates(arr1);
 
-  console.log(headArr);
-  
+   console.log(stepArr);
+   
 
   return (
     <>

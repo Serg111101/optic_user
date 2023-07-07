@@ -24,11 +24,14 @@ export const Step2 = ({
 
 
   let arr: any = sessionStorage.getItem('orders')
+  console.log(arr);
+  
   useEffect(() => {
     if (arr !== null && arr !== '[]' && stepArr === null) {
       setStepArr(JSON.parse(arr))
     }
-  }, [stepArr])
+  }, [stepArr,arr])
+console.log(stepArr);
 
 
   const [btnCheck, setBtnCheck] = useState(false)
@@ -75,7 +78,7 @@ export const Step2 = ({
   }
   function ChangeItem2(tableName: string, id: number) {
 
-    if(stepArr.length>0){
+    if(stepArr?.length>0){
       const newArr: any = stepArr?.map((el: any) => {
         if (el.table_name === tableName) {
           if (el.id === id) {
@@ -197,7 +200,7 @@ export const Step2 = ({
             <div className="step2_optionDiv1">
               <h2>{headArr[2]}</h2>
               {
-                stepArr.length>0&&
+                stepArr?.length>0&&
                 stepArr?.map((el: any) => {
                   if (el?.table_name === headArr[3] && el?.is_active !== null) {
                     if (el.is_active !== clip) { setClip(el.is_active) }
@@ -212,14 +215,14 @@ export const Step2 = ({
                 })
               }
               <div className="optionDiv1_item_1">
-                {stepArr.length>0&&clip ? stepArr?.map((element: any) =>
+                {stepArr?.length>0&&clip ? stepArr?.map((element: any) =>
                   element?.table_name === headArr[3] && element?.is_active === null &&
                   <div key={element.id} className="item_input">
                     <span>{element.column_name}</span>
                     <input type="text" value={element.value} onChange={(e: any) => ChangeInput(e.target.value, element.table_name, element.id)} />
                   </div>)
                   :
-                  stepArr.length>0&&
+                  stepArr?.length>0&&
                   stepArr?.map((elem: any) =>
                     elem?.table_name === headArr[2] &&
                     <div key={elem.id} >
@@ -235,7 +238,7 @@ export const Step2 = ({
             <div className="step2_optionDiv2">
               <h2>{headArr[4]}</h2>
               <div className="step2_optionDiv2_2">{
-                stepArr.length>0&&
+                stepArr?.length>0&&
                 stepArr?.map((el: any) =>
                   el?.table_name === headArr[4] && (
 
@@ -254,7 +257,7 @@ export const Step2 = ({
             </div>
           </div>
           <div className="step2_image">
-            {stepArr.length>0 &&  stepArr?.map((el: any) =>
+            {stepArr?.length>0 &&  stepArr?.map((el: any) =>
               el?.table_name === headArr[4] && el?.is_active &&
               <img src={el.value} alt="" />
             )

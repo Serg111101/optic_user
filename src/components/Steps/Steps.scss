@@ -17,7 +17,7 @@
 
             .step1_option {
 
-                width: 45%;
+                width: 50%;
                 display: flex;
                 justify-content: space-around;
                 background-color: rgb(210, 208, 208);
@@ -25,7 +25,7 @@
                 padding: 10px;
 
                 .step1_optionDiv1 {
-                    width: 40%;
+                    width:45%;
 
                     h2 {
                         margin-bottom: 20px;
@@ -44,8 +44,11 @@
                         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
                     }
 
-                    .optionDiv1_item:not(:last-child) {
+                    .optionDiv1_item {
                         border-bottom: 1px solid gray;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
                     }
 
                     .optionDiv1_item::before {
@@ -64,6 +67,7 @@
                         align-items: center;
                         justify-content: space-between;
                         padding: 15px;
+                        width: 90px;
                     }
 
                     span:last-child {
@@ -105,6 +109,8 @@
 
                     input[type="checkbox"]:checked+label span:last-child {
                         background: green;
+                        
+                        
                     }
 
                     input[type="checkbox"]:checked+label span:last-child::before {
@@ -119,7 +125,7 @@
                         background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/checkmark-switcher.svg);
                         background-size: 14px 14px;
                     }
-
+                   
                     @media screen and (max-width: 600px) {
                         .switches li::before {
                             display: none;
@@ -756,7 +762,7 @@
                 padding: 10px;
 
                 .step4_optionDiv1 {
-                    width: 40%;
+                    width: 60%;
 
                     h2 {
                         margin-bottom: 20px;
@@ -1063,6 +1069,9 @@
                             font-size: 25px;
                             position: absolute;
 
+                        } &:hover .totalItem>.totalItem_edit {
+                            display: inline-block;
+                            left: 40%;
                         }
 
                         span {
@@ -1098,7 +1107,7 @@
         
         }
 
-        .headDiv:nth-child(3) {
+        .headDiv {
        
             transition: all .8s linear;
             cursor: pointer;
@@ -1119,6 +1128,23 @@
             .totalDiv {
                 display: none;
                 transform: translateY(50000px);
+
+
+                .btn_edit{
+                    display: flex;
+                    margin: 20px auto;
+                    background-color: green;
+                    padding: 10px 20px;
+                    font-size: 20px;
+                    text-align: center;
+                    color: white;
+                    border-radius: 10px;
+                    
+
+
+
+                }
+
             }
 
             .active {
@@ -1241,7 +1267,19 @@
 }
 
 
-@media (max-width:769px) {
+@media (max-width:900px) {
+    .Order {.steping {
+    .step1{
+        flex-direction: column;
+        .step1_image {
+            display: none;
+        }
+        .step1_option {
+            margin: 0 auto;
+
+            width: 80%;
+        }}}
+    }
     .Aaa {
 
         input {
@@ -1271,7 +1309,23 @@
     }
 }
 
-@media (max-width:500px) {
+@media (max-width:550px) {
+    .Order {.steping {
+        .step1{
+           
+    
+            .step1_option {
+                flex-direction: column;
+                .step1_optionDiv1 {
+                    width: 80%;
+                    margin: 0 auto;
+                }
+                .step1_optionDiv2 {
+                    width: 80%;
+                    margin: 20px auto;
+                }
+            }}}
+        }
     .Aaa {
         input {
             width: 260px;
