@@ -3,6 +3,7 @@ import { fetching,fetching1, fetchSuccess, fetchSuccess1, fetchSuccess3, fetchEr
 import axios from "axios";
 // import { fetchUspsorder } from "./OrderShipActions";
 // import { useAppDispatch } from "../../hooks/redux";
+const URL = process.env.REACT_APP_BASE_URL
 
 
 export const fetchUsps = (arr: any) => {
@@ -14,7 +15,7 @@ export const fetchUsps = (arr: any) => {
 
       const response = await axios({
         method: 'post',
-        url: 'http://localhost:3000/api/v1/users/shippo',
+        url: URL + 'api/v1/users/shippo',
         data: {
           name: arr[0].name,
           company: arr[0].company,
@@ -30,11 +31,11 @@ export const fetchUsps = (arr: any) => {
         }
      });
       localStorage.setItem('shippoId', JSON.stringify(response.data[0].id))
-      { if(response.data[0].rates){
+      if(response.data[0].rates){
        let usps = response.data[0].rates.sort(async (a:any,b:any)=> a.amount - b.amount)
        
        dispatch(fetchSuccess(usps));
-      }}
+      }
    
 
     } catch (err) {
@@ -62,7 +63,7 @@ export const fetchCreate = (arr: any) => {
 
       const response = await axios({
         method: 'post',
-        url: 'http://localhost:3000/api/v1/users/rateDetails',
+        url: URL + 'api/v1/users/rateDetails',
         data: [arr]
 
       });
@@ -85,20 +86,19 @@ export const fetchUspsGet = () => {
       const Id: any = localStorage.getItem('shippoId')
       const shippoId = JSON.parse(Id)
       dispatch(fetching());
-      const response: any = await axios.get('http://localhost:3000/api/v1/users/returningShip/' + shippoId);
+      const response: any = await axios.get(URL + 'api/v1/users/returningShip/' + shippoId);
       const data = response?.data.rates
       const payload = data.map((elem: any) => JSON.parse(elem));
 
    
     
 
-      { if(payload){
+      if(payload){
        let usps = payload.sort((a:any,b:any)=> b.amount - a.amount)
-       console.log(usps);
        
        dispatch(fetchSuccess3(usps));
       
-      }}
+      }
      
 
 

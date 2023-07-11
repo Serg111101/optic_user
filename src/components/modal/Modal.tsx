@@ -6,6 +6,7 @@ import { useRef, useEffect } from "react";
 import axios from 'axios';
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const URL = process.env.REACT_APP_BASE_URL
 
 
 function Modal({active, setActive,}:any) {
@@ -61,7 +62,7 @@ function Modal({active, setActive,}:any) {
             
             await  axios({
                 method: 'post',
-                url: 'http://localhost:3000/api/v1/users/add',
+                url: URL + 'api/v1/users/add',
                 data: {
                   email: user,
                   password: pwd

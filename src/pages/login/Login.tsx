@@ -11,12 +11,12 @@ import { useNavigate } from "react-router-dom";
 import jwt_decode from 'jwt-decode'
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import { fetchLoginStyle } from "../../store/action/LoginStyleActions";
-
+const URL = process.env.REACT_APP_BASE_URL
 
 declare global {
-  interface Window {
-    google: any;
-  }
+    interface Window {
+        google: any;
+    }
 }
 
 
@@ -24,6 +24,7 @@ interface ILogin {
     [key: string]: string,
 }
 export const Login = () => {
+ 
 
     const { LoginStyle }:any = useAppSelector(state => state.LoginStyle)
     const dispatch = useAppDispatch()
@@ -61,7 +62,7 @@ async function handleCallbackResponse(response:any) {
     
     const res = await axios({
       method: 'post',
-      url: 'http://localhost:3000/api/v1/auth/google/login',
+      url: URL + 'api/v1/auth/google/login',
     //   config,
       data: userObject
     });
@@ -95,7 +96,7 @@ async function handleCallbackResponse(response:any) {
     try {
         const response = await axios({
             method: 'post',
-            url: 'http://localhost:3000/api/v1/auth/login',
+            url: URL + 'api/v1/auth/login',
             data: {
                email:checkLogin,
                password:password
@@ -143,12 +144,12 @@ async function handleCallbackResponse(response:any) {
                 
 
                 <div className="containerHeader" id="containerHeader">
-            <img src="../../../../image/logo11.webp" />
+            <img src="../../../../images/logo11.webp" />
             <h3 id={"containerHeaderH1"}>{LoginStyle?.title}</h3>
         </div>                    <div className="containerMain">
             
                         <div className="loginImage">
-                            <img src="../../../../image/logins.webp" />
+                            <img src="../../../../images/logins.webp" />
                         </div>
 
                         

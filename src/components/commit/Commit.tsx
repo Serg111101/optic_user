@@ -10,6 +10,9 @@ export const Commit = ({ setCommit }: any) => {
     const [erorrEmail, setErorrEmail] = useState(false)
     const [erorrText, setErorrText] = useState(false)
 
+const URL = process.env.REACT_APP_BASE_URL
+
+
     async function SendMessage() {
         if (name === '' || email === '' || text === '') {
             name === '' &&setErorrName(true);
@@ -21,7 +24,8 @@ export const Commit = ({ setCommit }: any) => {
                 email: email,
                 message: text
             }
-            await axios.post('http://localhost:3000/api/v1/users/sendMessage', newMessage)
+
+            await axios.post(URL + 'api/v1/users/sendMessage', newMessage)
             setCommit(false)
             
         }

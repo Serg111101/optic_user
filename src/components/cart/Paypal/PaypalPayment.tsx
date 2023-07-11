@@ -4,6 +4,7 @@ import { Space, Spin } from 'antd';
 import {PaypalPay} from './PaypalPay'
 import { useNavigate } from 'react-router-dom';
 import { error } from 'console';
+const URL = process.env.REACT_APP_BASE_URL
 
 
 const PaypalCheckout = () => {
@@ -14,12 +15,11 @@ const PaypalCheckout = () => {
 useEffect(() => {
      (async () => {
       try{
-         const response = await fetch("http://localhost:3000/api/v1/paypal/token", {
+         const response = await fetch(URL+"api/v1/paypal/token", {
                   method: "post",
                   });
             const client_token = await response.json();
             setClientToken(client_token);
-            console.log(client_token);
           }
             catch(error){
               setError(error)

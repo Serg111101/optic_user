@@ -1,0 +1,1447 @@
+/* eslint-disable */
+.Order {
+    margin: 100px auto;
+
+    .step {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .steping {
+        margin-top: 50px;
+
+        .step1 {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+
+            .step1_option {
+
+                width: 50%;
+                display: flex;
+                justify-content: space-around;
+                background-color: rgb(210, 208, 208);
+                border-radius: 20px;
+                padding: 10px;
+
+                .step1_optionDiv1 {
+                    width:45%;
+
+                    h2 {
+                        margin-bottom: 20px;
+                        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                        font-weight: 500;
+                    }
+
+                    input[type="checkbox"] {
+                        position: absolute;
+                        left: -9999px;
+
+                    }
+
+                    span {
+                        font-weight: 540;
+                        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                    }
+
+                    .optionDiv1_item {
+                        border-bottom: 1px solid gray;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                    }
+
+                    .optionDiv1_item::before {
+                        content: counter(switchCounter);
+                        position: absolute;
+                        top: 50%;
+                        left: -30px;
+                        transform: translateY(-50%);
+                        font-size: 2rem;
+                        font-weight: bold;
+                        color: pink;
+                    }
+
+                    label {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 15px;
+                        width: 90px;
+                    }
+
+                    span:last-child {
+                        position: relative;
+                        width: 50px;
+                        height: 26px;
+                        border-radius: 15px;
+                        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
+                        background: gray;
+                        transition: all 0.3s;
+                    }
+
+                    span:last-child::before,
+                    span:last-child::after {
+                        content: "";
+                        position: absolute;
+                    }
+
+                    span:last-child::before {
+                        left: 1px;
+                        top: 1px;
+                        width: 24px;
+                        height: 24px;
+                        background: white;
+                        border-radius: 50%;
+                        z-index: 1;
+                        transition: transform 0.3s;
+                    }
+
+                    span:last-child::after {
+                        top: 50%;
+                        right: 8px;
+                        width: 12px;
+                        height: 12px;
+                        transform: translateY(-50%);
+                        background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/uncheck-switcher.svg);
+                        background-size: 12px 12px;
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child {
+                        background: green;
+                        
+                        
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child::before {
+                        transform: translateX(24px);
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child::after {
+                        width: 14px;
+                        height: 14px;
+                        /*right: auto;*/
+                        left: 8px;
+                        background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/checkmark-switcher.svg);
+                        background-size: 14px 14px;
+                    }
+                   
+                    @media screen and (max-width: 600px) {
+                        .switches li::before {
+                            display: none;
+                        }
+                    }
+
+
+                    // display: flex;
+                    // background-color: blue;
+                }
+
+                .step1_optionDiv2 {
+                    width: 40%;
+
+                    h2 {
+                        margin-bottom: 30px;
+                        // background-color: red;
+                        font-weight: 540;
+                        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                    }
+
+                    .optionDiv2_item {
+                        margin-top: 20px;
+                        padding: 5px;
+                        border: 2px solid gray;
+                        border-radius: 20px;
+
+                        span {
+                            position: relative;
+                            background-color: rgb(210, 208, 208);
+                            font-size: 20px;
+                            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                            font-weight: 300;
+                            padding: 5px;
+                            top: -18px;
+                            left: 20px;
+                        }
+
+                        input {
+                            background: none;
+                            padding: 10px;
+                            border-radius: 12px;
+                            border-bottom: 2px solid white;
+                            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                            font-weight: 400;
+                        }
+                    }
+
+                    .step1_buttons {
+                        width: 100%;
+                        margin-top: 50px;
+                        display: flex;
+                        justify-content: center;
+
+                        button {
+                            min-width: 120px;
+                            padding: 15px;
+                            font-size: 20px;
+                            border-radius: 12px;
+                            background-color: green;
+                            color: white;
+                        }
+
+                        button[disabled] {
+                            background-color: rgba(0, 128, 0, 0.484);
+                        }
+                    }
+                }
+            }
+
+            .step1_image {
+                width: 45%;
+
+                img {
+                    width: 100%;
+                    border-radius: 30px;
+                }
+            }
+        }
+
+        .step2 {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+
+            .step2_option {
+
+                width: 45%;
+                background-color: rgb(210, 208, 208);
+                border-radius: 20px;
+                padding: 10px;
+
+                .step2_optionDiv1 {
+                    width: 80%;
+                    margin: 40px auto;
+                    h2 {
+                        margin-bottom: 30px;
+                        font-size: 40px;
+                        padding: 10px;
+                        font-weight: 540;
+                        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                        border-bottom: 1px solid gray;
+                    }
+
+               
+
+                    input[type="checkbox"] {
+                        position: absolute;
+                        left: -9999px;
+
+                    }
+
+                    span {
+                        font-weight: 540;
+                        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                    }
+
+                 
+
+                    .optionDiv1_item::before {
+                        content: counter(switchCounter);
+                        position: absolute;
+                        top: 50%;
+                        left: -30px;
+                        transform: translateY(-50%);
+                        font-size: 2rem;
+                        font-weight: bold;
+                        color: pink;
+                    }
+
+                    label {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 15px;
+                    }
+
+                    span:last-child {
+                        position: relative;
+                        width: 50px;
+                        height: 26px;
+                        border-radius: 15px;
+                        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
+                        background: gray;
+                        transition: all 0.3s;
+                    }
+
+                    span:last-child::before,
+                    span:last-child::after {
+                        content: "";
+                        position: absolute;
+                    }
+
+                    span:last-child::before {
+                        left: 1px;
+                        top: 1px;
+                        width: 24px;
+                        height: 24px;
+                        background: white;
+                        border-radius: 50%;
+                        z-index: 1;
+                        transition: transform 0.3s;
+                    }
+
+                    span:last-child::after {
+                        top: 50%;
+                        right: 8px;
+                        width: 12px;
+                        height: 12px;
+                        transform: translateY(-50%);
+                        background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/uncheck-switcher.svg);
+                        background-size: 12px 12px;
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child {
+                        background: green;
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child::before {
+                        transform: translateX(24px);
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child::after {
+                        width: 14px;
+                        height: 14px;
+                        /*right: auto;*/
+                        left: 8px;
+                        background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/checkmark-switcher.svg);
+                        background-size: 14px 14px;
+                    }
+
+                    @media screen and (max-width: 600px) {
+                        .switches li::before {
+                            display: none;
+                        }
+                    }
+                    .optionDiv1_item{
+                        h3{
+                            font-size: 30px;
+                            padding: 10px;
+                            font-weight: 540;
+                            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                        }
+                    }
+
+                    .optionDiv1_item_1 {
+                        display: grid;
+                        grid-template-columns: auto auto auto;
+
+                        .item_input {
+                            margin-top: 20px;
+                            padding: 5px;
+                            border: 2px solid gray;
+                            border-radius: 20px;
+
+                            span {
+                                position: relative;
+                                background-color: rgb(210, 208, 208);
+                                font-size: 20px;
+                                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                                font-weight: 300;
+                                padding: 5px;
+                                top: -18px;
+                                left: 20px;
+                            }
+
+                            input {
+                                background: none;
+                                padding: 10px;
+                                border-radius: 12px;
+                                border-bottom: 2px solid white;
+                                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                                font-weight: 400;
+                            }
+                        }
+                    }
+                }
+
+                .step2_optionDiv2 {
+                    width: 80%;
+                    margin-top: 40px;
+                    margin: 40px auto;
+
+                    // height: 700px;
+                    h2 {
+                        margin-bottom: 30px;
+                        // background-color: red;
+                        font-size: 40px;
+                        padding: 10px;
+                        font-weight: 540;
+                        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                        border-bottom: 1px solid gray;
+                    }
+
+                    .step2_optionDiv2_2 {
+                        display: flex;
+
+                        .optionDiv2_item_active {
+                            margin-top: 20px;
+                            padding: 5px;
+                            text-align: center;
+                            background-color: green;
+
+                            span {
+                                font-size: 20px;
+                                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                                font-weight: 300;
+                                padding: 5px;
+                                background-color: green;
+                                color: white;
+
+                            }
+
+                            img {
+                                width: 180px;
+                            }
+                        }
+
+                        .optionDiv2_item {
+                            // display: flex;
+                            margin-top: 20px;
+                            padding: 5px;
+                            text-align: center;
+                            // border: 2px solid gray;
+                            // border-radius: 20px;
+
+                            span {
+                                // position: relative;
+                                background-color: rgb(210, 208, 208);
+                                font-size: 20px;
+                                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                                font-weight: 300;
+                                padding: 5px;
+                                // top: -18px;
+                                // left: 20px;
+                            }
+
+                            img {
+                                max-width: 150px;
+                            }
+
+                        }
+                    }
+
+                    .step2_buttons {
+                        width: 100%;
+                        margin-top: 50px;
+                        display: flex;
+                        justify-content: space-evenly;
+
+                        button {
+                            min-width: 120px;
+                            padding: 15px;
+                            font-size: 20px;
+                            border-radius: 12px;
+                            background-color: green;
+                            color: white;
+                        }
+
+                        button[disabled] {
+                            background-color: rgba(0, 128, 0, 0.484);
+                        }
+                    }
+                }
+            }
+
+            .step2_image {
+                width: 45%;
+
+                img {
+                    width: 100%;
+                    border-radius: 30px;
+                }
+            }
+        }
+        .step3 {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+
+            .step3_option {
+
+                width: 45%;
+                background-color: rgb(210, 208, 208);
+                border-radius: 20px;
+                padding: 10px;
+                display: grid;
+                grid-template-columns: auto auto;
+                .step3_optionDiv1,.step3_optionDiv2,.step3_optionDiv3,.step3_optionDiv4,.step3_optionDiv5 {
+                    width: 80%;
+                    margin: 40px auto;
+                    .step3_option_item_1{
+                    h2 {
+                        margin-bottom: 30px;
+                        font-size: 40px;
+                        padding: 10px;
+                        font-weight: 540;
+                        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                        border-bottom: 1px solid gray;
+                    }
+
+               
+
+                    input[type="checkbox"] {
+                        position: absolute;
+                        left: -9999px;
+
+                    }
+
+                    span {
+                        font-weight: 540;
+                        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                    }
+
+                 
+
+                    .optionDiv1_item::before {
+                        content: counter(switchCounter);
+                        position: absolute;
+                        top: 50%;
+                        left: -30px;
+                        transform: translateY(-50%);
+                        font-size: 2rem;
+                        font-weight: bold;
+                        color: pink;
+                    }
+
+                    label {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 15px;
+                    }
+
+                    span:last-child {
+                        position: relative;
+                        width: 50px;
+                        height: 26px;
+                        border-radius: 15px;
+                        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
+                        background: gray;
+                        transition: all 0.3s;
+                    }
+
+                    span:last-child::before,
+                    span:last-child::after {
+                        content: "";
+                        position: absolute;
+                    }
+
+                    span:last-child::before {
+                        left: 1px;
+                        top: 1px;
+                        width: 24px;
+                        height: 24px;
+                        background: white;
+                        border-radius: 50%;
+                        z-index: 1;
+                        transition: transform 0.3s;
+                    }
+
+                    span:last-child::after {
+                        top: 50%;
+                        right: 8px;
+                        width: 12px;
+                        height: 12px;
+                        transform: translateY(-50%);
+                        background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/uncheck-switcher.svg);
+                        background-size: 12px 12px;
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child {
+                        background: green;
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child::before {
+                        transform: translateX(24px);
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child::after {
+                        width: 14px;
+                        height: 14px;
+                        /*right: auto;*/
+                        left: 8px;
+                        background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/checkmark-switcher.svg);
+                        background-size: 14px 14px;
+                    }
+
+                    @media screen and (max-width: 600px) {
+                        .switches li::before {
+                            display: none;
+                        }
+                    }
+                    .optionDiv1_item{
+                        h3{
+                            font-size: 30px;
+                            padding: 10px;
+                            font-weight: 540;
+                            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                        }
+                    }
+                }
+
+                    // .optionDiv1_item_1 {
+                    //     display: grid;
+                    //     grid-template-columns: auto auto auto;
+
+                    //     .item_input {
+                    //         margin-top: 20px;
+                    //         padding: 5px;
+                    //         border: 2px solid gray;
+                    //         border-radius: 20px;
+
+                    //         span {
+                    //             position: relative;
+                    //             background-color: rgb(210, 208, 208);
+                    //             font-size: 20px;
+                    //             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                    //             font-weight: 300;
+                    //             padding: 5px;
+                    //             top: -18px;
+                    //             left: 20px;
+                    //         }
+
+                    //         input {
+                    //             background: none;
+                    //             padding: 10px;
+                    //             border-radius: 12px;
+                    //             border-bottom: 2px solid white;
+                    //             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                    //             font-weight: 400;
+                    //         }
+                    //     }
+                    // }
+                }
+                .step3_buttons {
+                    width: 100%;
+                    margin-top: 100px;
+                    display: flex;
+                    justify-content: space-evenly;
+
+                    button {
+                        min-width: 120px;
+                        padding: 15px;
+                        font-size: 20px;
+                        border-radius: 12px;
+                        background-color: green;
+                        color: white;
+                    }
+
+                    button[disabled] {
+                        background-color: rgba(0, 128, 0, 0.484);
+                    }
+                }
+               
+
+                // .step2_optionDiv2 {
+                //     width: 80%;
+                //     margin-top: 40px;
+                //     margin: 40px auto;
+
+                //     // height: 700px;
+                //     h2 {
+                //         margin-bottom: 30px;
+                //         // background-color: red;
+                //         font-size: 40px;
+                //         padding: 10px;
+                //         font-weight: 540;
+                //         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                //         border-bottom: 1px solid gray;
+                //     }
+
+                //     .step2_optionDiv2_2 {
+                //         display: flex;
+
+                //         .optionDiv2_item_active {
+                //             margin-top: 20px;
+                //             padding: 5px;
+                //             text-align: center;
+                //             background-color: green;
+
+                //             span {
+                //                 font-size: 20px;
+                //                 font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                //                 font-weight: 300;
+                //                 padding: 5px;
+                //                 background-color: green;
+                //                 color: white;
+
+                //             }
+
+                //             img {
+                //                 width: 180px;
+                //             }
+                //         }
+
+                //         .optionDiv2_item {
+                //             // display: flex;
+                //             margin-top: 20px;
+                //             padding: 5px;
+                //             text-align: center;
+                //             // border: 2px solid gray;
+                //             // border-radius: 20px;
+
+                //             span {
+                //                 // position: relative;
+                //                 background-color: rgb(210, 208, 208);
+                //                 font-size: 20px;
+                //                 font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                //                 font-weight: 300;
+                //                 padding: 5px;
+                //                 // top: -18px;
+                //                 // left: 20px;
+                //             }
+
+                //             img {
+                //                 max-width: 150px;
+                //             }
+
+                //         }
+                //     }
+
+                //     .step2_buttons {
+                //         width: 100%;
+                //         margin-top: 50px;
+                //         display: flex;
+                //         justify-content: space-evenly;
+
+                //         button {
+                //             min-width: 120px;
+                //             padding: 15px;
+                //             font-size: 20px;
+                //             border-radius: 12px;
+                //             background-color: green;
+                //             color: white;
+                //         }
+
+                //         button[disabled] {
+                //             background-color: rgba(0, 128, 0, 0.484);
+                //         }
+                //     }
+                // }
+            }
+            .step3_image {
+                width: 45%;
+
+                img {
+                    width: 100%;
+                    border-radius: 30px;
+                }
+            }
+
+            // .step2_image {
+            //     width: 45%;
+
+            //     img {
+            //         width: 100%;
+            //         border-radius: 30px;
+            //     }
+            // }
+        }
+        .step4{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+
+            .step4_option {
+
+                width: 45%;
+                display: flex;
+                justify-content: space-around;
+                background-color: rgb(210, 208, 208);
+                border-radius: 20px;
+                padding: 10px;
+
+                .step4_optionDiv1 {
+                    width: 60%;
+
+                    h2 {
+                        margin-bottom: 20px;
+                        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                        font-weight: 500;
+                    }
+
+                    input[type="checkbox"] {
+                        position: absolute;
+                        left: -9999px;
+
+                    }
+
+                    span {
+                        font-weight: 540;
+                        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                    }
+
+                    .optionDiv1_item:not(:last-child) {
+                        border-bottom: 1px solid gray;
+                    }
+
+                    .optionDiv1_item::before {
+                        content: counter(switchCounter);
+                        position: absolute;
+                        top: 50%;
+                        left: -30px;
+                        transform: translateY(-50%);
+                        font-size: 2rem;
+                        font-weight: bold;
+                        color: pink;
+                    }
+
+                    label {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 15px;
+                    }
+
+                    span:last-child {
+                        position: relative;
+                        width: 50px;
+                        height: 26px;
+                        border-radius: 15px;
+                        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.4);
+                        background: gray;
+                        transition: all 0.3s;
+                    }
+
+                    span:last-child::before,
+                    span:last-child::after {
+                        content: "";
+                        position: absolute;
+                    }
+
+                    span:last-child::before {
+                        left: 1px;
+                        top: 1px;
+                        width: 24px;
+                        height: 24px;
+                        background: white;
+                        border-radius: 50%;
+                        z-index: 1;
+                        transition: transform 0.3s;
+                    }
+
+                    span:last-child::after {
+                        top: 50%;
+                        right: 8px;
+                        width: 12px;
+                        height: 12px;
+                        transform: translateY(-50%);
+                        background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/uncheck-switcher.svg);
+                        background-size: 12px 12px;
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child {
+                        background: green;
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child::before {
+                        transform: translateX(24px);
+                    }
+
+                    input[type="checkbox"]:checked+label span:last-child::after {
+                        width: 14px;
+                        height: 14px;
+                        /*right: auto;*/
+                        left: 8px;
+                        background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/checkmark-switcher.svg);
+                        background-size: 14px 14px;
+                    }
+
+                    @media screen and (max-width: 600px) {
+                        .switches li::before {
+                            display: none;
+                        }
+                    }
+                    .step4_buttons{
+                        width: 100%;
+                                margin-top: 50px;
+                                display: flex;
+                                justify-content: space-between;
+        
+                                button {
+                                    min-width: 120px;
+                                    padding: 15px;
+                                    font-size: 20px;
+                                    border-radius: 12px;
+                                    background-color: green;
+                                    color: white;
+                                }
+        
+                                button[disabled] {
+                                    background-color: rgba(0, 128, 0, 0.484);
+                                }}
+
+
+                    // display: flex;
+                    // background-color: blue;
+                }
+
+                
+                // .step1_optionDiv2 {
+                //     width: 40%;
+
+                //     h2 {
+                //         margin-bottom: 30px;
+                //         // background-color: red;
+                //         font-weight: 540;
+                //         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                //     }
+
+                //     .optionDiv2_item {
+                //         margin-top: 20px;
+                //         padding: 5px;
+                //         border: 2px solid gray;
+                //         border-radius: 20px;
+
+                //         span {
+                //             position: relative;
+                //             background-color: rgb(210, 208, 208);
+                //             font-size: 20px;
+                //             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                //             font-weight: 300;
+                //             padding: 5px;
+                //             top: -18px;
+                //             left: 20px;
+                //         }
+
+                //         input {
+                //             background: none;
+                //             padding: 10px;
+                //             border-radius: 12px;
+                //             border-bottom: 2px solid white;
+                //             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                //             font-weight: 400;
+                //         }
+                //     }
+
+                //     .step1_buttons {
+                //         width: 100%;
+                //         margin-top: 50px;
+                //         display: flex;
+                //         justify-content: center;
+
+                //         button {
+                //             min-width: 120px;
+                //             padding: 15px;
+                //             font-size: 20px;
+                //             border-radius: 12px;
+                //             background-color: green;
+                //             color: white;
+                //         }
+
+                //         button[disabled] {
+                //             background-color: rgba(0, 128, 0, 0.484);
+                //         }
+                //     }
+                // }
+            }
+
+            .step4_image {
+                width: 45%;
+
+                img {
+                    width: 100%;
+                    border-radius: 30px;
+                }
+            }
+        }
+    }
+
+}
+
+.FinalOrder {
+
+    max-width: 1200px;
+    box-shadow: 0px 0px 20px black;
+    margin: 100px auto;
+    border-radius: 20px;
+
+    h1 {
+        padding-top: 30px;
+        text-align: center;
+        --bg-size: 400%;
+        --color-one: hsl(102, 88%, 50%);
+        --color-two: hsl(102, 78%, 16%);
+        background: linear-gradient(90deg,
+                var(--color-one),
+                var(--color-two),
+                var(--color-one)) 0 0 / var(--bg-size) 100%;
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        animation: move-bg 5s infinite linear;
+    }
+
+    .FinalOrder_info {
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: center;
+        padding-top: 50px;
+        gap: 20px;
+
+        .headDiv {
+            cursor: pointer;
+            box-shadow: 0px 0px 20px;
+            border-radius: 20px;
+            padding: 12px;
+            margin-bottom: 20px;
+
+            h2 {
+                padding: 8px;
+                display: flex;
+                justify-content: space-between;
+                border: 3px solid rgb(3, 91, 3);
+                border-radius: 8px;
+                --bg-size: 400%;
+                --color-one: hsl(102, 88%, 50%);
+                --color-two: hsl(102, 78%, 16%);
+                background: linear-gradient(90deg,
+                        var(--color-one),
+                        var(--color-two),
+                        var(--color-one)) 0 0 / var(--bg-size) 100%;
+                color: transparent;
+                -webkit-background-clip: text;
+                background-clip: text;
+                animation: move-bg 5s infinite linear;
+
+                .anticon {
+                    display: flex;
+                    color :brown;
+                }
+
+            }
+
+
+
+            .totalDiv {
+
+                .totalhead {
+                    border-radius: 8px;
+                    margin-top: 12px;
+                    border-radius: 8px;
+                    border: 3px solid rgb(4, 188, 4);
+                    padding: 10px;
+                    width: 100%;
+                    position: relative;
+                    transition: all .5s linear;
+                    transform: scale(.9);
+
+
+                    &:hover {
+                        background-color: rgb(20, 107, 17);
+                        color: gray;
+                        transform: scale(1);
+                        // overflow: hidden;
+                        // margin: joi.validator;
+                    }
+
+                    &:hover .totalItem>.totalItem_edit {
+                        display: inline-block;
+                        left: 40%;
+                    }
+
+                    &:hover>.totalItem>img {
+                        opacity: 0.1;
+                    }
+
+                    .totalItem {
+                        // transition: all .8s linear;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+
+                        .totalItem_edit {
+                            // transition: all .8s linear;
+                            display: none;
+                            left: 100%;
+                            text-align: center;
+                            color: rgb(255, 255, 255);
+                            font-size: 25px;
+                            position: absolute;
+
+                        } &:hover .totalItem>.totalItem_edit {
+                            display: inline-block;
+                            left: 40%;
+                        }
+
+                        span {
+                            // transition: all .8s linear;
+                            margin-left: 20px;
+                            color: rgb(17, 17, 62);
+                        }
+
+                        img {
+                            opacity: 1;
+                        }
+                    }
+
+                    @keyframes move-bg {
+                        to {
+                            background-position: var(--bg-size) flex-end;
+                        }
+                    }
+
+                    @media (prefers-reduced-motion: no-preference) {
+                        .boujee-text {
+                            animation: move-bg 1s linear infinite;
+                        }
+
+                        @keyframes move-bg {
+                            to {
+                                background-position: var(--bg-size) 0;
+                            }
+                        }
+                    }
+                }
+            }
+        
+        }
+
+        .headDiv {
+       
+            transition: all .8s linear;
+            cursor: pointer;
+            box-shadow: 0px 0px 0px;
+            border-radius: 20px;
+            padding: 12px;
+            margin-bottom: 20px;
+
+            h2 {
+                .anticon {
+                    color: green;
+                    display: block;
+                }
+
+
+            }
+
+            .totalDiv {
+                display: none;
+                transform: translateY(50000px);
+
+
+                .btn_edit{
+                    display: flex;
+                    margin: 20px auto;
+                    background-color: green;
+                    padding: 10px 20px;
+                    font-size: 20px;
+                    text-align: center;
+                    color: white;
+                    border-radius: 10px;
+                    
+
+
+
+                }
+
+            }
+
+            .active {
+                display: block;
+                transform: translateY(0);
+                // transition: all 7s linear;
+
+            }
+
+        }
+    }
+
+    .total_price {
+        display: flex;
+        width: 95%;
+        justify-content: flex-end;
+
+        h5 {
+
+            --bg-size: 400%;
+            --color-one: hsl(102, 88%, 50%);
+            --color-two: hsl(102, 78%, 16%);
+            background: linear-gradient(90deg,
+                    var(--color-one),
+                    var(--color-two),
+                    var(--color-one)) 0 0 / var(--bg-size) 100%;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: move-bg 5s infinite linear;
+
+            font-size: 26px;
+
+        }
+    }
+
+    .buttons {
+        width: 50%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-around;
+
+        button {
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 20px;
+            background-color: green;
+            color: white;
+            margin-bottom: 50px;
+        }
+    }
+}
+
+.Aaa {
+
+
+
+    .step3_map {
+
+        label {
+            // width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    // text-align: center;
+    // margin: 0 auto;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // flex-direction: column;
+    // margin-bottom: 40px;
+
+
+    input {
+        width: 300px;
+        margin-top: 15px;
+        padding: 10px;
+        border-radius: 30px;
+        border: 2px solid;
+    }
+
+
+
+
+
+    h2 {
+        display: flex;
+        justify-content: center;
+    }
+
+    label {
+        display: flex;
+        justify-content: center;
+        width: 300px;
+    }
+
+    button {
+        width: 180px;
+        padding: 20px;
+        background-color: green;
+        font-size: 18px;
+        border-radius: 30px;
+    }
+
+    select {
+        width: 300px;
+        padding: 10px;
+        border-radius: 30px;
+        border: 2px solid;
+        margin-top: 15px;
+
+    }
+
+    select::-ms-expand {
+        display: none;
+    }
+}
+
+
+@media (max-width:900px) {
+    .Order {.steping {
+    .step1{
+        flex-direction: column;
+        .step1_image {
+            display: none;
+        }
+        .step1_option {
+            margin: 0 auto;
+
+            width: 80%;
+        }}}
+    }
+    .Aaa {
+
+        input {
+            width: 280px;
+            padding: 9px;
+            border-radius: 28px;
+        }
+
+        label {
+            width: 280px;
+
+        }
+
+        button {
+            width: 160px;
+            padding: 18px;
+            font-size: 16px;
+            border-radius: 28px;
+        }
+
+        select {
+            width: 280px;
+            padding: 9px;
+            border-radius: 28px;
+
+        }
+    }
+}
+
+@media (max-width:550px) {
+    .Order {.steping {
+        .step1{
+           
+    
+            .step1_option {
+                flex-direction: column;
+                .step1_optionDiv1 {
+                    width: 80%;
+                    margin: 0 auto;
+                }
+                .step1_optionDiv2 {
+                    width: 80%;
+                    margin: 20px auto;
+                }
+            }}}
+        }
+    .Aaa {
+        input {
+            width: 260px;
+            padding: 8px;
+            border-radius: 26px;
+        }
+
+        label {
+            width: 260px;
+
+        }
+
+        button {
+            width: 150px;
+            padding: 16px;
+            font-size: 15px;
+            border-radius: 26px;
+        }
+
+        select {
+            width: 260px;
+            padding: 8px;
+            border-radius: 26px;
+
+        }
+    }
+
+}
+
+@media (max-width:500px) {
+    .Aaa {
+
+
+        input {
+            width: 240px;
+            padding: 7px;
+            border-radius: 24px;
+        }
+
+        label {
+            width: 240px;
+
+        }
+
+        button {
+            width: 130px;
+            padding: 15px;
+            font-size: 15px;
+            border-radius: 24px;
+        }
+
+        select {
+            width: 240px;
+            padding: 7px;
+            border-radius: 24px;
+
+        }
+    }
+
+}
+
+@media (max-width:400px) {
+    .Aaa {
+        input {
+            width: 230px;
+            padding: 6px;
+            border-radius: 22px;
+        }
+
+        label {
+            width: 230px;
+
+        }
+
+        button {
+            width: 120px;
+            padding: 14px;
+            font-size: 14px;
+            border-radius: 22px;
+        }
+
+        select {
+            width: 230px;
+            padding: 6px;
+            border-radius: 22px;
+
+        }
+    }
+}
+
+@media (max-width:350px) {
+    .Aaa {
+        input {
+            width: 220px;
+            padding: 5px;
+            border-radius: 20px;
+        }
+
+        label {
+            width: 220px;
+
+        }
+
+        button {
+            width: 110px;
+            padding: 13px;
+            font-size: 13px;
+            border-radius: 21px;
+        }
+
+        select {
+            width: 220px;
+            padding: 5px;
+            border-radius: 21px;
+
+        }
+    }
+
+}

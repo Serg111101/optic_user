@@ -35,7 +35,7 @@ export function About() {
             <h2>{el.title}</h2>
             <p>{el.text}</p>
           </div>
-          <img src={el.image} alt="" />
+          <img src={el.image?el.image:'https://img1.wsimg.com/isteam/ip/6e793ce1-d799-4f0e-ac6e-0125429082dc/631108ad-718c-433c-aaad-63328e2832e7.jpg/:/cr=t:9.68%25,l:0%25,w:100%25,h:80.65%25/rs=w:600,h:300,cg:true'} alt="" />
           </>}
         </div>)
       }

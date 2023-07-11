@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 // const REGISTER_URL = '/register';
 
+const URL = process.env.REACT_APP_BASE_URL
 
 
 
@@ -64,21 +65,17 @@ function Modal({active, setActive,}) {
             setErrMsg("Invalid Entry");
             return;
         }
-        console.log(JSON.stringify({ user, pwd }),);
         try {
             
             const response = await  axios({
                 method: 'post',
-                url: 'http://localhost:3000/api/v1/users/add',
+                url: URL + 'api/v1/users/add',
                 data: {
                   email: user,
                   password: pwd
                 }
               });
-            console.log(response)
-            // TODO: remove console.logs before deployment
-            console.log(JSON.stringify(response?.data));
-            console.log(JSON.stringify(response))
+            
             setSuccess(true);
             //clear state and controlled inputs
             setUser('');
