@@ -72,7 +72,6 @@ useEffect(()=>{
     }
     
   function ChengeInput(elem: string, tableName: string, id: number) {
-    console.log(stepArr);
     
     if(stepArr.length>0){
 
@@ -93,7 +92,6 @@ useEffect(()=>{
 
   }
 
-console.log(stepArr);
 
   useEffect(()=>{
     saveButton()
@@ -186,7 +184,7 @@ console.log(stepArr);
             </div>
           </div>
           <div className="step1_image">
-            <img src="./image/1.webp" alt="" />
+            <img src="./images/1.webp" alt="image not found" />
           </div>
         </div>
       )}

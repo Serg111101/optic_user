@@ -105,10 +105,8 @@ export const Step3 = ({
     }
   }
   function Checking(checkd: boolean, setCheckd: (a: boolean) => void, tableName: string,setValuex:(a:string)=>void) {
-    console.log(111);
     
     if (checkd === false) {
-      console.log(22);
 
       if(stepArr.length>0){
         const newArr: any = stepArr?.map((el: any) => {
@@ -284,7 +282,7 @@ export const Step3 = ({
             </div>
           </div>
           <div className="step3_image">
-            <img src="./image/1.webp" alt="" />
+            <img src="./images/1.webp" alt="photo not found" />
           </div>
         </div>
       )}

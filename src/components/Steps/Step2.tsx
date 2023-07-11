@@ -24,14 +24,12 @@ export const Step2 = ({
 
 
   let arr: any = sessionStorage.getItem('orders')
-  console.log(arr);
   
   useEffect(() => {
     if (arr !== null && arr !== '[]' && stepArr === null) {
       setStepArr(JSON.parse(arr))
     }
   }, [stepArr,arr])
-console.log(stepArr);
 
 
   const [btnCheck, setBtnCheck] = useState(false)

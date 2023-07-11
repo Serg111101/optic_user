@@ -11,7 +11,6 @@ import { Loading } from '../../components/loading';
 export const OrderingInformation = () => {
   const { loading,orders }: any = useAppSelector((state) => state.orders);
   
-  console.log(typeof orders[0]?.is_active);
   
   
   let arr:any=sessionStorage?.getItem('orders')
@@ -123,7 +122,6 @@ export const OrderingInformation = () => {
   }
   const headArr = removeDuplicates(arr1);
 
-   console.log(stepArr);
    
 
   return (

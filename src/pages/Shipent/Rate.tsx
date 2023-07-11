@@ -61,7 +61,6 @@ const Shipment = () => {
 
   async function name() {
     const response = await axios.get(URL+'api/v1/users/shipMethods');
-    console.log(response);
     
     const data1=response.data.filter((item:any)=>item.status===true)
     
@@ -185,7 +184,6 @@ const Shipment = () => {
       setShip1([newUps,newUps1])
     }
     
-    console.log(shippMethod);
     
     
   return (
@@ -287,7 +285,7 @@ const Shipment = () => {
 
                
                     <div className="method" key={index}>
-                      <img src={el.icon} alt="imagein" />
+                      <img src={el.icon} alt="image not found" />
                     </div>
                   
                 )}

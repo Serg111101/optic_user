@@ -72,8 +72,6 @@ const totals = JSON.parse(order)
       }
     })
     headArr?.map((el:any,index:number)=>{
-      console.log(el);
-      console.log(table_name);
       
       
       if(el===table_name){
