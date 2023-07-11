@@ -82,6 +82,7 @@ export function Clip() {
               onClick={() => {
                 setIndex(idx);
               }}
+              style={{backgroundImage:"url('../../../images/backraund.jpg')"}}
             > 
             <img src={el?.image} alt="Clip_foto" /> 
             </div>

@@ -271,7 +271,7 @@ const Shipment = () => {
           <>
 
 
-          <div className='shippo_contents' onClick={e => e.stopPropagation()}>
+          <div className='shippo_contents' style={{backgroundImage:"url('../../../images/logins.png') "}} onClick={e => e.stopPropagation()}>
             <div className='contain'>
               <span className='p1'><h1>ADD ORDERS INFORMATION</h1></span>
               <select name="shipMethod" className={pickUP ? "select" : "select1"} onChange={(e) => setPickUP(e.target.value)}>

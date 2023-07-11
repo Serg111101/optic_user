@@ -184,7 +184,7 @@ useEffect(()=>{
             </div>
           </div>
           <div className="step1_image">
-            <img src="./images/1.webp" alt="image not found" />
+            <img src="../../../images/glas.png" alt="image not found" />
           </div>
         </div>
       )}

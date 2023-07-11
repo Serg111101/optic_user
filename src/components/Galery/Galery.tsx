@@ -95,11 +95,12 @@ export function Galery() {
 
               <div
                 key={idx}
-                style={{ marginLeft: idx === 0 ? `${width}px` : '', width: `${100}px` }}
+                style={{ marginLeft: idx === 0 ? `${width}px` : '', width: `${100}px` ,backgroundImage:"url('../../../images/backraund.jpg') "}}
                 className={`slideshowDot${index === idx ? " active" : ""}`}
                 onClick={() => {
                   setIndex(idx);
                 }}
+                
 
               >
                 <img src={el?.image} alt='galery_change'/>

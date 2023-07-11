@@ -149,7 +149,7 @@ async function handleCallbackResponse(response:any) {
         </div>                    <div className="containerMain">
             
                         <div className="loginImage">
-                            <img src="../../../../images/logins.webp" />
+                            <img src="../../../../images/logins.png" />
                         </div>
 
                         
