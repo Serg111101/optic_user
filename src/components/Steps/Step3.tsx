@@ -284,7 +284,7 @@ export const Step3 = ({
             </div>
           </div>
           <div className="step3_image">
-            <img src="./images/1.webp" alt="" />
+            <img src="./image/1.webp" alt="" />
           </div>
         </div>
       )}

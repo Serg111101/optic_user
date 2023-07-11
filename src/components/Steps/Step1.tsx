@@ -186,7 +186,7 @@ console.log(stepArr);
             </div>
           </div>
           <div className="step1_image">
-            <img src="./images/1.webp" alt="" />
+            <img src="./image/1.webp" alt="" />
           </div>
         </div>
       )}

@@ -111,5 +111,6 @@ export function Galery() {
         </div>
     </>}
     </div >
+
   )
 }
