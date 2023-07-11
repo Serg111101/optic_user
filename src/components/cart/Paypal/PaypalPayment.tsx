@@ -1,20 +1,30 @@
 import { CLIENT_ID } from '../../../Config/Config'
 import React, { useState, useEffect } from "react" ;
+import { Space, Spin } from 'antd';
 import {PaypalPay} from './PaypalPay'
-import './PaymentForm.module.scss'   
+import { useNavigate } from 'react-router-dom';
+import { error } from 'console';
 
 
 const PaypalCheckout = () => {
   const [clientToken, setClientToken] = useState(null);
+  const [error,setError] =useState<any>(false)
   const clientId = "AYpZl-KPXdnlCR0DY7_DOvnBe-bWeoEaX22RnbdcpW9torewWYuSsyhOK24HO5d3mVzLiDH0LejDNsAu"
+  const navigate = useNavigate()
 useEffect(() => {
      (async () => {
+      try{
          const response = await fetch("http://localhost:3000/api/v1/paypal/token", {
                   method: "post",
                   });
             const client_token = await response.json();
             setClientToken(client_token);
             console.log(client_token);
+          }
+            catch(error){
+              setError(error)
+              
+            }
             
      })();
    }, []);
@@ -24,7 +34,10 @@ useEffect(() => {
      <header >
      {clientToken ? (
         <PaypalPay clientToken={clientToken} clientID={clientId} />
-      ) : (<h4>Loading....</h4>) }
+      ) : (error ? <button onClick={()=>navigate(0)}>Go Pay</button> :<div className="lod"><Space >
+      <Spin size="large">
+      </Spin>
+    </Space>  </div> ) }
      </header>
      </div>
 

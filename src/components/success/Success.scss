@@ -1,0 +1,36 @@
+
+       
+        .success{
+          display:flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        flex-direction: column;
+          width: 100%;
+          background-color:rgb(221, 214, 214);
+          padding: 30px;
+          border-radius: 10px;
+          opacity: 0.8;
+          a{
+            color:black;
+            margin-top: 10px;
+          }
+          h4{
+            color: black;
+          }
+          button{
+            margin-left: 20px;
+            background-color: rgb(219, 72, 72);
+            border-radius: 10px;
+            width: 120px;
+            height: 40px;
+       
+         }
+         button:hover{
+            background: rgb(102, 96, 110);
+            box-shadow: 10px 10px 10px  rgb(65, 41, 41);
+            transform: scale(1.2);
+    
+    
+         }
+        }

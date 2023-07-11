@@ -12,17 +12,21 @@ export const OrderingInformation = () => {
   let arr:any=sessionStorage?.getItem('orders')
   const [stepArr,setStepArr]=useState<Object[]>(JSON.parse(arr)||[])
   useEffect(() => {
+    
     if (arr == null || arr == '[]') {
+      console.log(arr);
 
       sessionStorage.setItem('orders', JSON.stringify(orders))
+    }else{
+      setStepArr(JSON.parse(arr))
     }
-  }, [orders,  arr])
+  }, [orders, arr,sessionStorage])
   useEffect(() => {
-    if (orders.length && !sessionStorage.getItem('orders')) {
+    if (orders?.length && !sessionStorage.getItem('orders')) {
       sessionStorage.setItem('orders', JSON.stringify(orders))
       setStepArr(orders)
     }
-  }, [orders])
+  }, [orders,sessionStorage])
   const [step2, setStep2] = useState();
   const [step3, setStep3] = useState();
   const [step4, setStep4] = useState();
@@ -125,7 +129,7 @@ export const OrderingInformation = () => {
 
   return (
     <div className='Order'>
-      {final && total ? <FinalOrder total={total} /> :
+      {final && total ? <FinalOrder total={total} headArr={headArr} /> :
         <>
           <div className='step'>
             <div className='step1 ak'><hr />
@@ -144,7 +148,7 @@ export const OrderingInformation = () => {
               <div className="klor" id="klor5" >{final ? <CheckOutlined /> : <LoadingOutlined />}</div>
             </div>
           </div>
-          <Step1 headArr={headArr} stepArr={stepArr} setStepArr={setStepArr} step2={step2} step3={step3} step4={step4} step5={step5} final={final} setStep2={setStep2} setStep3={setStep3} setStep4={setStep4} setStep5={setStep5} setFinal={setFinal} />
+          {stepArr?.length>0&&<Step1 headArr={headArr} stepArr={stepArr} setStepArr={setStepArr} step2={step2} step3={step3} step4={step4} step5={step5} final={final} setStep2={setStep2} setStep3={setStep3} setStep4={setStep4} setStep5={setStep5} setFinal={setFinal} />}
         </>
       }
     </div>

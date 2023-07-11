@@ -39,7 +39,7 @@
   },
   "scripts": {
 
-    "start": "DISABLE_ESLINT_PLUGIN=true PORT=3001 react-scripts --openssl-legacy-provider start",
+    "start": " PORT=3001 react-scripts --openssl-legacy-provider start",
     "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
     "test": "DISABLE_ESLINT_PLUGIN=true react-scripts test",
     "eject": "DISABLE_ESLINT_PLUGIN=true react-scripts eject"

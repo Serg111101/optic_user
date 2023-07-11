@@ -1,64 +1,47 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
 .container_pay{
- max-width: 1200px;
-  margin: 120px auto;
-  // background-color:rgb(221, 214, 214);
-
+ width: 1200px;
+  margin: 100px auto;
+  background-color:rgb(221, 214, 214);
+  height: 50vh;
  .box-pay{
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin: 0px auto;
   background-color:rgb(221, 214, 214);
-
-  .modaling{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    flex-direction: column;
-      width: 600px;
-      background-color:rgb(221, 214, 214);
-      padding: 30px;
-      border-radius: 10px;
-      opacity: 0.8;
-    
-      
-    
-      .modesta{
-        cursor: pointer;
-        width: 100%;
-        height: 60px;
-        display: flex;
-        padding-left: 20px;
-        box-shadow: 10px 5px 5px gray;
-        border-radius: 6px;
-        margin-top: 20px;
-        opacity: 1 !important;
-        img{
-          width: 120px;
-                    height: 50px;
-                  
-                   object-fit: fill;
-                    
-        }
-      }
-    
+  .error{
+    margin: 50px auto;
+    h3{
+      color: red;
     }
+    button{
+  
+      background-color: rgb(219, 72, 72);
+      border-radius: 10px;
+      width: 120px;
+      height: 40px;
+ 
+   }
+   button:hover{
+      background: rgb(102, 96, 110);
+      box-shadow: 10px 10px 10px  rgb(65, 41, 41);
+      transform: scale(1.2);
 
 
+   }
+  }
   .total-box{
     display:flex;
   justify-content: center;
   align-items: center;
   align-content: center;
   flex-direction: column;
-    width: 400px;
+    width: 30%;
     background-color:rgb(231, 222, 222);
     padding: 30px;
     border-radius: 10px;
     opacity: 0.8;
-    margin-top: 50px;
     .total{
       width: 100%;
       text-align: center;
@@ -82,23 +65,34 @@
   }
  }
 .mainpay {
-  // display: flex;
-  // margin: 100px 350px;
+  margin: 100px 350px;
   --light-grey: #F6F9FC;
   --dark-terminal-color: #0A2540;
   --accent-color: #635BFF;
   --radius: 3px;
   padding: 20px;
   font-family: 'Raleway';
-  // justify-content: center;
+  justify-content: center;
   font-size: 1.2em;
   color: var(--dark-terminal-color);
-  // margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   .Payment{
+    margin: 150px auto;
+
+    button{
+  
+      background-color: rgb(219, 72, 72);
+      border-radius: 10px;
+      width: 120px;
+      height: 40px;
+ 
+   }
+   button:hover{
+      background: rgb(102, 96, 110);
+      box-shadow: 10px 10px 10px  rgb(65, 41, 41);
+      transform: scale(1.2);
+
+
+   }
     header{
   
       .paypay{
@@ -122,6 +116,9 @@
     }
     }
 }
+}
+.mainpay {
+  width: 480px;
 }
 
 form > * {
@@ -198,62 +195,37 @@ fieldset, input, select {
   font-size:0.7em;
 }
 
-// <<<<<<< HEAD
-// .modaling{
-// display:flex;
-// justify-content: center;
-// align-items: center;
-// align-content: center;
-// flex-direction: column;
-
-// margin: 170px auto;
-
-//   width: 50%;
-//   background-color:rgb(221, 214, 214);
-//   padding: 30px;
-//   border-radius: 10px;
-//   opacity: 0.8;
-
-//     h1{
-//       font-size: 22px;
-//     }
-  
-
-//   .total{
-//     width: 60%;
-//     background: white;
-//     text-align: center;
-//     font-size: 22px;
-//     border: 1px solid gray;
-//     border-radius: 5px;
-//     margin: 20px auto;
-//   }
-  
-
-//   .modesta{
-//     cursor: pointer;
-//     width: 90%;
-//     height: 40px;
-//     display: flex;
-//     padding-left: 20px;
-//     box-shadow: 10px 5px 5px gray;
-//     border-radius: 6px;
-//     margin-top: 20px;
-//     opacity: 1 !important;
-//     img{
-//       width: 120px;
-//                 height: 50px;
+.modaling{
+display:flex;
+justify-content: center;
+align-items: center;
+align-content: center;
+flex-direction: column;
+  width: 50%;
+  background-color:rgb(221, 214, 214);
+  padding: 30px;
+  border-radius: 10px;
+  opacity: 0.8;
+  .modesta{
+    cursor: pointer;
+    width: 90%;
+    height: 60px;
+    display: flex;
+    padding-left: 20px;
+    box-shadow: 10px 5px 5px gray;
+    border-radius: 6px;
+    margin-top: 20px;
+    opacity: 1 !important;
+    img{
+      width: 90px;
+                height: 50px;
               
-//                object-fit: fill;
+               object-fit: fill;
                 
-//     }
-//   }
-  
+    }
+  }
 
-// }
-// =======
-
-// >>>>>>> origin/Jan
+}
 
 .lav {
   background:  #635BFF;
@@ -284,88 +256,3 @@ fieldset, input, select {
   color:  #0A2540;
 }
 }
-
-@media(max-width:833px){
-  .container_pay{
-    .box-pay{
-      .modaling{
-        h1{
-          font-size: 25px;
-          width:318px
-        }
-        .modesta{
-          .spantitle{
-            // display: flex;
-            // justify-content: flex-start;
-            margin: 0 auto;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media(max-width:768px){
-.container_pay{
-  .box-pay{
-    flex-direction: column;
-    .modaling{
-      width: 80%;
-      .modesta{
-        .spantitle{
-          display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-      }
-    }
-  }
-}
-
-}
-
-@media(max-width:567px){
-  .container_pay{
-    .box-pay{
-      .modaling{
-        width: 90%;
-         
-
-         
-        .modesta{
-          .spantitle{
-            font-size: 15px;
-            
-          }
-        }
-      }
-    }
-  }
-  
-  }
-
-  @media(max-width:425px){
-    .container_pay{
-      .box-pay{
-
-        .total-box{
-          width:90%
-        }
-        
-          .modaling{
-            // height: 70px;
-            .modesta{
-              height: 90px;
-            flex-direction: column;
-            align-items: center;
-
-            .spantitle{
-              font-size: 20px;
-            }
-
-            
-          }
-        }
-        }
-      }
-  }

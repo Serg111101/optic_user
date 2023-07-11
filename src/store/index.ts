@@ -12,9 +12,9 @@ import  HomeReduce  from './slices/HomeSlice';
 // import ordersReducer from "./slice/OrderInformationSlice";
 import uspsReducer from "./slices/RateSlice"
 import createReducer from "./slices/RateSlice"
-import fedexReducer from './slices/RateSlice'
+import fedexReducer from './slices/FedexSlice'
 import uspsGetReducer  from './slices/RateSlice'
-import fedexGetReducer  from './slices/RateSlice'
+import fedexGetReducer  from './slices/FedexSlice'
 import fedexorder from './slices/OrderShip'
 import uspsorder from './slices/OrderShip'
 import UspsShip from './slices/ShipSlice'

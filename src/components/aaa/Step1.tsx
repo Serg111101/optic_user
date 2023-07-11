@@ -17,13 +17,13 @@ export const Step1 = ({
   setFinal
 }: any) => {
 
-  let arr:any=sessionStorage.getItem('orders')
+//   let arr:any=sessionStorage.getItem('orders')
   const [btnCheck,setBtnCheck]=useState(false);
-useEffect(()=>{
-  if(arr !==null && arr !== '[]'&& stepArr===null){
-    setStepArr(JSON.parse(arr))
-  }
-},[stepArr,arr])
+// useEffect(()=>{
+//   if(arr !==null && arr !== '[]'&& stepArr===null){
+//     setStepArr(JSON.parse(arr))
+//   }
+// },[stepArr,arr])
 
   function ChangeItem(tableName: string, id: number,index:number,e:any) {
     e.preventDefault()

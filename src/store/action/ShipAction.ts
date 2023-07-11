@@ -1,98 +1,36 @@
 import { Dispatch } from "@reduxjs/toolkit";
-import {  fetching, fetchFedexSuccess, fetchError } from "../slices/ShipSlice";
+import {  fetching, fetching1, fetchFedexSuccess, fetchError } from "../slices/ShipSlice";
 import axios from "axios";
 
 
 
-export const fetchFedexShip = ()=>{
-
-    const arr1 = {
-        "labelResponseOptions": "URL_ONLY",
-        "requestedShipment": {
-          "shipper": {
-            "contact": {
-              "personName": "SHIPPER NAME",
-              "phoneNumber": 1234567890,
-              "companyName": "Shipper Company Name"
-            },
-            "address": {
-              "streetLines": [
-                "SHIPPER STREET LINE 1"
-              ],
-              "city": "HARRISON",
-              "stateOrProvinceCode": "AR",
-              "postalCode": 72601,
-              "countryCode": "US"
-            }
-          },
-          "recipients": [
-            {
-              "contact": {
-                "personName": "RECIPIENT NAME",
-                "phoneNumber": 1234567890,
-                "companyName": "Recipient Company Name"
-              },
-              "address": {
-                "streetLines": [
-                  "RECIPIENT STREET LINE 1",
-                  "RECIPIENT STREET LINE 2"
-                ],
-                "city": "Collierville",
-                "stateOrProvinceCode": "TN",
-                "postalCode": 38017,
-                "countryCode": "US"
-              }
-            }
-          ],
-          "shipDatestamp": "2020-07-03",
-          "serviceType": "PRIORITY_OVERNIGHT",
-          "packagingType": "FEDEX_ENVELOPE",
-          "pickupType": "USE_SCHEDULED_PICKUP",
-          "blockInsightVisibility": false,
-          "shippingChargesPayment": {
-            "paymentType": "SENDER"
-          },
-          "shipmentSpecialServices": {
-            "specialServiceTypes": [
-              "RETURN_SHIPMENT"
-            ],
-            "returnShipmentDetail": {
-              "returnType": "PRINT_RETURN_LABEL"
-            }
-          },
-          "labelSpecification": {
-            "imageType": "PDF",
-            "labelStockType": "PAPER_85X11_TOP_HALF_LABEL"
-          },
-          "requestedPackageLineItems": [
-            {
-              "weight": {
-                "value": 1,
-                "units": "LB"
-              }
-            }
-          ]
-        },
-        "accountNumber": {
-          "value": 740561073
-        }
-      }
-   
+export const fetchFedexShip = (arr:any)=>{
     return async (dispatch:Dispatch)=>{
-        
         try{ 
             dispatch(fetching());
             const response: any = await axios({
               method: 'post',
               url: 'http://localhost:3000/api/v1/users/fedex/ship',
-              data: arr1
+              data: {
+                "contact":{
+                  "personName":arr[0].name,
+                  "phoneNumber": arr[0].phone,
+                  "companyName": arr[0].company
+                },
+                "address": {
+                  "streetLines": [
+                    arr[0].street1,
+                  ],
+                  "city": arr[0].city,
+                  "stateOrProvinceCode": arr[0].state,
+                  "postalCode": arr[0].zip,
+                  "countryCode": "US"
+                }
       
-      
-            });
+            }});
             dispatch(fetchFedexSuccess(response?.data));
             console.log(response?.data);
-            localStorage.setItem('fedexShip', JSON.stringify(response.data))
-
+            localStorage.setItem('Shipping', JSON.stringify(response.data))
         }
         catch(error){
             dispatch(fetchError(error as Error));
@@ -112,7 +50,7 @@ export const fetchUspsShip = (arr2:any)=>{
         console.log(arr2.object_id);
         
             try{ 
-                dispatch(fetching());
+                dispatch(fetching1());
                 const response: any = await axios({
                   method: 'post',
                   url: 'http://localhost:3000/api/v1/users/createShip',
@@ -130,18 +68,24 @@ export const fetchUspsShip = (arr2:any)=>{
              console.log(response.data);
              
                 dispatch(fetchFedexSuccess([response.data]));
-                 const arr = [] 
+                 const arr = ["shippo"] 
                 // dispatch(fetchUspsSuccess2(response?.data));
-                arr.push(response?.data[0].label_url);
-                arr.push(response?.data[0].object_id);
-                arr.push(response?.data[0].userOrderId);
+                const obj:any ={
+                  trackingNumber:response?.data[0].object_id,
+                  labelDocument:response?.data[0].label_url
+                }
+                arr.push(obj);
+                
+    
 
-                localStorage.setItem('shippoShip', JSON.stringify(arr))
+                localStorage.setItem('Shipping', JSON.stringify(arr))
  
                 
     
             }
             catch(error){
+              console.log(error);
+              
                 dispatch(fetchError(error as Error));
             }
     

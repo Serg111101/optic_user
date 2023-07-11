@@ -10,6 +10,7 @@ const GoogleCheckout = ({price}:any) => {
 
   const [paymentRequest, setPaymentRequest] = useState(buildPaymentRequest([]));
   const navigate = useNavigate()
+  const amount:any=localStorage.getItem("price1")
 
 
   useEffect(() => {
@@ -20,7 +21,7 @@ const GoogleCheckout = ({price}:any) => {
         [
           {
             label: `${500} (${10}) x ${2}`,
-            price: (0 * 1).toFixed(2),
+            price: amount,
             type: 'LINE_ITEM'
           }
         ]
@@ -37,7 +38,7 @@ const GoogleCheckout = ({price}:any) => {
   return (
     <div className='googlepay '>
           <h1>Payment in GPay</h1>
-          {price[0]?.provider && <p>Ship price: {price[0].amount} {price[0].currency}</p>}
+          {/* {price[0]?.provider && <p>Ship price: {price[0].amount} {price[0].currency}</p>} */}
 
           <GooglePayButton
             environment="TEST"

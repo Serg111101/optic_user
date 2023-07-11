@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import "../cart.scss"
 import {CheckCircleOutlined}  from "@ant-design/icons";
 import {CloseCircleOutlined}  from "@ant-design/icons";
-
+import { SuccesOrder } from '../../success/SuccesOrder';
 
 function Completion(props:any) {
   const [ messageBody, setMessageBody ] = useState<any>('');
@@ -27,8 +27,7 @@ function Completion(props:any) {
     <>
       
      {messageBody ? <div className="messages" role="alert" style={{display: 'block'}}> <h1 className='errorin'>ERROR</h1>  <CloseCircleOutlined />  Status onsucssed </div>
-      :<div className="messages" role="alert" style={{display: 'block'}}>    <h2>Your trackingNumber {orders[1]?.trackingNumber}</h2>
-      <a href={orders[1]?.labelDocument} target="_blank"> Your labelDocument  </a> </div>}
+      :<div className="messages" role="alert" style={{display: 'block'}}>  <SuccesOrder/> </div>}
     </>
   );
 }
