@@ -144,12 +144,12 @@ async function handleCallbackResponse(response:any) {
                 
 
                 <div className="containerHeader" id="containerHeader">
-            <img src="../../../../image/logo11.webp" />
+            <img src="../../../../images/logo11.webp" />
             <h3 id={"containerHeaderH1"}>{LoginStyle?.title}</h3>
         </div>                    <div className="containerMain">
             
                         <div className="loginImage">
-                            <img src="../../../../image/logins.webp" />
+                            <img src="../../../../images/logins.webp" />
                         </div>
 
                         
