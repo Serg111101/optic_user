@@ -5,7 +5,7 @@ import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Themes } from "./pages/Themes";
 import { Contact } from "./components/Contact";
-import { Login } from "./pages/login";
+// import { Login } from "./pages/login";
 import { ClipandLendStyles } from './pages/ClipandLendStyles'
 import Pay from "./pages/payment/Pay";
 import Completion from "./components/cart/Stripe/Completion";

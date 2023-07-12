@@ -25,6 +25,20 @@ export function Header() {
         localStorage.removeItem('token');
         navigate('login')
     }
+    let pathname = window.location.pathname
+    
+    useEffect(() => {
+        removOrder()
+    }, [pathname])
+    function removOrder() {
+        if (pathname !== '/orderinginformation') {
+            sessionStorage.removeItem('orders')
+            sessionStorage.removeItem('step2')
+            sessionStorage.removeItem('step3')
+            sessionStorage.removeItem('step4')
+            sessionStorage.removeItem('final')
+        }
+    }
 
 
    

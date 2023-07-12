@@ -282,7 +282,7 @@ export const Step3 = ({
             </div>
           </div>
           <div className="step3_image">
-            <img src="../../../images/glas.png" alt="photo not found" />
+            <img src="../../../images/2.webp" alt="photo not found" />
           </div>
         </div>
       )}

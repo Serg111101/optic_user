@@ -1,6 +1,7 @@
 .themes{
     max-width: 1200px;
     margin: 80px auto 0 auto;
+    padding: 25px;
     .line_div {
         width: 100%;
         margin: 120px auto  40px auto;
@@ -9,12 +10,13 @@
         align-items: center;
     
         .line {
-            width: 39%;
+            width: 32%;
             height: 2px;
             background-color: black;
         }
         p{
-            font-size: 25px;
+            // width: 100%;
+            font-size: 20px;
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             margin: 0px 20px;
         }
@@ -50,4 +52,39 @@
 
 
 
+}
+
+
+@media (max-width:655px){
+    .line_div{
+        .line{
+            width: 28% !important;
+        }
+        p{
+            font-size: 18px !important ;
+        }
+    }
+}
+
+@media (max-width:503px){
+    .line_div{
+        .line{
+            width: 24% !important;
+        }
+        p{
+            font-size: 14px !important ;
+        }
+    }
+}
+
+@media (max-width:368px){
+    .line_div{
+        .line{
+            width: 18% !important;
+        }
+        p{
+            // width: 100%;
+            font-size: 14px !important ;
+        }
+    }
 }

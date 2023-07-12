@@ -100,7 +100,7 @@ export const Step4 = ({
               </div>
             </div>
             <div className="step4_image">
-              <img src="../../../images/glas.png" alt="" />
+              <img src="../../../images/3.webp" alt="" />
             </div>
           </div>
         )}

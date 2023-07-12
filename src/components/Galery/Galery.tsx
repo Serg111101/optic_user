@@ -3,7 +3,6 @@ import "./Galery.scss"
 import { fetchHome } from "../../store/action/HomeAction";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { Loading } from '../loading';
-import axios from "axios";
 
 
 
@@ -75,12 +74,12 @@ export function Galery() {
 
         
         <div className="slideshow">
-          <div className="slideshowSlider" style={{ transform: `translate3d(${-index * (widthimg+170)}px, 0, 0)` }}>
+          <div className="slideshowSlider" style={{ transform:` translate3d(${-index * (widthimg+170)}px, 0, 0)` }}>
             {Home?.map((el: any, inde: number) => (
               <div
                 className={index !== inde ? "activee" : "activee aaa1"}
                 key={inde}
-                style={{ marginLeft: inde === 0 ? `${-width}px` : '', width: `${widthimg+100}px` }}
+                style={{ marginLeft: inde === 0 ? `${-width}px` : '', width: `${widthimg+100}px `}}
                 onClick={() => {
                   setIndex(inde);
                 }}
@@ -90,17 +89,16 @@ export function Galery() {
             ))}
           </div>
           <div className="slideshowDots_111" >
-            <div className="slideshowDots" style={{ transform: `translate3d(${-index*(30)+60}px, 0, 0)` }}>
+            <div className="slideshowDots" style={{ transform:` translate3d(${-index*(30)+60}px, 0, 0)` }}>
               {Home?.map((el: any, idx: number) => (
 
               <div
                 key={idx}
-                style={{ marginLeft: idx === 0 ? `${width}px` : '', width: `${100}px` ,backgroundImage:"url('../../../images/backraund.jpg') "}}
+                style={{ marginLeft: idx === 0 ? `${0}px` : '', width: `${100}px`,backgroundImage:"url('../../../images/backraund.jpg')" }}
                 className={`slideshowDot${index === idx ? " active" : ""}`}
                 onClick={() => {
                   setIndex(idx);
                 }}
-                
 
               >
                 <img src={el?.image} alt='galery_change'/>
@@ -112,6 +110,5 @@ export function Galery() {
         </div>
     </>}
     </div >
-
   )
 }

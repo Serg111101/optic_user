@@ -28,6 +28,7 @@ export function Color() {
             <div className='color_div_image'>
               <img src={el.image} alt='color_image' />
               <p>{el.title}</p>
+              <span></span>
             </div>
             <p>{el.text}</p>
           </div>
@@ -38,4 +39,3 @@ export function Color() {
     </div>
   )
 }
-

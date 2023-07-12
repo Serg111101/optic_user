@@ -19,7 +19,7 @@ const StripeChechkout = () => {
       
       setStripePromise(loadStripe(publishableKey));
     })
-    .then((messages) => {console.log("messages");});
+    .catch((messages) => {console.log("messages");});
     
     setMek(knopka())
    

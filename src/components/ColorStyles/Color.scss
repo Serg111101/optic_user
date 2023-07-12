@@ -1,5 +1,5 @@
 .color {
-    .line_div1 {
+    .line_div {
         width: 80%;
         margin: 40px auto;
         display: flex;
@@ -26,41 +26,98 @@
         }
 
     }
+
     .color_option {
-        width: 80%;
+        width: 60%;
         margin: 0 auto;
         display: grid;
         grid-template-columns: auto auto auto;
         align-items: center;
         justify-content: space-between;
+
         .color_div {
             margin-top: 40px;
+
             .color_div_image {
                 position: relative;
+
                 img {
-                    width: 150px;
-                    height: 150px;
+                    width: 100px;
+                    height: 100px;
                     border-radius: 100%;
                 }
-                span{
+
+                span {
                     position: absolute;
                     width: 1px;
                     height: 1px;
                     border-radius: 100%;
                     background-color: rgba(255, 255, 255, 0.467);
-                    box-shadow: 0px 0px 50px 30px white;
-                    left: 50px;
-                    top: 50px;
+                    box-shadow: 0px 0px 30px 20px white;
+                    left: 30px;
+                    top: 30px;
                 }
-                p{
-                    padding: 5px;
+
+                p {
+                    padding: 3px;
                     background-color: gray;
-                    color:white;
+                    color: white;
                     position: absolute;
-                    top: 100px;
+                    top: 60px;
+                    left: -10px;
                     border-radius: 8px;
                     font-weight: 500;
-                    letter-spacing: 1px;
+                    letter-spacing: 2px;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:600px) {
+    .color {
+        .color_option {
+            width: 60%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: auto auto ;
+            align-items: center;
+            justify-content: space-between;
+
+            .color_div {
+                margin-top: 40px;
+
+                .color_div_image {
+                    position: relative;
+
+                    img {
+                        width: 80px;
+                        height: 80px;
+                        border-radius: 100%;
+                    }
+
+                    span {
+                        position: absolute;
+                        width: 1px;
+                        height: 1px;
+                        border-radius: 100%;
+                        background-color: rgba(255, 255, 255, 0.467);
+                        box-shadow: 0px 0px 20px 10px white;
+                        left: 25px;
+                        top: 25px;
+                    }
+
+                    p {
+                        padding: 1px;
+                        background-color: gray;
+                        color: white;
+                        position: absolute;
+                        top: 50px;
+                        left: -10px;
+                        border-radius: 8px;
+                        font-weight: 500;
+                        letter-spacing: 1px;
+                    }
                 }
             }
         }

@@ -52,7 +52,13 @@ export function Contact() {
           </div>
         </div>
       ) : (
+        
         <div>
+          <div className='Clip_line_div'>
+        <div className='Clip_line'></div>
+        <p>Contact Us</p>
+        <div className='Clip_line'></div>
+      </div>
           <div className="title">info@bestopticlab.com</div>
 
           <div className="inputs">
@@ -117,7 +123,7 @@ export function Contact() {
         </div>
       </div>
 
-      <div className="footerTop">
+      {/* <div className="footerTop">
         <div className="sub">Supscribe</div>
         <div className="in">
           <input type="email" placeholder="EMAIL ADRESS" />
@@ -125,7 +131,7 @@ export function Contact() {
         <div className="btn2">
           <button>SIGN UP</button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

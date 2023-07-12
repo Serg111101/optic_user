@@ -15,7 +15,7 @@ function Payment(props:any) {
   const [ clientSecret, setClientSecret ] = useState('');
 
   useEffect(() => {
-    fetch(`/api/v1/stripe/create-payment-intent/${amount}`)
+    fetch(`${URL}api/v1/stripe/create-payment-intent/${amount}`)
       .then(async(res) => await res.json())  
       .then(({clientSecret}) => setClientSecret(clientSecret));
       
