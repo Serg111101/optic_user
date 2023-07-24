@@ -1,9 +1,7 @@
-import { CLIENT_ID } from '../../../Config/Config'
 import React, { useState, useEffect } from "react" ;
 import { Space, Spin } from 'antd';
 import {PaypalPay} from './PaypalPay'
 import { useNavigate } from 'react-router-dom';
-import { error } from 'console';
 const URL = process.env.REACT_APP_BASE_URL
 
 

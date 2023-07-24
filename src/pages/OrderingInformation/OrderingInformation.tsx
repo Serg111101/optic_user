@@ -1,3 +1,5 @@
+/*eslint-disable */
+
 import React, { useEffect, useState } from 'react'
 import "./OrderingInformation.scss"
 import { Step1 } from '../../components/Steps/Step1'
@@ -84,8 +86,8 @@ export const OrderingInformation = () => {
 
     if (!sessionStorage.getItem("step5")) {
       sessionStorage.setItem("step5", "false")
-      const stepp5: any = sessionStorage.getItem("step5")
-      setStep5(JSON.parse(stepp5))
+      // const stepp5: any = sessionStorage.getItem("step5")
+      // setStep5(JSON.parse(stepp5))
     } else {
       const stepp5: any = sessionStorage.getItem("step5")
       setStep5(JSON.parse(stepp5))

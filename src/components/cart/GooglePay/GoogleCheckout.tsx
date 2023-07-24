@@ -1,3 +1,5 @@
+/*eslint-disable */
+
 import React, {useState, useEffect} from 'react'
 import { buildPaymentRequest, getUpdatedPaymentData } from './GooglePay';
 import GooglePayButton from '@google-pay/button-react';

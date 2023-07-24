@@ -1,47 +1,24 @@
 import { useAppSelector, useAppDispatch } from "../../hooks/redux";
 import { fetchClip} from "../../store/action/ClipAction";
-import { useCallback, useEffect, useRef, useState } from "react";
+import {useEffect, useRef,} from "react";
 import './Clip.scss'
+import ImageGallery from 'react-image-gallery'
+
+import 'react-image-gallery/styles/scss/image-gallery.scss';
 
 export function Clip() {
   const {Clip}=useAppSelector(state=>state.Clip)
   const dispatch = useAppDispatch()
   const name='Clip Styles'
-
+  const galleryRef:any = useRef();
+  
   useEffect(() => {
     dispatch(fetchClip(name));
+    galleryRef?.current?.play();
 }, [dispatch]);
 
 
   
-  const delay = 2000;
-  const [index, setIndex] = useState(0);
-
-  const timeoutRef: any = useRef(null);
-
-  const resetTimeout = useCallback(() => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-  }, []);
-
-  const fun = useCallback(() => {
-
-    timeoutRef.current = setTimeout(() => {
-
-      setIndex((x) => (x === Clip.length - 1 ? 0 : x + 1));
-    }, delay);
-  }, [Clip.length]);
-
-  useEffect(() => {
-    resetTimeout();
-    fun();
-
-    return () => {
-      resetTimeout();
-
-  };
-}, [resetTimeout, fun, Clip.length, setIndex,index]);
 
   return (
     <div className='Clip'>
@@ -53,41 +30,23 @@ export function Clip() {
       <div
         className="Clip_slideshow"
       >
-        <div
-          className="Clip_slideshowSlider"
-          style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
-        >
+          <ImageGallery
+              items={Clip?.map((el: any, index: number) => ({
+                original: el?.image,
+                thumbnail: el?.image,
+                originalAlt: `Image ${index + 1}`,
+                thumbnailAlt: `Image ${index + 1}`,
+              }))}
+              showPlayButton={false}
+              autoPlay={true}
+              slideInterval={2000}
+              showThumbnails={true}
+              showFullscreenButton={true}
+              showNav={true}
+              showIndex={true}
+              lazyLoad={true}
+            />
 
-          {Clip.map((el:any, index) => (
-            <div
-              className={index < index + 1 && index > index - 1 ? "Clip_activee" : "Clip_aslide"}
-              key={index}
-              onClick={() => {
-                setIndex(index)
-              }}
-            >
-              {
-                <img src={el.image} alt="Clip_image" />
-              }
-            </div>
-          ))}
-
-        </div>
-
-        <div className="Clip_slideshowDots">
-          {Clip.map((el:any, idx) => (
-            <div
-              key={idx}
-              className={`Clip_slideshowDot${index === idx ? " active" : ""}`}
-              onClick={() => {
-                setIndex(idx);
-              }}
-              style={{backgroundImage:"url('../../../images/backraund.jpg')"}}
-            > 
-            <img src={el?.image} alt="Clip_foto" /> 
-            </div>
-          ))}
-        </div>
       </div>
 
     </div>

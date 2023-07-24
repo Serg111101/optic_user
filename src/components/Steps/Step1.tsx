@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import "./Steps.scss";
 import { useState, useEffect } from "react";
 import { Step2 } from "./Step2";

@@ -1,114 +1,53 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import "./Galery.scss"
-import { fetchHome } from "../../store/action/HomeAction";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { useEffect, useRef } from 'react';
+import { fetchHome } from '../../store/action/HomeAction';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { Loading } from '../loading';
-
-
-
+import ImageGallery from 'react-image-gallery';
+import 'react-image-gallery/styles/scss/image-gallery.scss';
 
 export function Galery() {
+  const { loading, Home }: any = useAppSelector((state) => state.Home);
+  const galleryRef: any = useRef();
 
-  
-  const { loading,  Home }: any = useAppSelector((state) => state.Home)
   const dispatch = useAppDispatch();
-  const [width, setWidth] = useState(((window.innerWidth / 100) * 1) - 200)
-  const [widthimg, setWidthImg] = useState((window.innerWidth / 100) * 54)
-  const [transform, settransform] = useState(0)
-  const [index, setIndex] = useState(0);
-  const [x, setX] = useState(0);
-  const timeoutRef: any = useRef(null);
-  const delay = 2500;
-  const resetTimeout = useCallback(() => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-  }, []);
-  const fun = useCallback(() => {
-    timeoutRef.current = setTimeout(() => {
-
-      setIndex((x) => (x === Home?.length - 1 ? 0 : x + 1));
-    }, delay);
-  }, [Home?.length]);
-  useEffect(() => {
-    dispatch(fetchHome())
-  }, [dispatch])
-  useEffect(() => {
-    resetTimeout();
-    fun();
-    return () => {
-      resetTimeout();
-    }
-  }, [
-    resetTimeout, fun, Home.length, setIndex, index
-  ]);
 
   useEffect(() => {
-    if ((index * 85 - 50) - x > width) {
-      settransform(transform + 1)
-      setX(x + 280)
-    } else if (index === 0) {
-      setX(0)
-      settransform(0)
-    } else {
-      settransform(transform)
-    }
-    // setWidth(((window.innerWidth / 100) * 80) - 200)
-    setWidthImg((window.innerWidth / 100) * 54)
-
-  }, [
-    // index,transform,width,widthimg,x
-  ])
+    dispatch(fetchHome());
+    galleryRef?.current?.play();
+  }, [dispatch]);
 
   return (
-    <div>
-      {loading ? <Loading /> :
-       <>
-        <div className="line_div">
-          <div className="line"></div>
-          <p>Photo Galery</p>
-          <div className="line"></div>
-
-        </div>
-
-
-        
-        <div className="slideshow">
-          <div className="slideshowSlider" style={{ transform:` translate3d(${-index * (widthimg+170)}px, 0, 0)` }}>
-            {Home?.map((el: any, inde: number) => (
-              <div
-                className={index !== inde ? "activee" : "activee aaa1"}
-                key={inde}
-                style={{ marginLeft: inde === 0 ? `${-width}px` : '', width: `${widthimg+100}px `}}
-                onClick={() => {
-                  setIndex(inde);
-                }}
-              >
-                <img src={el?.image} alt='galery_foto' />
-              </div>
-            ))}
+    <div className="mainDiv">
+      {loading ? (
+        <Loading />
+      ) : (
+        <div>
+          <div className="line_div">
+            <div className="line"></div>
+            <p>Photo Gallery</p>
+            <div className="line"></div>
           </div>
-          <div className="slideshowDots_111" >
-            <div className="slideshowDots" style={{ transform:` translate3d(${-index*(30)+60}px, 0, 0)` }}>
-              {Home?.map((el: any, idx: number) => (
 
-              <div
-                key={idx}
-                style={{ marginLeft: idx === 0 ? `${0}px` : '', width: `${100}px`,backgroundImage:"url('../../../images/backraund.jpg')" }}
-                className={`slideshowDot${index === idx ? " active" : ""}`}
-                onClick={() => {
-                  setIndex(idx);
-                }}
-
-              >
-                <img src={el?.image} alt='galery_change'/>
-
-              </div>
-              ))}
-            </div>
+          <div className="imageGalery">
+            <ImageGallery
+              items={Home?.map((el: any, index: number) => ({
+                original: el?.image,
+                thumbnail: el?.image,
+                originalAlt: `Image ${index + 1}`,
+                thumbnailAlt: `Image ${index + 1}`,
+              }))}
+              showPlayButton={false}
+              autoPlay={true}
+              slideInterval={2000}
+              showThumbnails={true}
+              showFullscreenButton={true}
+              showNav={true}
+              showIndex={true}
+              lazyLoad={true}
+            />
           </div>
         </div>
-    </>}
-    </div >
-  )
+      )}
+    </div>
+  );
 }

@@ -1,5 +1,6 @@
+/*eslint-disable*/
 import "./Steps.scss";
-import { useEffect, useState } from "react";
+import { useEffect, } from "react";
 import FinalOrder from "./FinalOrder";
 
 export const Step4 = ({

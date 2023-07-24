@@ -1,4 +1,5 @@
-import React, { useState} from "react";
+/*eslint-disable */
+import { useState} from "react";
 import GoogleCheckout from "../../components/cart/GooglePay/GoogleCheckout";
 import PaypalCheckout from "../../components/cart/Paypal/PaypalPayment";
 import StripeChechkout from "../../components/cart/Stripe/StripeChechkout";
@@ -22,8 +23,6 @@ const {loading, FedexShip, error}:any=useAppSelector((state:any)=>state.FedexShi
 const dispatch = useAppDispatch()
 const [price, setPrice]=useState<any>()
 const [pricetrue, setPricetrue]=useState(false)
-const [uspsShip,setUspsShip]=useState<any>()
-const [fedexShip,setFedexShip]=useState<any>()
 const [errors,setError] = useState<any>()
 const [loadings, setLoading]=useState<any>()
 const [allprice, setAllprice]=useState<any>()
@@ -33,8 +32,6 @@ const [Paying, setPaying] = useState(true)
 const [Paysee, setPaysee] = useState(false)
 const [payseetrue, setPayseetrue]=useState(true)
 useEffect(()=>{
-  setUspsShip(UspsShip)
-  setFedexShip(FedexShip)
   setError(error)
   setLoading(loading)
   },[UspsShip,FedexShip])

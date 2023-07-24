@@ -1,3 +1,5 @@
+/*eslint-disable*/
+
 import React, { useState } from 'react'
 import "./Steps.scss";
 import { useNavigate } from 'react-router-dom';

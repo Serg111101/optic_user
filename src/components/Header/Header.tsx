@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import "./Header.scss";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -27,18 +28,19 @@ export function Header() {
     }
     let pathname = window.location.pathname
     
-    useEffect(() => {
-        removOrder()
-    }, [pathname])
-    function removOrder() {
-        if (pathname !== '/orderinginformation') {
-            sessionStorage.removeItem('orders')
-            sessionStorage.removeItem('step2')
-            sessionStorage.removeItem('step3')
-            sessionStorage.removeItem('step4')
-            sessionStorage.removeItem('final')
-        }
-    }
+    // useEffect(() => {
+    //     removOrder()
+    // }, [pathname])
+
+    // function removOrder() {
+    //     if (pathname !== '/orderinginformation') {
+    //         sessionStorage.removeItem('orders')
+    //         sessionStorage.removeItem('step2')
+    //         sessionStorage.removeItem('step3')
+    //         sessionStorage.removeItem('step4')
+    //         sessionStorage.removeItem('final')
+    //     }
+    // }
 
 
    

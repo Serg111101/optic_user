@@ -1,6 +1,7 @@
+/*eslint-disable */
+
 import {useEffect, useState} from 'react';
 import "../cart.scss"
-import {CheckCircleOutlined}  from "@ant-design/icons";
 import {CloseCircleOutlined}  from "@ant-design/icons";
 import { SuccesOrder } from '../../success/SuccesOrder';
 

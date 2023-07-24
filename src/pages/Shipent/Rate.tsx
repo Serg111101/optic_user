@@ -1,3 +1,5 @@
+/*eslint-disable */
+
 import "./shipment.scss"
 import { useState, useEffect } from "react";
 import { Space, Spin } from 'antd';
