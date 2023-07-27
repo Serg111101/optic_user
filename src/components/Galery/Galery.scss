@@ -1,38 +1,50 @@
-.mainDiv{
+.mainDiv {
     width: 90%;
     margin: 0 auto;
     overflow: hidden;
     text-align: center;
-
-.line_div {
-    width: 80%;
-    margin: 80px auto 40px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .line {
+    padding-top: 20px !important ;
+    // height: 100vh !important;    
+  
+    .line_div {
+      width: 80%;
+      margin: 80px auto 40px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      .line {
         width: 40%;
         height: 2px;
         background-color: black;
-    }
-
-    p {
+      }
+  
+      p {
         font-size: 25px;
         font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         margin: 0px 20px;
+      }
     }
-}
-
   
-.imageGalery{
-    margin-bottom: 50px;
-    width: 70%;
-    margin: 0 auto;
-
+    .imageGalery {
+      margin-bottom: 50px;
+      width: 100%; 
+      max-width: 1200px;
+      margin: 30px auto;
+    //   height: 100%;  
   
-
-}
-
-}
+      .image-gallery-thumbnails {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        grid-gap: 10px;
+      }
+  
+      @media screen and (max-width: 768px) {
+        .image-gallery-thumbnails {
+          grid-template-columns: repeat(1, 1fr);
+        }
+      }
+    }
+  }
+  
 

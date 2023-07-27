@@ -8,7 +8,11 @@ export function Color() {
   const [name] = useState('Mirror Colors');
   const dispatch = useAppDispatch();
 
-  const { MirrorColors }: any = useAppSelector(state => state.MirrorColors)
+  const { MirrorColors }: any = useAppSelector(state => state.MirrorColors);
+
+  console.log(MirrorColors)
+
+  
 
   useEffect(() => {
     dispatch(fetchMirrorColors(name))
@@ -23,14 +27,14 @@ export function Color() {
       </div>
       <div className='color_option'>
       {
-        MirrorColors?.map((el: any) =>
-          <div key={el.id} className='color_div'>
+        MirrorColors?.map((el: any,index:number,) =>
+          <div key={index} className='color_div'>
             <div className='color_div_image'>
-              <img src={el.image} alt='color_image' />
-              <p>{el.title}</p>
+              <img src={el?.image} alt='color_image' />
+              <p>{el?.title}</p>
               <span></span>
             </div>
-            <p>{el.text}</p>
+            <p>{el?.text}</p>
           </div>
 
         )

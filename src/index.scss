@@ -8,6 +8,13 @@
     text-decoration: none;
     // overflow-x: hidden;
 }
+
+
+.App{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 .commit{
     width: 60px;
     height: 60px;
@@ -61,3 +68,15 @@
     opacity: 0;
     transition: .5s linear;
 }
+
+
+
+@media (max-width:670px){
+    .App {
+    height: auto !important ;
+    
+    
+    }
+
+
+  }

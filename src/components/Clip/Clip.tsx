@@ -37,7 +37,7 @@ export function Clip() {
                 originalAlt: `Image ${index + 1}`,
                 thumbnailAlt: `Image ${index + 1}`,
               }))}
-              showPlayButton={false}
+              showPlayButton={true}
               autoPlay={true}
               slideInterval={2000}
               showThumbnails={true}

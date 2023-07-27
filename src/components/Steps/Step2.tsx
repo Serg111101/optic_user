@@ -201,10 +201,10 @@ export const Step2 = ({
               <h2>{headArr[2]}</h2>
               {
                 stepArr?.length>0&&
-                stepArr?.map((el: any) => {
+                stepArr?.map((el: any,index:number) => {
                   if (el?.table_name === headArr[3] && el?.is_active !== null) {
                     if (el.is_active !== clip) { setClip(el.is_active) }
-                    return <div key={el.id} className="optionDiv1_item">
+                    return <div key={index} className="optionDiv1_item">
                       <input type="checkbox" id={el.column_name} checked={el.is_active} value={el.column_name} onChange={() => { ChangeItem(el.table_name, el.id) }} />
                       <label htmlFor={el.column_name}>
                         <h3>{el.table_name}</h3>

@@ -168,7 +168,7 @@ export const Step3 = ({
                         setValue(item.column_name)
                         checkFilter(item.table_name, setCheck)
                       }
-                      return (<option value={item.column_name} key={item.id}>
+                      return (<option value={item.column_name} key={index}>
                         {item.column_name}
                       </option>)
                     }
@@ -188,14 +188,14 @@ export const Step3 = ({
                 <select disabled={!check2} onChange={(e) => { setValue1(e.target.value); ChangeItem2(headArr[6], e.target.value) }} value={value1} >
                   {!value1 && <option >{headArr[6]}</option>}
 
-                  { stepArr?.length >0 && stepArr?.map((item: any) => {
+                  { stepArr?.length >0 && stepArr?.map((item: any,index:number) => {
                     if (item?.table_name === headArr[6]) {
                       if (item.is_active && value1 === '') {
                         setValue1(item?.column_name)
                         checkFilter(item.table_name, setCheck2)
 
                       }
-                      return (<option value={item.column_name} key={item.id}>
+                      return (<option value={item.column_name} key={index}>
                         {item.column_name}
                       </option>)
                     }
@@ -215,14 +215,14 @@ export const Step3 = ({
                 <select disabled={!check3} onChange={(e) => { setValue2(e.target.value); ChangeItem2(headArr[7], e.target.value) }} value={value2} >
                   {!value2 && <option >{headArr[7]}</option>}
 
-                  { stepArr?.length >0&& stepArr?.map((item: any) => {
+                  { stepArr?.length >0&& stepArr?.map((item: any,index:number) => {
                     if (item?.table_name === headArr[7]) {
                       if (item.is_active && value2 === '') {
                         setValue2(item?.column_name)
                         checkFilter(item.table_name, setCheck3)
 
                       }
-                      return (<option value={item.column_name} key={item.id}>
+                      return (<option value={item.column_name} key={index}>
                         {item.column_name}
                       </option>)
                     }
@@ -242,14 +242,14 @@ export const Step3 = ({
                 <select disabled={!check4} onChange={(e) => { setValue3(e.target.value); ChangeItem2(headArr[8], e.target.value) }} value={value3} >
                   {!value3 && <option >{headArr[8]}</option>}
 
-                  { stepArr?.length >0&& stepArr?.map((item: any) => {
+                  { stepArr?.length >0&& stepArr?.map((item: any,index:number) => {
                     if (item?.table_name === headArr[8]) {
                       if (item.is_active && value3 === '') {
                         setValue3(item?.column_name)
                         checkFilter(item.table_name, setCheck4)
 
                       }
-                      return (<option value={item.column_name} key={item.id}>
+                      return (<option value={item.column_name} key={index}>
                         {item.column_name}
                       </option>)
                     }
@@ -266,12 +266,12 @@ export const Step3 = ({
                 </label>
               </div>
               { stepArr?.length >0&&
-                stepArr?.map((el: any) => {
+                stepArr?.map((el: any,index:number) => {
                   if (el.table_name === headArr[9]) {
                     // setCheck5(el.is_active)
                     if (el.is_active === true && check5 === false) { setCheck5(true) }
                     if (el.is_active === false && check5 === true) { setCheck5(false) }
-                    return <div >
+                    return <div key={index} >
                       {el.is_active === true && <p>{el.column_name}</p>}
                     </div>
                   }

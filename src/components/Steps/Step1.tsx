@@ -150,19 +150,15 @@ useEffect(()=>{
               {stepArr?.length>0 && 
                 stepArr?.map((el: any,index:number) =>{
                   if(el?.table_name === headArr[0] ){
-                    return <div key={el.id} className="optionDiv1_item">
+                    return <div key={index} className="optionDiv1_item">
                       <p>{el?.column_name}</p>
                     <input type="checkbox" id={el?.id} checked={el?.is_active} value={el?.column_name} onChange={(e:any)=>{ChangeItem(el?.table_name,el?.id,index,e) }} />
                       <label htmlFor={el?.id}>
                         <span></span>
                       </label>
-
-
                   </div>
                   }
-
                 }
-
                   )
               }
 
@@ -171,11 +167,11 @@ useEffect(()=>{
               <h2>{headArr[1]}</h2>
               {
                 stepArr?.length >0 &&
-                stepArr?.map((el: any) =>
+                stepArr?.map((el: any,index:number) =>
                   el?.table_name === headArr[1] &&
-                  <div className="optionDiv2_item">
-                    <span>{el.column_name}</span>
-                    <input type="text" placeholder={el.column_name} value={el.value} onChange={(e) =>{ ChengeInput(e.target.value, el.table_name, el.id)}} />
+                  <div className="optionDiv2_item" key={index} >
+                    <span>{el?.column_name}</span>
+                    <input type="text" placeholder={el.column_name} value={el?.value} onChange={(e) =>{ ChengeInput(e.target.value, el.table_name, el.id)}} />
                   </div>
                 )
               }
