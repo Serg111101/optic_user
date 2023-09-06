@@ -19,6 +19,11 @@ import fedexorder from './slices/OrderShip'
 import uspsorder from './slices/OrderShip'
 import UspsShip from './slices/ShipSlice'
 import FedexShip from './slices/ShipSlice'
+import EmployeesReduces from './slices/EmployeesSlice';
+import TasksReduces from './slices/TasksSlice';
+import EmployeesProfilReduces from './slices/EmployeesProfilSlice';
+import LoginReducer from './slices/LoginSlice';
+
 
 
 export const store = configureStore({
@@ -41,6 +46,10 @@ export const store = configureStore({
     uspsorder:uspsorder,
     UspsShip:UspsShip,
     FedexShip:FedexShip,
+    Employees:EmployeesReduces,
+    Tasks:TasksReduces,
+    EmployeesProfil:EmployeesProfilReduces,
+    Login:LoginReducer,
 
     // GovernmetMembersFullInfo:GovernmetMembersFullInfoReducer,
     // UniqueProduct:UniqueProductReducer,

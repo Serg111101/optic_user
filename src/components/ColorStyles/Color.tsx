@@ -10,10 +10,6 @@ export function Color() {
 
   const { MirrorColors }: any = useAppSelector(state => state.MirrorColors);
 
-  console.log(MirrorColors)
-
-  
-
   useEffect(() => {
     dispatch(fetchMirrorColors(name))
   }, [dispatch,name])
